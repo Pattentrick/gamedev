@@ -1,0 +1,227 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+ul {
+	list-style-type: none;
+}
+
+body {
+	padding: 10px;
+	font: 14px/16px arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font: 14px/16px arial, sans-serif;
+    font-weight: bold;
+}
+
+#output-wrapper {
+    overflow: hidden;
+    width: 890px;
+}
+
+.player-protocol-container {
+    overflow: hidden;
+    width: 700px;
+    float: left;
+}
+
+.monster-stats {
+    padding: 10px;
+    border: 1px solid #666;
+}
+
+.player-stats {
+    padding: 10px;
+    height: 300px;
+    color: #000;
+    background: #fff;
+    border: 1px solid #666;
+    position: relative;
+}
+
+.player-stats p {
+    margin: 0 0 5px 0;
+}
+
+.monster-stats p {
+    margin: 0 0 5px 0;
+}
+
+.monster-stats {
+    background: #fff;
+    color: #000;
+}
+
+.monster-properties {
+    position: absolute;
+    top:12px;
+    right:0;
+    width: 115px;
+}
+
+.monster-stats h2 {
+    margin: 0 0 10px 0;
+}
+
+.protocol {
+    padding: 10px;
+    height: 300px;
+    overflow-y: scroll;
+    background: #141414;
+    position: relative;
+    z-index: 100;
+    border: 1px solid #666;
+}
+
+.protocol p {
+    margin: 0 0 5px 0;
+    line-height: 20px;
+}
+
+.blue {
+    color: #3366ff;
+}
+
+.white {
+    color: #fff;
+}
+
+.red {
+    color: #cc0000;    
+}
+
+.green {
+    color: #009900;
+}
+
+.yellow {
+    color: #ffcc00;
+}
+
+.player-stats h2 {
+    margin: 0 0 15px 0;
+}
+
+.results {
+    display: none;
+}
+
+button {
+    border: none;
+    text-indent: -9999em;
+    outline: 0;
+    width: 34px;
+    height: 34px;
+    margin: 0 5px 0 0;
+    cursor: pointer;
+}
+
+button.use-sword {
+    background: url(img/icons/sword.png);
+}
+
+button.look-around {
+    background: url(img/icons/look_around.png);
+}
+
+button.drink-potion {
+    background: url(img/icons/potion.png);
+}
+
+button.skillHardBlow {
+    background: url(img/icons/hard_blow.png);
+    display: none;
+}
+
+button.heal {
+    background: url(img/icons/heal.png);
+}
+
+.commands {
+    margin: 10px 0 0 0;
+}
+
+.command-info {
+    margin: 10px 0 0 0;
+    font-weight: bold;
+}
+
+.inactive {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+}
+
+.btn-container {
+    width: 728px;
+}
+
+.tiles-player-stats, .tiles-protocol, .tiles-monster-stats {
+    padding: 5px;
+    background: url(img/border/tile.gif);
+}
+
+.tiles-player-stats {
+    float: left;
+    width: 170px;
+}
+
+.tiles-protocol {
+    float: right;
+    width: 500px;
+}
+
+.tiles-monster-stats {
+    float: right;
+    width: 170px;
+    position: relative;
+    left: -210px;
+    z-index: 10;
+}
+
+.exp-bar-container {
+    position: absolute;
+    bottom: 10px;
+}
+
+.outer-exp-bar {
+    background: #ccc;
+    width: 140px;
+    height: 5px;
+}
+
+.inner-exp-bar {
+    width: 0;
+    height: 5px;
+    background: purple;
+}
+
+.player-stats .outer-health-bar {
+    background: #ccc;
+    width: 140px;
+    height: 5px;
+}
+
+.player-stats .inner-health-bar {
+    width: 140px;
+    height: 5px;
+    background: #009900;
+}
+
+.player-items {
+    margin: 15px 0 0 0;
+}
+
+.monster-stats .outer-health-bar {
+    background: #ccc;
+    width: 90px;
+    height: 5px;
+}
+
+.monster-stats .inner-health-bar {
+    width: 90px;
+    height: 5px;
+    background: #009900;
+}

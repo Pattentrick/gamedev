@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>RPG</title>
+		<link rel="stylesheet" href="main.css" media="screen" >		
+	</head>
+	<body>
+        <div id="output-wrapper">
+            <div class="player-protocol-container">
+                <div class="tiles-player-stats">
+                    <div class="player-stats">
+                        <h2>-=[ <span class="player-name"></span> ]=-</h2>
+                        <p>Level : <span class="player-level"></span></p>
+                        <p>HP : <span class="health-min"></span> / <span class="health-max"></span></p>
+                        <div class="outer-health-bar">
+                            <div class="inner-health-bar"></div>
+                        </div>
+                        <div class="player-items">
+                            <p>Heiltränke: <span class="number-of-potions">0</span></p>
+                        </div>
+                        <div class="exp-bar-container">
+                            <p>Levelaufstieg</p>
+                            <div class="outer-exp-bar">
+                                <div class="inner-exp-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tiles-protocol">
+                    <div class="protocol"></div>
+                </div>
+            </div>
+            <div class="tiles-monster-stats" data-monster-status="inactive">
+                <div class="monster-stats">
+                    <img src="monster/skeleton_warrior.png" alt="Monster" id="monster-img">
+                    <div class="monster-properties">
+                        <h2 class="monster-name">Skelettkrieger</h2>
+                        <p>HP : <span class="health-min">10</span> / <span class="health-max">10</span></p>
+                        <div class="outer-health-bar">
+                            <div class="inner-health-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="commands">
+            <div class="btn-container">
+                <button class="use-sword" data-description="Benutze dein Schwert.">Benutze dein Schwert</button>
+                <button class="look-around" data-description="Sieh dich um." data-status="active">Sieh dich um</button>
+                <button class="drink-potion inactive" data-description="Trinke einen Heiltrank (Heilt 5 HP)." data-status="inactive">Benutze kleinen Heiltrank</button>
+            </div>
+            <p class="command-info"></p>
+		</div>
+        <div class="results">
+            <h1>Game Over</h1>
+            <p>Monster getötet: <span class="monster-killed">0</span></p>
+            <p>Tränke gefunden: <span class="potions-found">0</span></p>
+            <a href="#" class="retry">Noch ein Versuch!</a>
+        </div>
+		<script src="jquery.js"></script>
+        <script src="helper.js"></script>
+        <script src="message.js"></script>
+        <script src="protocol.js"></script>
+        <script src="commands.js"></script>
+		<script src="entities.js"></script>
+	</body>
+</html>
