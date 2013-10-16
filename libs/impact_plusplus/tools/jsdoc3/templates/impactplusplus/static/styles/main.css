@@ -1,0 +1,376 @@
+#header {
+	position: relative;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	background: #222;
+	border-bottom: solid 4px #333;
+}
+#headerlinks {
+	position: relative;
+	width: 75%;
+	margin: -4% auto 0 auto;
+	text-align: center;
+}
+#downloadBtn, #demoBtn {
+	display: inline-block;
+	position: relative;
+	width: 33%;
+}
+#forkBtn, #docsBtn {
+	width: 50%;
+}
+#forkBtn {
+	max-width: 64px;
+	max-height: 56px;
+	position: absolute;
+	top: 12%;
+	right: 102%;
+}
+#docsBtn {
+	max-width: 96px;
+	max-height: 84px;
+	position: absolute;
+	top: 9%;
+	left: 102%;
+}
+#downloadBtn, #demoBtn {
+	max-width: 256px;
+	max-height: 256px;
+}
+#intro {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	text-align: center;
+	color: #555;
+}
+#intro, #intro a {
+	color: #444;
+}
+#intro a:hover {
+	color: #222;
+}
+#intro h1 {
+	font-size: 60px;
+	font-weight: 200;
+	line-height: 1;
+	letter-spacing: -1px;
+}
+#intro h4 {
+	font-size: 22px;
+	line-height: 125%;
+	font-weight: normal;
+}
+#intro .btn, #intro .btn:hover {
+	margin-top: 20px;
+	font-size: 32px;
+	line-height: 100%;
+}
+#features {
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+#features a:hover {
+	text-decoration: none;
+}
+.feature a {
+	display: inline-block;
+	text-align: center;
+	background-color: transparent;
+	border: solid 1px transparent;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+.feature a:hover {
+	background-color: #eee;
+	border: solid 1px #ccc;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+	-moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+	box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+#logo {
+	display: inline-block;
+	position: relative;
+}
+#logo #forkBtn {
+	width: 64px;
+	height: 56px;
+	padding: 10px;
+}
+.subtext {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-style: italic;
+	font-weight: normal;
+}
+.doc p {
+	line-height: 21px; font-size: 16px;
+}
+h2 .icon {
+	margin-top: 7px !important;
+}
+h3 .icon {
+	margin-top: 4px !important;
+}
+li {
+	line-height: 21px;
+}
+.sidenav i {
+	float: right;
+	margin-top: 2px;
+	margin-right: -6px;
+}
+.sidenav > li.nav-header {
+	background-color: #eee;
+}
+.sidenav > li.nav-header,
+.sidenav > li > a {
+	display: block;
+	margin: 0 0 -1px;
+	padding: 8px 14px;
+	border: 1px solid #e5e5e5;
+}
+.sidenav > li.nav-header:first-child,
+.sidenav > li:first-child > a {
+	-webkit-border-radius: 6px 6px 0 0;
+	-moz-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+}
+.sidenav > li:last-child > a {
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+	border-radius: 0 0 6px 6px;
+}
+.sidenav {
+	padding: 0;
+	margin-bottom: 10px;
+}
+dt, dd {
+	line-height: inherit;
+}
+.subsection > dl > dt .name {
+	padding-top: 30px;
+}
+dl {
+	margin-bottom: 10px;
+}
+.dl-horizontal dt {
+	width: auto;
+}
+.dl-horizontal dd {
+	float: left;
+	margin-left: 10px;
+}
+.hero-unit h1 {
+	font-size: 50px;
+}
+.infoline {
+	opacity: 0.5;
+}
+.infoline [class^="icon-"], .infoline [class*=" icon-"] {
+	margin-right: 4px;
+}
+.infoline-title {
+	text-transform: uppercase;
+}
+.inheritline {
+	margin-bottom: 10px;
+}
+.inheritline .extends {
+	padding: 5px;
+}
+.hero-unit {
+	font-size: inherit;
+}
+.hero-unit pre {
+	margin: 0;
+}
+.constructor {
+	font-size: 22px;
+	line-height: 50px;
+	font-weight: normal;
+}
+.subsection {
+	padding-top: 20px;
+}
+.type-signature, .params th {
+	color: #999;
+	font-weight: normal;
+}
+.details {
+	color: #999;
+}
+.description .alert {
+	display: block;
+	margin: 5px 0;
+}
+.label {
+	margin-bottom: 5px;
+}
+#docs {
+	padding-top: 30px;
+}
+#mainnav .mainnav-list {
+	font-size: 13px;
+	padding: 0;
+	margin-bottom: -10px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ddd;
+}
+#mainnav .mainnav-list:last-child {
+	border-bottom: 0;
+	margin-bottom: 0;
+}
+#mainnav .nav li {
+	line-height: 16px;
+}
+.mainnav-list .collapse {
+	height: auto;
+	overflow: visible;
+}
+.mainnav-list .btn-collapse {
+	width: 100%;
+	color: #999;
+}
+.mainnav-list .btn-collapse:hover {
+	color: #999;
+	text-decoration: none;
+}
+#mainnav .mainnav-list .nav-header {
+	padding-top: 30px;
+}
+#mainnav .mainnav-list:first-child .nav-header{
+	margin-top: -30px;
+}
+#doc {
+	margin-top: -30px;
+	border-top: 30px solid transparent;
+}
+#overview {
+	position: relative;
+}
+#overview dl {
+	margin-bottom: 0;
+}
+#extends {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #ddd;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	-webkit-border-radius: 4px 0 4px 0;
+	-moz-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
+}
+#navdocs.affix {
+	top: 30px;
+	width: inherit;
+}
+#navdocs .btn {
+	opacity: 0.75;
+	display: block;
+	text-align: left;
+	width: 100%;
+	margin: 0 0 -1px;
+	padding: 8px 14px;
+	border: 1px solid #e5e5e5;
+	color: #666;
+}
+#navdocs li:last-child .btn {
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+}
+#navdocs .btn:hover {
+	opacity: 1;
+	text-decoration: none;
+}
+#navdocs .nav-header img {
+	margin-right: 10px;
+}
+#navdocs a [class^="icon-"], #navdocs a [class*=" icon-"] {
+	opacity: 0.35;
+}
+#navdocs a:hover [class^="icon-"], #navdocs a:hover [class*=" icon-"] {
+	opacity: 0.75;
+}
+#navdocs li.active a [class^="icon-"], #navdocs li.active a [class*=" icon-"] {
+	opacity: 1;
+}
+#navdocs img {
+	opacity: 0.6;
+}
+#navdocs a {
+	text-align: right;
+}
+#navdoc {
+	margin-bottom: 10px;
+}
+#classes ul.inline > li.well {
+	margin-bottom: 5px;
+}
+footer {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	font-size: 13px;
+	text-align: center;
+}
+
+@media (min-width: 1200px) {
+	.hero-unit h1 {
+		font-size: 60px;
+	}
+}
+
+@media (max-width: 979px) {
+	.hero-unit {
+		padding: 30px;
+	}
+	.hero-unit h1 {
+		font-size: 40px;
+	}
+	#navdocs .nav-header {
+		word-wrap: break-word;
+	}
+	#maincontentColumn2 {
+		width: 140px;
+	}
+	#maincontentColumn8 {
+		width: 440px;
+	}
+}
+
+@media (max-width: 767px) {
+	#header {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+	.dl-horizontal dt {
+		width: auto;
+	}
+	.dl-horizontal dd {
+		margin-left: 20px;
+		float: none;
+	}
+	.mainnav-list .collapse {
+		height: 0;
+		overflow: hidden;
+	}
+	#mainnav {
+		text-align: center;
+	}
+	#mainnav .nav {
+		font-size: inherit;
+	}
+	#mainnav .nav li {
+		line-height: inherit;
+	}
+	#maincontentColumn2 {
+		width: auto;
+	}
+	#maincontentColumn8 {
+		width: auto;
+	}
+}
