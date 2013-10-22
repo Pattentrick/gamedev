@@ -33,6 +33,11 @@ ig.module(
             // camera settings
             CAMERA : {
                 AUTO_FOLLOW_PLAYER : false
+            },
+
+            // character pathfinding
+            CHARACTER : {
+                PATHFINDING_DELAY : 0
             }
 
         };

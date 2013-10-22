@@ -7,27 +7,26 @@ ig.module(
     'game.entities.player'
 )
 .requires(
-    // note that anything in abstractities
-    // is an abstract entity that needs to be extended
     'plusplus.abstractities.player',
-	// require the glow ability
-	// lets see some lights!
-	'plusplus.abilities.glow',
-	// if you want to use the config
-    // don't forget to require it
     'plusplus.core.config',
-	// and some utils
 	'plusplus.helpers.utils'
 )
 .defines(function () {
 	
-	var _c = ig.CONFIG;
+	var _c  = ig.CONFIG;
 	var _ut = ig.utils;
 	
     ig.EntityPlayer = ig.global.EntityPlayer = ig.Player.extend({
 		
-		size: _c.TOP_DOWN ? {x:8, y: 8} : {x: 8, y:14},
-		offset: _c.TOP_DOWN ? {x:4, y: 4} : {x: 4, y: 2},
+		size: {
+            x:8,
+            y: 8
+        },
+
+		offset: {
+            x:4,
+            y: 4
+        },
 		
 		// animations the Impact++ way
 		// note that these animations are for
@@ -37,7 +36,7 @@ ig.module(
 		
 		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'player.png', 16, 16 ),	
 		
-		animInit: _c.TOP_DOWN ? "moveX" : "idleX",
+		animInit: 'moveX',
 		
 		// for example, a sidescroller's animSettings
 		// will only use idleX, jumpX, fallX, moveX, shootX, and deathX
@@ -50,7 +49,7 @@ ig.module(
 		animSettings: {
 			idleX: {
 				frameTime: 1,
-				sequence: _c.TOP_DOWN ? [21] : [0]
+				sequence: [21]
 			},
 			idleLeft: {
 				frameTime: 1,
@@ -82,7 +81,7 @@ ig.module(
 			},
 			moveX: {
 				frameTime: 0.07, 
-				sequence: _c.TOP_DOWN ? [21,22,23,22] : [0,1,2,3,4,5]
+				sequence: [21,22,23,22]
 			},
 			moveLeft: {
 				frameTime: 0.07, 
@@ -106,7 +105,7 @@ ig.module(
 			},
 			shootX: {
 				frameTime: 0.25, 
-				sequence: _c.TOP_DOWN ? [26] : [2]
+				sequence: [26]
 			},
 			shootRight: {
 				frameTime: 0.25, 
@@ -130,7 +129,7 @@ ig.module(
 			},
 			deathX: {
 				frameTime: 0.1, 
-				sequence: _c.TOP_DOWN ? [29] : [10,11]
+				sequence: [29]
 			},
 			deathLeft: {
 				frameTime: 0.1, 
@@ -153,125 +152,23 @@ ig.module(
 				sequence: [28]
 			}
 		},
-		
-		// use this method to change an entity internally
-		
-		updateChanges: function() {
-				
-			var shootX;
-			var shootY;
-			
-			// check if shooting
-			
-			if (ig.input.pressed('shoot')) {
-				
-				if ( _c.TOP_DOWN ) {
-					
-					if ( this.facing.x !== 0 ) {
-						
-						shootX = this.facing.x > 0 ? this.pos.x + this.size.x : this.pos.x;
-						
-					}
-					else {
-						
-						shootX = this.pos.x + this.size.x * 0.5;
-						
-					}
-					
-					if ( this.facing.y !== 0 ) {
-						
-						shootY = this.facing.y > 0 ? this.pos.y + this.size.y : this.pos.y;
-						
-					}
-					else {
-						
-						shootY = this.pos.y + this.size.y * 0.5;
-						
-					}
-					
-				}
-				else {
-					
-					shootX = this.flip.x ? this.pos.x : this.pos.x + this.size.x;
-					shootY = this.pos.y + this.size.y * 0.5;
-					
-				}
-				
-				this.shoot.execute( {
-					x: shootX,
-					y: shootY
-				} );
 
-			}
-			
-			// check if grenading
-			
-			if (ig.input.pressed('grenade')) {
-				
-				if ( _c.TOP_DOWN ) {
-					
-					if ( this.facing.x !== 0 ) {
-						
-						shootX = this.facing.x > 0 ? this.pos.x + this.size.x : this.pos.x;
-						
-					}
-					else {
-						
-						shootX = this.pos.x + this.size.x * 0.5;
-						
-					}
-					
-					if ( this.facing.y !== 0 ) {
-						
-						shootY = this.facing.y > 0 ? this.pos.y + this.size.y : this.pos.y;
-						
-					}
-					else {
-						
-						shootY = this.pos.y + this.size.y * 0.5;
-						
-					}
-					
-				}
-				else {
-					
-					shootX = this.flip.x ? this.pos.x : this.pos.x + this.size.x;
-					shootY = this.pos.y + this.size.y * 0.5;
-					
-				}
-				
-				this.grenade.execute( {
-					x: shootX,
-					y: shootY
-				} );
+        /**
+         * handles what to do on mouse
+         * input by player
+         */
+        handleInput : function(){
 
-			}
-			
-			// swipe to jump
-			
-			if (ig.input.state('swipe')) {
+            if ( ig.input.pressed('click') ) {
 
-				// find all inputs that are swiping
+                this.moveTo({
+                    x: ig.input.mouse.x + ig.game.screen.x,
+                    y: ig.input.mouse.y + ig.game.screen.y
+                });
 
-				var inputPoints = ig.input.getInputPoints([ 'swiping' ], [ true ]);
+            }
 
-				for (var i = 0, il = inputPoints.length; i < il; i++) {
-
-					var inputPoint = inputPoints[ i ];
-					
-					if (inputPoint.swipingUp) {
-
-						this.jump();
-
-					}
-
-				}
-
-			}
-			
-			this.parent();
-			
-		}
+        }
 		
 	});
 

@@ -77,14 +77,14 @@ ig.module(
              * @type Vector2
              * @default 0%
              */
-            posPct: _utv2.vector(),
+            posPct: { x: 0, y: 0 },
 
             /**
              * Alignment relative to screen size in values from 0 to 1.
              * @type Vector2
              * @default 0% (top left)
              */
-            align: _utv2.vector(),
+            align: { x: 0, y: 0 },
 
             /**
              * Pseudo margins that won't actually keep other elements away.
@@ -92,7 +92,7 @@ ig.module(
              * @type Vector2
              * @default 0%
              */
-            margin: _utv2.vector(),
+            margin: { x: 0, y: 0 },
 
             /**
              * Whether to treat margin as a percentage of screen size.
@@ -151,7 +151,14 @@ ig.module(
              * @type Vector2
              * @default 0%
              */
-            linkAlign: _utv2.vector(),
+            linkAlign: { x: 0, y: 0 },
+
+            /**
+             * Flips {@link ig.UIElement#linkAlign} so that coordinates are relative to inside of linkedTo element
+             * @type Boolean
+             * @default false
+             */
+            linkAlignInside: false,
 
             /**
              * Signal dispatched when UI element activated.
@@ -261,6 +268,8 @@ ig.module(
              */
             reposition: function ( force ) {
 
+                var linkDir = this.linkAlignInside ? -1 : 1;
+
                 // reposition only if not moving self
 
                 if (!this.getIsMovingSelf()) {
@@ -283,8 +292,8 @@ ig.module(
                         this.pos.x = this.linkedTo.posDraw.x + diffX;
                         this.pos.y = this.linkedTo.posDraw.y + diffY;
 
-                        var offsetX = ( linkedSizeDrawX + sizeDrawX ) * 0.5;
-                        var offsetY = ( linkedSizeDrawY + sizeDrawY ) * 0.5;
+                        var offsetX = ( linkedSizeDrawX + sizeDrawX * linkDir ) * 0.5;
+                        var offsetY = ( linkedSizeDrawY + sizeDrawY * linkDir ) * 0.5;
 
                         this.pos.x += this.linkAlign.x * offsetX;
                         this.pos.y += this.linkAlign.y * offsetY;
@@ -321,8 +330,8 @@ ig.module(
 
                     if ( this.linkedTo ) {
 
-                        this.pos.x += this.linkAlign.x * this.totalMarginX;
-                        this.pos.y += this.linkAlign.y * this.totalMarginY;
+                        this.pos.x += this.linkAlign.x * this.totalMarginX * linkDir;
+                        this.pos.y += this.linkAlign.y * this.totalMarginY * linkDir;
 
                     }
                     else {
@@ -338,16 +347,6 @@ ig.module(
                 }
 
                 return this.parent( force );
-
-            },
-
-            /**
-             * UI element bounds and bounds draw should always be the same due to the addition of margins, align, and other misc items.
-             * @override
-             **/
-            getBounds: function () {
-
-                return this.bounds = this.getBoundsDraw();
 
             },
 

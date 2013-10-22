@@ -1,17 +1,12 @@
-// starting with Impact++ is simple!
-// setup a main game file, such as 'game/main.js'
-// that you load right after ImpactJS
-// and inside this file...
-// setup the main module
 ig.module(
     'game.main'
 )
-// now require the appropriate files
 .requires(
-	// the following are the only files required to use Impact++
+	// include impact++
     'plusplus.core.plusplus',
     // levels
-    'game.levels.test'
+    'game.levels.test',
+    'game.levels.camera'
 )
 // define the main module
 .defines(function () {
@@ -34,8 +29,15 @@ ig.module(
 
 		    // load level
             this.loadLevel(ig.global.LevelTest);
+            //this.loadLevel(ig.global.LevelCamera);
 
 		},
+
+        inputStart: function () {
+
+            ig.input.bind(ig.KEY.MOUSE1, 'click');
+
+        },
 
         /**
          * Centers camera on gamescreen when
@@ -54,6 +56,28 @@ ig.module(
 
         },
 
+        /**
+         * Modify the ig.Camera class to have an option to
+         * automatically position itself to a defined offset based on a
+         * percent of the level size, when it has nothing to follow.
+         */
+        focusCamera : function( x , y ){
+
+            // reset screen position for
+            // proper positioning on resize
+            ig.game.screen.x = 0;
+            ig.game.screen.y = 0;
+
+            // calculate new screen position
+
+            var start = ig.game.screen.x - ( ig.system.realWidth / 2 ) / ig.system.scale;
+
+            ig.game.screen.x = start;
+
+            console.log(ig.game.layers.items);
+
+        },
+
         resize : function(){
 
             this.parent();
@@ -63,6 +87,7 @@ ig.module(
 
                 // center camera on gamescreen
                 this.centerStaticCamera();
+                //this.focusCamera( 0.5, 0.5 );
 
             }
 
