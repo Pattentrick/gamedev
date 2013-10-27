@@ -5,8 +5,7 @@ ig.module(
 	// include impact++
     'plusplus.core.plusplus',
     // levels
-    'game.levels.test',
-    'game.levels.camera'
+    'game.levels.test'
 )
 // define the main module
 .defines(function () {

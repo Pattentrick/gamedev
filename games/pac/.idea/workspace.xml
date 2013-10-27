@@ -23,19 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/game/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="14" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="2596">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="player.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="26" selection-start="3132" selection-end="3132" vertical-scroll-proportion="0.0" vertical-offset="3102" max-vertical-offset="3960">
+            <state line="75" column="9" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.7881706" vertical-offset="1077" max-vertical-offset="1870">
               <folding />
             </state>
           </provider>
@@ -44,53 +35,12 @@
       <file leaf-file-name="player.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="191" column="0" selection-start="6063" selection-end="6063" vertical-scroll-proportion="-8.222222" vertical-offset="3980" max-vertical-offset="7106">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1645" column="18" selection-start="52066" selection-end="52098" vertical-scroll-proportion="-8.518518" vertical-offset="35960" max-vertical-offset="57156">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layer.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/layer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="8" selection-start="914" selection-end="922" vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="18392">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="camera.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/camera.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="694" column="36" selection-start="20850" selection-end="20850" vertical-scroll-proportion="-12.592592" vertical-offset="14928" max-vertical-offset="25432">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="0" selection-start="4159" selection-end="4159" vertical-scroll-proportion="0.0" vertical-offset="6653" max-vertical-offset="51854">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config-user.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="37" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.8158996" vertical-offset="273" max-vertical-offset="1100">
-              <folding />
+            <state line="173" column="42" selection-start="5830" selection-end="5830" vertical-scroll-proportion="0.0" vertical-offset="3806" max-vertical-offset="4400">
+              <folding>
+                <marker date="1382866552000" expanded="true" signature="1314:1741" placeholder="/** Base player entity. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="5057:5076" placeholder="/** Handles actions such as move, jump, climb, etc, based on input states. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="5945:6227" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,54 +48,264 @@
       <file leaf-file-name="character.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/character.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1615" column="32" selection-start="49681" selection-end="49681" vertical-scroll-proportion="-8.518518" vertical-offset="35300" max-vertical-offset="56870">
+            <state line="1597" column="0" selection-start="49371" selection-end="49371" vertical-scroll-proportion="0.0" vertical-offset="35074" max-vertical-offset="57332">
               <folding>
-                <marker date="1382115312000" expanded="true" signature="31046:31760" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="32491:39794" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="36699:39779" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="37340:37965" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="37607:37912" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="38142:38306" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="38311:39760" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="38596:39737" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="38829:38957" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="39594:39710" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="39868:40126" placeholder="/** Moves a character along a path. ...*/" />
-                <marker date="1382115312000" expanded="true" signature="40463:40495" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="40662:40793" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="42320:42455" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="42460:43133" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="42695:42835" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="43299:43408" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="43413:43502" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="44184:44714" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="44520:44568" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="44589:44637" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="44658:44705" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="44903:47235" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="44952:45001" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="45022:45193" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="45064:45106" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="45139:45182" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="45214:45797" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="45631:45786" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="47317:47610" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="47669:47863" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="47767:47855" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="47725:47778" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="47884:47891" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="50168:50358" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="50226:50304" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="50398:50408" placeholder="/** Zeroes current horizontal acceleration. ...*/" />
-                <marker date="1382115312000" expanded="true" signature="50557:50595" placeholder="/** Zeroes current vertical acceleration. ...*/" />
-                <marker date="1382115312000" expanded="true" signature="50740:50778" placeholder="/** Zeroes all current acceleration and clears path. ...*/" />
-                <marker date="1382115312000" expanded="true" signature="50824:50931" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="63197:63812" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="63262:63723" placeholder="{...}" />
-                <marker date="1382115312000" expanded="true" signature="63891:63927" placeholder="/** Kills character. ...*/" />
-                <marker date="1382115312000" expanded="true" signature="64359:64468" placeholder="/** Automatically called when character finished being killed. ...*/" />
-                <marker date="1382115312000" expanded="true" signature="64575:64622" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="21076:21196" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="21264:21359" placeholder="/** Initializes Character types. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="21380:21590" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="21632:21759" placeholder="/** Initializes character properties. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="22140:22216" placeholder="/** Resets character movement, velocity, and flip. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="22659:22885" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="22998:23066" placeholder="/** Ensures all expected animations are present so checks don't have to be made at runtime. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="23817:24722" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="25613:25620" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="25839:25894" placeholder="/** Called when character spawned. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="26062:26125" placeholder="/** Removes control from character. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="26327:26387" placeholder="/** @override ...*/" />
+                <marker date="1382866552000" expanded="true" signature="26615:27043" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="26993:27031" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="27375:29653" placeholder="/** Move to an entity or position using pathfinding when dynamic or the original method when not. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="29926:30136" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="29948:30053" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="30260:30416" placeholder="/** Moves character away from entity or position instead of towards. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="30991:31038" placeholder="/** @override ...*/" />
+                <marker date="1382866552000" expanded="true" signature="31219:31991" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="31244:31926" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="31380:31735" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="31490:31687" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="31770:31871" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="32158:32360" placeholder="/** Gets and processes a path from this character to an entity. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="33323:33598" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="33683:36935" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="34048:34253" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="34258:34386" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="34599:34734" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="34871:35164" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="35021:35087" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="35220:35445" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="35370:35393" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="35619:36263" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="35778:35837" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="35994:36208" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="36145:36185" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="36574:36640" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="36690:36846" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="36979:40010" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="37132:37580" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="37289:37315" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="37462:37516" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="37665:38120" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="37834:37852" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="37993:38047" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="38253:38358" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="38444:39995" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="38632:39976" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="38963:39073" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="39656:39765" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="40155:40340" placeholder="/** Moves a character along a path. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="40723:40735" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="40779:48204" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="40897:41091" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="40972:41063" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="41143:41233" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="41543:41678" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="42685:42872" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="42947:43484" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="43139:43215" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="43273:43360" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="43590:44490" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="43713:43798" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="43864:43927" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44120:44154" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44204:44446" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44571:45116" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44624:44644" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44673:44732" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44753:44810" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44886:44908" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="44937:44940" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45002:45086" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45168:48152" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45297:47579" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45344:45353" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45374:45746" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45405:45549" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45628:45684" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45878:46440" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="45952:46010" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="46133:46389" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="46869:47570" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47080:47559" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47455:47458" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47518:47528" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47659:47754" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47827:48047" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47956:48020" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47915:47921" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="47971:47990" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="48094:48109" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="48337:48359" placeholder="/** Clears path. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="48668:48762" placeholder="/** Accelerates character left at {@link ig.Character#speed}. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="48836:48864" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="48911:48951" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="48983:49023" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="49217:49290" placeholder="/** Accelerates character right at {@link ig.Character#speed}. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="51625:51692" placeholder="/** @override ...*/" />
+                <marker date="1382866552000" expanded="true" signature="51805:52543" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="52117:52354" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="53415:53516" placeholder="/** Attempts to start jumping. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="53558:54013" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="53732:53869" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="54102:54148" placeholder="/** Updates jump in progress. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="54293:54439" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="54779:54890" placeholder="/** Does jump push for number of jump steps. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="55632:55690" placeholder="/** Stops any jump in progress. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="55971:56016" placeholder="/** Attempts to start climbing. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="56209:56285" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="56419:56515" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="56431:56446" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="56671:56713" placeholder="/** Attempts to start climbing and climb up. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="57013:57048" placeholder="/** Attempts to start climbing and climb down. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="57310:57382" placeholder="/** Updates climb in progress. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="57523:57552" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="57574:57603" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="57736:57784" placeholder="/** Stops climb in progress. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="58296:58473" placeholder="/** Receives damage. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="58688:58985" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="58807:58881" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="58940:58972" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="59268:59388" placeholder="/** Creates particle explosion. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="59493:59516" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="59647:59746" placeholder="/** Restore health amount. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="60058:60227" placeholder="/** Drain energy amount. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="60388:60434" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="60676:60775" placeholder="/** Restore energy amount. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="61041:61133" placeholder="/** Restores all stats to their max values. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="61291:61414" placeholder="/** Restores stats at a steady rate. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="61495:61611" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="61648:61807" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="61939:61994" placeholder="/** Makes character temporarily invulnerable. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="62593:63615" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="62880:62941" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="62988:63254" placeholder="{&quot;name&quot;: &quot;invulnerableHide&quot;...}" />
+                <marker date="1382866552000" expanded="true" signature="63321:63382" placeholder="{&quot;alpha&quot;: 1...}" />
+                <marker date="1382866552000" expanded="true" signature="63382:63510" placeholder="{&quot;name&quot;: &quot;invulnerableShow&quot;...}" />
+                <marker date="1382866552000" expanded="true" signature="63794:63863" placeholder="/** Ends a temporary invulnerability in progress. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="64099:64216" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="64388:64437" placeholder="/** Kills character. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="64819:64945" placeholder="/** Automatically called when character finished being killed. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="65261:65296" placeholder="/** @override ...*/" />
+                <marker date="1382866552000" expanded="true" signature="65558:65610" placeholder="/** Intersects and checks intersected for various properties such as one-way and climbable. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="65692:65843" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="65885:66001" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="66137:66228" placeholder="/** Checks if character is colliding with a one-way climbable entity. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="66605:67302" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="66713:66991" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="67096:67219" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="67224:67289" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="67695:67817" placeholder="/** Collides with another entity. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="67983:68402" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="68126:68243" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="68350:68364" placeholder="{...}" />
+                <marker date="1382866552000" expanded="true" signature="68486:68529" placeholder="/** @override ...*/" />
+                <marker date="1382866552000" expanded="true" signature="69246:69386" placeholder="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entity.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3531" column="24" selection-start="109731" selection-end="109731" vertical-scroll-proportion="0.0" vertical-offset="77682" max-vertical-offset="120186">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/game/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="22" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="2574">
+              <folding>
+                <marker date="1382606846784" expanded="true" signature="177:2543" placeholder="{...}" />
+                <marker date="1382606846784" expanded="true" signature="343:2265" placeholder="{&quot;clearColor&quot;: &quot;#000000&quot;...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1687" column="11" selection-start="53762" selection-end="53762" vertical-scroll-proportion="1.2962962" vertical-offset="37149" max-vertical-offset="58388">
+              <folding>
+                <marker date="1382866552000" expanded="true" signature="17501:17639" placeholder="/** Blue between 0 and 1 of dimmer overlay. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="17760:17875" placeholder="/** Alpha of pause dimmer overlay. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="17986:18264" placeholder="/** Custom layers to be added to game. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="18424:18603" placeholder="/** Max power / rank level in game. Be careful about going over 9000, as it may break things. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="18761:18990" placeholder="/** Map of ranks based on max level. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="19443:19717" placeholder="/** Precision when checking if numbers are close enough to zero during a tween. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="19955:20116" placeholder="/** Precision when checking collision of one sided entities. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="20156:20552" placeholder="/** Font base configuration settings. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="21052:21345" placeholder="/** Name of alt font. If empty, game will use main font. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="21442:21655" placeholder="/** Scale that overrides system scale when {@link ig.CONFIG.FONT.IGNORE_SYSTEM_SCALE} is true. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="21889:22124" placeholder="/** Whether fonts should ignore system scale. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="22162:22572" placeholder="/** User Interface base configuration settings. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="22613:22930" placeholder="/** Whether UI should get position as a percentage of screen size. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="23023:23130" placeholder="/** Scale that overrides system scale when {@link ig.CONFIG.UI.IGNORE_SYSTEM_SCALE} is true. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="23213:23354" placeholder="/** Whether user interface elements should ignore system scale. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="23405:23677" placeholder="/** Whether UI can flip horizontal. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="23915:24079" placeholder="/** Whether UI can flip horizontal. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="24120:24607" placeholder="/** Gesture configuration settings. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="24639:28618" placeholder="{&quot;RELEASE_DELAY&quot;: 0.3...}" />
+                <marker date="1382866552000" expanded="true" signature="27922:28118" placeholder="/** Input point should record targets on tap. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="28283:28522" placeholder="/** Extra radius to search for targets outside input point x/y. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="28650:29037" placeholder="/** Camera base configuration settings. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="29059:33273" placeholder="{&quot;AUTO_FOLLOW_PLAYER&quot;: true...}" />
+                <marker date="1382866552000" expanded="true" signature="43869:44062" placeholder="/** Whether light should cast shadows on movable objects that are {@link ig.EntityExtended#opaque}. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="44111:44340" placeholder="/** Red value from 0 to 1. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="44423:44631" placeholder="/** Green value from 0 to 1. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="44865:45057" placeholder="/** Blue value from 0 to 1. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="45151:45339" placeholder="/** Alpha value from 0 to 1. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="45440:45614" placeholder="/** How much light should get through objects that are {@link ig.EntityExtended#opaque}. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="45705:45918" placeholder="/** Number of passes to make when casting shadows. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="45969:46427" placeholder="/** Character base configuration settings. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="49193:49348" placeholder="/** Horizontal friction while on ground. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="49429:49553" placeholder="/** Vertical friction while on ground. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="49640:49805" placeholder="/** Movement speed applied to horizontal acceleration. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="49891:50032" placeholder="/** Movement speed applied to vertical acceleration. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="50110:50305" placeholder="/** Whether character is able to jump. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="50364:50763" placeholder="/** Number of update steps to apply jump force. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="50868:51177" placeholder="/** Speed modifier to apply on each jump step. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="51260:51549" placeholder="/** Amount of acceleration control while in air. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="51627:51834" placeholder="/** Whether character should stick to slopes instead of sliding down. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="51894:52095" placeholder="/** Duration after character leaves ground during which they can still jump. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="52362:52513" placeholder="/** Duration after character leaves ground to start playing fall animation. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="52594:52886" placeholder="/** Whether character is able to climb. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="52956:53510" placeholder="/** Amount of acceleration control while climbing. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="53718:53834" placeholder="/** Whether character is able to pathfind. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="53904:54072" placeholder="/** Delay in seconds between pathfinding when has no path. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="54154:54314" placeholder="/** Delay in seconds between pathfinding when following a path. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="54384:54563" placeholder="/** Delay in seconds between pathfinding when using simple pathfinding. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="54664:54880" placeholder="/** Delay in seconds, after first becoming stuck, when character will throw path away. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="54983:55122" placeholder="/** Health statistic. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="55237:55424" placeholder="/** Energy statistic, by default used in abilities. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="55494:55664" placeholder="/** Amount of health a character should regenerate per tick. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="55734:55992" placeholder="/** Amount of energy a character should regenerate per tick. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="56157:56443" placeholder="/** Whether characters should have a particle explosion when damaged. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="56542:56670" placeholder="/** Number of particles to create for explosion when character damaged. ...*/" />
+                <marker date="1382866552000" expanded="true" signature="56785:56972" placeholder="/** Characters should have a particle explosion when killed. ...*/" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config-user.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="25" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1122">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -166,20 +326,20 @@
         <option value="$PROJECT_DIR$/lib/plusplus/abstractities/character.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/abstractities/player.js" />
         <option value="$PROJECT_DIR$/lib/impact/impact.js" />
-        <option value="$PROJECT_DIR$/lib/plusplus/core/entity.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/player.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/core/game.js" />
-        <option value="$PROJECT_DIR$/lib/game/main.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/core/config.js" />
+        <option value="$PROJECT_DIR$/lib/game/main.js" />
+        <option value="$PROJECT_DIR$/lib/plusplus/core/entity.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/config-user.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/player.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="916" />
+    <option name="width" value="1452" />
+    <option name="height" value="912" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -306,26 +466,18 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="Errors" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../libs/impact_plusplus/examples/supercollider" />
+    <property name="options.lastSelected" value="Errors" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../libs/impact_plusplus/examples/supercollider" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration default="false" name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" temporary="true" uri="http://localhost:63342/pac/index.html">
       <RunnerSettings RunnerId="JavascriptDebugRunner" />
       <ConfigurationWrapper RunnerId="JavascriptDebugRunner" />
-      <method />
-    </configuration>
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -336,6 +488,14 @@
       <option name="saveOutputToFile" value="false" />
       <option name="showConsoleOnStdErr" value="false" />
       <option name="showConsoleOnStdOut" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
@@ -368,15 +528,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1452" height="912" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22387005" sideWeight="0.67193675" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18342777" sideWeight="0.67193675" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25296444" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -385,6 +544,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32806325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -404,9 +564,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18502825" sideWeight="0.67061925" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -423,7 +583,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/lib/plusplus/core/entity.js</url>
-          <line>3222</line>
+          <line>3351</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
@@ -434,120 +594,19 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/helpers/signals.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="295" column="0" selection-start="11147" selection-end="11147" vertical-scroll-proportion="0.0" vertical-offset="6314" max-vertical-offset="9240">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/helpers/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="0" selection-start="1378" selection-end="1378" vertical-scroll-proportion="0.0" vertical-offset="836" max-vertical-offset="11066">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/impact/impact.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="15" selection-start="2030" selection-end="2034" vertical-scroll-proportion="0.21757323" vertical-offset="1714" max-vertical-offset="13112">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3727" column="17" selection-start="115597" selection-end="115597" vertical-scroll-proportion="-23.185184" vertical-offset="81368" max-vertical-offset="117546">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/helpers/utilsintersection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="29" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.0" vertical-offset="1111" max-vertical-offset="15092">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/character.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1615" column="32" selection-start="49681" selection-end="49681" vertical-scroll-proportion="-8.518518" vertical-offset="35300" max-vertical-offset="56870">
-          <folding>
-            <marker date="1382115312000" expanded="true" signature="31046:31760" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="32491:39794" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="36699:39779" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="37340:37965" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="37607:37912" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="38142:38306" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="38311:39760" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="38596:39737" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="38829:38957" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="39594:39710" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="39868:40126" placeholder="/** Moves a character along a path. ...*/" />
-            <marker date="1382115312000" expanded="true" signature="40463:40495" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="40662:40793" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="42320:42455" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="42460:43133" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="42695:42835" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="43299:43408" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="43413:43502" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="44184:44714" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="44520:44568" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="44589:44637" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="44658:44705" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="44903:47235" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="44952:45001" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="45022:45193" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="45064:45106" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="45139:45182" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="45214:45797" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="45631:45786" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="47317:47610" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="47669:47863" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="47767:47855" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="47725:47778" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="47884:47891" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="50168:50358" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="50226:50304" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="50398:50408" placeholder="/** Zeroes current horizontal acceleration. ...*/" />
-            <marker date="1382115312000" expanded="true" signature="50557:50595" placeholder="/** Zeroes current vertical acceleration. ...*/" />
-            <marker date="1382115312000" expanded="true" signature="50740:50778" placeholder="/** Zeroes all current acceleration and clears path. ...*/" />
-            <marker date="1382115312000" expanded="true" signature="50824:50931" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="63197:63812" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="63262:63723" placeholder="{...}" />
-            <marker date="1382115312000" expanded="true" signature="63891:63927" placeholder="/** Kills character. ...*/" />
-            <marker date="1382115312000" expanded="true" signature="64359:64468" placeholder="/** Automatically called when character finished being killed. ...*/" />
-            <marker date="1382115312000" expanded="true" signature="64575:64622" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/camera.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="694" column="36" selection-start="20850" selection-end="20850" vertical-scroll-proportion="-12.592592" vertical-offset="14928" max-vertical-offset="25432">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/core/layer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="8" selection-start="914" selection-end="922" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="18392">
-          <folding />
-        </state>
+        <state line="25" column="8" selection-start="914" selection-end="922" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="18392" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/core/plusplus.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="12" selection-start="1172" selection-end="1172" vertical-scroll-proportion="-6.48675" vertical-offset="5377" max-vertical-offset="6094">
-          <folding />
-        </state>
+        <state line="33" column="12" selection-start="1172" selection-end="1172" vertical-scroll-proportion="-6.48675" vertical-offset="5377" max-vertical-offset="6094" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/impact/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="21" selection-start="2007" selection-end="2021" vertical-scroll-proportion="-6.479374" vertical-offset="6579" max-vertical-offset="7282">
-          <folding />
-        </state>
+        <state line="92" column="21" selection-start="2007" selection-end="2021" vertical-scroll-proportion="-6.479374" vertical-offset="6579" max-vertical-offset="7282" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/core/game.js">
@@ -557,37 +616,302 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../libs/impact_plusplus/examples/jumpnrun/lib/game/entities/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7194" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/debug/debug.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="124" selection-end="124" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="440" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/debug/maps-panel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="2508" max-vertical-offset="5104" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../libs/impact_plusplus/examples/supercollider/lib/game/entities/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="2772" max-vertical-offset="11418" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="14" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="2596">
+        <state line="7" column="22" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2574">
+          <folding>
+            <marker date="1382606846784" expanded="true" signature="177:2543" placeholder="{...}" />
+            <marker date="1382606846784" expanded="true" signature="343:2265" placeholder="{&quot;clearColor&quot;: &quot;#000000&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3531" column="24" selection-start="109731" selection-end="109731" vertical-scroll-proportion="0.0" vertical-offset="77682" max-vertical-offset="120186">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="191" column="0" selection-start="6063" selection-end="6063" vertical-scroll-proportion="-8.222222" vertical-offset="3980" max-vertical-offset="7106">
-          <folding />
+        <state line="173" column="42" selection-start="5830" selection-end="5830" vertical-scroll-proportion="0.0" vertical-offset="3806" max-vertical-offset="4400">
+          <folding>
+            <marker date="1382866552000" expanded="true" signature="1314:1741" placeholder="/** Base player entity. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="5057:5076" placeholder="/** Handles actions such as move, jump, climb, etc, based on input states. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="5945:6227" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/character.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="26" selection-start="3132" selection-end="3132" vertical-scroll-proportion="0.0" vertical-offset="3102" max-vertical-offset="3960">
-          <folding />
+        <state line="1597" column="0" selection-start="49371" selection-end="49371" vertical-scroll-proportion="0.0" vertical-offset="35074" max-vertical-offset="57332">
+          <folding>
+            <marker date="1382866552000" expanded="true" signature="21076:21196" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="21264:21359" placeholder="/** Initializes Character types. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="21380:21590" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="21632:21759" placeholder="/** Initializes character properties. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="22140:22216" placeholder="/** Resets character movement, velocity, and flip. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="22659:22885" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="22998:23066" placeholder="/** Ensures all expected animations are present so checks don't have to be made at runtime. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="23817:24722" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="25613:25620" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="25839:25894" placeholder="/** Called when character spawned. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="26062:26125" placeholder="/** Removes control from character. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="26327:26387" placeholder="/** @override ...*/" />
+            <marker date="1382866552000" expanded="true" signature="26615:27043" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="26993:27031" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="27375:29653" placeholder="/** Move to an entity or position using pathfinding when dynamic or the original method when not. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="29926:30136" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="29948:30053" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="30260:30416" placeholder="/** Moves character away from entity or position instead of towards. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="30991:31038" placeholder="/** @override ...*/" />
+            <marker date="1382866552000" expanded="true" signature="31219:31991" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="31244:31926" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="31380:31735" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="31490:31687" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="31770:31871" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="32158:32360" placeholder="/** Gets and processes a path from this character to an entity. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="33323:33598" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="33683:36935" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="34048:34253" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="34258:34386" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="34599:34734" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="34871:35164" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="35021:35087" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="35220:35445" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="35370:35393" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="35619:36263" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="35778:35837" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="35994:36208" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="36145:36185" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="36574:36640" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="36690:36846" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="36979:40010" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="37132:37580" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="37289:37315" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="37462:37516" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="37665:38120" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="37834:37852" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="37993:38047" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="38253:38358" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="38444:39995" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="38632:39976" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="38963:39073" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="39656:39765" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="40155:40340" placeholder="/** Moves a character along a path. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="40723:40735" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="40779:48204" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="40897:41091" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="40972:41063" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="41143:41233" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="41543:41678" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="42685:42872" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="42947:43484" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="43139:43215" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="43273:43360" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="43590:44490" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="43713:43798" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="43864:43927" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44120:44154" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44204:44446" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44571:45116" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44624:44644" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44673:44732" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44753:44810" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44886:44908" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="44937:44940" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45002:45086" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45168:48152" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45297:47579" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45344:45353" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45374:45746" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45405:45549" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45628:45684" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45878:46440" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="45952:46010" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="46133:46389" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="46869:47570" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47080:47559" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47455:47458" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47518:47528" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47659:47754" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47827:48047" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47956:48020" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47915:47921" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="47971:47990" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="48094:48109" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="48337:48359" placeholder="/** Clears path. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="48668:48762" placeholder="/** Accelerates character left at {@link ig.Character#speed}. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="48836:48864" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="48911:48951" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="48983:49023" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="49217:49290" placeholder="/** Accelerates character right at {@link ig.Character#speed}. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="51625:51692" placeholder="/** @override ...*/" />
+            <marker date="1382866552000" expanded="true" signature="51805:52543" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="52117:52354" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="53415:53516" placeholder="/** Attempts to start jumping. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="53558:54013" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="53732:53869" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="54102:54148" placeholder="/** Updates jump in progress. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="54293:54439" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="54779:54890" placeholder="/** Does jump push for number of jump steps. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="55632:55690" placeholder="/** Stops any jump in progress. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="55971:56016" placeholder="/** Attempts to start climbing. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="56209:56285" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="56419:56515" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="56431:56446" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="56671:56713" placeholder="/** Attempts to start climbing and climb up. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="57013:57048" placeholder="/** Attempts to start climbing and climb down. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="57310:57382" placeholder="/** Updates climb in progress. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="57523:57552" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="57574:57603" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="57736:57784" placeholder="/** Stops climb in progress. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="58296:58473" placeholder="/** Receives damage. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="58688:58985" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="58807:58881" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="58940:58972" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="59268:59388" placeholder="/** Creates particle explosion. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="59493:59516" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="59647:59746" placeholder="/** Restore health amount. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="60058:60227" placeholder="/** Drain energy amount. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="60388:60434" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="60676:60775" placeholder="/** Restore energy amount. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="61041:61133" placeholder="/** Restores all stats to their max values. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="61291:61414" placeholder="/** Restores stats at a steady rate. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="61495:61611" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="61648:61807" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="61939:61994" placeholder="/** Makes character temporarily invulnerable. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="62593:63615" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="62880:62941" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="62988:63254" placeholder="{&quot;name&quot;: &quot;invulnerableHide&quot;...}" />
+            <marker date="1382866552000" expanded="true" signature="63321:63382" placeholder="{&quot;alpha&quot;: 1...}" />
+            <marker date="1382866552000" expanded="true" signature="63382:63510" placeholder="{&quot;name&quot;: &quot;invulnerableShow&quot;...}" />
+            <marker date="1382866552000" expanded="true" signature="63794:63863" placeholder="/** Ends a temporary invulnerability in progress. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="64099:64216" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="64388:64437" placeholder="/** Kills character. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="64819:64945" placeholder="/** Automatically called when character finished being killed. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="65261:65296" placeholder="/** @override ...*/" />
+            <marker date="1382866552000" expanded="true" signature="65558:65610" placeholder="/** Intersects and checks intersected for various properties such as one-way and climbable. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="65692:65843" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="65885:66001" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="66137:66228" placeholder="/** Checks if character is colliding with a one-way climbable entity. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="66605:67302" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="66713:66991" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="67096:67219" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="67224:67289" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="67695:67817" placeholder="/** Collides with another entity. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="67983:68402" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="68126:68243" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="68350:68364" placeholder="{...}" />
+            <marker date="1382866552000" expanded="true" signature="68486:68529" placeholder="/** @override ...*/" />
+            <marker date="1382866552000" expanded="true" signature="69246:69386" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1645" column="18" selection-start="52066" selection-end="52098" vertical-scroll-proportion="-8.518518" vertical-offset="35960" max-vertical-offset="57156">
+        <state line="1687" column="11" selection-start="53762" selection-end="53762" vertical-scroll-proportion="1.2962962" vertical-offset="37149" max-vertical-offset="58388">
+          <folding>
+            <marker date="1382866552000" expanded="true" signature="17501:17639" placeholder="/** Blue between 0 and 1 of dimmer overlay. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="17760:17875" placeholder="/** Alpha of pause dimmer overlay. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="17986:18264" placeholder="/** Custom layers to be added to game. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="18424:18603" placeholder="/** Max power / rank level in game. Be careful about going over 9000, as it may break things. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="18761:18990" placeholder="/** Map of ranks based on max level. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="19443:19717" placeholder="/** Precision when checking if numbers are close enough to zero during a tween. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="19955:20116" placeholder="/** Precision when checking collision of one sided entities. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="20156:20552" placeholder="/** Font base configuration settings. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="21052:21345" placeholder="/** Name of alt font. If empty, game will use main font. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="21442:21655" placeholder="/** Scale that overrides system scale when {@link ig.CONFIG.FONT.IGNORE_SYSTEM_SCALE} is true. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="21889:22124" placeholder="/** Whether fonts should ignore system scale. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="22162:22572" placeholder="/** User Interface base configuration settings. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="22613:22930" placeholder="/** Whether UI should get position as a percentage of screen size. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="23023:23130" placeholder="/** Scale that overrides system scale when {@link ig.CONFIG.UI.IGNORE_SYSTEM_SCALE} is true. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="23213:23354" placeholder="/** Whether user interface elements should ignore system scale. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="23405:23677" placeholder="/** Whether UI can flip horizontal. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="23915:24079" placeholder="/** Whether UI can flip horizontal. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="24120:24607" placeholder="/** Gesture configuration settings. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="24639:28618" placeholder="{&quot;RELEASE_DELAY&quot;: 0.3...}" />
+            <marker date="1382866552000" expanded="true" signature="27922:28118" placeholder="/** Input point should record targets on tap. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="28283:28522" placeholder="/** Extra radius to search for targets outside input point x/y. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="28650:29037" placeholder="/** Camera base configuration settings. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="29059:33273" placeholder="{&quot;AUTO_FOLLOW_PLAYER&quot;: true...}" />
+            <marker date="1382866552000" expanded="true" signature="43869:44062" placeholder="/** Whether light should cast shadows on movable objects that are {@link ig.EntityExtended#opaque}. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="44111:44340" placeholder="/** Red value from 0 to 1. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="44423:44631" placeholder="/** Green value from 0 to 1. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="44865:45057" placeholder="/** Blue value from 0 to 1. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="45151:45339" placeholder="/** Alpha value from 0 to 1. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="45440:45614" placeholder="/** How much light should get through objects that are {@link ig.EntityExtended#opaque}. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="45705:45918" placeholder="/** Number of passes to make when casting shadows. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="45969:46427" placeholder="/** Character base configuration settings. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="49193:49348" placeholder="/** Horizontal friction while on ground. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="49429:49553" placeholder="/** Vertical friction while on ground. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="49640:49805" placeholder="/** Movement speed applied to horizontal acceleration. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="49891:50032" placeholder="/** Movement speed applied to vertical acceleration. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="50110:50305" placeholder="/** Whether character is able to jump. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="50364:50763" placeholder="/** Number of update steps to apply jump force. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="50868:51177" placeholder="/** Speed modifier to apply on each jump step. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="51260:51549" placeholder="/** Amount of acceleration control while in air. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="51627:51834" placeholder="/** Whether character should stick to slopes instead of sliding down. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="51894:52095" placeholder="/** Duration after character leaves ground during which they can still jump. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="52362:52513" placeholder="/** Duration after character leaves ground to start playing fall animation. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="52594:52886" placeholder="/** Whether character is able to climb. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="52956:53510" placeholder="/** Amount of acceleration control while climbing. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="53718:53834" placeholder="/** Whether character is able to pathfind. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="53904:54072" placeholder="/** Delay in seconds between pathfinding when has no path. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="54154:54314" placeholder="/** Delay in seconds between pathfinding when following a path. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="54384:54563" placeholder="/** Delay in seconds between pathfinding when using simple pathfinding. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="54664:54880" placeholder="/** Delay in seconds, after first becoming stuck, when character will throw path away. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="54983:55122" placeholder="/** Health statistic. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="55237:55424" placeholder="/** Energy statistic, by default used in abilities. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="55494:55664" placeholder="/** Amount of health a character should regenerate per tick. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="55734:55992" placeholder="/** Amount of energy a character should regenerate per tick. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="56157:56443" placeholder="/** Whether characters should have a particle explosion when damaged. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="56542:56670" placeholder="/** Number of particles to create for explosion when character damaged. ...*/" />
+            <marker date="1382866552000" expanded="true" signature="56785:56972" placeholder="/** Characters should have a particle explosion when killed. ...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/impactplusplus-dev/lib/plusplus/abstractities/character.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1591" column="23" selection-start="49217" selection-end="49228" vertical-scroll-proportion="0.33333334" vertical-offset="34773" max-vertical-offset="57332">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="37" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.8158996" vertical-offset="273" max-vertical-offset="1100">
+        <state line="38" column="25" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.0" vertical-offset="308" max-vertical-offset="1122">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="9" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.7881706" vertical-offset="1077" max-vertical-offset="1870">
           <folding />
         </state>
       </provider>

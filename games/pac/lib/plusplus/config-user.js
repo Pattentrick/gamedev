@@ -37,7 +37,8 @@ ig.module(
 
             // character pathfinding
             CHARACTER : {
-                PATHFINDING_DELAY : 0
+                MAX_VEL_GROUNDED_Y : 30,
+                MAX_VEL_GROUNDED_X : 30
             }
 
         };
