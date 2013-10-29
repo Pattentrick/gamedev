@@ -3,13 +3,19 @@ ig.module(
 )
 .requires(
     'plusplus.abstractities.player',
-    'plusplus.core.config',
-	'plusplus.helpers.utils'
+    'plusplus.core.config'
 )
 .defines(function () {
-	
+
 	var _c  = ig.CONFIG;
-	
+
+    /**
+     * Entity that represents a playable character
+     *
+     * @class
+     * @extends ig.Player
+     * @memeberof ig
+     */
     ig.EntityPlayer = ig.global.EntityPlayer = ig.Player.extend({
 		
 		size: {
@@ -30,7 +36,7 @@ ig.module(
         temporaryInvulnerabilityAlpha: 1,
 		
 		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'player.png', 14, 30 ),
-		
+
 		animSettings: {
             idleX: {
                 frameTime: 1,
@@ -59,7 +65,7 @@ ig.module(
 		},
 
         /**
-         * handles what to do on mouse
+         * Handles what to do on mouse
          * input by player
          */
         handleInput: function(){
