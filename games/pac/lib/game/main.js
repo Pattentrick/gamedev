@@ -8,8 +8,8 @@ ig.module(
     'game.levels.test',
     // enable debug
     //'plusplus.debug.debug',
-    // load cursor module
-    'game.entities.cursor'
+    // unser interface module
+    'game.ui.pacui'
 )
 // define the main module
 .defines(function () {
@@ -31,7 +31,8 @@ ig.module(
 		    // load level
             this.loadLevel(ig.global.LevelTest);
 
-            this.spawnMouseCursor();
+            // Create new userinterface instance
+            this.gui = new ig.Pacui();
 
 		},
 
@@ -42,21 +43,6 @@ ig.module(
 
             // Leftclick
             ig.input.bind(ig.KEY.MOUSE1, 'click');
-
-        },
-
-        /**
-         * Spawns an entity based mouse cursor.
-         *
-         * The corresponding cursor module needs
-         * to be included manually.
-         *
-         * @require game.entities.cursor
-         *
-         */
-        spawnMouseCursor: function(){
-
-            this.spawnEntity(ig.EntityCursor, 0, 0);
 
         },
 

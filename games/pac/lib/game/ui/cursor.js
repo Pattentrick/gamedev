@@ -1,26 +1,26 @@
 ig.module(
-    'game.entities.cursor'
+    'game.ui.cursor'
 )
 .requires(
     'plusplus.core.config',
-    'plusplus.core.entity'
+    'plusplus.ui.ui-element'
 )
 .defines(function () {
 
 	var _c  = ig.CONFIG;
 
     /**
-     * Entity that functions as an animated cursor,
+     * UI Entity that functions as an animated cursor,
      * which replaces the default browser cursor.
      *
      * To hide the default cursor,
      * add "cursor: none;" to the canvas css.
      *
      * @class
-     * @extends ig.EntityExtended
+     * @extends ig.UIElement
      * @memeberof ig
      */
-    ig.EntityCursor = ig.global.EntityCursor = ig.EntityExtended.extend({
+    ig.EntityCursor = ig.global.EntityCursor = ig.UIElement.extend({
 
         size: {
             x: 14,
@@ -32,7 +32,11 @@ ig.module(
             y: -6
         },
 
-        performance: 'movable',
+        frozen: false,
+
+        fixed: false,
+
+        performance: 'dynamic',
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'cursor.png', 14, 14 ),
 
@@ -41,7 +45,7 @@ ig.module(
         animSettings: {
 
             blink: {
-                frameTime: 0.30,
+                frameTime: 0.20,
                 sequence: [0,1,2,0]
             }
 
