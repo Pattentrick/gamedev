@@ -38,7 +38,7 @@ ig.module(
 
         performance: 'dynamic',
 
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'cursor.png', 14, 14 ),
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'ui/cursor.png', 14, 14 ),
 
         animInit: "blink",
 

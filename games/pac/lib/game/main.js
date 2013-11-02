@@ -22,7 +22,7 @@ ig.module(
 	var pac = ig.GameExtended.extend({
 
         // background color of canvas
-        clearColor: "#000000",
+        clearColor: "#330033",
 
 		init: function () {
 

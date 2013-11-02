@@ -3,7 +3,11 @@ ig.module(
 )
 .requires(
     'game.ui.cursor',
+    // commands
     'game.ui.command-give',
+    'game.ui.command-open',
+    'game.ui.command-look',
+    // config
     'plusplus.core.config'
 )
 .defines(function() {
@@ -39,7 +43,9 @@ ig.module(
          */
         spawnCommands: function(){
 
-            ig.game.spawnEntity(ig.UIButtonGive, 0, 0);
+            ig.game.spawnEntity(ig.CommandGive, 16, 157);
+            ig.game.spawnEntity(ig.CommandOpen, 16, 167);
+            ig.game.spawnEntity(ig.CommandLook, 16, 181);
 
         },
 
