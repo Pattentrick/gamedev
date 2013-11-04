@@ -7,6 +7,14 @@ ig.module(
     'game.ui.command-give',
     'game.ui.command-open',
     'game.ui.command-look',
+    'game.ui.command-use',
+    'game.ui.command-close',
+    'game.ui.command-press',
+    'game.ui.command-pickup',
+    'game.ui.command-talk',
+    'game.ui.command-pull',
+    // command preview
+    'game.ui.command-preview',
     // config
     'plusplus.core.config'
 )
@@ -32,7 +40,9 @@ ig.module(
         init: function(){
 
             this.spawnCommands();
+            this.spawnCommandPreview();
             this.spawnMouseCursor();
+
         },
 
         /**
@@ -43,16 +53,39 @@ ig.module(
          */
         spawnCommands: function(){
 
+            // First row
             ig.game.spawnEntity(ig.CommandGive, 16, 157);
             ig.game.spawnEntity(ig.CommandOpen, 16, 167);
             ig.game.spawnEntity(ig.CommandLook, 16, 181);
+
+            // Second row
+            ig.game.spawnEntity(ig.CommandUse, 61, 157);
+            ig.game.spawnEntity(ig.CommandClose, 61, 169);
+            ig.game.spawnEntity(ig.CommandPress, 61, 181);
+
+            // Third row
+            ig.game.spawnEntity(ig.CommandPickUp, 117, 157);
+            ig.game.spawnEntity(ig.CommandTalk, 117, 169);
+            ig.game.spawnEntity(ig.CommandPull, 116, 181);
+
+        },
+
+        /**
+         * Spawns an entity that displays the command preview
+         *
+         * @require game.ui.command-preview
+         *
+         */
+        spawnCommandPreview: function(){
+
+            ig.game.spawnEntity(ig.CommandPreview, 0, 150);
 
         },
 
         /**
          * Spawns an entity based mouse cursor.
          *
-         * @require plusplus.core.config
+         * @require game.ui.cursor
          *
          */
         spawnMouseCursor: function(){
