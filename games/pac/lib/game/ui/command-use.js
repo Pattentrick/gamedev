@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandUse = ig.global.CommandUse = ig.Command.extend({
 
+        command: 'Benutze',
+
         size: {
             x: 40,
             y: 10

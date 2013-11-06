@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandGive = ig.global.CommandGive = ig.Command.extend({
 
+        command: 'Gib',
+
         size: {
             x: 16,
             y: 10

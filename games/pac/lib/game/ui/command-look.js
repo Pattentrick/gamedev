@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandLook = ig.global.CommandLook = ig.Command.extend({
 
+        command: 'Schau',
+
         size: {
             x: 31,
             y: 10

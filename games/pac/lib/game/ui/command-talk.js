@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandTalk = ig.global.CommandTalk = ig.Command.extend({
 
+        command: 'Rede',
+
         size: {
             x: 25,
             y: 10

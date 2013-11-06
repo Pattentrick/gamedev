@@ -19,19 +19,60 @@ ig.module(
      */
     ig.CommandPreview = ig.global.CommandPreview = ig.UIText.extend({
 
-        size: {
-            x: 320,
-            y: 10
-        },
-
         performance: "dynamic",
 
-        text: 'Gehe zu',
+        // default text command
+        defaultCommand: 'ÖGehe zu',
+
+        // current activated command
+        currentCommand: '',
+
+        // text that will be displayed
+        text: '',
 
         font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' ),
 
+        /**
+         * Changes to text for UI display based on the
+         * currently selected command. Falls back to the
+         * default command if no command is selected
+         */
+        handleCommandPreview: function(){
+
+            if( this.currentCommand === ''){
+                this.text = this.defaultCommand;
+            }
+            else {
+                this.text = this.currentCommand;
+            }
+
+        },
+
+        /**
+         * Centers the command preview inside the gamescreen.
+         * Method needs to be called after the parent reposition
+         * method for proper repositioning!
+         */
+        centerCommandPreview: function(){
+
+            this.pos.x = ( _c.GAME_WIDTH_VIEW / 2 ) - ( this.size.x / 2 );
+
+        },
+
         update: function(){
-            //console.log( this.textAlign );
+
+            this.parent();
+
+            this.handleCommandPreview();
+
+        },
+
+        reposition: function(){
+
+            this.parent();
+
+            this.centerCommandPreview();
+
         }
 
 	});

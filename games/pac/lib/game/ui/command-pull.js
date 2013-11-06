@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandPull = ig.global.CommandPull = ig.Command.extend({
 
+        command: 'Ziehe',
+
         size: {
             x: 27,
             y: 10

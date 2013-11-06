@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandOpen = ig.global.CommandOpen = ig.Command.extend({
 
+        command: 'Öffne',
+
         size: {
             x: 28,
             y: 12

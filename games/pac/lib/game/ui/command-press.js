@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandPress = ig.global.CommandPress = ig.Command.extend({
 
+        command: 'Drücke',
+
         size: {
             x: 34,
             y: 10

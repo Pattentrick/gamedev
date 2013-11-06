@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandClose = ig.global.CommandClose = ig.Command.extend({
 
+        command: 'Schließe',
+
         size: {
             x: 42,
             y: 10

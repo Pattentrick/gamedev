@@ -22,6 +22,8 @@ ig.module(
 
         animInit: "mouseOut",
 
+        command: '',
+
         animSettings: {
 
             mouseOut: {
@@ -59,11 +61,27 @@ ig.module(
 
         },
 
+        /**
+         * Handles what do to on a selected command
+         */
+        handleCommandInput: function(){
+
+            if( this.inFocus() && ig.input.pressed('click') ){
+
+                var commandPreview = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
+
+                commandPreview.currentCommand = this.command;
+
+            }
+
+        },
+
         update: function(){
 
             this.parent();
 
             this.handleMouseOver();
+            this.handleCommandInput();
 
         }
 		

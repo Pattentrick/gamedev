@@ -19,6 +19,8 @@ ig.module(
      */
     ig.CommandPickUp = ig.global.CommandPickUp = ig.Command.extend({
 
+        command: 'Nimm',
+
         size: {
             x: 25,
             y: 10

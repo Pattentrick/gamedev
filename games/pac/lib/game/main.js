@@ -7,8 +7,8 @@ ig.module(
     // levels
     'game.levels.test',
     // enable debug
-    //'plusplus.debug.debug',
-    // unser interface module
+    // 'plusplus.debug.debug',
+    // user interface module
     'game.ui.pacui'
 )
 // define the main module
