@@ -10,7 +10,7 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Entity that functions as the give command. Part of the Ui.
+     * Entity that functions as parent command. Part of the Ui.
      *
      * @class
      * @extends ig.UIButton

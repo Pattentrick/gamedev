@@ -22,6 +22,8 @@ ig.module(
      */
     ig.EntityCursor = ig.global.EntityCursor = ig.UIElement.extend({
 
+        name: 'cursor',
+
         size: {
             x: 14,
             y: 14

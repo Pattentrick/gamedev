@@ -8,6 +8,8 @@ ig.module(
     'game.levels.test',
     // enable debug
     // 'plusplus.debug.debug',
+    // command execution
+    'game.components.command-execution',
     // user interface module
     'game.ui.pacui'
 )
@@ -28,8 +30,11 @@ ig.module(
 
 			this.parent();
 
-		    // load level
+		    // Load level
             this.loadLevel(ig.global.LevelTest);
+
+            // Create new command execution instance
+            this.commandExecution = new ig.CommandExecution();
 
             // Create new userinterface instance
             this.gui = new ig.Pacui();

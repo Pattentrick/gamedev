@@ -17,7 +17,9 @@ ig.module(
      * @memeberof ig
      */
     ig.EntityPlayer = ig.global.EntityPlayer = ig.Player.extend({
-		
+
+        name: 'player',
+
 		size: {
             x: 8,
             y: 8
@@ -62,24 +64,7 @@ ig.module(
 				frameTime: 0.10,
 				sequence: [12,13,14,15,16,17]
 			}
-		},
-
-        /**
-         * Handles what to do on mouse
-         * input by player
-         */
-        handleInput: function(){
-
-            if ( ig.input.pressed('click') ) {
-
-                this.moveTo({
-                    x: ig.input.mouse.x + ig.game.screen.x,
-                    y: ig.input.mouse.y + ig.game.screen.y
-                });
-
-            }
-
-        }
+		}
 		
 	});
 

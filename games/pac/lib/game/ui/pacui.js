@@ -39,6 +39,7 @@ ig.module(
 
         init: function(){
 
+            // spawn ui
             this.spawnCommands();
             this.spawnCommandPreview();
             this.spawnMouseCursor();
@@ -78,7 +79,7 @@ ig.module(
          */
         spawnCommandPreview: function(){
 
-            ig.game.spawnEntity(ig.CommandPreview, 0, 151);
+            ig.game.spawnEntity(ig.CommandPreview, 0, 149);
 
         },
 
