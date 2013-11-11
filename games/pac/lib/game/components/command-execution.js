@@ -23,25 +23,92 @@ ig.module(
      */
     ig.CommandExecution = ig.Class.extend({
 
+        // True when a full command like "pick up axe" exists
+        hasActiveCommand: false,
+
+        init: function(){
+
+            this.player =  ig.game.getPlayer();
+
+        },
+
         execute: function(){
 
-            var currentCommand = ig.game.getEntitiesByClass(ig.CommandPreview)[0].currentCommand;
+            var currentCommand   = ig.game.getEntitiesByClass(ig.CommandPreview)[0].currentCommand;
+            var entityName       = ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName;
 
-            console.log(this.isAbortionCommand());
+            if( ig.input.pressed('click') ){
 
-            if( this.isAbortionCommand() && currentCommand !== 'Gehe zu' ){
+                if( this.isAbortionCommand() && currentCommand !== 'Gehe zu' ){
 
-                this.removeCurrentCommand();
+                    // Abort command, no executable command
+                    this.removeCurrentCommand();
+                    this.hasActiveCommand = false;
 
-            }
-            else {
+                }
+                else {
 
-                if( currentCommand === 'Gehe zu' ){
+                    // Move player on valid command
                     this.movePlayer();
+
+                    if( currentCommand === 'Gehe zu' ){
+
+                        var entities = ig.game.entities;
+                        var match = false;
+
+                        for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
+
+                            if( this.entityIsinFocus( entities[i] )
+                                && entities[i].name !== 'player'
+                                && entities[i].name !== 'cursor'
+                                && entities[i].name !== 'command'
+                                && entities[i].name !== 'preview'){
+
+                                match = false
+
+                            }
+
+                        }
+
+                        if(!match){
+                            entityName = '';
+                            ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName = '';
+                        }
+
+                    }
+
+                    if( currentCommand !== '' && entityName !== ''){
+
+                        // Set to true if valid command gets applied to an entity
+                        this.hasActiveCommand = true;
+
+                    }
+
                 }
 
             }
 
+            if( this.hasActiveCommand && entityName !== '' ){
+
+                if( currentCommand === 'Nimm' ){
+                    console.log('Nimm');
+                }
+
+                if( currentCommand === 'Gehe zu' ){
+
+                }
+
+            }
+
+        },
+
+        /**
+         * Handles how to pick up items
+         *
+         * @param {string} entityName The name of the entity to pick up
+         */
+        pickup: function( entityName ){
+            console.log(entityName);
         },
 
         /**
@@ -102,11 +169,17 @@ ig.module(
 
         },
 
+        /**
+         * Moves the player to the desired location via pathfinding
+         */
         movePlayer: function(){
 
-            ig.game.getEntitiesByClass(ig.EntityPlayer)[0].moveTo({
+            // second parameter are pathfinding settings
+            this.player.moveTo({
                 x: ig.input.mouse.x + ig.game.screen.x,
                 y: ig.input.mouse.y + ig.game.screen.y
+            }, {
+                avoidEntities: true
             });
 
         }

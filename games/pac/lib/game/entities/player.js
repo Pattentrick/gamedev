@@ -20,6 +20,8 @@ ig.module(
 
         name: 'player',
 
+        collides: ig.Entity.COLLIDES.ACTIVE,
+
 		size: {
             x: 8,
             y: 8

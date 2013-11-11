@@ -18,9 +18,11 @@ ig.module(
      */
     ig.Command = ig.global.Command = ig.UIButton.extend({
 
-        performance: "dynamic",
+        performance: 'dynamic',
 
-        animInit: "mouseOut",
+        animInit: 'mouseOut',
+
+        name: 'command',
 
         command: '',
 
@@ -70,7 +72,13 @@ ig.module(
 
                 var commandPreview = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
 
+                // Set current command to this command
                 commandPreview.currentCommand = this.command;
+                // Reset entity name
+                commandPreview.entityName = '';
+
+                // Reset active command flag
+                ig.game.commandExecution.hasActiveCommand = false;
 
             }
 
