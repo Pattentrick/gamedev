@@ -23,79 +23,124 @@ ig.module(
      */
     ig.CommandExecution = ig.Class.extend({
 
-        // True when a full command like "pick up axe" exists
+        // Flag is true when a full command
+        // like "pick up axe" exists
         hasActiveCommand: false,
+
+        playerCollidesWithEntity: false,
+
+        collidingEntityName: '',
 
         init: function(){
 
-            this.player =  ig.game.getPlayer();
+            this.player = ig.game.getPlayer();
 
         },
 
+        /**
+         * Entrypoint for the execution of the current command.
+         * Default command is "Gehe zu". Gets called every frame.
+         */
         execute: function(){
 
-            var currentCommand   = ig.game.getEntitiesByClass(ig.CommandPreview)[0].currentCommand;
-            var entityName       = ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName;
+            var currentCommand = ig.game.getEntitiesByClass(ig.CommandPreview)[0].currentCommand;
+            var defaultCommand = ig.game.getEntitiesByClass(ig.CommandPreview)[0].defaultCommand;
 
             if( ig.input.pressed('click') ){
 
-                if( this.isAbortionCommand() && currentCommand !== 'Gehe zu' ){
+                if( this.isAbortionCommand() && currentCommand !== defaultCommand ){
 
-                    // Abort command, no executable command
                     this.removeCurrentCommand();
-                    this.hasActiveCommand = false;
 
                 }
                 else {
 
-                    // Move player on valid command
+                    // On valid command move the player, reset the entity name
+                    // on a default command and check for an full active command
+
                     this.movePlayer();
 
-                    if( currentCommand === 'Gehe zu' ){
+                    this.resetNameOnDefaultCommand( currentCommand, defaultCommand );
+                    this.checkForActiveCommand( currentCommand );
 
-                        var entities = ig.game.entities;
-                        var match = false;
+                }
 
-                        for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
+            }
 
-                            if( this.entityIsinFocus( entities[i] )
-                                && entities[i].name !== 'player'
-                                && entities[i].name !== 'cursor'
-                                && entities[i].name !== 'command'
-                                && entities[i].name !== 'preview'){
+            this.assignCommand( currentCommand );
 
-                                match = false
+        },
 
-                            }
+        /**
+         * Assigns the command to the specific method,
+         * if the hasActiveCommand flag is set to true.
+         *
+         * @param {string} currentCommand The current command of the preview
+         */
+        assignCommand: function( currentCommand ){
 
-                        }
+            if( this.hasActiveCommand && ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName !== '' ){
 
-                        if(!match){
-                            entityName = '';
-                            ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName = '';
-                        }
+                if( this.hasPlayerNearEntity() ){
 
-                    }
-
-                    if( currentCommand !== '' && entityName !== ''){
-
-                        // Set to true if valid command gets applied to an entity
-                        this.hasActiveCommand = true;
-
+                    switch( currentCommand ) {
+                        case 'Nimm':
+                            console.log('Nimm');
+                        break;
                     }
 
                 }
 
             }
 
-            if( this.hasActiveCommand && entityName !== '' ){
+        },
 
-                if( currentCommand === 'Nimm' ){
-                    console.log('Nimm');
+        hasPlayerNearEntity: function(){
+
+            console.log(this.playerCollidesWithEntity && this.collidingEntityName === ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName);
+
+            if( this.playerCollidesWithEntity && this.collidingEntityName === ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName ){
+
+                this.playerCollidesWithEntity = false;
+                this.collidingEntityName = '';
+
+                return true;
+
+            }
+
+        },
+
+        /**
+         * Checks if the current command is the default command. If true
+         * check if there are any interactive entity at the mouse position,
+         * if not reset the entity name property of the command preview.
+         *
+         * @param {string} currentCommand The current command of the preview
+         * @param {string} defaultCommand The default command of the preview
+         */
+        resetNameOnDefaultCommand: function( currentCommand, defaultCommand ){
+
+            if( currentCommand === defaultCommand ){
+
+                var entities = ig.game.entities;
+                var match = false;
+
+                for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
+
+                    if( this.entityIsinFocus( entities[i] )
+                        && entities[i].name !== 'player'
+                        && entities[i].name !== 'cursor'
+                        && entities[i].name !== 'command'
+                        && entities[i].name !== 'preview'){
+
+                        match = false
+
+                    }
+
                 }
 
-                if( currentCommand === 'Gehe zu' ){
-
+                if( !match ){
+                    ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName = '';
                 }
 
             }
@@ -103,12 +148,20 @@ ig.module(
         },
 
         /**
-         * Handles how to pick up items
+         * Sets the hasActiveCommand flag to true if
+         * there is an full valid command, like
+         * "use axe with monsterlemon" on an interactive entity.
          *
-         * @param {string} entityName The name of the entity to pick up
+         * @param {string} currentCommand The current command of the preview
          */
-        pickup: function( entityName ){
-            console.log(entityName);
+        checkForActiveCommand: function( currentCommand ){
+
+            if( currentCommand !== '' && ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName !== ''){
+
+                this.hasActiveCommand = true;
+
+            }
+
         },
 
         /**
@@ -133,7 +186,6 @@ ig.module(
          * command.
          *
          * An abortion command will disable all current commands.
-         *
          *
          * returns {boolean} true on abortion command, otherwise false
          */
@@ -161,11 +213,12 @@ ig.module(
         },
 
         /**
-         * Removes current commando
+         * Removes current commando and disable active command flag
          */
         removeCurrentCommand: function(){
 
             ig.game.getEntitiesByClass(ig.CommandPreview)[0].currentCommand = '';
+            this.hasActiveCommand = false;
 
         },
 
@@ -174,13 +227,29 @@ ig.module(
          */
         movePlayer: function(){
 
-            // second parameter are pathfinding settings
-            this.player.moveTo({
-                x: ig.input.mouse.x + ig.game.screen.x,
-                y: ig.input.mouse.y + ig.game.screen.y
-            }, {
-                avoidEntities: true
-            });
+            if( this.isClickOnGameWorld() ){
+
+                // second parameter are pathfinding settings
+                this.player.moveTo({
+                    x: ig.input.mouse.x + ig.game.screen.x,
+                    y: ig.input.mouse.y + ig.game.screen.y
+                }, {
+                    avoidEntities: true
+                });
+
+            }
+
+        },
+
+        /**
+         * Returns true if the user clicks inside
+         * the game world instead of the UI.
+         *
+         * @returns {boolean}
+         */
+        isClickOnGameWorld: function(){
+
+            return( ig.input.mouse.y + ig.game.screen.y <= 150 );
 
         }
 

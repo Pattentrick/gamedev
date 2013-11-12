@@ -14,7 +14,8 @@ ig.module(
      * which replaces the default browser cursor.
      *
      * To hide the default cursor,
-     * add "cursor: none;" to the canvas css.
+     * add "cursor: none;" to the
+     * canvas css.
      *
      * @class
      * @extends ig.UIElement

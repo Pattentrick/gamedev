@@ -66,7 +66,14 @@ ig.module(
 				frameTime: 0.10,
 				sequence: [12,13,14,15,16,17]
 			}
-		}
+		},
+
+        collideWith: function( other, axis ){
+
+            ig.game.commandExecution.playerCollidesWithEntity = true;
+            ig.game.commandExecution.collidingEntityName = other.name;
+
+        }
 		
 	});
 

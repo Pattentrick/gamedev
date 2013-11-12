@@ -7,7 +7,7 @@ ig.module(
     // levels
     'game.levels.test',
     // enable debug
-    // 'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module

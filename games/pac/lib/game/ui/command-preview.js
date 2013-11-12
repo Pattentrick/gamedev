@@ -44,10 +44,6 @@ ig.module(
          * Method needs to be called after the parent reposition
          * method for proper repositioning!
          *
-         * Collin Hover suggested to use posPct to center this
-         * UI element. However this will render the element
-         * from the center, not at the center.
-         *
          */
         centerCommandPreview: function(){
 
@@ -74,46 +70,58 @@ ig.module(
          * If the mouse hovers over an interactive entity set
          * entityName porperty to that entity name, else set
          * it to an empty string.
+         *
+         * Does nothing if there is an active command.
+         *
          */
         setEntityName: function(){
 
             var entities = ig.game.entities;
             var name = '';
 
-            for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
+            if( !ig.game.commandExecution.hasActiveCommand ){
 
-                if( this.entityIsinFocus( entities[i] )
-                    && entities[i].name !== 'player'
-                    && entities[i].name !== 'cursor'
-                    && entities[i].name !== 'command'
-                    && entities[i].name !== 'preview'){
+                for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
 
-                    name = entities[i].name;
+                    if( this.entityIsinFocus( entities[i] )
+                        && entities[i].name !== 'player'
+                        && entities[i].name !== 'cursor'
+                        && entities[i].name !== 'command'
+                        && entities[i].name !== 'preview'){
+
+                        name = entities[i].name;
+
+                    }
 
                 }
 
-            }
+                this.entityName = name;
 
-            this.entityName = name;
+            }
 
         },
 
         /**
          * Changes to text for UI display based on the
-         * currently selected command. Falls back to the
-         * default command if no command is selected.
+         * currently selected command and the active entity.
+         * Falls back to the default command if no command
+         * is selected.
          */
         showCommandPreview: function(){
 
-            if( this.currentCommand === ''){
+            if( this.currentCommand === '' ){
 
                 this.currentCommand = this.defaultCommand;
 
+                // Assigning a value to this.text will draw the value
                 this.text = this.currentCommand + ' ' + this.entityName;
 
             }
             else {
+
+                // Assigning a value to this.text will draw the value
                 this.text = this.currentCommand + ' ' + this.entityName;
+
             }
 
         },
@@ -122,12 +130,7 @@ ig.module(
 
             this.parent();
 
-            if( !ig.game.commandExecution.hasActiveCommand ){
-
-                this.setEntityName();
-
-            }
-
+            this.setEntityName();
             this.showCommandPreview();
 
             // Execute player commands

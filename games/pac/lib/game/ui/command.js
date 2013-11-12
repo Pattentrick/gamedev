@@ -41,7 +41,7 @@ ig.module(
         },
 
         /**
-         * Detects if the mouse cursor hovers over an entity
+         * Detects if the mouse cursor hovers over an entity.
          *
          * @returns {boolean}
          */
@@ -55,7 +55,7 @@ ig.module(
         },
 
         /**
-         * Toggles animation on mouseOver and mouseOut
+         * Toggles animation on mouseOver and mouseOut.
          */
         handleMouseOver: function(){
 
@@ -64,7 +64,7 @@ ig.module(
         },
 
         /**
-         * Handles what do to on a selected command
+         * Handles what do to on a selected command.
          */
         handleCommandInput: function(){
 
