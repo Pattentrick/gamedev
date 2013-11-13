@@ -35,8 +35,6 @@ ig.module(
         // Text that will be displayed
         text: '',
 
-        hasActiveCommand: false,
-
         font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' ),
 
         /**
@@ -74,7 +72,7 @@ ig.module(
          * Does nothing if there is an active command.
          *
          */
-        setEntityName: function(){
+        declareEntityName: function(){
 
             var entities = ig.game.entities;
             var name = '';
@@ -119,10 +117,49 @@ ig.module(
             }
             else {
 
-                // Assigning a value to this.text will draw the value
-                this.text = this.currentCommand + ' ' + this.entityName;
+                // Modify text preview on certain commands for proper grammar
+
+                if( this.currentCommand === 'Schau' && this.entityName !== '' ){
+
+                    this.text = this.currentCommand + ' ' + this.entityName + ' an';
+
+                }
+                else if( this.currentCommand === 'Rede' && this.entityName !== '' ){
+
+                    this.text = this.currentCommand + ' mit ' + this.entityName;
+
+                }
+                else{
+
+                    this.text = this.currentCommand + ' ' + this.entityName;
+
+                }
 
             }
+
+        },
+
+        /**
+         * Sets entityName property to name
+         *
+         * @param {string} name Name of entity
+         *
+         */
+        setEntityName: function( name ){
+
+            this.entityName = name;
+
+        },
+
+        /**
+         * Sets the currentCommand property to command
+         *
+         * @param {string} command Name of command
+         *
+         */
+        setCurrentCommand: function( command ){
+
+            this.currentCommand = command;
 
         },
 
@@ -130,7 +167,7 @@ ig.module(
 
             this.parent();
 
-            this.setEntityName();
+            this.declareEntityName();
             this.showCommandPreview();
 
             // Execute player commands

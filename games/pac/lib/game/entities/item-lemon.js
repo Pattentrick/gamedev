@@ -36,7 +36,24 @@ ig.module(
                 frameTime: 1,
                 sequence: [0]
             }
-		}
+		},
+
+        interact: function( command ){
+
+            if( command === 'Nimm' ){
+                console.log('Gegenstand aufgehoben.');
+            }
+            else if( command === 'Schau' ){
+                console.log('Eine riesige Zitrone ... unglaublich!');
+            }
+            else if( command === 'Rede' ){
+                console.log('Na Zitrone, bist du SAUER auf mich. Wortspiel!');
+            }
+            else {
+                console.log('Das macht keinen Sinn.');
+            }
+
+        }
 		
 	});
 

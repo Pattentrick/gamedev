@@ -73,9 +73,9 @@ ig.module(
                 var commandPreview = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
 
                 // Set current command to this command
-                commandPreview.currentCommand = this.command;
+                commandPreview.setCurrentCommand( this.command );
                 // Reset entity name
-                commandPreview.entityName = '';
+                commandPreview.setEntityName('');
 
                 // Reset active command flag
                 ig.game.commandExecution.hasActiveCommand = false;

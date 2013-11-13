@@ -23,13 +23,8 @@ ig.module(
      */
     ig.CommandExecution = ig.Class.extend({
 
-        // Flag is true when a full command
-        // like "pick up axe" exists
+        // Flag - True when a full command like "pick up axe" exists
         hasActiveCommand: false,
-
-        playerCollidesWithEntity: false,
-
-        collidingEntityName: '',
 
         init: function(){
 
@@ -56,7 +51,7 @@ ig.module(
                 else {
 
                     // On valid command move the player, reset the entity name
-                    // on a default command and check for an full active command
+                    // on existing default command, check for a full active command
 
                     this.movePlayer();
 
@@ -67,46 +62,40 @@ ig.module(
 
             }
 
-            this.assignCommand( currentCommand );
+            this.TryToInteract( currentCommand );
 
         },
 
         /**
-         * Assigns the command to the specific method,
-         * if the hasActiveCommand flag is set to true.
+         * Tries to interact with the selected entity,
+         * when there is a full active command in progression
+         * and the desired entity is near the player.
          *
          * @param {string} currentCommand The current command of the preview
          */
-        assignCommand: function( currentCommand ){
+        TryToInteract: function( currentCommand ){
 
-            if( this.hasActiveCommand && ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName !== '' ){
+            var entity = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName );
 
-                if( this.hasPlayerNearEntity() ){
+            if( this.hasActiveCommand && this.hasPlayerNearEntity( entity ) ){
 
-                    switch( currentCommand ) {
-                        case 'Nimm':
-                            console.log('Nimm');
-                        break;
-                    }
+                entity.interact( currentCommand );
 
-                }
+                this.removeCurrentCommand();
 
             }
 
         },
 
-        hasPlayerNearEntity: function(){
+        /**
+         * Checks if player is near entity
+         *
+         * @param {object} entity Entity to check
+         * @returns {boolean} True if player is near interactive entity
+         */
+        hasPlayerNearEntity: function( entity ){
 
-            console.log(this.playerCollidesWithEntity && this.collidingEntityName === ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName);
-
-            if( this.playerCollidesWithEntity && this.collidingEntityName === ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName ){
-
-                this.playerCollidesWithEntity = false;
-                this.collidingEntityName = '';
-
-                return true;
-
-            }
+            return( this.player.distanceEdgeTo( entity ) < 2 );
 
         },
 
@@ -217,7 +206,7 @@ ig.module(
          */
         removeCurrentCommand: function(){
 
-            ig.game.getEntitiesByClass(ig.CommandPreview)[0].currentCommand = '';
+            ig.game.getEntitiesByClass(ig.CommandPreview)[0].setCurrentCommand('');
             this.hasActiveCommand = false;
 
         },
