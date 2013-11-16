@@ -21,7 +21,7 @@ ig.module(
     // config variable
     var _c = ig.CONFIG;
 
-	var pac = ig.GameExtended.extend({
+	var Pac = ig.GameExtended.extend({
 
         // background color of canvas
         clearColor: "#330033",
@@ -38,6 +38,8 @@ ig.module(
 
             // Create new userinterface instance
             this.gui = new ig.Pacui();
+
+            console.log( ig.game.layers );
 
 		},
 
@@ -87,7 +89,7 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-		pac,
+		Pac,
 		60,
 		_c.GAME_WIDTH,
 		_c.GAME_HEIGHT,

@@ -1,36 +1,31 @@
 ig.module(
-    'game.entities.item-lemon'
+    'game.entities.inventory-item-lemon'
 )
 .requires(
     'plusplus.core.entity',
-    'plusplus.core.config',
-    'game.entities.inventory-item-lemon'
+    'plusplus.core.config'
 )
 .defines(function () {
 
 	var _c  = ig.CONFIG;
 
     /**
-     * Coin item
+     * Inventory item lemon
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemLemon = ig.global.EntityItemLemon = ig.EntityExtended.extend({
+    ig.EntityInventoryItemLemon = ig.global.EntityInventoryItemLemon = ig.EntityExtended.extend({
 
         name: 'Monsterzitrone',
 
-        collides: ig.Entity.COLLIDES.FIXED,
-
 		size: {
-            x: 8,
-            y: 8
+            x: 30,
+            y: 16
         },
-
-        matchingInventoryItem: ig.EntityInventoryItemLemon,
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 8, 8 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'inventory-item-lemon.gif', 30, 16 ),
 
         animInit: 'idle',
 
@@ -44,19 +39,13 @@ ig.module(
         interact: function( command ){
 
             if( command === 'Nimm' ){
-
-                ig.game.gui.inventory.addItem( this.matchingInventoryItem, this );
-
+                console.log('Gegenstand aufgehoben.');
             }
             else if( command === 'Schau' ){
-
                 console.log('Eine riesige Zitrone ... unglaublich!');
-
             }
             else if( command === 'Rede' ){
-
                 console.log('Na Zitrone, bist du SAUER auf mich. Wortspiel!');
-
             }
             else {
                 console.log('Das macht keinen Sinn.');

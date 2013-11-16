@@ -15,6 +15,8 @@ ig.module(
     'game.ui.command-pull',
     // command preview
     'game.ui.command-preview',
+    // inventory
+    'game.ui.inventory',
     // config
     'plusplus.core.config'
 )
@@ -37,12 +39,27 @@ ig.module(
      */
     ig.Pacui = ig.Class.extend({
 
+        /**
+         * Spawns the commands, the command preview,
+         * the mouse cursor and initializes the inventory
+         */
         init: function(){
 
-            // spawn ui
+            // Commands
             this.spawnCommands();
             this.spawnCommandPreview();
+
+            // Inventory
+            this.initInventory();
+
+            // Mousecursor
             this.spawnMouseCursor();
+
+        },
+
+        initInventory: function(){
+
+            this.inventory = new ig.Inventory();
 
         },
 

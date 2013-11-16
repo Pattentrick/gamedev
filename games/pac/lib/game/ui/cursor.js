@@ -39,7 +39,7 @@ ig.module(
 
         fixed: false,
 
-        performance: 'dynamic',
+        performance: 'moveable',
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'ui/cursor.png', 14, 14 ),
 
