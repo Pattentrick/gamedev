@@ -109,10 +109,10 @@ ig.module(
 
             if( this.currentCommand === '' ){
 
-                this.currentCommand = this.defaultCommand;
+                    // Assigning a value to this.text will draw the value
+                    this.currentCommand = this.defaultCommand;
 
-                // Assigning a value to this.text will draw the value
-                this.text = this.currentCommand + ' ' + this.entityName;
+                    this.text = this.currentCommand + ' ' + this.entityName;
 
             }
             else {
@@ -131,7 +131,17 @@ ig.module(
                 }
                 else{
 
-                    this.text = this.currentCommand + ' ' + this.entityName;
+                    // Show a different default command on inventory items
+                    if( this.hasMouseOverInventory() && this.hasDefaultCommandOnActiveEntity() ){
+
+                        this.text = 'Schau ' + this.entityName + ' an';
+
+                    }
+                    else {
+
+                        this.text = this.currentCommand + ' ' + this.entityName;
+
+                    }
 
                 }
 
@@ -160,6 +170,33 @@ ig.module(
         setCurrentCommand: function( command ){
 
             this.currentCommand = command;
+
+        },
+
+        /**
+         * Detect if the player moves the cursor over the inventory space.
+         *
+         * @returns {boolean} True if mouse hovers over the inventory space.
+         */
+        hasMouseOverInventory: function(){
+
+            return(
+                    ig.input.mouse.y + ig.game.screen.y >= 163
+                    && ig.input.mouse.y + ig.game.screen.y <= 195
+                    && ig.input.mouse.x + ig.game.screen.x >= 177
+                    && ig.input.mouse.x + ig.game.screen.x <= 303
+                  );
+
+        },
+
+        /**
+         * Returns true on default command and active Entity
+         *
+         * @returns {boolean}
+         */
+        hasDefaultCommandOnActiveEntity: function(){
+
+            return( this.currentCommand === 'Gehe zu' && this.entityName !== '' );
 
         },
 

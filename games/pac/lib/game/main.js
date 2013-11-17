@@ -39,8 +39,6 @@ ig.module(
             // Create new userinterface instance
             this.gui = new ig.Pacui();
 
-            console.log( ig.game.layers );
-
 		},
 
         /**
