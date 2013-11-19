@@ -38,10 +38,7 @@ ig.module(
 
         interact: function( command ){
 
-            if( command === 'Nimm' ){
-                console.log('Gegenstand aufgehoben.');
-            }
-            else if( command === 'Schau' ){
+            if( command === 'Schau' ){
                 console.log('Eine riesige Zitrone ... unglaublich!');
             }
             else if( command === 'Rede' ){

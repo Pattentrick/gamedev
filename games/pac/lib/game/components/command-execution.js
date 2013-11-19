@@ -77,13 +77,43 @@ ig.module(
 
             var entity = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName );
 
-            if( this.hasActiveCommand && this.hasPlayerNearEntity( entity ) ){
+            if( this.hasEntityToInteract( entity ) ){
 
                 entity.interact( currentCommand );
 
                 this.removeCurrentCommand();
 
             }
+
+        },
+
+        /**
+         * Returns true if the Player is near an interactive entity,
+         * or that entity is an inventory item, and there is an active
+         * command.
+         *
+         * @param {object } entity Entity to check against
+         * @returns {boolean}
+         */
+        hasEntityToInteract: function( entity ){
+
+            return( this.hasActiveCommand && this.hasPlayerNearEntity( entity ) || this.hasActiveCommand && this.hasMouseOverInventory() );
+
+        },
+
+        /**
+         * Detect if the player moves the cursor over the inventory space.
+         *
+         * @returns {boolean} True if mouse hovers over the inventory space.
+         */
+        hasMouseOverInventory: function(){
+
+            return(
+                ig.input.mouse.y + ig.game.screen.y >= 163
+                    && ig.input.mouse.y + ig.game.screen.y <= 195
+                    && ig.input.mouse.x + ig.game.screen.x >= 177
+                    && ig.input.mouse.x + ig.game.screen.x <= 303
+                );
 
         },
 

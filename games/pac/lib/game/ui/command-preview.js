@@ -26,6 +26,9 @@ ig.module(
         // Default text command
         defaultCommand: 'Gehe zu',
 
+        // Flag. True on inventory mouse over
+        hasDefaultCommandInventory: false,
+
         // Current activated command
         currentCommand: '',
 
@@ -109,41 +112,84 @@ ig.module(
 
             if( this.currentCommand === '' ){
 
-                    // Assigning a value to this.text will draw the value
-                    this.currentCommand = this.defaultCommand;
-
-                    this.text = this.currentCommand + ' ' + this.entityName;
+                this.renderDefaultCommand();
 
             }
             else {
 
-                // Modify text preview on certain commands for proper grammar
+                this.renderSelectedCommand();
 
-                if( this.currentCommand === 'Schau' && this.entityName !== '' ){
+            }
 
-                    this.text = this.currentCommand + ' ' + this.entityName + ' an';
+        },
 
-                }
-                else if( this.currentCommand === 'Rede' && this.entityName !== '' ){
+        /**
+         * Renders the default command to the center of this UI element.
+         */
+        renderDefaultCommand: function(){
 
-                    this.text = this.currentCommand + ' mit ' + this.entityName;
+            // Assigning a value to this.text will draw the value
+            this.currentCommand = this.defaultCommand;
 
-                }
-                else{
+            this.text = this.currentCommand + ' ' + this.entityName;
 
-                    // Show a different default command on inventory items
-                    if( this.hasMouseOverInventory() && this.hasDefaultCommandOnActiveEntity() ){
+        },
 
-                        this.text = 'Schau ' + this.entityName + ' an';
+        /**
+         * Renders a selected command to the center of this UI element.
+         */
+        renderSelectedCommand: function(){
 
-                    }
-                    else {
+            // Modify text preview on certain commands for proper grammar
+            if( this.currentCommand === 'Schau' && this.entityName !== '' ){
 
-                        this.text = this.currentCommand + ' ' + this.entityName;
+                this.text = this.currentCommand + ' ' + this.entityName + ' an';
 
-                    }
+            }
+            else if( this.currentCommand === 'Rede' && this.entityName !== '' ){
 
-                }
+                this.text = this.currentCommand + ' mit ' + this.entityName;
+
+            }
+            else{
+
+                this.handleInventoryMouseOverCommand();
+
+            }
+
+        },
+
+        /**
+         * Switch to another default command, if the mouse
+         * hovers over an inventory item. Render the normal
+         * current command if this is not the case.
+         */
+        handleInventoryMouseOverCommand: function(){
+
+            // Show a different default command on inventory items
+            if( this.hasMouseOverInventory() && this.hasDefaultCommandOnActiveEntity() ){
+
+                this.currentCommand = 'Schau';
+
+                this.text = this.currentCommand + ' ' + this.entityName + ' an';
+
+                this.hasDefaultCommandInventory = true;
+
+            }
+            else if( this.hasDefaultCommandInventory ){
+
+                // Assigning a value to this.text will draw the value
+                this.currentCommand = this.defaultCommand;
+
+                this.text = this.currentCommand + ' ' + this.entityName;
+
+                this.hasDefaultCommandInventory = false;
+
+            }
+            else {
+
+                // Render the "normal command"
+                this.text = this.currentCommand + ' ' + this.entityName;
 
             }
 

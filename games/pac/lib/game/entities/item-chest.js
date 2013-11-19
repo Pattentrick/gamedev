@@ -1,36 +1,35 @@
 ig.module(
-    'game.entities.item-lemon'
+    'game.entities.item-chest'
 )
 .requires(
     'plusplus.core.entity',
-    'plusplus.core.config',
-    'game.entities.inventory-item-lemon'
+    'plusplus.core.config'
 )
 .defines(function () {
 
 	var _c  = ig.CONFIG;
 
     /**
-     * Lemon item
+     * Chest item.
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemLemon = ig.global.EntityItemLemon = ig.EntityExtended.extend({
+    ig.EntityItemChest = ig.global.EntityItemChest = ig.EntityExtended.extend({
 
-        name: 'Monsterzitrone',
+        name: 'Truhe',
 
         collides: ig.Entity.COLLIDES.FIXED,
 
 		size: {
-            x: 8,
-            y: 8
+            x: 16,
+            y: 16
         },
 
         matchingInventoryItem: ig.EntityInventoryItemLemon,
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 8, 8 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'chest.gif', 16, 16 ),
 
         animInit: 'idle',
 
@@ -43,23 +42,20 @@ ig.module(
 
         interact: function( command ){
 
-            if( command === 'Nimm' ){
+            if( command === 'Öffne' ){
 
-                ig.game.gui.inventory.addItem( this.matchingInventoryItem, this );
+                console.log('Ich kriege die Truhe nicht auf. Das Schloss klemmt.');
 
             }
             else if( command === 'Schau' ){
 
-                console.log('Eine riesige Zitrone ... unglaublich!');
-
-            }
-            else if( command === 'Rede' ){
-
-                console.log('Na Zitrone, bist du SAUER auf mich. Wortspiel!');
+                console.log('Eine große massive Holztruhe.');
 
             }
             else {
+
                 console.log('Das macht keinen Sinn.');
+
             }
 
         }
