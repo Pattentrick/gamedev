@@ -35,7 +35,7 @@ ig.module(
                 AUTO_FOLLOW_PLAYER : false
             },
 
-            // character pathfinding
+            // character movement speed
             CHARACTER : {
                 MAX_VEL_GROUNDED_Y : 30,
                 MAX_VEL_GROUNDED_X : 30

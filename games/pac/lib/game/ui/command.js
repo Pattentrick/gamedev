@@ -76,6 +76,8 @@ ig.module(
                 commandPreview.setCurrentCommand( this.command );
                 // Reset entity name
                 commandPreview.setEntityName('');
+                // Reset combined command flag
+                commandPreview.setHasCombinedCommand( false );
 
                 // Reset active command flag
                 ig.game.commandExecution.hasActiveCommand = false;

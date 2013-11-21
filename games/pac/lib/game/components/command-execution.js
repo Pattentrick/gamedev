@@ -57,6 +57,7 @@ ig.module(
 
                     this.resetNameOnDefaultCommand( currentCommand, defaultCommand );
                     this.checkForActiveCommand( currentCommand );
+                    this.checkForActiveCompundableCommand();
 
                 }
 
@@ -75,15 +76,46 @@ ig.module(
          */
         TryToInteract: function( currentCommand ){
 
-            var entity = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName );
+            var entity             = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName );
+            var compoundableEntity = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].compoundableEntityName );
+            var commandPreview     = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
 
-            if( this.hasEntityToInteract( entity ) ){
+            // On level 1 combining e.g "use stick with"
+            if( this.isUseWithCommand( currentCommand ) ){
+
+                ig.game.getEntitiesByClass(ig.CommandPreview)[0].hasCombinedCommand = true;
+
+            }
+            // On level 2 combining e.g "use stick with bear"
+            else if( commandPreview.hasActiveCompoundableCommand && this.hasEntityToInteract( compoundableEntity ) ){
+
+                compoundableEntity.combine( entity );
+
+                this.removeCurrentCommand();
+
+
+            }
+            // On normal interaction
+            else if( this.hasEntityToInteract( entity ) ){
 
                 entity.interact( currentCommand );
 
                 this.removeCurrentCommand();
 
             }
+
+        },
+
+        /**
+         * Returns true if the user selects the use command
+         * and afterwards selecting an inventory item.
+         *
+         * @param {string} currentCommand The current command of the preview
+         * @returns {boolean}
+         */
+        isUseWithCommand: function( currentCommand ){
+
+            return( this.hasActiveCommand && this.hasMouseOverInventory() && currentCommand === 'Benutze' );
 
         },
 
@@ -183,6 +215,18 @@ ig.module(
 
         },
 
+        checkForActiveCompundableCommand: function(){
+
+            var commandPreview = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
+
+            if( commandPreview.entityName !== '' && commandPreview.compoundableEntityName !== '' ){
+
+                commandPreview.setHasActiveCompoundableCommand( true );
+
+            }
+
+        },
+
         /**
          * Detects if the mouse cursor hovers over an entity
          *
@@ -236,7 +280,12 @@ ig.module(
          */
         removeCurrentCommand: function(){
 
-            ig.game.getEntitiesByClass(ig.CommandPreview)[0].setCurrentCommand('');
+            var commandPreview = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
+
+            commandPreview.setCurrentCommand('');
+            commandPreview.setHasCombinedCommand( false );
+            commandPreview.setHasActiveCompoundableCommand( false );
+
             this.hasActiveCommand = false;
 
         },

@@ -29,11 +29,20 @@ ig.module(
         // Flag. True on inventory mouse over
         hasDefaultCommandInventory: false,
 
+        // Flag. True if this a combined commando like "use with"
+        hasCombinedCommand: false,
+
+        // Flag. True if there is a complete combined command as "use stick with bear"
+        hasActiveCompoundableCommand: false,
+
         // Current activated command
         currentCommand: '',
 
         // Name of current active entity
         entityName: '',
+
+        // Name of compundable entity name
+        compoundableEntityName: '',
 
         // Text that will be displayed
         text: '',
@@ -80,24 +89,33 @@ ig.module(
             var entities = ig.game.entities;
             var name = '';
 
-            if( !ig.game.commandExecution.hasActiveCommand ){
+            for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
 
-                for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
+                if( this.entityIsinFocus( entities[i] )
+                    && entities[i].name !== 'player'
+                    && entities[i].name !== 'cursor'
+                    && entities[i].name !== 'command'
+                    && entities[i].name !== 'preview'){
 
-                    if( this.entityIsinFocus( entities[i] )
-                        && entities[i].name !== 'player'
-                        && entities[i].name !== 'cursor'
-                        && entities[i].name !== 'command'
-                        && entities[i].name !== 'preview'){
-
-                        name = entities[i].name;
-
-                    }
+                    name = entities[i].name;
 
                 }
 
+            }
+
+            if( !ig.game.commandExecution.hasActiveCommand ){
+
                 this.entityName = name;
 
+            }
+
+            if( this.hasCombinedCommand && name !== this.entityName && !this.hasActiveCompoundableCommand ){
+
+                this.compoundableEntityName = name;
+
+            }
+            else if( !this.hasActiveCompoundableCommand ){
+                this.compoundableEntityName = '';
             }
 
         },
@@ -188,10 +206,36 @@ ig.module(
             }
             else {
 
-                // Render the "normal command"
-                this.text = this.currentCommand + ' ' + this.entityName;
+                if( this.hasCombinedCommand ){
+
+                    this.text = this.currentCommand + ' ' + this.entityName + ' mit ' + this.compoundableEntityName;
+
+                }
+                else {
+
+                    // Render the "normal command"
+                    this.text = this.currentCommand + ' ' + this.entityName;
+
+                }
 
             }
+
+        },
+
+        /**
+         * Sets the hasCombinedCommand flag to true or false
+         *
+         * @param {boolean} state Whether there is an active "use with command"
+         */
+        setHasCombinedCommand: function( state ){
+
+            this.hasCombinedCommand = state;
+
+        },
+
+        setHasActiveCompoundableCommand: function( state ){
+
+            this.hasActiveCompoundableCommand = state;
 
         },
 

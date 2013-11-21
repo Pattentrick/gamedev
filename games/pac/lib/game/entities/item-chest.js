@@ -40,6 +40,12 @@ ig.module(
             }
 		},
 
+        /**
+         * This is called when the player tries to interact
+         * with a game object via the user interface.
+         *
+         * @param {string} command The Command for the interaction
+         */
         interact: function( command ){
 
             if( command === 'Öffne' ){
@@ -56,6 +62,23 @@ ig.module(
 
                 console.log('Das macht keinen Sinn.');
 
+            }
+
+        },
+
+        /**
+         * Gets called when the player tries to
+         * combine another item with this item
+         *
+         * @param {object} entity The item entity
+         */
+        combine: function( entity ){
+
+            if( entity.name === 'Monsterzitrone' ){
+                console.log('Der Zitronensaft verätzt das Schloss, ich kann die Truhe jetzt öffnen.');
+            }
+            else {
+                console.log('Deine Mudda macht sowas mit einer Truhe.');
             }
 
         }

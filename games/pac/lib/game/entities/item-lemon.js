@@ -62,6 +62,17 @@ ig.module(
                 console.log('Das macht keinen Sinn.');
             }
 
+        },
+
+        /**
+         * Gets called when the player tries to
+         * combine another item with this item
+         *
+         * @param {object} entity The item entity
+         */
+        combine: function( entity ){
+
+
         }
 		
 	});
