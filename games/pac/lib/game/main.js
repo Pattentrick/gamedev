@@ -7,7 +7,7 @@ ig.module(
     // levels
     'game.levels.test',
     // enable debug
-    'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module
@@ -36,8 +36,10 @@ ig.module(
             // Create new command execution instance
             this.commandExecution = new ig.CommandExecution();
 
-            // Create new userinterface instance
+            // Create new pac user interface instance
             this.gui = new ig.Pacui();
+
+            ig.game.getPlayer().speak();
 
 		},
 

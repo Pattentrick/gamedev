@@ -3,6 +3,7 @@ ig.module(
 )
 .requires(
     'plusplus.abstractities.player',
+    'game.entities.text-output',
     'plusplus.core.config'
 )
 .defines(function () {
@@ -66,7 +67,23 @@ ig.module(
 				frameTime: 0.10,
 				sequence: [12,13,14,15,16,17]
 			}
-		}
+		},
+
+        /**
+         * Displays text in a small bubble above the players head.
+         */
+        speak: function( text ){
+
+            this.bubble = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40 );
+
+            /*            this.bubble.pos.x = 200;
+             this.bubble.pos.y = 150;*/
+
+            //this.bubble.moveTo( ig.game.getPlayer() );
+
+            this.bubble.textSettings.text = 'Monsterkill';
+
+        }
 
 	});
 
