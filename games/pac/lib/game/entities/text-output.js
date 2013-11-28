@@ -2,7 +2,7 @@ ig.module(
     'game.entities.text-output'
 )
 .requires(
-    'plusplus.ui.ui-text-bubble',
+    'plusplus.ui.ui-text-box',
     'plusplus.core.config'
 )
 .defines(function () {
@@ -16,23 +16,18 @@ ig.module(
      * @extends ig.UITextBubble
      * @memeberof ig
      */
-    ig.EntityTextOutput = ig.global.EntityTextOutput = ig.UITextBubble.extend({
+    ig.EntityTextOutput = ig.global.EntityTextOutput = ig.UITextBox.extend({
+
+        name: 'textbox',
 
         fixed: false,
 
         posAsPct: false,
 
-        cornerRadius: 10,
+        cornerRadius: 5,
 
-        triangleLength: 0,
+        pixelPerfect: true
 
-        textSettings: {
-
-            text: 'Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor',
-            font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' )
-
-        }
-		
-	});
+    });
 
 });

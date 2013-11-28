@@ -39,13 +39,19 @@ ig.module(
         interact: function( command ){
 
             if( command === 'Schau' ){
-                console.log('Eine riesige Zitrone ... unglaublich!');
+
+                ig.game.getPlayer().speak('Eine riesige Zitrone ... unglaublich!');
+
             }
             else if( command === 'Rede' ){
-                console.log('Na Zitrone, bist du SAUER auf mich. Wortspiel!');
+
+                ig.game.getPlayer().speak('Na Zitrone, bist du SAUER auf mich.');
+
             }
             else {
-                console.log('Das macht keinen Sinn.');
+
+                ig.game.getPlayer().speak('Das macht keinen Sinn.');
+
             }
 
         }

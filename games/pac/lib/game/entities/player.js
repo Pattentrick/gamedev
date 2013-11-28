@@ -4,7 +4,8 @@ ig.module(
 .requires(
     'plusplus.abstractities.player',
     'game.entities.text-output',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'plusplus.core.timer'
 )
 .defines(function () {
 
@@ -69,19 +70,105 @@ ig.module(
 			}
 		},
 
+        init: function( x, y, settings ){
+
+            this.parent( x, y, settings );
+
+            this.speak('Welch wunderschöne Textbox hier doch spawnt!');
+
+        },
+
+        // Lifespan of the textbox (lifespan = number of chars * textspeed )
+        textspeed: 0.08,
+
         /**
-         * Displays text in a small bubble above the players head.
+         * Displays text in a small bubble
+         *
+         * @param {string} text Text that will be displayed
          */
         speak: function( text ){
 
-            this.bubble = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40 );
+            // remove any existing monologue boxes before spawning a new one
+            this.removeExistingMonologue();
 
-            /*            this.bubble.pos.x = 200;
-             this.bubble.pos.y = 150;*/
+            this.textbox = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40, {
 
-            //this.bubble.moveTo( ig.game.getPlayer() );
+                textSettings: {
 
-            this.bubble.textSettings.text = 'Monsterkill';
+                    text: text,
+                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
+                    //font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' )
+
+                }
+
+            });
+
+            this.setMonologueTimer( text.length * this.textspeed );
+
+        },
+
+        /**
+         * Sets a timer for the textbox to a specific duration
+         *
+         * @param {number} duration Duration of the textbox display
+         */
+        setMonologueTimer: function( duration ){
+
+            this.timer = new ig.TimerExtended( duration );
+
+        },
+
+        /**
+         * Checks if there is an existing monologue.
+         * Calls handleMonologueEnd if that case is true.
+         */
+        checkForMonologue: function(){
+
+            if( ig.game.getEntitiesByClass( ig.EntityTextOutput ).length > 0 ){
+
+                this.handleMonologueEnd();
+
+            }
+
+        },
+
+        /**
+         * Removes the textbox from the game after
+         * the duration specified with setMonologueTimer
+         * and resets the timer.
+         */
+        handleMonologueEnd: function(){
+
+            if( this.timer.delta() > 0 ){
+
+                ig.game.removeEntity( this.textbox );
+
+                this.timer.reset();
+
+            }
+
+        },
+
+        /**
+         * Removes a existing textbox, if there is one.
+         */
+        removeExistingMonologue: function(){
+
+            if( ig.game.getEntitiesByClass(ig.EntityTextOutput).length > 0 ){
+
+                ig.game.removeEntity( this.textbox );
+
+                this.timer.reset();
+
+            }
+
+        },
+
+        update: function(){
+
+            this.parent();
+
+            this.checkForMonologue();
 
         }
 

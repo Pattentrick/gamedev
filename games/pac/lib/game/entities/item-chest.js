@@ -50,17 +50,17 @@ ig.module(
 
             if( command === 'Öffne' ){
 
-                console.log('Ich kriege die Truhe nicht auf. Das Schloss klemmt.');
+                ig.game.getPlayer().speak('Ich kriege die Truhe nicht auf. Das Schloss klemmt.');
 
             }
             else if( command === 'Schau' ){
 
-                console.log('Eine große massive Holztruhe.');
+                ig.game.getPlayer().speak('Eine große massive Holztruhe.');
 
             }
             else {
 
-                console.log('Das macht keinen Sinn.');
+                ig.game.getPlayer().speak('Das macht keinen Sinn.');
 
             }
 
@@ -75,10 +75,14 @@ ig.module(
         combine: function( entity ){
 
             if( entity.name === 'Monsterzitrone' ){
-                console.log('Der Zitronensaft verätzt das Schloss, ich kann die Truhe jetzt öffnen.');
+
+                ig.game.getPlayer().speak('Der Zitronensaft verätzt das Schloss, ich kann die Truhe jetzt öffnen.');
+
             }
             else {
-                console.log('Deine Mudda macht sowas mit einer Truhe.');
+
+                ig.game.getPlayer().speak('Deine Mudda macht sowas mit einer Truhe.');
+
             }
 
         }

@@ -47,19 +47,23 @@ ig.module(
 
                 ig.game.gui.inventory.addItem( this.matchingInventoryItem, this );
 
+                ig.game.getPlayer().speak('Eine Zitrone. Endlich.');
+
             }
             else if( command === 'Schau' ){
 
-                console.log('Eine riesige Zitrone ... unglaublich!');
+                ig.game.getPlayer().speak('Eine riesige Zitrone ... unglaublich!');
 
             }
             else if( command === 'Rede' ){
 
-                console.log('Na Zitrone, bist du SAUER auf mich. Wortspiel!');
+                ig.game.getPlayer().speak('Na Zitrone, bist du SAUER auf mich?');
 
             }
             else {
-                console.log('Das macht keinen Sinn.');
+
+                ig.game.getPlayer().speak('Das macht keinen Sinn.');
+
             }
 
         },

@@ -182,7 +182,10 @@ ig.module(
                         && entities[i].name !== 'player'
                         && entities[i].name !== 'cursor'
                         && entities[i].name !== 'command'
-                        && entities[i].name !== 'preview'){
+                        && entities[i].name !== 'preview'
+                        && entities[i].name !== undefined
+                        && entities[i].name !== 'spawner'
+                        && entities[i].name !== 'textbox'){
 
                         match = false
 

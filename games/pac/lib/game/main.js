@@ -6,6 +6,7 @@ ig.module(
     'plusplus.core.plusplus',
     // levels
     'game.levels.test',
+    'game.levels.anotherroom',
     // enable debug
     //'plusplus.debug.debug',
     // command execution
@@ -38,8 +39,6 @@ ig.module(
 
             // Create new pac user interface instance
             this.gui = new ig.Pacui();
-
-            ig.game.getPlayer().speak();
 
 		},
 

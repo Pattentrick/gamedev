@@ -47,7 +47,7 @@ ig.module(
         // Text that will be displayed
         text: '',
 
-        font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' ),
+        font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font_11px.png' ),
 
         /**
          * Centers the command preview inside the gamescreen.
@@ -95,7 +95,10 @@ ig.module(
                     && entities[i].name !== 'player'
                     && entities[i].name !== 'cursor'
                     && entities[i].name !== 'command'
-                    && entities[i].name !== 'preview'){
+                    && entities[i].name !== 'preview'
+                    && entities[i].name !== undefined
+                    && entities[i].name !== 'spawner'
+                    && entities[i].name !== 'textbox'){
 
                     name = entities[i].name;
 
