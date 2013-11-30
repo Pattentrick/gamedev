@@ -4,9 +4,11 @@ ig.module(
 .requires(
 	// include impact++
     'plusplus.core.plusplus',
+    // player class
+    'game.entities.player',
     // levels
     'game.levels.test',
-    'game.levels.anotherroom',
+    'game.levels.another-room',
     // enable debug
     //'plusplus.debug.debug',
     // command execution
@@ -24,15 +26,52 @@ ig.module(
 
 	var Pac = ig.GameExtended.extend({
 
-        // background color of canvas
+        // Background color of canvas
         clearColor: "#330033",
+
+        // Contains the name of the current level
+        currentLevel: null,
 
 		init: function () {
 
 			this.parent();
 
-		    // Load level
-            this.loadLevel(ig.global.LevelTest);
+		    // Load starting level
+            this.loadLevelDeferred( 'test', 'spawner' );
+
+		},
+
+        /**
+         * Here i override the loadLevelDeferred method, so
+         * i can set the currentLevel property. This is needed
+         * for spawning/removing game items after the level build.
+         *
+         * @param level
+         * @param playerSpawnerName
+         * @override
+         */
+        loadLevelDeferred: function( level, playerSpawnerName ){
+
+            this.currentLevel = level;
+
+            this.parent( level, playerSpawnerName );
+
+        },
+
+        /**
+         * This method creates the level and spawns all
+         * the entitys. So any logic for spawning/removing
+         * entitys in a certain room goes here after calling
+         * parent.
+         *
+         * @override
+         */
+        buildLevel: function(){
+
+            this.parent();
+
+            // reposition camera on level switch
+            this.centerStaticCamera();
 
             // Create new command execution instance
             this.commandExecution = new ig.CommandExecution();
@@ -40,7 +79,41 @@ ig.module(
             // Create new pac user interface instance
             this.gui = new ig.Pacui();
 
-		},
+            this.setFacingDirection();
+
+        },
+
+        /**
+         * Set a proper facing direction
+         * in relation of the new room.
+         */
+        setFacingDirection: function(){
+
+            var player       = ig.game.getPlayer();
+            var currentLevel = ig.game.currentLevel;
+
+            switch( currentLevel ){
+                case 'test':
+
+                    player.facing = {
+                        x: -1,
+                        y: 1
+                    };
+
+                break;
+                case 'another-room':
+
+                    player.facing = {
+                        x: -1,
+                        y: 1
+                    };
+
+                break;
+            }
+
+            console.log( player.facing );
+
+        },
 
         /**
          * Bind all inputs to certain events

@@ -34,11 +34,6 @@ ig.module(
             y: 20
         },
 
-        facing : {
-            x: 0,
-            y: 1
-        },
-
         temporaryInvulnerabilityAlpha: 1,
 		
 		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'player.png', 14, 30 ),
@@ -69,14 +64,6 @@ ig.module(
 				sequence: [12,13,14,15,16,17]
 			}
 		},
-
-        init: function( x, y, settings ){
-
-            this.parent( x, y, settings );
-
-            this.speak('Welch wunderschöne Textbox hier doch spawnt!');
-
-        },
 
         // Lifespan of the textbox (lifespan = number of chars * textspeed )
         textspeed: 0.08,

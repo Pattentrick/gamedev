@@ -54,15 +54,24 @@ ig.module(
 
         },
 
+        init: function(){
+
+            this.parent();
+
+            //console.log(this.pos);
+
+        },
+
         /**
          * Reposition the cursor entity to the position
          * of the default browser mouse cursor
          */
         repositionCursor: function(){
 
-            // Entity position is mouse position + scroll position and offset
-            this.pos.x = ig.input.mouse.x + ig.game.screen.x + this.cursorOffset.x;
-            this.pos.y = ig.input.mouse.y + ig.game.screen.y + this.cursorOffset.y;
+            this.pos = {
+                x: ig.input.mouse.x + ig.game.screen.x + this.cursorOffset.x,
+                y: ig.input.mouse.y + ig.game.screen.y + this.cursorOffset.y
+            }
 
         },
 
