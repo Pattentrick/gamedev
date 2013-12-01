@@ -15,8 +15,6 @@ ig.module(
     'game.ui.command-pull',
     // command preview
     'game.ui.command-preview',
-    // inventory
-    'game.ui.inventory',
     // config
     'plusplus.core.config'
 )
@@ -28,8 +26,7 @@ ig.module(
 
     /**
      * Spawns all parts of the UI like the
-     * commands, the mouse cursor and the
-     * inventory
+     * commands and the mouse cursor.
      *
      * Pacui stands for *P*oint *A*nd *C*lick *U*ser *I*nterface
      *
@@ -49,17 +46,8 @@ ig.module(
             this.spawnCommands();
             this.spawnCommandPreview();
 
-            // Inventory
-            this.initInventory();
-
             // Mousecursor
             this.spawnMouseCursor();
-
-        },
-
-        initInventory: function(){
-
-            this.inventory = new ig.Inventory();
 
         },
 

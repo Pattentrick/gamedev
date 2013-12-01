@@ -21,29 +21,24 @@ ig.module(
 
         numberOfItems: 0,
 
-        slots: {
+        slots: [
 
-            firstSlot: {
-                x: 177,
-                y: 163
-            },
+            // first slot
+            { x: 177, y: 163 },
 
-            secondSlot: {
-                x: 209,
-                y: 163
-            },
+            // second slot
+            { x: 209, y: 163 },
 
-            thirdSlot: {
-                x: 241,
-                y: 163
-            },
+            // third slot
+            { x: 241, y: 163 },
 
-            fourthSlot: {
-                x: 273,
-                y: 163
-            }
+            // fourth slot
+            { x: 273, y: 163 }
 
-        },
+        ],
+
+        // List of all current instances of items in the inventory
+        inventoryItems: [],
 
         /**
          * Adds an item to the inventory.
@@ -55,13 +50,11 @@ ig.module(
         addItem: function( inventoryItem, worldItem ){
 
             this.removeWorldItem( worldItem );
-            this.incrementNumberOfItems();
 
-            switch( this.numberOfItems ){
-                case 1:
-                    ig.game.spawnEntity( inventoryItem, this.slots.firstSlot.x, this.slots.firstSlot.y);
-                break;
-            }
+            ig.game.spawnEntity( inventoryItem, this.slots[ this.numberOfItems ].x, this.slots[ this.numberOfItems ].y );
+
+            this.incrementNumberOfItems();
+            this.inventoryItems.push( inventoryItem );
 
         },
 
@@ -77,11 +70,39 @@ ig.module(
         },
 
         /**
+         * Removes an item from the inventory
+         *
+         * @param {object} inventoryItem Entity to remove from inventory
+         */
+        removeInventoryItem: function( inventoryItem ){
+
+            ig.game.removeEntity( inventoryItem );
+
+        },
+
+        /**
          * Increments nuber of items by 1
          */
         incrementNumberOfItems: function(){
 
             this.numberOfItems += 1;
+
+        },
+
+        /**
+         * Respawns all inventory items on room switch.
+         */
+        respawnInventoryItems: function(){
+
+            if( this.inventoryItems.length > 0 ){
+
+                for( var i = 0, len = this.inventoryItems.length; i < len; i++ ){
+
+                    ig.game.spawnEntity( this.inventoryItems[i], this.slots[i].x, this.slots[i].y );
+
+                }
+
+            }
 
         }
 

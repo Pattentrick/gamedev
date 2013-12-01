@@ -14,7 +14,9 @@ ig.module(
     // command execution
     'game.components.command-execution',
     // user interface module
-    'game.ui.pacui'
+    'game.ui.pacui',
+    // inventory
+    'game.ui.inventory'
 )
 // define the main module
 .defines(function () {
@@ -38,6 +40,9 @@ ig.module(
 
 		    // Load starting level
             this.loadLevelDeferred( 'test', 'spawner' );
+
+            // Instance the inventory
+            this.inventory = new ig.Inventory();
 
 		},
 
@@ -79,13 +84,16 @@ ig.module(
             // Create new pac user interface instance
             this.gui = new ig.Pacui();
 
+            this.inventory.respawnInventoryItems();
+
+            // Set facing direction
             this.setFacingDirection();
 
         },
 
         /**
          * Set a proper facing direction
-         * in relation of the new room.
+         * in relation too the new room.
          */
         setFacingDirection: function(){
 
@@ -111,7 +119,7 @@ ig.module(
                 break;
             }
 
-            console.log( player.facing );
+            //console.log( player.facing );
 
         },
 

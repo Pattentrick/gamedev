@@ -45,7 +45,7 @@ ig.module(
 
             if( command === 'Nimm' ){
 
-                ig.game.gui.inventory.addItem( this.matchingInventoryItem, this );
+                ig.game.inventory.addItem( this.matchingInventoryItem, this );
 
                 ig.game.getPlayer().speak('Eine Zitrone. Endlich.');
 

@@ -80,27 +80,32 @@ ig.module(
             var compoundableEntity = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].compoundableEntityName );
             var commandPreview     = ig.game.getEntitiesByClass(ig.CommandPreview)[0];
 
-            // On level 1 combining e.g "use stick with"
-            if( this.isUseWithCommand( currentCommand ) ){
+            // Do not interact with pathways to other rooms!
+            if( entity instanceof ig.EntityLevelchange === false && compoundableEntity instanceof ig.EntityLevelchange === false ){
 
-                ig.game.getEntitiesByClass(ig.CommandPreview)[0].hasCombinedCommand = true;
+                // On level 1 combining e.g "use stick with"
+                if( this.isUseWithCommand( currentCommand ) ){
 
-            }
-            // On level 2 combining e.g "use stick with bear"
-            else if( commandPreview.hasActiveCompoundableCommand && this.hasEntityToInteract( compoundableEntity ) ){
+                    ig.game.getEntitiesByClass(ig.CommandPreview)[0].hasCombinedCommand = true;
 
-                compoundableEntity.combine( entity );
+                }
+                // On level 2 combining e.g "use stick with bear"
+                else if( commandPreview.hasActiveCompoundableCommand && this.hasEntityToInteract( compoundableEntity ) ){
 
-                this.removeCurrentCommand();
+                    compoundableEntity.combine( entity );
+
+                    this.removeCurrentCommand();
 
 
-            }
-            // On normal interaction
-            else if( this.hasEntityToInteract( entity ) ){
+                }
+                // On normal interaction eg "use stick"
+                else if( this.hasEntityToInteract( entity ) ){
 
-                entity.interact( currentCommand );
+                    entity.interact( currentCommand );
 
-                this.removeCurrentCommand();
+                    this.removeCurrentCommand();
+
+                }
 
             }
 

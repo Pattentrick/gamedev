@@ -78,6 +78,9 @@ ig.module(
 
                 ig.game.getPlayer().speak('Der Zitronensaft verätzt das Schloss, ich kann die Truhe jetzt öffnen.');
 
+                // Remove lemon from inventory
+                ig.game.inventory.removeInventoryItem( entity );
+
             }
             else {
 
