@@ -1,25 +1,25 @@
 ig.module(
-    'game.entities.item-lemon'
+    'game.entities.item-block'
 )
 .requires(
     'plusplus.core.entity',
     'plusplus.core.config',
-    'game.entities.inventory-item-lemon'
+    'game.entities.inventory-item-block'
 )
 .defines(function () {
 
 	var _c  = ig.CONFIG;
 
     /**
-     * Lemon item
+     * Block item
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemLemon = ig.global.EntityItemLemon = ig.EntityExtended.extend({
+    ig.EntityItemBlock = ig.global.EntityItemBlock = ig.EntityExtended.extend({
 
-        name: 'Monsterzitrone',
+        name: 'Block',
 
         collides: ig.Entity.COLLIDES.FIXED,
 
@@ -28,9 +28,9 @@ ig.module(
             y: 8
         },
 
-        matchingInventoryItem: ig.EntityInventoryItemLemon,
+        matchingInventoryItem: ig.EntityInventoryItemBlock,
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 8, 8 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'block.gif', 8, 8 ),
 
         animInit: 'idle',
 
@@ -47,17 +47,12 @@ ig.module(
 
                 ig.game.inventory.addItem( this.matchingInventoryItem, this );
 
-                ig.game.getPlayer().speak('Eine Zitrone. Endlich.');
+                ig.game.getPlayer().speak('Ein Block. Endlich.');
 
             }
             else if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Eine riesige Zitrone ... unglaublich!');
-
-            }
-            else if( command === 'Rede' ){
-
-                ig.game.getPlayer().speak('Na Zitrone, bist du SAUER auf mich?');
+                ig.game.getPlayer().speak('Ein Block.');
 
             }
             else {
@@ -76,7 +71,16 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('Berm.');
+            if( entity.name === 'Monsterzitrone' ){
+
+                ig.game.getPlayer().speak('Das mit der Zitrone. Was!?');
+
+            }
+            else {
+
+                ig.game.getPlayer().speak('Berschauer.');
+
+            }
 
         }
 		

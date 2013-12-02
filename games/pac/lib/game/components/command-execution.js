@@ -88,6 +88,8 @@ ig.module(
 
                     ig.game.getEntitiesByClass(ig.CommandPreview)[0].hasCombinedCommand = true;
 
+                    console.log('first if');
+
                 }
                 // On level 2 combining e.g "use stick with bear"
                 else if( commandPreview.hasActiveCompoundableCommand && this.hasEntityToInteract( compoundableEntity ) ){

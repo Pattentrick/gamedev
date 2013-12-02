@@ -19,8 +19,6 @@ ig.module(
      */
     ig.Inventory = ig.Class.extend({
 
-        numberOfItems: 0,
-
         slots: [
 
             // first slot
@@ -37,7 +35,7 @@ ig.module(
 
         ],
 
-        // List of all current instances of items in the inventory
+        // List of all current item classes in the inventory
         inventoryItems: [],
 
         /**
@@ -51,10 +49,9 @@ ig.module(
 
             this.removeWorldItem( worldItem );
 
-            ig.game.spawnEntity( inventoryItem, this.slots[ this.numberOfItems ].x, this.slots[ this.numberOfItems ].y );
+            var item = ig.game.spawnEntity( inventoryItem, this.slots[ this.inventoryItems.length ].x, this.slots[ this.inventoryItems.length ].y );
 
-            this.incrementNumberOfItems();
-            this.inventoryItems.push( inventoryItem );
+            this.inventoryItems.push( item );
 
         },
 
@@ -76,16 +73,23 @@ ig.module(
          */
         removeInventoryItem: function( inventoryItem ){
 
+            for( var i = 0, len = this.inventoryItems.length; i < len; i++ ){
+
+                // Remove item from inventory items array, exit loop
+                if( this.inventoryItems[i].name === inventoryItem.name ){
+
+                    this.inventoryItems.erase( this.inventoryItems[i] );
+                    break;
+
+                }
+
+            }
+
+            // Remove item from game
             ig.game.removeEntity( inventoryItem );
 
-        },
-
-        /**
-         * Increments nuber of items by 1
-         */
-        incrementNumberOfItems: function(){
-
-            this.numberOfItems += 1;
+            // Respawn items
+            this.respawnInventoryItems();
 
         },
 
@@ -96,11 +100,29 @@ ig.module(
 
             if( this.inventoryItems.length > 0 ){
 
+                // Remove old items
+                this.clearInventory();
+
+                // Spawn new ones
                 for( var i = 0, len = this.inventoryItems.length; i < len; i++ ){
 
                     ig.game.spawnEntity( this.inventoryItems[i], this.slots[i].x, this.slots[i].y );
 
                 }
+
+            }
+
+        },
+
+        /**
+         * Clears the inventory and removes all exisiting items.
+         */
+        clearInventory: function(){
+
+            // Remove old items
+            for( var i = 0, len = this.inventoryItems.length; i < len; i++ ){
+
+                ig.game.removeEntity( this.inventoryItems[i] );
 
             }
 

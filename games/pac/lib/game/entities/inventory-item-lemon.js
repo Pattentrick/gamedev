@@ -54,6 +54,12 @@ ig.module(
 
             }
 
+        },
+
+        combine: function(){
+
+            ig.game.getPlayer().speak('Berm.');
+
         }
 		
 	});
