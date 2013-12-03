@@ -16,7 +16,9 @@ ig.module(
     // user interface module
     'game.ui.pacui',
     // inventory
-    'game.ui.inventory'
+    'game.ui.inventory',
+    // room state tracker/creator
+    'game.components.room-state'
 )
 // define the main module
 .defines(function () {
@@ -40,6 +42,9 @@ ig.module(
 
 		    // Load starting level
             this.loadLevelDeferred( 'test', 'spawner' );
+
+            // Instance room state
+            this.roomState = new ig.RoomState();
 
             // Instance the inventory
             this.inventory = new ig.Inventory();
@@ -77,6 +82,9 @@ ig.module(
 
             // reposition camera on level switch
             this.centerStaticCamera();
+
+            // Create room state
+            this.roomState.createState();
 
             // Create new command execution instance
             this.commandExecution = new ig.CommandExecution();

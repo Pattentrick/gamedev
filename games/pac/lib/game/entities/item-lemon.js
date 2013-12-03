@@ -45,7 +45,11 @@ ig.module(
 
             if( command === 'Nimm' ){
 
+                // Add to inventory
                 ig.game.inventory.addItem( this.matchingInventoryItem, this );
+
+                // Update room state
+                ig.game.roomState.lemon.isPickedUp = true;
 
                 ig.game.getPlayer().speak('Eine Zitrone. Endlich.');
 

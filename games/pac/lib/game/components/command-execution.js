@@ -83,29 +83,39 @@ ig.module(
             // Do not interact with pathways to other rooms!
             if( entity instanceof ig.EntityLevelchange === false && compoundableEntity instanceof ig.EntityLevelchange === false ){
 
-                // On level 1 combining e.g "use stick with"
-                if( this.isUseWithCommand( currentCommand ) ){
-
-                    ig.game.getEntitiesByClass(ig.CommandPreview)[0].hasCombinedCommand = true;
-
-                    console.log('first if');
-
-                }
-                // On level 2 combining e.g "use stick with bear"
-                else if( commandPreview.hasActiveCompoundableCommand && this.hasEntityToInteract( compoundableEntity ) ){
+                // On combining items in the inventory
+                if( commandPreview.hasActiveCompoundableCommand && this.hasTwoInventoryItems( entity, compoundableEntity ) ){
 
                     compoundableEntity.combine( entity );
 
                     this.removeCurrentCommand();
 
-
                 }
-                // On normal interaction eg "use stick"
-                else if( this.hasEntityToInteract( entity ) ){
+                else {
 
-                    entity.interact( currentCommand );
+                    // On level 1 combining e.g "use stick with"
+                    if( this.isUseWithCommand( currentCommand ) ){
 
-                    this.removeCurrentCommand();
+                        ig.game.getEntitiesByClass(ig.CommandPreview)[0].hasCombinedCommand = true;
+
+                    }
+                    // On level 2 combining e.g "use stick with bear"
+                    else if( commandPreview.hasActiveCompoundableCommand && this.hasEntityToInteract( compoundableEntity ) ){
+
+                        compoundableEntity.combine( entity );
+
+                        this.removeCurrentCommand();
+
+
+                    }
+                    // On normal interaction eg "use stick"
+                    else if( this.hasEntityToInteract( entity ) ){
+
+                        entity.interact( currentCommand );
+
+                        this.removeCurrentCommand();
+
+                    }
 
                 }
 
@@ -127,11 +137,25 @@ ig.module(
         },
 
         /**
+         * Returns true if
+         *
+         * @param {object} entity Entity to check against
+         * @param {object} compoundableEntity Entity to check against
+         *
+         * @returns {boolean}
+         */
+        hasTwoInventoryItems: function( entity, compoundableEntity ){
+
+            return( entity.category === 'inventory' && compoundableEntity.category === 'inventory' );
+
+        },
+
+        /**
          * Returns true if the Player is near an interactive entity,
          * or that entity is an inventory item, and there is an active
          * command.
          *
-         * @param {object } entity Entity to check against
+         * @param {object} entity Entity to check against
          * @returns {boolean}
          */
         hasEntityToInteract: function( entity ){

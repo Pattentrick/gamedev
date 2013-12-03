@@ -36,6 +36,8 @@ ig.module(
             }
 		},
 
+        category: 'inventory',
+
         interact: function( command ){
 
             if( command === 'Schau' ){

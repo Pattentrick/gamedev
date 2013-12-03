@@ -47,6 +47,9 @@ ig.module(
 
                 ig.game.inventory.addItem( this.matchingInventoryItem, this );
 
+                // Update room state
+                ig.game.roomState.block.isPickedUp = true;
+
                 ig.game.getPlayer().speak('Ein Block. Endlich.');
 
             }
