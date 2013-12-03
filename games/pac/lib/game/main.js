@@ -7,8 +7,11 @@ ig.module(
     // player class
     'game.entities.player',
     // levels
+    'game.levels.titlescreen',
     'game.levels.test',
     'game.levels.another-room',
+    // cursor
+    'game.ui.cursor',
     // enable debug
     //'plusplus.debug.debug',
     // command execution
@@ -28,6 +31,7 @@ ig.module(
     // config variable
     var _c = ig.CONFIG;
 
+    // Game instance
 	var Pac = ig.GameExtended.extend({
 
         // Background color of canvas
@@ -174,11 +178,88 @@ ig.module(
 
 	});
 
+    // Titlescreen instance
+    var Titlescreen = ig.GameExtended.extend({
+
+        // Background color of canvas
+        clearColor: "#000000",
+
+        init: function () {
+
+            this.parent();
+
+            // Load Titlescreen
+            this.loadLevelDeferred( 'titlescreen' );
+
+            ig.game.spawnEntity(ig.EntityCursor, 0, 0);
+
+            // Play title theme
+            var theme = new ig.Sound( _c.PATH_TO_MEDIA + 'music/title-theme.*' );
+
+            theme.play();
+
+        },
+
+        /**
+         * Bind all inputs to certain events
+         */
+        inputStart: function () {
+
+            // Leftclick
+            ig.input.bind(ig.KEY.MOUSE1, 'click');
+
+        },
+
+        /**
+         * Centers camera on gamescreen when
+         * the game runs in fullscreen mode
+         */
+        centerStaticCamera : function(){
+
+            // Reset screen position for
+            // proper positioning on resize
+            ig.game.screen.x = 0;
+            ig.game.screen.y = 0;
+
+            // Calculate new screen position
+            ig.game.screen.x -= ( ig.system.realWidth / 2 ) / ig.system.scale - ( _c.GAME_WIDTH_VIEW / 2 );
+            ig.game.screen.y -= ( ig.system.realHeight / 2 ) / ig.system.scale - ( _c.GAME_HEIGHT_VIEW / 2 );
+
+        },
+
+        resize : function(){
+
+            this.parent();
+
+            // Check for game instance
+            if( ig.game !== null ){
+
+                // Center camera on gamescreen
+                this.centerStaticCamera();
+
+            }
+
+        },
+
+        update: function(){
+
+            this.parent();
+
+            if( ig.input.pressed('click') ){
+
+                ig.system.setGame( Pac );
+
+            }
+
+        }
+
+    });
+
     // Start up game
 	ig.main(
 		'#canvas',
-		Pac,
-		60,
+//		Pac,
+       Titlescreen,
 		_c.GAME_WIDTH,
 		_c.GAME_HEIGHT,
 		_c.SCALE,
