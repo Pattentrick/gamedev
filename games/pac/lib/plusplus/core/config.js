@@ -101,18 +101,18 @@ ig.module(
         /**
          * Base width of game.
          * @type {Number}
-         * @default
+         * @default ig.ua.viewport.width
          * @memberof ig.CONFIG
          */
-        ig.CONFIG.GAME_WIDTH = 320;
+        ig.CONFIG.GAME_WIDTH = ig.ua.viewport.width;
 
         /**
          * Base height of game.
          * @type {Number}
-         * @default
+         * @default ig.ua.viewport.height
          * @memberof ig.CONFIG
          */
-        ig.CONFIG.GAME_HEIGHT = 240;
+        ig.CONFIG.GAME_HEIGHT = ig.ua.viewport.height;
 
         /**
          * What percent of window width to fill, where 0 = keep base size.
@@ -170,6 +170,22 @@ ig.module(
          * @memberof ig.CONFIG
          */
         ig.CONFIG.SCALE = 1;
+
+        /**
+         * Minimum scale of game.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG
+         */
+        ig.CONFIG.SCALE_MIN = 1;
+
+        /**
+         * Maximum scale of game.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG
+         */
+        ig.CONFIG.SCALE_MAX = Infinity;
 
         /**
          * Delay in milliseconds to wait after window is resized to actually resize game.
@@ -298,7 +314,7 @@ ig.module(
          * @default
          * @memberof ig.CONFIG
          */
-        ig.CONFIG.LOADER_BG_COLOR = '#333333';
+        ig.CONFIG.LOADER_BG_COLOR = '#111111';
 
         /**
          * Loader fade color.
@@ -377,6 +393,14 @@ ig.module(
          * @memberof ig.CONFIG
          */
         ig.CONFIG.LOADER_LOGO_SRC_ALT = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUGFCwN01BpQgAAACZpVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOV5F9bAAADT0lEQVR42u3du27UQBiG4VlkUSCuIRU9QhuKpMpFUFOkTcl1bElLTcFFUCUFsai4EwqEEFAkGwkL4zE+zeF5qxw2m43z/+98Y896dmGA/X7/KyBb2rbd/ev7jxyiulEACgA1szPm150JGMAQAAWAejOAMZ8BoACgACZwe9aG27PW0WQAVB0CuxY4vdk7wgyA6qaBTMAAyIRmjV/CCAyAmjJAX+d3YQIGQMkGiDUBIzAASjYAEzAAFMA4U7i6yAAoLQOMzQKyAQOgRAMwwbjjseTfywCV05TQKbIBAyDHDDA1C+SeDVLIQAxgCCgrRad8BvH6cBmuD5cKAGYBRc8Sjl1+/ubdH1/vfs4AqGMWkMq4nPos4Xicvr96G0II4fGHq8VfNwMwQHorglI3Qt8Yv9TxYQCUYYDSTFACDMAA+a0HKNUES2ULBkCaBkjVBDVlAwaoHAUwYKbS35+gAGSAdG4Vm0u3zZUNtkj9DIB0DVCrCWQAMAATMAA2oHEI5jdVnxFSSP0MgHwyQG5ZIMdswAAMkM+mUUuZ4OuPuz64+PRi1M99fPk5hBDC0+ZntiZgAAbIb9u4uU0wtUP7Xs+a6/sZAPUYYC4TzN2R759/CSGE8OzJt2yyAANUThZnAuc+g7ZUJ568Ptx9cD/m9xkrJRMwgAyQ/+bRY7PA0h2Y004pDFA5RRTA6c1+k65K8Z4/DIB8ZwFT0/7RAmtdPUzxnj8MgHwNkGpHpbiShwHgPEBq8/Ecd0VjAAbYzgBrja2xJvjf15PzfogMwADlZoDYDl16TSADgAFiOnKtq3TdtXpL4X0BSJ6q3hv4cK0gXPnPMwBWywBb7Y4VO69P7X0GDAAZYA5iz+hNXUfgDiFggC2Z65pCjfsGMIBZQHpnAvs6uuSVOQwABqh57x4GQD0GAANAAUABQAFAAUABQAFAAaCiAsj19iol3BaGAfBAMqeCh7qq79Lw0OPGPr77uOP3x/780OtI5ZI2A1ROs3XHdzuh23F9n8d24NDiktjOnPp8Y38fA6BsA5RGrKlkADDAkrOHoc6L7eDY5xvKJLGzFAZA3ecB5ppFgAGgAKAAEJcBul+wTLxs2rbdMQAUABQA/pYBZIKyx3wGgAKAAsA9vwE+PY+Xd5MPtQAAAABJRU5ErkJggg==";
+
+        /**
+         * Color to clear screen with.
+         * @type {String}
+         * @default
+         * @memberof ig.CONFIG
+         */
+        ig.CONFIG.CLEAR_COLOR = "#000000";
 
         /**
          * Performance level where entities never move.
@@ -667,6 +691,30 @@ ig.module(
         ig.CONFIG.FONT.SCALE = 1;
 
         /**
+         * Scale of system scale.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.FONT
+         */
+        ig.CONFIG.FONT.SCALE_OF_SYSTEM_SCALE = 1;
+
+        /**
+         * Minimum value of {@link ig.Font#scale}.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.FONT
+         */
+        ig.CONFIG.FONT.SCALE_MIN = 1;
+
+        /**
+         * Maximum value of {@link ig.Font#scale}.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.FONT
+         */
+        ig.CONFIG.FONT.SCALE_MAX = Infinity;
+
+        /**
          * Whether fonts should ignore system scale.
          * <span class="alert"><strong>IMPORTANT:</strong> when true, fonts will not scale dynamically with view and instead will be fixed in size. This is usually ideal.</span>
          * @type {Boolean}
@@ -708,6 +756,30 @@ ig.module(
         ig.CONFIG.UI.SCALE = 1;
 
         /**
+         * Scale of system scale.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.UI
+         */
+        ig.CONFIG.UI.SCALE_OF_SYSTEM_SCALE = 1;
+
+        /**
+         * Minimum value of {@link ig.UIElement#scale}.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.UI
+         */
+        ig.CONFIG.UI.SCALE_MIN = 1;
+
+        /**
+         * Maximum value of {@link ig.UIElement#scale}.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.UI
+         */
+        ig.CONFIG.UI.SCALE_MAX = Infinity;
+
+        /**
          * Whether user interface elements should ignore system scale.
          * <span class="alert"><strong>IMPORTANT:</strong> when true, ui elements will not scale dynamically with view and instead will be fixed in size. This is usually ideal.</span>
          * @type {Boolean}
@@ -715,6 +787,22 @@ ig.module(
          * @memberof ig.CONFIG.UI
          */
         ig.CONFIG.UI.IGNORE_SYSTEM_SCALE = false;
+
+        /**
+         * Whether to get margin percentages from smallest dimension in screen size.
+         * @type {Boolean}
+         * @default
+         * @memberof ig.CONFIG.UI
+         */
+        ig.CONFIG.UI.MARGIN_AS_PCT_SMALLEST = true;
+
+        /**
+         * Whether margins should be calculated consistently at all scales. Ex: a button should be 15px away from the edge no matter the scale.
+         * @type {Boolean}
+         * @default
+         * @memberof ig.CONFIG.UI
+         */
+        ig.CONFIG.UI.MARGIN_SCALELESS = true;
 
         /**
          * Whether UI can flip horizontal. 
@@ -1101,6 +1189,30 @@ ig.module(
          * @memberof ig.CONFIG.ENTITY
          */
         ig.CONFIG.ENTITY.SCALE = 1;
+
+        /**
+         * Scale of system scale.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.ENTITY
+         */
+        ig.CONFIG.ENTITY.SCALE_OF_SYSTEM_SCALE = 1;
+
+        /**
+         * Minimum value of {@link ig.EntityExtended#scale}.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.ENTITY
+         */
+        ig.CONFIG.ENTITY.SCALE_MIN = 1;
+
+        /**
+         * Maximum value of {@link ig.EntityExtended#scale}.
+         * @type {Number}
+         * @default
+         * @memberof ig.CONFIG.ENTITY
+         */
+        ig.CONFIG.ENTITY.SCALE_MAX = Infinity;
 
         /**
          * Whether entities elements should ignore system scale.
@@ -1829,6 +1941,14 @@ ig.module(
         ig.CONFIG.CREATURE.REACTION_DELAY = 0.2;
 
         /**
+         * Whether creature sets predator to anything that damages it below flee threshold.
+         * @type Boolean
+         * @default
+         * @memberof ig.CONFIG.CREATURE
+         */
+        ig.CONFIG.CREATURE.PREDATOR_FROM_DAMAGE = false;
+
+        /**
          * Whether creature can learn about new predators based on what it takes damage from.
          * @type Boolean
          * @default
@@ -1843,6 +1963,14 @@ ig.module(
          * @memberof ig.CONFIG.CREATURE
          */
         ig.CONFIG.CREATURE.NEEDS_LINE_OF_SIGHT_PREY = true;
+
+        /**
+         * Whether creature can detect hidden prey.
+         * @type Boolean
+         * @default
+         * @memberof ig.CONFIG.CREATURE
+         */
+        ig.CONFIG.CREATURE.DETECT_HIDDEN_PREY = false;
 
         /**
          * Settings for moving to prey.
@@ -1862,6 +1990,14 @@ ig.module(
          * @memberof ig.CONFIG.CREATURE
          */
         ig.CONFIG.CREATURE.NEEDS_LINE_OF_SIGHT_PREDATOR = true;
+
+        /**
+         * Whether creature can detect hidden predators.
+         * @type Boolean
+         * @default
+         * @memberof ig.CONFIG.CREATURE
+         */
+        ig.CONFIG.CREATURE.DETECT_HIDDEN_PREDATOR = false;
 
         /**
          * Settings for moving to predator.
@@ -2302,13 +2438,16 @@ ig.module(
                 weightPct: 1
             },
             1: {
-                weightPct: 0
+                weightPct: 0,
+								walkable: true
             },
             2: {
-                weightPct: 0.25
+                weightPct: 0.25,
+								walkable: true
             },
             3: {
-                weightPct: 0.75
+                weightPct: 0.75,
+								walkable: true
             },
             4: {
                 walkable: false

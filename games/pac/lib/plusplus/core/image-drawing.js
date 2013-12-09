@@ -38,9 +38,14 @@ ig.module(
 
                 this.data = ig.$new('canvas');
                 this.dataContext = this.data.getContext('2d');
-                this.dataWidth = this.data.width = ( this.width * this.scale ) | 0;
-                this.dataHeight = this.data.height = ( this.height * this.scale ) | 0;
-                ig.System.scaleMode( this.data, this.dataContext );
+                this.dataWidth = ( this.width * this.scale ) | 0;
+                this.dataHeight = ( this.height * this.scale ) | 0;
+		            this.data.width = this.dataWidth;
+		            this.data.height = this.dataHeight;
+		            this.data.style.width = this.dataWidth + "px";
+		            this.data.style.height = this.dataHeight + "px";
+	              this.data.retinaResolutionEnabled = false;
+		            ig.System.scaleMode( this.data, this.dataContext );
 
                 this.scaleCache = {};
                 this.scaleCache.x1 = this.data;
@@ -115,7 +120,7 @@ ig.module(
                 }
                 else {
 
-                    this.scale = this._scale = scale;
+                    this.scale = this._scale = Math.min( Math.max( Math.round( scale * this.scaleOfSystemScale ), this.scaleMin ), this.scaleMax );
 
                 }
 

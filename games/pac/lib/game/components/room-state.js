@@ -45,13 +45,13 @@ ig.module(
 
                 if( !this.lemon.isPickedUp ){
 
-                    ig.game.spawnEntity( this.lemon.class, 100, 108 )
+                    ig.game.spawnEntity( this.lemon.class, 100, 108 );
 
                 }
 
                 if( !this.block.isPickedUp ){
 
-                    ig.game.spawnEntity( this.block.class, 90, 110 )
+                   ig.game.spawnEntity( this.block.class, 90, 110 );
 
                 }
 

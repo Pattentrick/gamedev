@@ -18,13 +18,17 @@ ig.module(
      */
     ig.Command = ig.global.Command = ig.UIButton.extend({
 
-        performance: 'dynamic',
-
         animInit: 'mouseOut',
+
+        fixed: false,
+
+        posAsPct: false,
 
         name: 'command',
 
         command: '',
+
+        zIndex: 5,
 
         animSettings: {
 

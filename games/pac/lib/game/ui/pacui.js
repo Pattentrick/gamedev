@@ -96,7 +96,7 @@ ig.module(
          */
         spawnMouseCursor: function(){
 
-            ig.game.spawnEntity(ig.EntityCursor, 22, 33);
+            ig.game.spawnEntity(ig.EntityCursor, 100, 100);
 
         }
 

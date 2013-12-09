@@ -20,12 +20,15 @@ ig.module(
 
         name: 'Truhe',
 
-        collides: ig.Entity.COLLIDES.FIXED,
+        //collides: ig.Entity.COLLIDES.FIXED,
 
 		size: {
             x: 16,
             y: 16
         },
+
+        // At which distance interaction should be triggered
+        interactionDistance: 2,
 
         matchingInventoryItem: ig.EntityInventoryItemLemon,
 		

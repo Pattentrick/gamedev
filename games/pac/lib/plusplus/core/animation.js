@@ -292,6 +292,9 @@ ig.module(
                                 var frame = ig.$new('canvas');
                                 frame.width = tileWidth;
                                 frame.height = tileHeight;
+		                            frame.style.width = tileWidth + "px";
+		                            frame.style.height = tileHeight + "px";
+	                              frame.retinaResolutionEnabled = false;
                                 var frameContext = frame.getContext('2d');
                                 ig.System.scaleMode( frame, frameContext );
 
@@ -484,7 +487,9 @@ ig.module(
 
                 if (texturing) {
 
-                    if ( this.texturing !== texturing ) {
+                    if ( this.texturing !== texturing
+                        || this.textureWidth !== this.texturing.sizeDraw.x
+                        || this.textureHeight !== this.texturing.sizeDraw.y ) {
 
                         this.texturize( texturing );
 

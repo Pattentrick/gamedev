@@ -66,6 +66,27 @@ ig.module(
             scale: 1,
 
             /**
+             * Scale of system scale.
+             * @type Number
+             * @default
+             */
+            scaleOfSystemScale: 1,
+
+            /**
+             * Minimum value of {@link ig.Image#scale}.
+             * @type Number
+             * @default
+             */
+            scaleMin: 1,
+
+            /**
+             * Maximum value of {@link ig.Image#scale}.
+             * @type Number
+             * @default
+             */
+            scaleMax: Infinity,
+
+            /**
              * If image should ignore system scale.
              * <span class="alert alert-info"><strong>Tip:</strong> because pixel perfect scaling is so performance intensive, try to ignore scale whenever possible.</span>
              * @type Boolean
@@ -133,6 +154,9 @@ ig.module(
                 var original = ig.$new('canvas');
                 original.width = this.width;
                 original.height = this.height;
+		            original.style.width = this.width + "px";
+		            original.style.height = this.height + "px";
+		            original.retinaResolutionEnabled = false;
                 var originalContext = original.getContext('2d');
                 ig.System.scaleMode( original, originalContext );
                 originalContext.drawImage( this.data, 0, 0 );
@@ -141,11 +165,11 @@ ig.module(
                 this.dataContext = this.data.getContext('2d');
                 this.dataWidth = this.data.width;
                 this.dataHeight = this.data.height;
-				
+
 				if ( !this.scaleCache ) {
-					
+
 					this.scaleCache = {};
-					
+
 				}
 
                 this.scaleCache.x1 = this.data;
@@ -153,13 +177,21 @@ ig.module(
                 if( this.loadCallback ) {
                     this.loadCallback( this.path, true );
                 }
-				
+
 				if ( this.onLoaded ) {
-					
+
 					this.onLoaded.dispatch(this);
 					this.onLoaded.removeAll();
 					this.onLoaded.forget();
+
+				}
+				
+				// image is loaded after game has started
+				// force global resize on next update
+				
+				if (!ig.global.wm && ig.game && !ig.game._gameNeedsSetup) {
 					
+					ig.game.resizeDeferred(true);
 				}
 
             },
@@ -169,74 +201,84 @@ ig.module(
              */
             resize: function ( scale ) {
 
-                if ( scale && this._scale !== scale ) {
+                if ( scale ) {
 
-                    // store scale so we know when system was resized
+                    scale = Math.min( Math.max( Math.round( scale * this.scaleOfSystemScale ), this.scaleMin ), this.scaleMax );
 
-                    this.scale = this._scale = scale;
+                    if ( this._scale !== scale ) {
 
-                    // do we already have scaled data?
-				
-					if ( !this.scaleCache ) {
-						
-						this.scaleCache = {};
-						
-					}
+                        // store scale so we know when system was resized
 
-                    this.data = this.scaleCache[ "x" + scale ];
+                        this.scale = this._scale = scale;
 
-                    if ( this.data ) {
+                        // do we already have scaled data?
 
-                        this.dataContext = this.data.getContext('2d');
-                        this.dataWidth = this.data.width;
-                        this.dataHeight = this.data.height;
+                        if ( !this.scaleCache ) {
 
-                    }
-                    else {
-
-                        // the original image is copied into another canvas with the new size.
-                        // the scaled canvas becomes the image (data) of this object.
-
-                        var origData = this.scaleCache.x1;
-
-                        // can't find usable data
-
-                        if ( !origData ) {
-
-                            return;
+                            this.scaleCache = {};
 
                         }
 
-                        var origPixels = ig.getImagePixels(origData, 0, 0, this.width, this.height);
+                        this.data = this.scaleCache[ "x" + scale ];
 
-                        var widthScaled = ( this.width * scale ) | 0;
-                        var heightScaled = ( this.height * scale) | 0;
+                        if ( this.data ) {
 
-                        var scaled = this.data = ig.$new('canvas');
-                        this.dataWidth = scaled.width = widthScaled;
-                        this.dataHeight = scaled.height = heightScaled;
-                        var scaledCtx = this.dataContext = this.data.getContext('2d');
+                            this.dataContext = this.data.getContext('2d');
+                            this.dataWidth = this.data.width;
+                            this.dataHeight = this.data.height;
 
-                        ig.System.scaleMode( scaled, scaledCtx );
-                        var scaledPixels = scaledCtx.getImageData(0, 0, widthScaled, heightScaled);
+                        }
+                        else {
 
-                        for (var y = 0; y < heightScaled; y++) {
-                            for (var x = 0; x < widthScaled; x++) {
-                                var index = (Math.floor(y / scale) * this.width + Math.floor(x / scale)) * 4;
-                                var indexScaled = (y * widthScaled + x) * 4;
-                                scaledPixels.data[ indexScaled ] = origPixels.data[ index ];
-                                scaledPixels.data[ indexScaled + 1 ] = origPixels.data[ index + 1 ];
-                                scaledPixels.data[ indexScaled + 2 ] = origPixels.data[ index + 2 ];
-                                scaledPixels.data[ indexScaled + 3 ] = origPixels.data[ index + 3 ];
+                            // the original image is copied into another canvas with the new size.
+                            // the scaled canvas becomes the image (data) of this object.
+
+                            var origData = this.scaleCache.x1;
+
+                            // can't find usable data
+
+                            if ( !origData ) {
+
+                                return;
+
                             }
-                        }
-                        scaledCtx.putImageData(scaledPixels, 0, 0);
 
-                        // store for reuse
+                            var origPixels = ig.getImagePixels(origData, 0, 0, this.width, this.height);
 
-                        if ( this.retainScaledData ) {
+                            var widthScaled = ( this.width * scale ) | 0;
+                            var heightScaled = ( this.height * scale) | 0;
+                            var scaled = this.data = ig.$new('canvas');
+		                        scaled.width = widthScaled;
+		                        scaled.height = heightScaled;
+		                        scaled.style.width = widthScaled + "px";
+		                        scaled.style.height = heightScaled + "px";
+	                          scaled.retinaResolutionEnabled = false;
+                            this.dataWidth = widthScaled;
+                            this.dataHeight = heightScaled;
+                            var scaledCtx = this.dataContext = this.data.getContext('2d');
 
-                            this.scaleCache[ "x" + scale ] = this.data;
+                            ig.System.scaleMode( scaled, scaledCtx );
+                            var scaledPixels = scaledCtx.getImageData(0, 0, widthScaled, heightScaled);
+
+                            for (var y = 0; y < heightScaled; y++) {
+                                for (var x = 0; x < widthScaled; x++) {
+                                    var index = (Math.floor(y / scale) * this.width + Math.floor(x / scale)) * 4;
+                                    var indexScaled = (y * widthScaled + x) * 4;
+                                    scaledPixels.data[ indexScaled ] = origPixels.data[ index ];
+                                    scaledPixels.data[ indexScaled + 1 ] = origPixels.data[ index + 1 ];
+                                    scaledPixels.data[ indexScaled + 2 ] = origPixels.data[ index + 2 ];
+                                    scaledPixels.data[ indexScaled + 3 ] = origPixels.data[ index + 3 ];
+                                }
+                            }
+                            scaledCtx.putImageData(scaledPixels, 0, 0);
+
+                            // store for reuse
+
+                            if ( this.retainScaledData ) {
+
+                                this.scaleCache[ "x" + scale ] = this.data;
+
+                            }
 
                         }
 

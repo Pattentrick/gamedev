@@ -5,7 +5,8 @@ ig.module(
     'plusplus.abstractities.player',
     'game.entities.text-output',
     'plusplus.core.config',
-    'plusplus.core.timer'
+    'plusplus.core.timer',
+    'plusplus.entities.conversation'
 )
 .defines(function () {
 
@@ -68,6 +69,30 @@ ig.module(
         // Lifespan of the textbox (lifespan = number of chars * textspeed )
         textspeed: 0.08,
 
+        init: function( x, y, settings){
+
+            this.parent( x, y, settings);
+
+/*            var foo = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40, {
+
+                textSettings: {
+
+                    text: 'Lorem ipsum dolor',
+                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
+                    //font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' )
+
+                }
+
+            });
+
+            foo.pos = {
+                x: 300,
+                y: 100
+            }*/
+
+
+        },
+
         /**
          * Displays text in a small bubble
          *
@@ -101,7 +126,7 @@ ig.module(
          */
         setMonologueTimer: function( duration ){
 
-            this.timer = new ig.TimerExtended( duration );
+            this.timer = new ig.Timer( duration );
 
         },
 
@@ -126,11 +151,15 @@ ig.module(
          */
         handleMonologueEnd: function(){
 
-            if( this.timer.delta() > 0 ){
+            if( this.timer ){
 
-                ig.game.removeEntity( this.textbox );
+                if( this.timer.delta() > 0 ){
 
-                this.timer.reset();
+                    ig.game.removeEntity( this.textbox );
+
+                    this.timer.reset();
+
+                }
 
             }
 

@@ -46,8 +46,8 @@ ig.module(
          * <span class="alert alert-danger"><strong>IMPORTANT:</strong> if using a {@link ig.PathfindingMap}, the tilesize must match the {@link ig.CollisionMap}'s tilesize!</span>
          * @memberof ig
          * @namespace ig.pathfinding
-         * @author Jakub Siemiatkowski - jsiemiatkowski@gmail.com
          * @author Collin Hover - collinhover.com
+         * @author Jakub Siemiatkowski - jsiemiatkowski@gmail.com
          **/
         ig.pathfinding = {};
 
@@ -1004,7 +1004,7 @@ ig.module(
             var diagonalStartIndex;
 			
 			if ( entityPathing ) {
-				
+
 				entityPathingSize = Math.max( entityPathing.size.x, entityPathing.size.y );
 				diagonalDouble = ALLOW_DIAGONAL && DIAGONAL_REQUIRES_BOTH_DIRECT;
 				
@@ -1058,7 +1058,11 @@ ig.module(
                 // we're at the destination
                 // go up the path chain to recreate the path
 
-                if( currentNode === destinationNode ) {
+                // TODO: check destinationNode to fix pathfinding for unreachable positions
+
+                if( currentNode === destinationNode
+/*                    || currentNode === destinationNode.neighbors[0]
+                    || currentNode === destinationNode.neighbors[1]*/ ) {
 
                     while( currentNode ) {
 
@@ -1068,7 +1072,7 @@ ig.module(
                     }
 
                     _cleanup();
-
+                    // NOTE: this will exit the while loop
                     return path;
 
                 }
@@ -2000,11 +2004,13 @@ ig.module(
                             // this location is probably not walkable, provided that the entity in the cell:
                             // is not the entity that is pathing or the entity that is the target
                             // is not the same group as the entity that is pathing
+                            // is not hidden or killed
                             // does collide and the pathing entity intersects the entity's bounds
 
                             if ( entity !== entityPathing
                                 && !( entity.group & entityPathing.group )
                                 && ( !entityTarget || entity !== entityTarget )
+                                && !entity.hidden && !entity._killed
 								&& ( entity.collides !== ig.EntityExtended.COLLIDES.NEVER
 									|| ( ( entity.type & ig.EntityExtended.TYPE.DANGEROUS ) && ( entity.checkAgainst & entityPathing.type ) ) )
                                 && _uti.AABBIntersect( 

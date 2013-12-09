@@ -4,7 +4,6 @@ ig.module(
     .requires(
         'impact.entity',
         'plusplus.core.config',
-        'plusplus.core.timer',
 		'plusplus.core.image',
         'plusplus.core.background-map',
         'plusplus.core.animation',
@@ -91,6 +90,27 @@ ig.module(
              * @default ig.CONFIG.ENTITY.SCALE
              */
             scale: _c.ENTITY.SCALE,
+
+            /**
+             * Scale of system scale.
+             * @type Number
+             * @default ig.CONFIG.ENTITY.SCALE_OF_SYSTEM_SCALE
+             */
+            scaleOfSystemScale: _c.ENTITY.SCALE_OF_SYSTEM_SCALE,
+
+            /**
+             * Minimum value of {@link ig.EntityExtended#scale}.
+             * @type Number
+             * @default ig.CONFIG.ENTITY.SCALE_MIN
+             */
+            scaleMin: _c.ENTITY.SCALE_MIN,
+
+            /**
+             * Maximum value of {@link ig.EntityExtended#scale}.
+             * @type Number
+             * @default ig.CONFIG.ENTITY.SCALE_MAX
+             */
+            scaleMax: _c.ENTITY.SCALE_MAX,
 
             /**
              * Modifier for when {@link ig.EntityExtended#scale} != {@link ig.system.scale}.
@@ -595,6 +615,14 @@ ig.module(
             alpha: 1,
 
             /**
+             * Whether entity is hidden and cannot be seen by other entities. Set via {@link ig.EntityExtended#setHidden}.
+             * @type Boolean
+             * @default
+             * @readonly
+             */
+            hidden: false,
+
+            /**
              * Health statistic.
              * <br>- someone once asked me how I died, so I told them that my health reached 0
              * @type Number
@@ -667,6 +695,22 @@ ig.module(
              * @readonly
              */
             checking: false,
+
+            /**
+             * Whether entity was checking against another entity matching {@link ig.Entity#checkAgainst} flag.
+             * @type Boolean
+             * @default
+             * @readonly
+             */
+            wasChecking: false,
+
+            /**
+             * Whether entity is intersecting another entity.
+             * @type Boolean
+             * @default
+             * @readonly
+             */
+            intersecting: false,
 
             /**
              * Whether entity has been added to game world.
@@ -853,6 +897,14 @@ ig.module(
             linkedTo: null,
 
             /**
+             * Whether entity is currently being managed by {@link ig.GameExtended#playerManager}.
+             * @type Boolean
+             * @default
+             * @readonly
+             */
+            managed: false,
+
+            /**
              * All tweens affecting this entity that were initiated by {@link ig.EntityExtended#tween}.
              * <br>- these tweens are automatically deleted when complete
              * @type Object
@@ -907,20 +959,6 @@ ig.module(
             onRemoved: null,
 
             /**
-             * Signal dispatched when entity paused.
-             * <br>- created on init.
-             * @type ig.Signal
-             */
-            onPaused: null,
-
-            /**
-             * Signal dispatched when entity unpaused.
-             * <br>- created on init.
-             * @type ig.Signal
-             */
-            onUnpaused: null,
-
-            /**
              * Signal dispatched when entity completes moving to another entity.
              * <br>- created on init.
              * @type ig.Signal
@@ -944,9 +982,9 @@ ig.module(
 
             // internal properties, do not modify
 
-            _angleLast: 0,
+            _posLast: { x: 0, y: 0 },
 
-            _checkingStopNext: false,
+            _angleLast: 0,
 
             _changedAdd: false,
 
@@ -997,17 +1035,15 @@ ig.module(
 
                 this.collisionMapResult = {
                     collision: { x: false, y: false, slope: false },
-                    pos: { x: 0.01, y: 0.01 },
-                    slope: { x: 0.01, y: 0.01, nx: 0.01, ny: 0.01 },
-                    tile: { x: 0, y: 0, xPos: { x: 0.01, y: 0.01 }, yPos: { x: 0.01, y: 0.01 } }
+                    pos: { x: 0.0, y: 0.0 },
+                    slope: { x: 0.0, y: 0.0, nx: 0.0, ny: 0.0 },
+                    tile: { x: 0, y: 0, xPos: { x: 0.0, y: 0.0 }, yPos: { x: 0.0, y: 0.0 } }
                 };
 
                 // signals
 
                 this.onAdded = new ig.Signal();
                 this.onRemoved = new ig.Signal();
-                this.onPaused = new ig.Signal();
-                this.onUnpaused = new ig.Signal();
                 this.onMovedTo = new ig.Signal();
                 this.onRefreshed = new ig.Signal();
 
@@ -1153,7 +1189,7 @@ ig.module(
 
 					}
 
-                    this.animSettings = false;
+                    delete this.animSettings;
 
                 }
 
@@ -1163,6 +1199,9 @@ ig.module(
 
                 // refresh
 
+                if (!ig.global.wm) {
+					ig.system.onResized.add(this.refresh, this);
+				}
                 this.refresh();
 
                 if (this.frozen) {
@@ -1218,7 +1257,6 @@ ig.module(
 
                 rs.layerName = this.layerName;
                 rs.frozen = this.frozen;
-                rs.activated = this.activated;
                 rs.alpha = this.alpha;
 
                 rs.type = this.type;
@@ -1399,11 +1437,17 @@ ig.module(
              * @param {Boolean} [force] whether to force.
              **/
             refresh: function (force) {
+			
+                if ( !this.ignoreSystemScale ) {
 
-                if ( !this.ignoreSystemScale && this.scale !== ig.system.scale ) {
+                    var scale = Math.min( Math.max( Math.round( ig.system.scale * this.scaleOfSystemScale ), this.scaleMin ), this.scaleMax );
 
-                    force = true;
-                    this.scale = ig.system.scale;
+                    if ( this.scale !== scale ) {
+
+                        this.scale = scale;
+                        force = true;
+
+                    }
 
                 }
 				
@@ -1428,6 +1472,7 @@ ig.module(
 
                 this.recordChanges(force);
                 this.recordLast();
+                _utv2.copy(this.last, this.pos);
 
                 if ( force || this.needsRebuild ) {
 
@@ -1455,8 +1500,6 @@ ig.module(
                     this._changedAdd = true;
 
                 }
-
-                return force;
 
             },
 
@@ -1531,14 +1574,9 @@ ig.module(
                     this.link(linkedTo, linkedTo.added);
 
                 }
-                else {
-
-                    ig.system.onResized.add(this.refresh, this);
-
-                }
 
                 // play spawn animation
-				
+
 				var animNameSpawn = this.getDirectionalAnimName( "spawn" );
 
                 if ( this.anims[ animNameSpawn ] ) {
@@ -1936,14 +1974,14 @@ ig.module(
 
                     if (entityOneWay.oneWayFacing.x < 0) {
 
-                        if (( this.pos.x + this.size.x ) - entityOneWay.pos.x <= Math.max(entityOneWay.size.x, this.size.x) * _c.PRECISION_PCT_ONE_SIDED + ( this.vel.x > 0 ? this.vel.x * ig.system.tick : 0 )) {
+                        if (( this.pos.x + this.size.x ) - entityOneWay.pos.x <= Math.max(entityOneWay.size.x, this.size.x) * _c.PRECISION_PCT_ONE_SIDED + Math.max( this.vel.x * ig.system.tick, 0 ) - Math.min( entityOneWay.vel.x * ig.system.tick, 0 ) ) {
 
                             return true;
 
                         }
 
                     }
-                    else if (( entityOneWay.pos.x + entityOneWay.size.x ) - this.pos.x <= Math.max(entityOneWay.size.x, this.size.x) * _c.PRECISION_PCT_ONE_SIDED + ( this.vel.x < 0 ? -this.vel.x * ig.system.tick : 0 )) {
+                    else if (( entityOneWay.pos.x + entityOneWay.size.x ) - this.pos.x <= Math.max(entityOneWay.size.x, this.size.x) * _c.PRECISION_PCT_ONE_SIDED - Math.min( this.vel.x * ig.system.tick, 0 ) + Math.max( entityOneWay.vel.x * ig.system.tick, 0 ) ) {
 
 						return true;
 
@@ -1957,14 +1995,14 @@ ig.module(
 
                     if (entityOneWay.oneWayFacing.y < 0) {
 
-                        if ( ( this.pos.y + this.size.y ) - entityOneWay.pos.y <= Math.max(entityOneWay.size.y, this.size.y) * _c.PRECISION_PCT_ONE_SIDED + ( this.vel.y > 0 ? this.vel.y * ig.system.tick : 0 )) {
+                        if ( ( this.pos.y + this.size.y ) - entityOneWay.pos.y <= entityOneWay.size.y * _c.PRECISION_PCT_ONE_SIDED + Math.max( this.vel.y * ig.system.tick, 0 ) - Math.min( entityOneWay.vel.y * ig.system.tick, 0 ) + ( entityOneWay.slope && entityOneWay.accel.x !== 0 && entityOneWay.slope.nx * entityOneWay.vel.x <= 0 ? entityOneWay.vel.x * ig.system.tick : 0 ) ) {
 
                             return true;
 
                         }
 
                     }
-                    else if ( ( entityOneWay.pos.y + entityOneWay.size.y )  - this.pos.y <= Math.max(entityOneWay.size.y, this.size.y) * _c.PRECISION_PCT_ONE_SIDED + ( this.vel.y < 0 ? -this.vel.y * ig.system.tick : 0 )) {
+                    else if ( ( entityOneWay.pos.y + entityOneWay.size.y )  - this.pos.y <= Math.max(entityOneWay.size.y, this.size.y) * _c.PRECISION_PCT_ONE_SIDED - Math.min( this.vel.y * ig.system.tick, 0 ) + Math.max( entityOneWay.vel.y * ig.system.tick, 0 ) ) {
 
 						return true;
 
@@ -2355,25 +2393,34 @@ ig.module(
             },
 
             /**
-             * Sets entity as grounded.
+             * Sets entity as grounded. Only changes gravity state if has gravity.
              * @param {Boolean} [withoutVelocity=false] whether to leave velocity untouched
              */
             setGrounded: function ( withoutVelocity ) {
 
-                this.standing = this.grounded = true;
+                if ( _c.TOP_DOWN ) {
 
-                if ( !withoutVelocity ) {
+                    this.standing = this.grounded = true;
 
-                    // force to max velocity so we stick to ground
+                }
+                else {
 
-                    if ( this.slopeSticking && this.hasGravity ) {
+                    this.standing = this.grounded = this.hasGravity;
 
-                        this.vel.y = this.maxVel.y;
+                    if ( !withoutVelocity ) {
 
-                    }
-                    else {
+                        // force to max velocity so we stick to ground
 
-                        this.vel.y = 0;
+                        if ( this.slopeSticking && this.hasGravity ) {
+
+                            this.vel.y = this.maxVel.y;
+
+                        }
+                        else {
+
+                            this.vel.y = 0;
+
+                        }
 
                     }
 
@@ -2382,11 +2429,15 @@ ig.module(
             },
 
             /**
-             * Sets entity as newly ungrounded.
+             * Sets entity as ungrounded.
              */
             setUngrounded: function () {
 
-                this.grounded = this.standing = false;
+                if ( !_c.TOP_DOWN ) {
+
+                    this.grounded = this.standing = false;
+
+                }
 
             },
 
@@ -3157,6 +3208,81 @@ ig.module(
             },
 
             /**
+             * Sets {@link ig.EntityExtended#hidden}.
+             * @param {Boolean} [hidden=false] whether entity should be hidden.
+             */
+            setHidden: function (hidden) {
+
+                if (hidden) {
+
+                    this.hide();
+
+                }
+                else {
+
+                    this.unhide();
+
+                }
+
+            },
+
+            /**
+             * Sets {@link ig.EntityExtended#hidden} to true.
+             */
+            hide: function () {
+
+                this.hidden = true;
+
+            },
+
+            /**
+             * Sets {@link ig.EntityExtended#hidden} to false.
+             */
+            unhide: function () {
+
+                this.hidden = false;
+
+            },
+
+            /**
+             * Simple fade to specified alpha. Only tweens if not already at alpha, but onUpdate and onComplete methods are guaranteed to call at least once.
+             * @param {Number} alpha alpha value between 0 and 1.
+             * @param {Object} [settings] settings for tween.
+             * @returns {Tween} tween object if tweening to alpha.
+             **/
+            fadeTo: function (alpha, settings) {
+
+                if ( this.alpha !== alpha ) {
+
+                    // default settings
+
+                    settings = ig.merge({
+                        name: 'fade',
+                        duration: _c.DURATION_FADE
+                    }, settings);
+
+                    return this.tween({ alpha: alpha || 0 }, settings);
+
+                }
+                else if ( settings ) {
+
+                    if ( settings.onUpdate ) {
+
+                        settings.onUpdate();
+
+                    }
+
+                    if ( settings.onComplete ) {
+
+                        settings.onComplete();
+
+                    }
+
+                }
+
+            },
+
+            /**
              * Convenience function for tween fade to max alpha.
              * @param {Object} [settings] settings for tween.
              * @returns {Tween} tween object.
@@ -3175,25 +3301,6 @@ ig.module(
             fadeOut: function (settings) {
 
                 return this.fadeTo(0, settings);
-
-            },
-
-            /**
-             * Simple fade to specified alpha.
-             * @param {Number} alpha alpha value between 0 and 1.
-             * @param {Object} [settings] settings for tween.
-             * @returns {Tween} tween object.
-             **/
-            fadeTo: function (alpha, settings) {
-
-                // default settings
-
-                settings = ig.merge({
-                    name: 'fade',
-                    duration: _c.DURATION_FADE
-                }, settings);
-
-                return this.tween({ alpha: alpha || 0 }, settings);
 
             },
 
@@ -3231,7 +3338,7 @@ ig.module(
              * Simple tween of specified properties.
              * <span class="alert"><strong>IMPORTANT:</strong> make sure this entity has all tweening properties.</span>
              * @param {Object} properties property values on entity.
-             * @param {Object} [settings] settings for tween, based on {@link ig.tweens.tween}.
+             * @param {Object} [settings] settings for tween, based on {@link ig.TWEEN.tween}.
              * @returns {Tween} tween object.
              **/
             tween: function (properties, settings) {
@@ -3249,10 +3356,6 @@ ig.module(
                     tween.stop();
 
                 }
-
-                // set pause signaller
-
-                settings.pauseSignaller = settings.pauseSignaller || this;
 
                 // set up auto complete and delete
 
@@ -3333,6 +3436,8 @@ ig.module(
              * // follow defaults to aligning at center of followed
              * // to follow at the top left instead of center
              * settings.align = { x: 0, y: 0 };
+             * // to follow and flip with whatever we're moving to
+             * settings.flipWith = true;
              * // to follow offset by 10 px
              * settings.offset = { x: 10, y: 10 };
              * // to follow above
@@ -3405,7 +3510,7 @@ ig.module(
                         // this ensures static entities will be able to follow non static
                         // and that entities ignoring system scale will follow correctly through resize
 
-                        if ( ( settings.matchPerformance || this.ignoreSystemScale ) && this.performance !== ig.EntityExtended.PERFORMANCE.MOVABLE ) {
+                        if ( ( settings.matchPerformance || this.ignoreSystemScale || this.scale !== ig.system.scale ) && this.performance !== ig.EntityExtended.PERFORMANCE.MOVABLE ) {
 
                             this.setPerformance(ig.EntityExtended.PERFORMANCE.MOVABLE);
 
@@ -3543,6 +3648,7 @@ ig.module(
              * Positions this entity relative to moving to item based on settings.
              * @param {ig.EntityExtended|Vector2|Object} item item to move to.
              * @param {Object} [settings] settings object.
+             * @see ig.EntityExtended#moveTo
              **/
             moveToPosition: function (item, settings) {
 
@@ -3579,10 +3685,8 @@ ig.module(
 
                         if (offset) {
 
-                            targetX += offset.x || 0;
-                            targetY += offset.y || 0;
-
-                            this.flip = item.flip;
+                            targetX += offset.x * item.scaleMod || 0;
+                            targetY += offset.y * item.scaleMod || 0;
 
                         }
 
@@ -3593,19 +3697,22 @@ ig.module(
                             var offsetX = offsetPct.x || 0;
                             var offsetY = offsetPct.y || 0;
 
-                            targetX += ( offsetX * item.size.x * 0.5 + offsetX * this.size.x * 0.5 ) * ( item.flip.x ? -1 : 1 );
-                            targetY += offsetY * item.size.y * 0.5 + offsetY * this.size.y * 0.5;
+                            targetX += ( offsetX * ( item.size.x * 0.5 * item.scaleMod + this.size.x * 0.5 * this.scaleMod ) ) * ( item.flip.x ? -1 : 1 );
+                            targetY += offsetY * ( item.size.y * 0.5 * item.scaleMod + this.size.y * 0.5 * this.scaleMod );
 
-                            this.flip = item.flip;
+                        }
+
+                        if ( settings.flipWith ) {
+
+                            this.flip.x = item.flip.x;
+                            this.flip.y = item.flip.y;
 
                         }
 
                     }
 
-                    var scaleMod = this.scale / item.scale;
-
-                    targetX += item.pos.x + alignX * ( item.size.x - this.size.x * scaleMod );
-                    targetY += item.pos.y + alignY * ( item.size.y - this.size.y * scaleMod );
+                    targetX += item.pos.x + alignX * ( item.size.x * item.scaleMod - this.size.x * this.scaleMod );
+                    targetY += item.pos.y + alignY * ( item.size.y * item.scaleMod - this.size.y * this.scaleMod );
 
                     if ( this.fixed ) {
 
@@ -3903,6 +4010,12 @@ ig.module(
              **/
             lineOfSight: function (entity) {
 
+                if ( entity.hidden ) {
+
+                    return false;
+
+                }
+
                 var collisionMap = ig.game.collisionMap;
                 var tilesize = collisionMap.tilesize;
 
@@ -3977,29 +4090,59 @@ ig.module(
             },
 
             /**
+             * Called automatically by {@link ig.GameExtended#PlayerManager} when managing entity as if player were playing them.
+             */
+            manageStart: function () {
+
+                this.managed = true;
+
+            },
+
+            /**
+             * Called automatically by {@link ig.GameExtended#PPlayerManager} when done managing entity.
+             */
+            manageStop: function () {
+
+                this.managed = false;
+
+            },
+
+            /**
              * Pauses entity.
              */
             pause: function () {
 
-                if (!this.paused) {
+                this.paused = true;
 
-                    this.paused = true;
+                var name;
+                var anim;
+                var tween;
 
-                    // animations
+                // animations
 
-                    for (var animName in this.anims) {
+                for (name in this.anims) {
 
-                        var anim = this.anims[ animName ];
+                    anim = this.anims[ name ];
 
-                        if (anim) {
+                    if (anim) {
 
-                            anim.timer.pause();
-
-                        }
+                        anim.timer.pause();
 
                     }
 
-                    this.onPaused.dispatch(this);
+                }
+
+                // tweens
+
+                for (var name in this.tweens) {
+
+                    tween = this.tweens[ name ];
+
+                    if (tween) {
+
+                        tween.pause();
+
+                    }
 
                 }
 
@@ -4010,28 +4153,37 @@ ig.module(
              */
             unpause: function () {
 
-                if (this.paused) {
+                this.paused = false;
 
-                    this.paused = false;
+                var name;
+                var anim;
+                var tween;
 
-                    // animations
+                // animations
 
-                    for (var animName in this.anims) {
+                for (name in this.anims) {
 
-                        var anim = this.anims[ animName ];
+                    anim = this.anims[ name ];
 
-                        if (anim) {
+                    if (anim) {
 
-                            anim.timer.unpause();
-
-                        }
+                        anim.timer.unpause();
 
                     }
 
-                    // tweens
+                }
 
+                // tweens
 
-                    this.onUnpaused.dispatch(this);
+                for (var name in this.tweens) {
+
+                    tween = this.tweens[ name ];
+
+                    if (tween) {
+
+                        tween.unpause();
+
+                    }
 
                 }
 
@@ -4058,7 +4210,7 @@ ig.module(
                     // swap listen to game refresh with listen to linked refresh
 
                     if ( this.linkedTo ) {
-
+					
                         ig.system.onResized.remove(this.refresh, this);
 
                         if (!this._killed) {
@@ -4094,7 +4246,7 @@ ig.module(
                     this.linkedTo.onRemoved.remove(this.unlink, this);
 
                     if (!this._killed) {
-
+					
                         ig.system.onResized.add(this.refresh, this);
 
                     }
@@ -4187,9 +4339,6 @@ ig.module(
              */
             die: function () {
 
-                this.animRelease();
-				this.currentAnim = null;
-
                 ig.game.removeEntity(this);
 
             },
@@ -4208,17 +4357,15 @@ ig.module(
 
                 }
 
-                // tweens
+                this.unhide();
 
                 this.tweenEnd();
-
-                // stop all movement
-
                 this.moveAllStop();
 
-                // unlink
-
                 this.unlink(false);
+
+                this.animRelease();
+                this.currentAnim = null;
 
                 // signals
 
@@ -4233,10 +4380,6 @@ ig.module(
                     this.onAdded.forget();
                     this.onRemoved.removeAll();
                     this.onRemoved.forget();
-                    this.onPaused.removeAll();
-                    this.onPaused.forget();
-                    this.onUnpaused.removeAll();
-                    this.onUnpaused.forget();
                     this.onMovedTo.removeAll();
                     this.onMovedTo.forget();
                     this.onRefreshed.removeAll();
@@ -4262,10 +4405,23 @@ ig.module(
             },
 
             /**
+             * Cleans entity of previous collision properties just before new collision checks.
+             */
+            cleanupCollision: function () {
+
+                this.wasChecking = this.checking;
+                this.checking = this.intersecting = this.collidingWithEntitiesBelow = false;
+
+            },
+
+            /**
              * Called when two entities intersect, regardless of collides and before checks or collisions.
              * @param {ig.EntityExtended} entity entity intersecting.
              **/
             intersectWith: function (entity) {
+
+                this.intersecting = true;
+
             },
 
             /**
@@ -4276,16 +4432,6 @@ ig.module(
             check: function (entity) {
 
                 this.checking = true;
-                this._checkingStopNext = false;
-
-            },
-
-            /**
-             * Automatcially called on update after done checking against all entities to flag entity as no longer checking.
-             **/
-            checkStop: function () {
-
-                this.checking = this._checkingStopNext = false;
 
             },
 
@@ -4341,7 +4487,12 @@ ig.module(
                                 if( ( entity.collides >= ig.EntityExtended.COLLIDES.FIXED || this.collides === ig.EntityExtended.COLLIDES.LITE ) && Math.abs(this.vel.y - entity.vel.y) < this.minBounceVelocity ) {
 
                                     this.setGrounded();
-                                    nudgeX = entity.vel.x * ig.system.tick;
+
+                                    if ( entity.moving ) {
+
+                                        nudgeX = entity.pos.x - entity.last.x;
+
+                                    }
 
                                 }
 
@@ -4509,9 +4660,13 @@ ig.module(
 
                 if ( res.tile.y && _utt.isTileClimbable( res.tile.y ) ) {
 
-                    var nonBlocking;
+                    if ( this.climbing || !this.hasGravity || this._climbingIntentUp ) {
 
-                    if ( this._climbingIntentDown ) {
+                        res.pos.y = this.pos.y + this.vel.y * ig.system.tick;
+                        res.collision.y = res.collision.slope = false;
+
+                    }
+                    else if ( this._climbingIntentDown ) {
                         collisionMap = ig.game.collisionMap;
                         var rowIndex = Math.floor( ( this.pos.y + this.size.y + collisionMap.tilesize * 0.5 ) / collisionMap.tilesize );
                         row = collisionMap.data[ rowIndex ];
@@ -4520,21 +4675,10 @@ ig.module(
 
                         if ( ( typeof tileLeft === 'undefined' || _utt.isTileWalkable( tileLeft ) ) && ( typeof tileRight === 'undefined' || _utt.isTileWalkable( tileRight ) ) ) {
 
-                            nonBlocking = true;
+                            res.pos.y = this.pos.y + this.vel.y * ig.system.tick;
+                            res.collision.y = res.collision.slope = false;
 
                         }
-
-                    }
-                    else {
-
-                        nonBlocking = this._climbingIntentUp || !this.hasGravity;
-
-                    }
-
-                    if ( nonBlocking ) {
-
-                        res.pos.y = this.pos.y + this.vel.y * ig.system.tick;
-                        res.collision.y = res.collision.slope = false;
 
                     }
 
@@ -4586,6 +4730,11 @@ ig.module(
                         }
 
                     }
+                    else if( this.vel.y < 0 ) {
+
+                        this.vel.y = 0;
+
+                    }
 
                 }
                 else if ( this.slope ) {
@@ -4633,8 +4782,7 @@ ig.module(
 
             /**
              * Entities update is now broken down into a series of functions/methods, which can be opted into based on {@link ig.EntityExtended#frozen} and {@link ig.EntityExtended#performance}.
-             * <br>- paused entities don't update at all
-             * <br>- frozen entities don't update except to do {@link ig.EntityExtended#updateCleanup} (useful for triggers)
+             * <br>- paused and frozen entities don't update at all
              * <br>- performance === ig.EntityExtended.PERFORMANCE.STATIC entities only check if visible and do {@link ig.EntityExtended#updateVisible}
              * <br>- performance === ig.EntityExtended.PERFORMANCE.MOVABLE does all static performance steps plus can move self or be moved, but ignores collision map, and checks for changes via {@link ig.EntityExtended#updateChanges} and {@link ig.EntityExtended#recordChanges}
              * <br>- performance === ig.EntityExtended.PERFORMANCE.DYNAMIC does all movable performance steps plus collides with collision map and has physics forces via {@link ig.EntityExtended#updateDynamics}
@@ -4663,13 +4811,13 @@ ig.module(
                         // movable or moving entities
                         else {
 
-                            if ( this.controllable ) {
+                            if (this.controllable && !this._killed) {
 
                                 this.updateChanges();
 
                                 // dynamic entities
 
-                                if (this.performance === ig.EntityExtended.PERFORMANCE.DYNAMIC && !this._killed) {
+                                if (this.performance === ig.EntityExtended.PERFORMANCE.DYNAMIC) {
 
                                     this.updateDynamics();
 
@@ -4702,9 +4850,13 @@ ig.module(
 
                         }
 
-                    }
+                        if (this.currentAnim) {
 
-                    this.updateCleanup();
+                            this.currentAnim.update();
+
+                        }
+
+                    }
 
                 }
                 // check visible when paused but camera is not
@@ -4717,44 +4869,17 @@ ig.module(
             },
 
             /**
-             * Handles clean up of update for entity including checking status.
-             * <br>- called automatically by {@link ig.EntityExtended#update}
-             * <br>- useful for setting / resetting properties that are set after update (i.e. during collision checks).
-             */
-            updateCleanup: function () {
-
-                // stop some states on next update
-
-                if ( !this._layerChange ) {
-
-                    if (this.checking) {
-
-                        if (this._checkingStopNext) {
-
-                            this.checkStop();
-
-                        }
-                        else {
-
-                            this._checkingStopNext = true;
-
-                        }
-
-                    }
-
-                    this.collidingWithEntitiesBelow = false;
-
-                }
-
-            },
-
-            /**
              * Records last transform.
              * <br>- called automatically by {@link ig.EntityExtended#update}
              **/
             recordLast: function () {
+
+                // inject an intermediate position record
+                // so external forces can change entity position
+                // but last is still recording the last and not current
 				
-                _utv2.copy(this.last, this.pos);
+                _utv2.copy(this.last, this._posLast);
+                _utv2.copy(this._posLast, this.pos);
                 this._angleLast = this.angle;
 
             },
@@ -4797,7 +4922,7 @@ ig.module(
 					
 					if ( this.vel.y !== 0 ) {
 
-						this.movingY = _c.TOP_DOWN || this.vel.y < 0 || !this.grounded || ( !!this.slope && this.movingX );
+						this.movingY = !this.hasGravity || this.vel.y < 0 || !this.grounded || ( !!this.slope && this.movingX );
 						
 						// y facing
 						
@@ -4931,14 +5056,6 @@ ig.module(
 
                 }
 
-                // update animation
-
-                if (this.currentAnim) {
-
-                    this.currentAnim.update();
-
-                }
-
                 // reset _changedAdd when visible only
                 // this can help to avoid heavy start-up costs
                 // as an entity will remain changed until it is visible
@@ -4966,6 +5083,7 @@ ig.module(
                     // temporarily swap properties
 
                     var alpha = this.currentAnim.alpha;
+                    var flip = this.currentAnim.flip;
 
                     this.currentAnim.alpha *= this.alpha;
                     this.currentAnim.flip = this.flip;
@@ -5011,6 +5129,7 @@ ig.module(
                     // restore properties
 
                     this.currentAnim.alpha = alpha;
+                    this.currentAnim.flip = flip;
 
                     if ( this.angle !== 0 ) {
 

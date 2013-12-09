@@ -43,7 +43,7 @@
  *      // then start the game as usual with your game and config
  *      ig.main(
  *          // you'll need a canvas element with an id of 'canvas'
- *           '#canvas',
+ *           "#canvas",
  *           // your game class
  *           myGameClass,
  *           // this value does nothing
@@ -188,30 +188,18 @@ ig.module(
              */
             init: function( canvasId, fps, width, height, scale ) {
 
-                var scaleMode;
-
-                if ( this.scale !== 1 && !_c.AUTO_CRISP_SCALING ) {
-
-                    scaleMode = ig.System.scaleMode;
-
-                }
-
-                // setup resize
-
                 this.onResized = new ig.Signal();
 
-                this.parent( canvasId, fps, width, height, scale );
+				this.fps = fps;
+				this.clock = new ig.Timer();
+				this.canvas = ig.$(canvasId);
+				this.context = this.canvas.getContext('2d');
 
-                // switch back to original scale mode when not auto crisp scaling
+				this.getDrawPos = ig.System.drawMode;
 
-                if ( ig.System.scaleMode !== scaleMode && this.scale !== 1 && !_c.AUTO_CRISP_SCALING ) {
+				this.resize( width, height, scale );
 
-                    ig.System.scaleMode = scaleMode;
-                    ig.System.scaleMode( this.canvas, this.context );
-
-                }
-
-            },
+			},
 
             /**
              * Runs system, accounting for maximum framerate.
@@ -243,28 +231,42 @@ ig.module(
              * @param {Number} width
              * @param {Number} height
              * @param {Number} scale
+			 * @param {Boolean} [force=false] whether to force global resize (only do this when absolutely necessary).
              */
-            resize: function ( width, height, scale ) {
+            resize: function ( width, height, scale, force ) {
 
-                this.parent( width, height, scale );
+				this.width = width * ig.ua.pixelRatio;
+				this.height = height * ig.ua.pixelRatio;
 
-                this.size = Math.min(this.width, this.height);
+				if ( typeof scale !== 'undefined' && scale !== null ) {
 
-                // switch to crisp scaling when using a scale other than 1
+					this.scale = scale;
 
-                if ( this.scale !== 1 && _c.AUTO_CRISP_SCALING ) {
+				}
 
-                    ig.System.scaleMode = ig.System.SCALE.CRISP;
+				this.realWidth = this.width * this.scale;
+				this.realHeight = this.height * this.scale;
 
-                }
+				// retina support
 
-                if ( this.canvas && this.context ) {
+				this.canvas.width = this.realWidth;
+				this.canvas.height = this.realHeight;
+				this.canvas.style.width = Math.round( this.realWidth / ig.ua.pixelRatio ) + "px";
+				this.canvas.style.height = Math.round( this.realHeight / ig.ua.pixelRatio ) + "px";
 
-                    ig.System.scaleMode( this.canvas, this.context );
+				this.size = Math.min(this.width, this.height);
 
-                }
+				// switch to crisp scaling when using a scale other than 1
 
-                this.onResized.dispatch();
+				if ( this.scale !== 1 && _c.AUTO_CRISP_SCALING ) {
+
+					ig.System.scaleMode = ig.System.SCALE.CRISP;
+
+				}
+
+				ig.System.scaleMode( this.canvas, this.context );
+				
+				this.onResized.dispatch(force);
 
             }
         });

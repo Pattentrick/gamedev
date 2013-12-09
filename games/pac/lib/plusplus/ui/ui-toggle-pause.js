@@ -27,9 +27,9 @@ ig.module(
 
             /**
              * @override
-             * @default icons_pause.png
+             * @default buttons_states.png
              */
-            animSheet: new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'icons_pause.png', 12, 12),
+            animSheet: new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'buttons_states.png', 12, 12),
 
             /**
              * @override

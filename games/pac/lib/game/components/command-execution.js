@@ -106,6 +106,8 @@ ig.module(
 
                         this.removeCurrentCommand();
 
+                        this.player.moveToStop();
+
 
                     }
                     // On normal interaction eg "use stick"
@@ -114,6 +116,8 @@ ig.module(
                         entity.interact( currentCommand );
 
                         this.removeCurrentCommand();
+
+                        this.player.moveToStop();
 
                     }
 
@@ -188,7 +192,7 @@ ig.module(
          */
         hasPlayerNearEntity: function( entity ){
 
-            return( this.player.distanceEdgeTo( entity ) < 2 );
+            return( this.player.distanceEdgeTo( entity ) <= entity.interactionDistance );
 
         },
 

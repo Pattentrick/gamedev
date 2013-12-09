@@ -28,6 +28,9 @@ ig.module(
             y: 8
         },
 
+        // At which distance interaction should be triggered
+        interactionDistance: 2,
+
         matchingInventoryItem: ig.EntityInventoryItemLemon,
 		
 		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 8, 8 ),

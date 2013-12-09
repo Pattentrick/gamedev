@@ -109,6 +109,13 @@ ig.module(
             type: 0,
 
             /**
+             * Whether ability is paused.
+             * @type Boolean
+             * @default
+             */
+            paused: false,
+
+            /**
              * Whether ability blocks other abilities of lower {@link ig.Ability#priority} when this ability is activated first via {@link ig.Hierarchy#activate}.
              * @type Boolean
              * @default
@@ -268,9 +275,16 @@ ig.module(
             /**
              * Timer for cooldown.
              * <br>- created on init
-             * @type ig.TimerExtended
+             * @type ig.Timer
              */
             cooldownTimer: null,
+
+            /**
+             * Timer for casting.
+             * <br>- created on init
+             * @type ig.Timer
+             */
+            castTimer: null,
 
             /**
              * Whether needs target to activate.
@@ -537,8 +551,8 @@ ig.module(
 
                 // timers
 
-                this.castTimer = new ig.TimerExtended();
-                this.cooldownTimer = new ig.TimerExtended();
+                this.castTimer = new ig.Timer();
+                this.cooldownTimer = new ig.Timer();
 
                 // signals
 
@@ -573,7 +587,7 @@ ig.module(
 
                         if (this.assert(this.cooledDown(), ig.Ability.FAIL.COOLDOWN)) {
 
-                            return this.activateSetup(arguments);
+                            return this.activateSetup.apply(this, arguments);
 
                         }
 
@@ -604,11 +618,12 @@ ig.module(
             /**
              * Sets up ability to activate. Step 1 of activate process.
              * <span class="alert alert-info"><strong>Tip:</strong> for best results, your custom ability should do all of its activate magic by overriding the {@link ig.Ability#activateComplete} method!</span>
-             * @param {Array} [args] arguments to pass through activate steps.
              **/
-            activateSetup: function (args) {
+            activateSetup: function () {
 
                 if ( !this._activating ) {
+
+                    this.castEnd();
 
                     this._deactivating = false;
                     this.needsDeactivate = this._activating = true;
@@ -625,12 +640,12 @@ ig.module(
 
                     if (this.activateSetupCastSettings) {
 
-                        this.cast(this.activateSetupCastSettings, this.activateTry, args);
+                        this.cast(this.activateSetupCastSettings, this.activateTry, arguments);
 
                     }
                     else {
 
-                        return this.activateTry(args);
+                        return this.activateTry.apply( this, arguments );
 
                     }
 
@@ -641,9 +656,8 @@ ig.module(
             /**
              * Tries to activate by doing checks. Step 2 of activate process.
              * <span class="alert alert-info"><strong>Tip:</strong> for best results, your custom ability should do all of its activate magic by overriding the {@link ig.Ability#activateComplete} method!</span>
-             * @param {Array} [args] arguments to pass through activate steps.
              **/
-            activateTry: function (args) {
+            activateTry: function () {
 
                 // no cost, only check if close enough
 
@@ -654,12 +668,12 @@ ig.module(
 
                         if (this.activatePassCastSettings) {
 
-                            this.cast(this.activatePassCastSettings, this.activatePass, args);
+                            this.cast(this.activatePassCastSettings, this.activatePass, arguments);
 
                         }
                         else {
 
-                            return this.activatePass(args);
+                            return this.activatePass.apply( this, arguments );
 
                         }
 
@@ -675,12 +689,12 @@ ig.module(
 
                     if (this.activatePassCastSettings) {
 
-                        this.cast(this.activatePassCastSettings, this.activatePass, args);
+                        this.cast(this.activatePassCastSettings, this.activatePass, arguments);
 
                     }
                     else {
 
-                        return this.activatePass(args);
+                        return this.activatePass.apply( this, arguments );
 
                     }
 
@@ -691,13 +705,12 @@ ig.module(
             /**
              * Called when activate checks passed. Step 3 of activate process.
              * <span class="alert alert-info"><strong>Tip:</strong> for best results, your custom ability should do all of its activate magic by overriding the {@link ig.Ability#activateComplete} method!</span>
-             * @param {Array} [args] arguments to pass through activate steps.
              **/
-            activatePass: function (args) {
+            activatePass: function () {
 
                 if ( !this.activatePassCastSettings || !this.activateStrict || this.assert(this.closeEnough(), ig.Ability.FAIL.DISTANCE) ) {
 
-                    return this.activateComplete.apply( this, args );
+                    return this.activateComplete.apply( this, arguments );
 
                 }
 
@@ -755,32 +768,39 @@ ig.module(
              **/
             deactivate: function () {
 
-                return this.deactivateSetup(arguments);
+                return this.deactivateSetup.apply(this, arguments);
 
             },
 
             /**
              * Sets up ability to deactivate. Step 1 of deactivate process.
              * <span class="alert alert-info"><strong>Tip:</strong> for best results, your custom ability should do all of its deactivate magic by overriding the {@link ig.Ability#deactivateComplete} method!</span>
-             * @param {Array} [args] arguments.
              **/
-            deactivateSetup: function (args) {
+            deactivateSetup: function () {
 
                 if ( this.needsDeactivate && !this._deactivating ) {
 
                     this._deactivating = true;
-                    this._activating = false;
+                    this.activated = this._activating = this.needsDeactivate = false;
+
+                    if (this.channelling) {
+
+                        this.channelStop();
+
+                    }
+
+                    this.castEnd();
 
                     // cast first
 
                     if (this.deactivateSetupCastSettings && !this.entity._killed) {
 
-                        this.cast(this.deactivateSetupCastSettings, this.deactivateComplete, args);
+                        this.cast(this.deactivateSetupCastSettings, this.deactivateComplete, arguments);
 
                     }
                     else {
 
-                        return this.deactivateComplete.apply(this, args);
+                        return this.deactivateComplete.apply(this, arguments);
 
                     }
 
@@ -792,38 +812,27 @@ ig.module(
              * Finishes deactivate. Step 2 of deactivate process.
              * <span class="alert alert-info"><strong>Tip:</strong> for best results, your custom ability should do all of its deactivate magic by overriding the {@link ig.Ability#deactivateComplete} method!</span>
              * <span class="alert"><strong>IMPORTANT:</strong> If overriding, always call this.parent() at the end of overriding method as target is dropped at the end of this method.</span>
-             * @param {Array} [args] arguments.
              **/
-            deactivateComplete: function (args) {
+            deactivateComplete: function () {
 
-                if ( this.needsDeactivate ) {
+                this._deactivating = false;
 
-                    this.activated = this._activating = this._deactivating = this.needsDeactivate = false;
+                this.onDeactivated.dispatch(this);
 
-                    if (this.channelling) {
+                if ( this.deactivateCastSettings && !this.entity._killed) {
 
-                        this.channelStop();
-
-                    }
-
-                    this.onDeactivated.dispatch(this);
-
-                    if ( this.deactivateCastSettings && !this.entity._killed) {
-
-                        this.cast(this.deactivateCastSettings);
-
-                    }
-                    else {
-
-                        this.castEnd();
-
-                    }
-
-                    // drop target
-
-                    this.dropEntityTarget();
+                    this.cast(this.deactivateCastSettings);
 
                 }
+                else {
+
+                    this.castEnd();
+
+                }
+
+                // drop target
+
+                this.dropEntityTarget();
 
             },
 
@@ -870,6 +879,30 @@ ig.module(
             cleanupPlain: function () {
 
                 return this.cleanup();
+
+            },
+
+            /**
+             * Pauses ability.
+             **/
+            pause: function () {
+
+                this.paused = true;
+
+                this.castTimer.pause();
+                this.cooldownTimer.pause();
+
+            },
+
+            /**
+             * Unpauses ability.
+             **/
+            unpause: function () {
+
+                this.paused = false;
+
+                this.castTimer.unpause();
+                this.cooldownTimer.unpause();
 
             },
 
@@ -1140,7 +1173,7 @@ ig.module(
 
                 // specific cast time
 
-                if (this.castSettings.delay && this.castTimer.delta() >= 0) {
+                if (this.castSettings && this.castSettings.delay && this.castTimer.delta() >= 0) {
 
                     this.castComplete();
 
@@ -1226,13 +1259,7 @@ ig.module(
 
                             }
 
-                            this.entity.animRelease(animName);
-
-                            if ( this.entity.anims[ animName ] && this.entity.overridingAnimName === animName) {
-
-                                this.entity.animRelease(true);
-
-                            }
+                            this.entity.animRelease(animName, true);
 
                         }
 
@@ -1318,6 +1345,12 @@ ig.module(
                     // follow entity
 
                     if (effect.followSettings) {
+					
+						if ( typeof effect.followSettings.flipWith === 'undefined' ) {
+							
+							effect.followSettings.flipWith = true;
+							
+						}
 
                         if (effect.followTarget) {
 
@@ -1367,7 +1400,7 @@ ig.module(
              **/
             update: function () {
 
-                if (this.enabled === true ) {
+                if (this.enabled && !this.paused) {
 
                     if ( this.casting ) {
 
@@ -1538,8 +1571,6 @@ ig.module(
                 // store new
 
                 this.entity = entity;
-                this.castTimer.setPauseSignaller(this.entity);
-                this.cooldownTimer.setPauseSignaller(this.entity);
 
                 if (this.entity) {
 

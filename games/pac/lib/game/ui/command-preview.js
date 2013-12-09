@@ -21,7 +21,9 @@ ig.module(
 
         name: 'preview',
 
-        performance: 'dynamic',
+        fixed: false,
+
+        posAsPct: false,
 
         // Default text command
         defaultCommand: 'Gehe zu',

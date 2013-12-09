@@ -54,7 +54,7 @@ ig.module(
 		 * // if an entity cannot flip X and Y
 		 * // you should have animations for Up, Down, Left, and Right
 		 * // i.e. "moveUp", "moveDown", "moveLeft", "moveRight"
-		 * if ( character.jumping = true;
+		 * if ( character.jumping )
 		 *      character.currentAnim = character.anims[ character.getDirectionalAnimName( "jump" ) ];
 		 * if ( character.falling )
 		 *      character.currentAnim = character.anims[ character.getDirectionalAnimName( "fall" ) ];
@@ -283,7 +283,7 @@ ig.module(
             /**
              * Pathing update timer.
              * <br>- created on first pathfind
-             * @type ig.TimerExtended
+             * @type ig.Timer
              */
             pathingTimer: null,
 
@@ -305,7 +305,7 @@ ig.module(
             /**
              * Stuck delay timer.
              * <br>- created on first pathfind
-             * @type ig.TimerExtended
+             * @type ig.Timer
              */
             stuckTimer: null,
 
@@ -346,7 +346,7 @@ ig.module(
             /**
              * Timer for damage delay.
              * <br>- created on init
-             * @type ig.TimerExtended
+             * @type ig.Timer
              * @default
              */
             damageTimer: null,
@@ -382,7 +382,7 @@ ig.module(
             /**
              * Timer for regeneration ticks.
              * <br>- created on init
-             * @type ig.TimerExtended
+             * @type ig.Timer
              * @default
              */
             regenTimer: null,
@@ -542,6 +542,14 @@ ig.module(
             withinClimbables: false,
 
             /**
+             * Whether character is intersecting a climbable entity above its feet (i.e. inside body).
+             * @type Boolean
+             * @default
+             * @readonly
+             */
+            withinClimbablesAbove: false,
+
+            /**
              * Whether character is intersecting a climbable stairs entity.
              * @type Boolean
              * @default
@@ -597,11 +605,11 @@ ig.module(
             _climbingIntentDown: false,
             _climbingIntentUp: false,
 
+            _cleanIntentDown: false,
+            _cleanIntentUp: false,
+
             _temporarilyInvulnerable: false,
             _temporarilyInvulnerablePulsing: false,
-
-            _cleanWithinClimbable: false,
-            _cleanClimbingIntent: false,
 
             _positionsPathfinding: {
                 from: { x: 0.1, y: 0.1 },
@@ -634,8 +642,10 @@ ig.module(
 
                 // timers
 
-                this.regenTimer = new ig.TimerExtended(0, this);
-                this.damageTimer = new ig.TimerExtended(0, this);
+                this.regenTimer = new ig.Timer();
+                this.damageTimer = new ig.Timer();
+                this.pathingTimer = new ig.Timer();
+                this.stuckTimer = new ig.Timer();
 
                 // abilities
 
@@ -752,7 +762,9 @@ ig.module(
             recordResetState: function () {
 
                 this.parent();
-				
+
+                this.resetState.controllable = this.controllable;
+
                 this.resetState.energy = this.energy;
 
             },
@@ -794,7 +806,11 @@ ig.module(
 
                 this.parent();
 
-                this.addControl();
+                if ( this.resetState.controllable ) {
+
+                    this.addControl();
+
+                }
 
             },
 
@@ -814,26 +830,68 @@ ig.module(
 
             /**
              * @override
+             **/
+            pause: function () {
+
+                this.parent();
+
+                this.regenTimer.pause();
+                this.damageTimer.pause();
+                this.pathingTimer.pause();
+                this.stuckTimer.pause();
+
+                this.abilities.pause();
+
+            },
+
+            /**
+             * @override
+             **/
+            unpause: function () {
+
+                this.parent();
+
+                this.regenTimer.unpause();
+                this.damageTimer.unpause();
+                this.pathingTimer.unpause();
+                this.stuckTimer.unpause();
+
+                this.abilities.unpause();
+
+            },
+
+            /**
+             * @override
              */
             setGrounded: function ( withoutVelocity ) {
 
-                this.standing = this.grounded = true;
-                this.falling = false;
+                if ( _c.TOP_DOWN ) {
 
-                if ( !withoutVelocity ) {
+                    this.standing = this.grounded = true;
+                    this.falling = false;
 
-                    // force to max velocity so we stick to ground
-                    // because characters switch max velocities
-                    // this max velocity should always be the grounded max
+                }
+                else {
 
-                    if ( this.slopeSticking && this.gravityFactor !== 0 && ig.game.gravity !== 0 ) {
+                    this.standing = this.grounded = this.hasGravity;
+                    this.falling = false;
 
-                        this.vel.y = this.maxVelGrounded.y;
+                    if ( !this.climbing && !withoutVelocity ) {
 
-                    }
-                    else {
+                        // force to max velocity so we stick to ground
+                        // because characters switch max velocities
+                        // this max velocity should always be the grounded max
 
-                        this.vel.y = 0;
+                        if ( this.slopeSticking && this.hasGravity ) {
+
+                            this.vel.y = this.maxVelGrounded.y;
+
+                        }
+                        else {
+
+                            this.vel.y = 0;
+
+                        }
 
                     }
 
@@ -846,7 +904,11 @@ ig.module(
              */
             setUngrounded: function () {
 
-                this.grounded = this.standing = this.falling = false;
+                if ( !_c.TOP_DOWN ) {
+
+                    this.grounded = this.standing = this.falling = false;
+
+                }
 
             },
 
@@ -896,26 +958,17 @@ ig.module(
              **/
             moveTo: function (item, settings) {
 
-                // setup pathing
-
-                if ( this.performance === ig.EntityExtended.PERFORMANCE.DYNAMIC && this.canPathfind ) {
-
-                    if ( !this.pathingTimer ) {
-
-                        this.pathingTimer = new ig.TimerExtended( 0, this );
-                        this.stuckTimer = new ig.TimerExtended( 0, this );
-
-                    }
-
-					this.needsNewPath = true;
-
-                }
-
                 var startedMoving = this.parent( item, settings );
 
-                if ( startedMoving && this.pathingTimer ) {
+                if ( startedMoving ) {
 
-                    this.pathingTimer.set( 0 );
+                    this.needsNewPath = true;
+
+                    if ( this.pathingTimer ) {
+
+                        this.pathingTimer.set( 0 );
+
+                    }
 
                 }
 
@@ -960,7 +1013,7 @@ ig.module(
 
                         if ( this.canPathfind ) {
 
-                            this.needsNewPath = this.movingTo.changed || this.changed || this.needsNewPath;
+                            this.needsNewPath = this.movingTo.changed || this.changed || this.moveToUnsafe || this.needsNewPath;
 
                             if ( !this.movedTo || this.needsNewPath ) {
 
@@ -1003,7 +1056,7 @@ ig.module(
 
                 if ( this.pathingTimer.delta() >= 0 && ( this.path.length === 0 || this.needsNewPath ) ) {
 
-                    this.needsNewPath = false;
+                    this.needsNewPath = this.movedTo = this.moveToUnsafe = false;
 
                     // handle settings
 
@@ -1060,7 +1113,7 @@ ig.module(
 
                         }
 
-                        // make sure distance to move is more than half character size
+                        // make sure distance to move is more than 25% character size
 
                         if ( dX !== 0 ) {
 
@@ -1134,7 +1187,7 @@ ig.module(
 
                             this.clearPath();
                             this.moveToUnsafe = true;
-
+							
                         }
 
                         this.pathingTimer.set( this.pathfindingSimpleDelay );
@@ -1271,8 +1324,6 @@ ig.module(
                             this.stuck = false;
 
                         }
-
-                        this.movedTo = this.moveToUnsafe = false;
 
                         // handle settings
 
@@ -1434,7 +1485,7 @@ ig.module(
 									}
 
 								}
-								else if (cY > nodeY && nodeY < y + height - node.size * 0.5 && ( withinX || !_pf.getEntityOnSmoothSlope( this, nodeX - cX, -1 ) ) ) {
+								else if (cY > nodeY){// && nodeY < y + height - node.size * 0.5 && ( withinX || !_pf.getEntityOnSmoothSlope( this, nodeX - cX, -1 ) ) ) {
 
 									this.moveToUnsafe = !unsafe && node.ungrounded;
 
@@ -1443,7 +1494,7 @@ ig.module(
 
 										this.moveToUnsafe = false;
 										this.climbUp();
-
+										
 									}
 									// jump
                                     else if ( this.canJump ) {
@@ -1750,6 +1801,14 @@ ig.module(
              **/
             moveToComplete: function () {
 
+                // reset pathing timer so we find next path instantly
+
+                if ( this.pathingTimer ) {
+
+                    this.pathingTimer.set( 0 );
+
+                }
+
                 this.moveToHere();
 
                 this.parent();
@@ -1766,6 +1825,18 @@ ig.module(
                 this.movingFrom = false;
 
                 this.parent();
+
+            },
+
+            /**
+             * Characters stop moving to and pathfinding when managed.
+             * @override
+             */
+            manageStart: function () {
+
+                this.parent();
+
+                this.moveToStop();
 
             },
 
@@ -1886,7 +1957,9 @@ ig.module(
 
                     }
 
-                    if (this.climbing !== true && !( this._climbingIntentDown && this.grounded ) ) {
+                    if (this.climbing !== true
+                        && ( ( this._climbingIntentUp && this.withinClimbablesAbove )
+                            || ( this._climbingIntentDown && !this.grounded ) ) ) {
 
                         this.setUngrounded();
                         this.climbing = true;
@@ -1909,7 +1982,7 @@ ig.module(
             climbUp: function () {
 
                 this._climbingIntentUp = true;
-                this._cleanClimbingIntent = false;
+                this._cleanIntentUp = false;
 
                 this.climb();
 
@@ -1927,7 +2000,7 @@ ig.module(
             climbDown: function () {
 
                 this._climbingIntentDown = true;
-                this._cleanClimbingIntent = false;
+                this._cleanIntentDown = false;
 
                 this.climb();
 
@@ -1946,14 +2019,41 @@ ig.module(
 
                 if (this.climbing) {
 
-                    if (!this.withinClimbables || this.grounded) {
+					this.applyAntiGravity();
+
+                    if (!this.withinClimbables || ( this.grounded && this.vel.y >= 0 ) ) {
 
                         this.climbEnd();
 
                     }
+
+                }
+
+                if ( this._climbingIntentDown ) {
+
+                    if ( this._cleanIntentDown ) {
+
+                        this._cleanIntentDown = this._climbingIntentDown = false;
+
+                    }
                     else {
 
-                        this.applyAntiGravity();
+                        this._cleanIntentDown = true;
+
+                    }
+
+                }
+
+                if ( this._climbingIntentUp ) {
+
+                    if ( this._cleanIntentUp ) {
+
+                        this._cleanIntentUp = this._climbingIntentUp = false;
+
+                    }
+                    else {
+
+                        this._cleanIntentUp = true;
 
                     }
 
@@ -2125,7 +2225,7 @@ ig.module(
 
                     // pulse alpha
 
-                    if (this.temporaryInvulnerabilityAlpha < 1 && this.temporaryInvulnerabilityPulses > 0) {
+                    if (this.alpha === 1 && this.temporaryInvulnerabilityAlpha < 1 && this.temporaryInvulnerabilityPulses > 0) {
 
                         this._temporarilyInvulnerablePulsing = true;
 
@@ -2176,11 +2276,11 @@ ig.module(
                         this.tweenEnd("invulnerableShow");
 
                         this._temporarilyInvulnerablePulsing = false;
+                        this.alpha = 1;
 
                     }
 
                     this.invulnerable = this._temporarilyInvulnerable = false;
-                    this.alpha = 1;
 
                 }
 
@@ -2233,10 +2333,23 @@ ig.module(
             },
 
             /**
+             * @override
+             */
+            cleanupCollision: function () {
+
+                this.parent();
+
+                this.withinOneWay = this.withinClimbables = this.withinClimbablesAbove = this.withinStairs = false;
+
+            },
+
+            /**
              * Intersects and checks intersected for various properties such as one-way and climbable.
              * @override
              **/
             intersectWith: function (entity) {
+
+                this.parent();
 
                 if ( entity.oneWay ) {
 
@@ -2248,7 +2361,12 @@ ig.module(
 
                     this.withinClimbables = true;
                     this.withinStairs = entity.climbableStairs;
-                    this._cleanWithinClimbable = false;
+
+                    if ( entity.pos.y < Math.round( this.pos.y + this.size.y * 0.9 ) ) {
+
+                        this.withinClimbablesAbove = true;
+
+                    }
 
                 }
 
@@ -2270,24 +2388,17 @@ ig.module(
 
                         this.withinClimbables = true;
                         this.withinStairs = entityOneWay.climbableStairs;
-                        this._cleanWithinClimbable = false;
+                        this.grounded = false;
                         this.climbDown();
                         return false;
 
                     }
                     else if (this._climbingIntentUp && entityOneWay.oneWayFacing.y > 0) {
 
-                        this.withinClimbables = true;
+                        this.withinClimbables = this.withinClimbablesAbove = true;
                         this.withinStairs = entityOneWay.climbableStairs;
-                        this._cleanWithinClimbable = false;
                         this.climbUp();
                         return false;
-
-                    }
-                    else {
-
-                        this.withinClimbables = this.withinStairs = false;
-                        this.climbEnd();
 
                     }
 
@@ -2327,54 +2438,6 @@ ig.module(
                     }
 
                 }
-
-            },
-
-            /**
-             * @override
-             **/
-            updateCleanup: function () {
-
-                // reset collision properties
-
-                if ( this.changed ) {
-
-                    this.withinOneWay = false;
-
-                    // reset on next update
-                    if ( this.withinClimbables ) {
-
-                        if ( this._cleanWithinClimbable ) {
-
-                            this._cleanWithinClimbable = this.withinClimbables = this.withinStairs = this._climbingIntentDown = this._climbingIntentUp = false;
-
-                        }
-                        else {
-
-                            this._cleanWithinClimbable = true;
-
-                        }
-
-                    }
-
-                    if ( this._climbingIntentDown || this._climbingIntentUp ) {
-
-                        if ( this._cleanClimbingIntent ) {
-
-                            this._cleanClimbingIntent = this._climbingIntentDown = this._climbingIntentUp = false;
-
-                        }
-                        else {
-
-                            this._cleanClimbingIntent = true;
-
-                        }
-
-                    }
-
-                }
-
-                this.parent();
 
             },
 
@@ -2423,7 +2486,7 @@ ig.module(
 
                 // ungrounded
 
-                if (!this.grounded && !this.climbing) {
+                if (this.hasGravity && !this.grounded && !this.climbing) {
 
                     this.ungroundedFor += ig.system.tick;
 
@@ -2572,7 +2635,7 @@ ig.module(
 
 					}
 
-                    if ( this.moving && ( this.movingX || this.canFlipY || _c.TOP_DOWN ) ) {
+                    if ( this.moving ) {
 
                         this.currentAnim = anims[ this.getDirectionalAnimName( "move" ) ];
 

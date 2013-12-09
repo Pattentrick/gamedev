@@ -59,19 +59,19 @@ ig.module(
              * // will skip extracting shapes from collision map
              * game.shapesPasses = null;
              * // after level is loaded, get all edge shapes for lighting
-             * game.shapesPasses = [
-             *      {
+             * game.shapesPasses = {
+             *      lighting: {
              *          ignoreClimbables: true,
              *          discardBoundaryInner: true
              *      }
-             * ];
+             * };
              * // after level is loaded, get all climbable shapes
-             * game.shapesPasses = [
-             *      {
+             * game.shapesPasses = {
+             *      climbables: {
              *          ignoreSolids: true,
              *          ignoreOneWays: true
              *      }
-             * ];
+             * };
              * // note that by default, Impact++ extracts
              * // the level boundary inner edge loop
              * // and all climbable shapes
@@ -304,10 +304,20 @@ ig.module(
              */
             onUnpaused: null,
 
+            /**
+             * Color to clear screen with.
+             * @type String
+             * @see ig.CONFIG.CLEAR_COLOR
+             */
+            clearColor: _c.CLEAR_COLOR,
+
             // internal properties, do not modify
 
-            _levelBuilding: false,
+            _gameNeedsSetup: true,
+			_gameNeedsResize: false,
+			_gameForceResize: false,
 
+            _levelBuilding: false,
             _levelToBuild: null,
             _levelNeedsBuild: false,
             _levelNeedsUnload: false,
@@ -337,6 +347,22 @@ ig.module(
              * <br>- starts listening for window resize
              **/
             init: function () {
+
+                if ( this._gameNeedsSetup ) {
+
+                    this.setup();
+
+                }
+
+            },
+
+            /**
+             * Game setup of required properties and elements. Called automatically and guaranteed to be called before anything else.
+             * @private
+             */
+            setup: function () {
+
+                this._gameNeedsSetup = false;
 
                 this.onPaused = new ig.Signal();
                 this.onUnpaused = new ig.Signal();
@@ -371,16 +397,11 @@ ig.module(
                     noUpdate: _c.NO_UPDATE_FOREGROUND_LAYER
                 }));
 
-                // overlay should always be second from top
-                // overlay should be automatically sorted
-
                 this.addLayer(new ig.Layer('overlay', {
                     zIndex: 1,
                     ignorePause: _c.IGNORE_PAUSE_OVERLAY_LAYER,
                     autoSort: _c.AUTO_SORT_OVERLAY_LAYER
                 }));
-
-                // ui always on top and automatically sorted
 
                 this.addLayer(new ig.Layer('ui', {
                     zIndex: 2,
@@ -399,16 +420,10 @@ ig.module(
 
                 }
 
-                // add deferred layers immediately
-
                 this._addDeferredLayers();
-
-                // resize
 
                 ig.global.addEventListener('resize', _ut.debounce(this.resize.bind(this), _c.RESIZE_DELAY), false);
                 this.resize();
-
-                // start input
 
                 this.inputStart();
 
@@ -441,6 +456,12 @@ ig.module(
              **/
             loadLevel: function (level, playerSpawnerName) {
 
+                if ( this._gameNeedsSetup ) {
+
+                    this.setup();
+
+                }
+
                 level = level || this._levelToLoad;
                 this._levelToLoad = undefined;
 
@@ -463,20 +484,6 @@ ig.module(
                     level = ig.global[ 'Level' + levelName ];
 
                 }
-
-                if (!this.transitioner) {
-
-                    this.transitioner = this.spawnEntity(ig.UIOverlay, 0, 0, {
-                        layerName: _c.TRANSITIONER_LAYER,
-                        zIndex: _c.Z_INDEX_TRANSITIONER,
-                        fillStyle: _c.TRANSITIONER_COLOR,
-                        r: _c.TRANSITIONER_R,
-                        g: _c.TRANSITIONER_G,
-                        b: _c.TRANSITIONER_B,
-                        alpha: 0
-                    });
-
-                }
 				
                 // valid level
 
@@ -489,6 +496,20 @@ ig.module(
                     if ( this.hasLevel && _c.TRANSITION_LEVELS && this.layersMap[ _c.TRANSITIONER_LAYER ] && this.layersMap[ _c.TRANSITIONER_LAYER ].ignorePause ) {
 
                         var me = this;
+
+                        if (!this.transitioner) {
+
+                            this.transitioner = this.spawnEntity(ig.UIOverlay, 0, 0, {
+                                layerName: _c.TRANSITIONER_LAYER,
+                                zIndex: _c.Z_INDEX_TRANSITIONER,
+                                fillStyle: _c.TRANSITIONER_COLOR,
+                                r: _c.TRANSITIONER_R,
+                                g: _c.TRANSITIONER_G,
+                                b: _c.TRANSITIONER_B,
+                                alpha: 0
+                            });
+
+                        }
 
                         this.transitioner.fadeTo(1, {
                             onComplete: function () {
@@ -532,6 +553,12 @@ ig.module(
              * <span class="alert"><strong>IMPORTANT:</strong> for proper stability, use {@link ig.GameExtended#loadLevelDeferred} instead.</span>
              **/
             buildLevel: function () {
+
+                if ( this._gameNeedsSetup ) {
+
+                    this.setup();
+
+                }
 
                 var levelData = this._levelToBuild;
                 var playerSpawnerName = this._playerSpawnerName;
@@ -680,8 +707,6 @@ ig.module(
 
                     }
 
-                    // ensure unpaused
-
                     this.unpause( true );
 
                     // complete transition
@@ -710,6 +735,8 @@ ig.module(
                         this.playerManager.ready();
 
                     }
+
+                    this.resize();
 
                     this.dirtyEntities = this.dirtyLights = true;
 
@@ -788,7 +815,7 @@ ig.module(
                 var i, il;
                 var options, shapes;
 
-                if ( this.shapesPasses ) {
+                if ( this.shapesPasses && this.collisionMap ) {
 
                     for ( var pass in this.shapesPasses ) {
 
@@ -1146,6 +1173,21 @@ ig.module(
             },
 
             /**
+             * Clears ALL {@link ig.EntityExtended#persistent} entities from game cache.
+             * <span class="alert"><strong>IMPORTANT:</strong> this does NOT kill the entity.</span>
+             * @param {String} name
+             **/
+            clearPersistentEntities: function () {
+
+                for ( var name in ig.game.persistentEntities ) {
+
+                    this.clearPersistentEntity( name );
+
+                }
+
+            },
+
+            /**
              * Flags an entity as killed. Can be used before removal to facilitate death animations.
              * @param {Entity} entity.
              **/
@@ -1257,6 +1299,12 @@ ig.module(
              **/
             _addDeferredItem: function ( item ) {
 
+                if ( this._gameNeedsSetup ) {
+
+                    this.setup();
+
+                }
+
                 item.layerName = item._layerNameAdd;
                 item._layerNameAdd = undefined;
 
@@ -1357,9 +1405,9 @@ ig.module(
 
                     }
 
-                }
+                    item.added = false;
 
-                item.added = false;
+                }
 
                 // add to deferred list
 
@@ -1751,6 +1799,14 @@ ig.module(
              *      maxX: myCharacter.pos.x + myCharacter.size.x,
              *      maxY: myCharacter.pos.y + myCharacter.size.y
              * });
+             * // only get entities in line of sight
+             * game.getEntitiesMatching( matchBy, {
+             *      lineOfSight: true
+             * });
+             * // only get entities that are not hidden
+             * game.getEntitiesMatching( matchBy, {
+             *      nonHidden: true
+             * });
              **/
             getEntitiesMatching: function ( matchBy, settings) {
 
@@ -1761,6 +1817,7 @@ ig.module(
                 var distanceSquared;
                 var byDistance;
                 var lineOfSight;
+                var nonHidden;
                 var from;
                 var intersects;
                 var minX;
@@ -1817,6 +1874,7 @@ ig.module(
                         distanceSquared = settings.distanceSquared;
                         byDistance = settings.byDistance;
                         lineOfSight = settings.lineOfSight;
+                        nonHidden = settings.nonHidden;
                         from = settings.from;
                         first = settings.first;
 
@@ -1843,6 +1901,7 @@ ig.module(
                             var item = items[ i ];
 
                             if (!item._killed && matchBy( item )
+                                && ( !nonHidden || !item.hidden )
                                 && ( !distanceSquared || item.distanceSquaredTo( from ) <= distanceSquared )
                                 && ( !intersects || _uti.AABBIntersect( minX, minY, maxX, maxY,  item.pos.x, item.pos.y, item.pos.x + item.width, item.pos.y + item.height ) )
                                 && ( !lineOfSight || from.lineOfSight( item ) ) ) {
@@ -1963,7 +2022,7 @@ ig.module(
 
                         if ( this.camera ) {
 
-                            this.camera.paused = true;
+                            this.camera.pause();
 
                         }
 
@@ -2025,7 +2084,7 @@ ig.module(
 
                         if ( this.camera ) {
 
-                            this.camera.paused = false;
+                            this.camera.unpause();
 
                         }
 
@@ -2252,6 +2311,12 @@ ig.module(
                     this.unloadLevel();
 
                 }
+				
+				if ( this._gameNeedsResize ) {
+					
+					this.resize(this._gameForceResize);
+					
+				}
 
                 this.deferring = true;
 
@@ -2273,7 +2338,7 @@ ig.module(
                         }
 
                     }
-
+					
                 }
 
                 ig.TWEEN.update();
@@ -2410,9 +2475,10 @@ ig.module(
             /**
              * Resize the canvas based on the window.
              * <span class="alert alert-info"><strong>Tip:</strong> use this to resize Impact++ properly.</span>
+			 * @param {Boolean} [force=false] whether to force global resize (only do this when absolutely necessary).
              **/
-            resize: function () {
-
+            resize: function (force) {
+				
                 // get new size
 
                 var width = _c.GAME_WIDTH_PCT ? ig.global.innerWidth * _c.GAME_WIDTH_PCT : _c.GAME_WIDTH;
@@ -2429,17 +2495,23 @@ ig.module(
 
                 }
 
-                var scaleReciprocal = 1 / scale;
+                scale = Math.min( Math.max( scale, _c.SCALE_MIN ), _c.SCALE_MAX );
+				var scaleReciprocal = ( 1 / scale );
 
-                ig.system.resize( width * scaleReciprocal, height * scaleReciprocal, scale );
+                ig.system.resize( width * scaleReciprocal, height * scaleReciprocal, scale, force || this._gameForceResize );
+				this._gameNeedsResize = this._gameForceResize = false;
 
-                if ( this.camera ) {
-
-                    this.camera.getBoundsLevel();
-
-                }
-
-            }
+            },
+			
+			/**
+			 * Resizes game on next update and is much better on performance (max of 1 resize per update).
+			 */
+			resizeDeferred: function (force) {
+				
+				this._gameNeedsResize = true;
+				this._gameForceResize = force || false;
+				
+			}
 
         });
 

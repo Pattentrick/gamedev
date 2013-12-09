@@ -103,16 +103,16 @@ ig.module(
             /**
              * Whether to get margin percentages from smallest dimension in screen size.
              * @type Boolean
-             * @default
+             * @default ig.CONFIG.UI.MARGIN_AS_PCT_SMALLEST
              */
-            marginAsPctSmallest: true,
+            marginAsPctSmallest: _c.UI.MARGIN_AS_PCT_SMALLEST,
 
             /**
              * Whether margins should be calculated consistently at all scales. Ex: a button should be 15px away from the edge no matter the scale.
              * @type Boolean
-             * @default
+             * @default ig.CONFIG.UI.MARGIN_SCALELESS
              */
-            marginScaleless: true,
+            marginScaleless: _c.UI.MARGIN_SCALELESS,
 
             /**
              * Total horizontal margin, calculated during resize.
@@ -138,6 +138,27 @@ ig.module(
             scale: _c.UI.SCALE,
 
             /**
+             * Scale of system scale.
+             * @type Number
+             * @default
+             */
+            scaleOfSystemScale: _c.UI.SCALE_OF_SYSTEM_SCALE,
+
+            /**
+             * Minimum value of {@link ig.UIElement#scale}.
+             * @type Number
+             * @default ig.CONFIG.UI.SCALE_MIN
+             */
+            scaleMin: _c.UI.SCALE_MIN,
+
+            /**
+             * Maximum value of {@link ig.UIElement#scale}.
+             * @type Number
+             * @default ig.CONFIG.UI.SCALE_MAX
+             */
+            scaleMax: _c.UI.SCALE_MAX,
+
+            /**
              * Whether user interface elements should ignore system scale.
              * <span class="alert"><strong>IMPORTANT:</strong> when true, ui elements will not scale dynamically with view and instead will be fixed in size. This is usually ideal.</span>
              * @type Boolean
@@ -155,9 +176,16 @@ ig.module(
             /**
              * Flips {@link ig.UIElement#linkAlign} so that coordinates are relative to inside of linkedTo element
              * @type Boolean
-             * @default false
+             * @default
              */
             linkAlignInside: false,
+
+            /**
+             * Automatically deactivates ui element during cleanup.
+             * @type Boolean
+             * @default
+             */
+            autoDeactivate: true,
 
             /**
              * @override
@@ -194,7 +222,11 @@ ig.module(
              **/
             cleanup: function () {
 
-                this.deactivate();
+                if ( this.autoDeactivate ) {
+
+                    this.deactivate();
+
+                }
 
                 this.parent();
 
@@ -257,12 +289,12 @@ ig.module(
                     this.totalMarginX = Math.round( this.marginAsPct ? this.margin.x * ( this.marginAsPctSmallest ? ig.system.size : ig.system.width ) : this.margin.x );
                     this.totalMarginY = Math.round( this.marginAsPct ? this.margin.y * ( this.marginAsPctSmallest ? ig.system.size : ig.system.height ) : this.margin.y );
 
-                    // divide margins by system scale to ensure the margins are consistent across all scales
+                    // divide margins by scale to ensure the margins are consistent across all scales
 
                     if ( this.marginScaleless ) {
 
-                        this.totalMarginX /= ig.system.scale;
-                        this.totalMarginY /= ig.system.scale;
+                        this.totalMarginX /= this.scale;
+                        this.totalMarginY /= this.scale;
 
                     }
 

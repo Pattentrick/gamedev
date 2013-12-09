@@ -3,6 +3,7 @@ ig.module(
     )
     .requires(
         'plusplus.core.config',
+        'plusplus.core.timer',
         'plusplus.core.image-drawing',
         'plusplus.ui.ui-overlay',
         'plusplus.helpers.utils',
@@ -316,7 +317,7 @@ ig.module(
             /**
              * Camera shake timer.
              * <br>- created on first shake
-             * @type ig.TimerExtended
+             * @type ig.Timer
              */
             shakeTimer: null,
 
@@ -358,6 +359,8 @@ ig.module(
                 this._center = this.centerFirstFollow;
 
                 this.onTransitioned = new ig.Signal();
+
+                this.shakeTimer = new ig.Timer();
 
                 // add camera resize as the lowest priority
 
@@ -406,6 +409,28 @@ ig.module(
             },
 
             /**
+             * Pauses camera.
+             **/
+            pause: function () {
+
+                this.paused = true;
+
+                this.shakeTimer.pause();
+
+            },
+
+            /**
+             * Unpauses camera.
+             **/
+            unpause: function () {
+
+                this.paused = false;
+
+                this.shakeTimer.unpause();
+
+            },
+
+            /**
              * Calculates the bounds for the current level.
              * @param {ig.Map} [map=ig.game.collisionMap] map to use in defining boundaries
              */
@@ -413,8 +438,8 @@ ig.module(
 
                 map = typeof map != 'undefined' ? map : ig.game.collisionMap;
 
-                if (map && ( this.keepInsideLevel.x = this.keepInsideLevel.y = _c.CAMERA.KEEP_INSIDE_LEVEL ) ) {
-
+                if ( ( this.keepInsideLevel.x || this.keepInsideLevel.y ) && map && map.width && map.height && map.tilesize ) {
+					
                     this.boundsLevel = _uti.boundsMinMax(
                         0, 0,
                         map.width * map.tilesize - ig.system.width,
@@ -424,13 +449,13 @@ ig.module(
 
                     if (this.boundsLevel.maxX < 0) {
 
-                        this.keepInsideLevel.x = false;
+						this.boundsLevel.minX = this.boundsLevel.maxX = this.boundsLevel.maxX * 0.5;
 
                     }
 
                     if (this.boundsLevel.maxY < 0) {
 
-                        this.keepInsideLevel.y = false;
+						this.boundsLevel.minY = this.boundsLevel.maxY = this.boundsLevel.maxY * 0.5;
 
                     }
 
@@ -458,12 +483,6 @@ ig.module(
                     else {
 
                         _utv2.zero( this.shakeOffset );
-
-                    }
-
-                    if ( !this.shakeTimer ) {
-
-                        this.shakeTimer = new ig.TimerExtended();
 
                     }
 
@@ -919,12 +938,12 @@ ig.module(
                 // follow
 
                 if (this.entity) {
-
-                    _utv2.copy(this.screenLast, screen);
+					
+					_utv2.copy(this.screenLast, screen);
 
                     var screenNextX = this.entity.pos.x + this.entity.size.x * 0.5 - ig.system.width * 0.5;
                     var screenNextY = this.entity.pos.y + this.entity.size.y * 0.5 - ig.system.height * 0.5;
-
+					
                     var noteX, noteY;
 
                     if (this.transitioning) {
@@ -970,7 +989,7 @@ ig.module(
 
                             screen.x = this._transitionFrom.x + ( screenNextX - ( this._boundsScreen.minX + ( this.transitioningCenter ? this._boundsScreen.width * 0.5 : 0 ) ) ) * value;
 
-                        }
+						}
                         else if (screenNextX > this._boundsScreen.maxX) {
 
                             screen.x = this._transitionFrom.x + ( screenNextX - ( this._boundsScreen.maxX - ( this.transitioningCenter ? this._boundsScreen.width * 0.5 : 0 ) ) ) * value;
@@ -1132,7 +1151,7 @@ ig.module(
              * Resizes camera.
              **/
             resize: function () {
-
+				
                 this.changed = true;
 
                 // update level bounds

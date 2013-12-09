@@ -13,7 +13,7 @@ ig.module(
     // cursor
     'game.ui.cursor',
     // enable debug
-    //'plusplus.debug.debug',
+    'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module
@@ -174,6 +174,15 @@ ig.module(
 
             }
 
+        },
+
+        update: function(){
+
+            this.parent();
+
+            // Sort entities to avoid zIndex bugs
+            ig.game.sortEntities('entities');
+
         }
 
 	});
@@ -258,8 +267,9 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-//		Pac,
-       Titlescreen,
+		Pac,
+        //Titlescreen,
+        60,
 		_c.GAME_WIDTH,
 		_c.GAME_HEIGHT,
 		_c.SCALE,
