@@ -99,7 +99,8 @@ ig.module(
                     && entities[i].name !== 'command'
                     && entities[i].name !== 'preview'
                     && entities[i].name !== undefined
-                    && entities[i].name !== 'spawner'
+                    && entities[i].name !== 'spawner-a'
+                    && entities[i].name !== 'spawner-b'
                     && entities[i].name !== 'textbox'){
 
                     name = entities[i].name;

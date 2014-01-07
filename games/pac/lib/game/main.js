@@ -6,14 +6,19 @@ ig.module(
     'plusplus.core.plusplus',
     // player class
     'game.entities.player',
-    // levels
+    // dev levels
     'game.levels.titlescreen',
     'game.levels.test',
     'game.levels.another-room',
+    // game levels
+    'game.levels.bedroom',
+    'game.levels.floor',
+    'game.levels.junkroom',
+    'game.levels.kitchen',
     // cursor
     'game.ui.cursor',
     // enable debug
-    'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module
@@ -35,7 +40,8 @@ ig.module(
 	var Pac = ig.GameExtended.extend({
 
         // Background color of canvas
-        clearColor: "#330033",
+        //clearColor: "#330033",
+        clearColor: "#000000",
 
         // Contains the name of the current level
         currentLevel: null,
@@ -45,7 +51,11 @@ ig.module(
 			this.parent();
 
 		    // Load starting level
-            this.loadLevelDeferred( 'test', 'spawner' );
+            //this.loadLevelDeferred( 'test', 'spawner' );
+            this.loadLevelDeferred( 'bedroom', 'spawner-a' );
+
+            // Create new pac user interface instance
+            this.gui = new ig.Pacui();
 
             // Instance room state
             this.roomState = new ig.RoomState();
@@ -92,9 +102,6 @@ ig.module(
 
             // Create new command execution instance
             this.commandExecution = new ig.CommandExecution();
-
-            // Create new pac user interface instance
-            this.gui = new ig.Pacui();
 
             this.inventory.respawnInventoryItems();
 
