@@ -84,7 +84,7 @@ ig.module(
          */
         spawnCommandPreview: function(){
 
-            ig.game.spawnEntity(ig.CommandPreview, 0, 149);
+            ig.game.spawnEntity(ig.CommandPreview, 0, 145);
 
         },
 

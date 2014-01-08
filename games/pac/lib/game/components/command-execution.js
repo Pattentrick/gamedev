@@ -340,7 +340,7 @@ ig.module(
                     x: ig.input.mouse.x + ig.game.screen.x,
                     y: ig.input.mouse.y + ig.game.screen.y
                 }, {
-                    avoidEntities: true
+                    avoidEntities: false
                 });
 
             }

@@ -18,7 +18,7 @@ ig.module(
     // cursor
     'game.ui.cursor',
     // enable debug
-    //'plusplus.debug.debug',
+    'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module

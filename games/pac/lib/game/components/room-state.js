@@ -4,7 +4,8 @@ ig.module(
 .requires(
     'plusplus.core.config',
     'game.entities.item-lemon',
-    'game.entities.item-block'
+    'game.entities.item-block',
+    'game.entities.item-bottle'
 )
 .defines(function() {
 
@@ -32,6 +33,11 @@ ig.module(
             isPickedUp: false
         },
 
+        bottle: {
+            class: ig.EntityItemBottle,
+            isPickedUp: false
+        },
+
         /**
          * Creates the current game state
          * based of the item properties.
@@ -52,6 +58,17 @@ ig.module(
                 if( !this.block.isPickedUp ){
 
                    ig.game.spawnEntity( this.block.class, 90, 110 );
+
+                }
+
+            }
+
+            // On bedromm
+            if( currentLevel === 'bedroom' ){
+
+                if( !this.bottle.isPickedUp ){
+
+                    ig.game.spawnEntity( this.bottle.class, 180, 103 );
 
                 }
 

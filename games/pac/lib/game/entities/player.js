@@ -101,7 +101,7 @@ ig.module(
         speak: function( text ){
 
             // remove any existing monologue boxes before spawning a new one
-            this.removeExistingMonologue();
+            //this.removeExistingMonologue();
 
             this.textbox = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40, {
 
