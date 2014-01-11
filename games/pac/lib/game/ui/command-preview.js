@@ -277,8 +277,8 @@ ig.module(
         hasMouseOverInventory: function(){
 
             return(
-                    ig.input.mouse.y + ig.game.screen.y >= 163
-                    && ig.input.mouse.y + ig.game.screen.y <= 195
+                    ig.input.mouse.y + ig.game.screen.y >= 153
+                    && ig.input.mouse.y + ig.game.screen.y <= 185
                     && ig.input.mouse.x + ig.game.screen.x >= 177
                     && ig.input.mouse.x + ig.game.screen.x <= 303
                   );

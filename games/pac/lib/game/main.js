@@ -18,7 +18,7 @@ ig.module(
     // cursor
     'game.ui.cursor',
     // enable debug
-    'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module
@@ -52,7 +52,7 @@ ig.module(
 
 		    // Load starting level
             //this.loadLevelDeferred( 'test', 'spawner' );
-            this.loadLevelDeferred( 'bedroom', 'spawner-a' );
+            this.loadLevelDeferred( 'kitchen', 'spawner-a' );
 
             // Create new pac user interface instance
             this.gui = new ig.Pacui();
@@ -106,7 +106,7 @@ ig.module(
             this.inventory.respawnInventoryItems();
 
             // Set facing direction
-            this.setFacingDirection();
+            //this.setFacingDirection();
 
         },
 

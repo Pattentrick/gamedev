@@ -22,16 +22,16 @@ ig.module(
         slots: [
 
             // first slot
-            { x: 177, y: 163 },
+            { x: 177, y: 153 },
 
             // second slot
-            { x: 209, y: 163 },
+            { x: 209, y: 153 },
 
             // third slot
-            { x: 241, y: 163 },
+            { x: 241, y: 153 },
 
             // fourth slot
-            { x: 273, y: 163 }
+            { x: 273, y: 153 }
 
         ],
 

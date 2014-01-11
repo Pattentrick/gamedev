@@ -176,8 +176,8 @@ ig.module(
         hasMouseOverInventory: function(){
 
             return(
-                ig.input.mouse.y + ig.game.screen.y >= 163
-                    && ig.input.mouse.y + ig.game.screen.y <= 195
+                ig.input.mouse.y + ig.game.screen.y >= 153
+                    && ig.input.mouse.y + ig.game.screen.y <= 185
                     && ig.input.mouse.x + ig.game.screen.x >= 177
                     && ig.input.mouse.x + ig.game.screen.x <= 303
                 );
@@ -283,8 +283,8 @@ ig.module(
         /**
          * If the player clicks inside the game world, and
          * at that position there is no entity, with the exception
-         * of the cursor and the player, the command is a abortion
-         * command.
+         * of the cursor, the player and the levelchange, the command
+         * is an abortion command.
          *
          * An abortion command will disable all current commands.
          *
@@ -292,16 +292,21 @@ ig.module(
          */
         isAbortionCommand: function(){
 
-            var entities    = ig.game.entities;
-            var isAbortion  = true;
+            var entities           = ig.game.entities;
+            var isAbortion         = true;
+            var entity             = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].entityName );
+            var compoundableEntity = ig.game.getEntityByName( ig.game.getEntitiesByClass(ig.CommandPreview)[0].compoundableEntityName );
 
             // iterate over all entitys. set isAbort
-            // to false if one entity is found
+            // to false if one entity is found, or
+            // that entity is an levelchange entity
             for( var i = 0, len = ig.game.entities.length; i < len; i++ ){
 
                 if( this.entityIsinFocus( entities[i] )
                     && entities[i].name !== 'player'
-                    && entities[i].name !== 'cursor'){
+                    && entities[i].name !== 'cursor'
+                    && entity instanceof ig.EntityLevelchange === false
+                    && compoundableEntity instanceof ig.EntityLevelchange === false ){
 
                     isAbortion = false;
 

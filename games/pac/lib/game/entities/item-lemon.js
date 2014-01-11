@@ -24,16 +24,16 @@ ig.module(
         collides: ig.Entity.COLLIDES.FIXED,
 
 		size: {
-            x: 8,
-            y: 8
+            x: 6,
+            y: 3
         },
 
         // At which distance interaction should be triggered
-        interactionDistance: 2,
+        interactionDistance: 10,
 
         matchingInventoryItem: ig.EntityInventoryItemLemon,
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 8, 8 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 6, 3 ),
 
         animInit: 'idle',
 

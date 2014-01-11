@@ -60,19 +60,19 @@ ig.module(
         spawnCommands: function(){
 
             // First row
-            ig.game.spawnEntity(ig.CommandGive, 16, 161);
-            ig.game.spawnEntity(ig.CommandOpen, 16, 171);
-            ig.game.spawnEntity(ig.CommandLook, 16, 185);
+            ig.game.spawnEntity(ig.CommandGive, 16, 151);
+            ig.game.spawnEntity(ig.CommandOpen, 16, 161);
+            ig.game.spawnEntity(ig.CommandLook, 16, 175);
 
             // Second row
-            ig.game.spawnEntity(ig.CommandUse, 61, 161);
-            ig.game.spawnEntity(ig.CommandClose, 61, 173);
-            ig.game.spawnEntity(ig.CommandPress, 61, 185);
+            ig.game.spawnEntity(ig.CommandUse, 61, 151);
+            ig.game.spawnEntity(ig.CommandClose, 61, 163);
+            ig.game.spawnEntity(ig.CommandPress, 61, 175);
 
             // Third row
-            ig.game.spawnEntity(ig.CommandPickUp, 117, 161);
-            ig.game.spawnEntity(ig.CommandTalk, 117, 173);
-            ig.game.spawnEntity(ig.CommandPull, 116, 185);
+            ig.game.spawnEntity(ig.CommandPickUp, 117, 151);
+            ig.game.spawnEntity(ig.CommandTalk, 117, 163);
+            ig.game.spawnEntity(ig.CommandPull, 116, 175);
 
         },
 
@@ -84,7 +84,7 @@ ig.module(
          */
         spawnCommandPreview: function(){
 
-            ig.game.spawnEntity(ig.CommandPreview, 0, 145);
+            ig.game.spawnEntity(ig.CommandPreview, 0, 135);
 
         },
 

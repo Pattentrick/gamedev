@@ -54,7 +54,7 @@ ig.module(
                 // Update room state
                 ig.game.roomState.bottle.isPickedUp = true;
 
-                ig.game.getPlayer().speak('Das könnte nützlich sein.');
+                ig.game.getPlayer().speak('Zeig mal die Flasche - ist jetzt meine Flasche.');
 
             }
             else if( command === 'Schau' ){
@@ -68,6 +68,11 @@ ig.module(
 
             }
             else if( command === 'Öffne' ){
+
+                ig.game.getPlayer().speak('Ich sollte sie erst einstecken.');
+
+            }
+            else if( command === 'Benutze' ){
 
                 ig.game.getPlayer().speak('Ich sollte sie erst einstecken.');
 

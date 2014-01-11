@@ -74,6 +74,17 @@ ig.module(
 
             }
 
+            // On kitchen
+            if( currentLevel === 'kitchen' ){
+
+                if( !this.lemon.isPickedUp ){
+
+                    ig.game.spawnEntity( this.lemon.class, 182, 78 );
+
+                }
+
+            }
+
         }
 
     });
