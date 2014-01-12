@@ -5,7 +5,8 @@ ig.module(
     'plusplus.core.config',
     'game.entities.item-lemon',
     'game.entities.item-block',
-    'game.entities.item-bottle'
+    'game.entities.item-bottle',
+    'game.entities.item-wrench'
 )
 .defines(function() {
 
@@ -38,6 +39,11 @@ ig.module(
             isPickedUp: false
         },
 
+        wrench: {
+            class: ig.EntityItemWrench,
+            isPickedUp: false
+        },
+
         /**
          * Creates the current game state
          * based of the item properties.
@@ -45,23 +51,6 @@ ig.module(
         createState: function(){
 
             var currentLevel = ig.game.currentLevel;
-
-            // On room test
-            if( currentLevel === 'test' ){
-
-                if( !this.lemon.isPickedUp ){
-
-                    ig.game.spawnEntity( this.lemon.class, 100, 108 );
-
-                }
-
-                if( !this.block.isPickedUp ){
-
-                   ig.game.spawnEntity( this.block.class, 90, 110 );
-
-                }
-
-            }
 
             // On bedromm
             if( currentLevel === 'bedroom' ){
@@ -80,6 +69,17 @@ ig.module(
                 if( !this.lemon.isPickedUp ){
 
                     ig.game.spawnEntity( this.lemon.class, 182, 78 );
+
+                }
+
+            }
+
+            // On Junkroom
+            if( currentLevel === 'junkroom' ){
+
+                if( !this.wrench.isPickedUp ){
+
+                    ig.game.spawnEntity( this.wrench.class, 149, 69 );
 
                 }
 

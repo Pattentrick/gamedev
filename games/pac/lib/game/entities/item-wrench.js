@@ -1,39 +1,39 @@
 ig.module(
-    'game.entities.item-block'
+    'game.entities.item-wrench'
 )
 .requires(
     'plusplus.core.entity',
     'plusplus.core.config',
-    'game.entities.inventory-item-block'
+    'game.entities.inventory-item-wrench'
 )
 .defines(function () {
 
 	var _c  = ig.CONFIG;
 
     /**
-     * Block item
+     * Lemon item
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemBlock = ig.global.EntityItemBlock = ig.EntityExtended.extend({
+    ig.EntityItemWrench = ig.global.EntityItemWrench = ig.EntityExtended.extend({
 
-        name: 'Block',
+        name: 'Schraubenschlüssel',
 
-        collides: ig.Entity.COLLIDES.FIXED,
+        collides: ig.Entity.COLLIDES.NEVER,
 
 		size: {
-            x: 8,
-            y: 8
+            x: 3,
+            y: 6
         },
 
         // At which distance interaction should be triggered
-        interactionDistance: 2,
+        interactionDistance: 14,
 
-        matchingInventoryItem: ig.EntityInventoryItemBlock,
+        matchingInventoryItem: ig.EntityInventoryItemWrench,
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'block.gif', 8, 8 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'item-wrench.gif', 3, 6 ),
 
         animInit: 'idle',
 
@@ -48,17 +48,28 @@ ig.module(
 
             if( command === 'Nimm' ){
 
+                // Add to inventory
                 ig.game.inventory.addItem( this.matchingInventoryItem, this );
 
                 // Update room state
-                ig.game.roomState.block.isPickedUp = true;
+                ig.game.roomState.wrench.isPickedUp = true;
 
-                ig.game.getPlayer().speak('Ein Block. Endlich.');
+                ig.game.getPlayer().speak('Sowas wollte ich schon immer haben.');
 
             }
             else if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Ein Block.');
+                ig.game.getPlayer().speak('Der Schraubenschlüssel, er ist grau.');
+
+            }
+            else if( command === 'Benutze' ){
+
+                ig.game.getPlayer().speak('Erst muss ich ihn einstecken.');
+
+            }
+            else if( command === 'Rede' ){
+
+                ig.game.getPlayer().speak('Hallo Herr Schraubenschlüssel.');
 
             }
             else {
@@ -77,16 +88,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            if( entity.name === 'Monsterzitrone' ){
-
-                ig.game.getPlayer().speak('Das mit der Zitrone. Was!?');
-
-            }
-            else {
-
-                ig.game.getPlayer().speak('Berschauer.');
-
-            }
+            ig.game.getPlayer().speak('Berm.');
 
         }
 		

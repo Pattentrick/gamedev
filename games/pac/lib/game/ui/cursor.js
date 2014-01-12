@@ -56,14 +56,6 @@ ig.module(
 
         },
 
-        init: function(){
-
-            this.parent();
-
-            //console.log(this.pos);
-
-        },
-
         /**
          * Reposition the cursor entity to the position
          * of the default browser mouse cursor

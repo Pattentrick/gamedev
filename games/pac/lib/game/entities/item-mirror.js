@@ -34,12 +34,12 @@ ig.module(
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Ein schicker Spiegel.');
+                ig.game.getPlayer().speak('Boah, die zweite Flasche Vodka hätte ich stecken lassen sollen.');
 
             }
             else {
 
-                ig.game.getPlayer().speak('Der würde nur kaputt gehen.');
+                ig.game.getPlayer().speak('Berm.');
 
             }
 

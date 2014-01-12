@@ -33,7 +33,7 @@ ig.module(
 
         matchingInventoryItem: ig.EntityInventoryItemLemon,
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'lemon.gif', 6, 3 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'item-lemon.gif', 6, 3 ),
 
         animInit: 'idle',
 
@@ -69,7 +69,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Das macht keinen Sinn.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 

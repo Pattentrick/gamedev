@@ -47,7 +47,11 @@ ig.module(
          */
         addItem: function( inventoryItem, worldItem ){
 
-            this.removeWorldItem( worldItem );
+            if( worldItem ){
+
+                this.removeWorldItem( worldItem );
+
+            }
 
             var item = ig.game.spawnEntity( inventoryItem, this.slots[ this.inventoryItems.length ].x, this.slots[ this.inventoryItems.length ].y );
 

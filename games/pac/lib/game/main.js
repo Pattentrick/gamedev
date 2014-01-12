@@ -6,10 +6,10 @@ ig.module(
     'plusplus.core.plusplus',
     // player class
     'game.entities.player',
-    // dev levels
+    // titlescreen
     'game.levels.titlescreen',
-    'game.levels.test',
-    'game.levels.another-room',
+    // ending
+    'game.levels.ending',
     // game levels
     'game.levels.bedroom',
     'game.levels.floor',
@@ -26,7 +26,9 @@ ig.module(
     // inventory
     'game.ui.inventory',
     // room state tracker/creator
-    'game.components.room-state'
+    'game.components.room-state',
+    // conversation module
+    'plusplus.entities.conversation'
 )
 // define the main module
 .defines(function () {
@@ -46,13 +48,14 @@ ig.module(
         // Contains the name of the current level
         currentLevel: null,
 
+        hasUntoldBackgroundStory: true,
+
 		init: function () {
 
 			this.parent();
 
 		    // Load starting level
-            //this.loadLevelDeferred( 'test', 'spawner' );
-            this.loadLevelDeferred( 'kitchen', 'spawner-a' );
+            this.loadLevelDeferred( 'bedroom', 'spawner-a' );
 
             // Create new pac user interface instance
             this.gui = new ig.Pacui();
@@ -105,41 +108,6 @@ ig.module(
 
             this.inventory.respawnInventoryItems();
 
-            // Set facing direction
-            //this.setFacingDirection();
-
-        },
-
-        /**
-         * Set a proper facing direction
-         * in relation too the new room.
-         */
-        setFacingDirection: function(){
-
-            var player       = ig.game.getPlayer();
-            var currentLevel = ig.game.currentLevel;
-
-            switch( currentLevel ){
-                case 'test':
-
-                    player.facing = {
-                        x: -1,
-                        y: 1
-                    };
-
-                break;
-                case 'another-room':
-
-                    player.facing = {
-                        x: -1,
-                        y: 1
-                    };
-
-                break;
-            }
-
-            //console.log( player.facing );
-
         },
 
         /**
@@ -149,6 +117,59 @@ ig.module(
 
             // Leftclick
             ig.input.bind(ig.KEY.MOUSE1, 'click');
+
+        },
+
+        /*
+         * Tells the Backgroundstory on startup.
+         */
+        tellBackgroundStory: function(){
+
+            var textbubble = ig.game.spawnEntity(ig.EntityConversation, 0, 0);
+            var settings   = {
+                r: 1,
+                g: 1,
+                b: 1,
+                cornerRadius: 5,
+                pixelPerfect: true,
+                padding: {
+                    x: 5,
+                    y: 4
+                },
+                textSettings: {
+                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
+                },
+                triangleLength: 5
+            };
+
+            textbubble.messageMoveToSettings = {
+                matchPerformance: true,
+                offset: {
+                    x: 0,
+                    y: -30
+                },
+                align: {
+                    x: 0.5,
+                    y: 1
+                }
+            };
+
+            textbubble.addStep( 'Gestern dick gesoffen ...', 'player', 1, settings );
+            textbubble.addStep( 'Ich erinnere mich an gar nichts mehr.', 'player', 2, settings );
+            textbubble.addStep( 'Wo bin ich hier?!', 'player', 3, settings );
+            textbubble.addStep( 'Niekerken wollte mich doch heute zum Sport abholen!', 'player', 4, settings );
+            textbubble.addStep( 'Ich muss hier schnell raus!', 'player', 5, settings );
+
+            textbubble.trigger();
+
+        },
+
+        /**
+         * Shows the end of the game.
+         */
+        showEnding: function(){
+
+            ig.system.setGame( TheEnd );
 
         },
 
@@ -186,6 +207,14 @@ ig.module(
         update: function(){
 
             this.parent();
+
+            if( this.hasUntoldBackgroundStory ){
+
+                this.tellBackgroundStory();
+
+                this.hasUntoldBackgroundStory = false;
+
+            }
 
             // Sort entities to avoid zIndex bugs
             ig.game.sortEntities('entities');
@@ -264,6 +293,59 @@ ig.module(
             if( ig.input.pressed('click') ){
 
                 ig.system.setGame( Pac );
+
+            }
+
+        }
+
+    });
+
+    // instance the end :O
+    var TheEnd = ig.GameExtended.extend({
+
+        // Background color of canvas
+        clearColor: "#000000",
+
+        init: function () {
+
+            this.parent();
+
+            // Load Titlescreen
+            this.loadLevelDeferred( 'ending' );
+
+            // Play title theme
+            var theme = new ig.Sound( _c.PATH_TO_MEDIA + 'music/title-theme.*' );
+
+            theme.play();
+
+        },
+
+        /**
+         * Centers camera on gamescreen when
+         * the game runs in fullscreen mode
+         */
+        centerStaticCamera : function(){
+
+            // Reset screen position for
+            // proper positioning on resize
+            ig.game.screen.x = 0;
+            ig.game.screen.y = 0;
+
+            // Calculate new screen position
+            ig.game.screen.x -= ( ig.system.realWidth / 2 ) / ig.system.scale - ( _c.GAME_WIDTH_VIEW / 2 );
+            ig.game.screen.y -= ( ig.system.realHeight / 2 ) / ig.system.scale - ( _c.GAME_HEIGHT_VIEW / 2 );
+
+        },
+
+        resize : function(){
+
+            this.parent();
+
+            // Check for game instance
+            if( ig.game !== null ){
+
+                // Center camera on gamescreen
+                this.centerStaticCamera();
 
             }
 

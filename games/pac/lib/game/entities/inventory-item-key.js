@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.item-painting'
+    'game.entities.inventory-item-key'
 )
 .requires(
     'plusplus.core.entity',
@@ -10,38 +10,39 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Painting.
+     * Inventory item key.
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemPainting = ig.global.EntityItemPainting = ig.EntityExtended.extend({
+    ig.EntityInventoryItemKey = ig.global.EntityInventoryItemKey = ig.EntityExtended.extend({
 
-        name: 'Gemälde',
-
-        _wmScalable: true,
-
-        collides: ig.Entity.COLLIDES.NEVER,
+        name: 'Schlüssel',
 
 		size: {
-            x: 8,
-            y: 8
+            x: 30,
+            y: 16
         },
+		
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'inventory-item-key.gif', 30, 16 ),
 
-        // At which distance interaction should be triggered
-        interactionDistance: 20,
+        animInit: 'idle',
+
+		animSettings: {
+            idle: {
+                frameTime: 1,
+                sequence: [0]
+            }
+		},
+
+        category: 'inventory',
 
         interact: function( command ){
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Schäbiger Baum!');
-
-            }
-            else if( command === 'Nimm' ){
-
-                ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
+                ig.game.getPlayer().speak('Damit kann ich bestimmt die Haustür aufschließen.');
 
             }
             else if( command === 'Rede' ){
@@ -51,7 +52,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Berm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 

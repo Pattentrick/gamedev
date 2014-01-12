@@ -360,7 +360,7 @@ ig.module(
          */
         isClickOnGameWorld: function(){
 
-            return( ig.input.mouse.y + ig.game.screen.y <= 150 );
+            return( ig.input.mouse.y + ig.game.screen.y <= 135 );
 
         }
 

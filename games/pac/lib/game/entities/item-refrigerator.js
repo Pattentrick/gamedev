@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.item-painting'
+    'game.entities.item-refrigerator'
 )
 .requires(
     'plusplus.core.entity',
@@ -10,15 +10,15 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Painting.
+     * Mülleimer.
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemPainting = ig.global.EntityItemPainting = ig.EntityExtended.extend({
+    ig.EntityItemRefrigerator = ig.global.EntityItemRefrigerator = ig.EntityExtended.extend({
 
-        name: 'Gemälde',
+        name: 'Kühlschrank',
 
         _wmScalable: true,
 
@@ -30,18 +30,28 @@ ig.module(
         },
 
         // At which distance interaction should be triggered
-        interactionDistance: 20,
+        interactionDistance: 1,
 
         interact: function( command ){
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Schäbiger Baum!');
+                ig.game.getPlayer().speak('Der Kühlschrank, er ist anwesend.');
+
+            }
+            else if( command === 'Benutze' ){
+
+                ig.game.getPlayer().speak('Nein, ich habe keinen Hunger.');
+
+            }
+            else if( command === 'Öffne' ){
+
+                ig.game.getPlayer().speak('Nein, ich habe keinen Hunger.');
 
             }
             else if( command === 'Nimm' ){
 
-                ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
+                ig.game.getPlayer().speak('Nein, der passt auch nicht in meine Tasche.');
 
             }
             else if( command === 'Rede' ){

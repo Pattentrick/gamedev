@@ -3,7 +3,8 @@ ig.module(
 )
 .requires(
     'plusplus.core.entity',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'game.entities.inventory-item-egg'
 )
 .defines(function () {
 
@@ -20,7 +21,15 @@ ig.module(
 
         name: 'Kommode',
 
+        state: 'closed',
+
+        looted: false,
+
+        persistent: true,
+
         _wmScalable: true,
+
+        matchingInventoryItem: ig.EntityInventoryItemEgg,
 
         collides: ig.Entity.COLLIDES.NEVER,
 
@@ -36,17 +45,46 @@ ig.module(
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Da ist bestimmt der Haustürschlüssel drin!');
+                if( this.state === 'closed' ){
+
+                    ig.game.getPlayer().speak('Da ist bestimmt der Haustürschlüssel drin!');
+
+                }
+                else {
+
+                    ig.game.getPlayer().speak('Jetzt ist es offen.');
+
+                }
 
             }
             else if( command === 'Öffne' ){
 
-                ig.game.getPlayer().speak('Es klemmt! Ein altes verrostetes Schloß verhindert das Öffnen.');
+                if( this.state === 'closed' ){
+
+                    ig.game.getPlayer().speak('Es klemmt! Ein altes verrostetes Schloß verhindert das Öffnen.');
+
+                }
+
+                if( this.state === 'open' && !this.looted ){
+
+                    ig.game.getPlayer().speak('Da war ein Dino-Ei drin?!');
+
+                    // Add to inventory
+                    ig.game.inventory.addItem( this.matchingInventoryItem );
+
+                    this.looted = 'true';
+
+                }
+                else if( this.state === 'open' && this.looted  ){
+
+                    ig.game.getPlayer().speak('Leer ...');
+
+                }
 
             }
             else if( command === 'Benutze' ){
 
-                ig.game.getPlayer().speak('Es klemmt! Ein altes verrostetes Schloß verhindert das Öffnen.');
+                ig.game.getPlayer().speak('Soll ich drauf tanzen, oder wie?');
 
             }
             else if( command === 'Nimm' ){
@@ -75,7 +113,21 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            if( entity.name === 'Monsterzitrone' ){
+
+                ig.game.getPlayer().speak('Der Zitronensaft hat das Schloß verätzt. Ich kann die Kommode jetzt öffnen.');
+
+                this.state = 'open';
+
+                // remove lemon from iventory
+                ig.game.inventory.removeInventoryItem( entity );
+
+            }
+            else {
+
+                ig.game.getPlayer().speak('... Berschauer.');
+
+            }
 
         }
 		

@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.item-door'
+    'game.entities.item-trashcan'
 )
 .requires(
     'plusplus.core.entity',
@@ -10,15 +10,15 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Door.
+     * Mülleimer.
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityItemDoor = ig.global.EntityItemDoor = ig.EntityExtended.extend({
+    ig.EntityItemTrashcan = ig.global.EntityItemTrashcan = ig.EntityExtended.extend({
 
-        name: 'Haustür',
+        name: 'Mülleimer',
 
         _wmScalable: true,
 
@@ -36,27 +36,27 @@ ig.module(
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Hier geht es raus. Ich muss schnell zum Sport, aber die Tür ist bestimmt verschloßen.');
-
-            }
-            else if( command === 'Öffne' ){
-
-                ig.game.getPlayer().speak('Verschloßen! Ich muss den Schlüssel finden, sonst komme ich zu spät zum Sport.');
+                ig.game.getPlayer().speak('Der Mülleimer, er ist ekelig.');
 
             }
             else if( command === 'Benutze' ){
 
-                ig.game.getPlayer().speak('Verschloßen! Ich muss den Schlüssel finden, sonst komme ich zu spät zum Sport.');
+                ig.game.getPlayer().speak('Nein, ich habe gerade kein Müll.');
 
             }
-            else if( command === 'Rede' ){
+            else if( command === 'Öffne' ){
 
-                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
+                ig.game.getPlayer().speak('Nein. Denn der Mülleimer, er ist ekelig.');
 
             }
             else if( command === 'Nimm' ){
 
                 ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
+
+            }
+            else if( command === 'Rede' ){
+
+                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
 
             }
             else {
@@ -75,16 +75,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            if( entity.name === 'Schlüssel'){
-
-                ig.game.showEnding();
-
-            }
-            else {
-
-                ig.game.getPlayer().speak('... Berschauer.');
-
-            }
+            ig.game.getPlayer().speak('... Berschauer.');
 
         }
 		

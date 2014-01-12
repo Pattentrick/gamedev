@@ -66,33 +66,6 @@ ig.module(
 			}
 		},
 
-        // Lifespan of the textbox (lifespan = number of chars * textspeed )
-        textspeed: 0.08,
-
-        init: function( x, y, settings){
-
-            this.parent( x, y, settings);
-
-/*            var foo = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40, {
-
-                textSettings: {
-
-                    text: 'Lorem ipsum dolor',
-                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
-                    //font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' )
-
-                }
-
-            });
-
-            foo.pos = {
-                x: 300,
-                y: 100
-            }*/
-
-
-        },
-
         /**
          * Displays text in a small bubble
          *
@@ -100,91 +73,38 @@ ig.module(
          */
         speak: function( text ){
 
-            // remove any existing monologue boxes before spawning a new one
-            //this.removeExistingMonologue();
+            var textbubble = ig.game.spawnEntity(ig.EntityConversation, 0, 0);
 
-            this.textbox = ig.game.spawnEntity( ig.EntityTextOutput, 40, 40, {
+            textbubble.durationPerLetter = 0.05;
 
-                textSettings: {
-
-                    text: text,
-                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
-                    //font: new ig.Font( _c.PATH_TO_MEDIA + 'command_preview_font.png' )
-
+            textbubble.messageMoveToSettings = {
+                matchPerformance: true,
+                offset: {
+                    x: 0,
+                    y: -30
+                },
+                align: { x: 0.5,
+                    y: 1
                 }
+            };
 
+            textbubble.addStep( text, 'player', 1, {
+                r: 1,
+                g: 1,
+                b: 1,
+                cornerRadius: 5,
+                pixelPerfect: true,
+                padding: {
+                    x: 5,
+                    y: 4
+                },
+                textSettings: {
+                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
+                },
+                triangleLength: 5
             });
 
-            this.setMonologueTimer( text.length * this.textspeed );
-
-        },
-
-        /**
-         * Sets a timer for the textbox to a specific duration
-         *
-         * @param {number} duration Duration of the textbox display
-         */
-        setMonologueTimer: function( duration ){
-
-            this.timer = new ig.Timer( duration );
-
-        },
-
-        /**
-         * Checks if there is an existing monologue.
-         * Calls handleMonologueEnd if that case is true.
-         */
-        checkForMonologue: function(){
-
-            if( ig.game.getEntitiesByClass( ig.EntityTextOutput ).length > 0 ){
-
-                this.handleMonologueEnd();
-
-            }
-
-        },
-
-        /**
-         * Removes the textbox from the game after
-         * the duration specified with setMonologueTimer
-         * and resets the timer.
-         */
-        handleMonologueEnd: function(){
-
-            if( this.timer ){
-
-                if( this.timer.delta() > 0 ){
-
-                    ig.game.removeEntity( this.textbox );
-
-                    this.timer.reset();
-
-                }
-
-            }
-
-        },
-
-        /**
-         * Removes a existing textbox, if there is one.
-         */
-        removeExistingMonologue: function(){
-
-            if( ig.game.getEntitiesByClass(ig.EntityTextOutput).length > 0 ){
-
-                ig.game.removeEntity( this.textbox );
-
-                this.timer.reset();
-
-            }
-
-        },
-
-        update: function(){
-
-            this.parent();
-
-            this.checkForMonologue();
+            textbubble.trigger();
 
         }
 
