@@ -69,9 +69,10 @@ ig.module(
         /**
          * Displays text in a small bubble
          *
-         * @param {string} text Text that will be displayed
+         * @param   {string} text Text that will be displayed
+         * * @param {string} secondText Text that will be displayed after the first one (if set)
          */
-        speak: function( text ){
+        speak: function( text, secondText ){
 
             var textbubble = ig.game.spawnEntity(ig.EntityConversation, 0, 0);
 
@@ -104,7 +105,27 @@ ig.module(
                 triangleLength: 5
             });
 
-            textbubble.trigger();
+            if( secondText ){
+
+                textbubble.addStep( secondText, 'player', 2, {
+                    r: 1,
+                    g: 1,
+                    b: 1,
+                    cornerRadius: 5,
+                    pixelPerfect: true,
+                    padding: {
+                        x: 5,
+                        y: 4
+                    },
+                    textSettings: {
+                        font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
+                    },
+                    triangleLength: 5
+                });
+
+            }
+
+            textbubble.activate();
 
         }
 

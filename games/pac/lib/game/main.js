@@ -210,9 +210,9 @@ ig.module(
 
             if( this.hasUntoldBackgroundStory ){
 
-                this.tellBackgroundStory();
-
                 this.hasUntoldBackgroundStory = false;
+
+                this.tellBackgroundStory();
 
             }
 

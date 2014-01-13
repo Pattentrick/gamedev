@@ -68,7 +68,7 @@ ig.module(
 
             if( entity.name === 'Wasserflasche' ){
 
-                ig.game.getPlayer().speak('Damit konnte ich die Flasche öffnen! Den Schraubenschlüssel brauche ich wohl nicht mehr.');
+                ig.game.getPlayer().speak('Damit konnte ich die Flasche öffnen!', 'Den Schraubenschlüssel brauche ich wohl nicht mehr.');
 
                 // change bottle state
                 entity.state = 'open';

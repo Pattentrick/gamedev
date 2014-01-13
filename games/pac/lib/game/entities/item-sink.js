@@ -130,7 +130,7 @@ ig.module(
                 // Add to inventory
                 ig.game.inventory.addItem( this.matchingInventoryItem );
 
-                ig.game.getPlayer().speak('Das Dino-Ei hat sich im Wasser aufgelöst. Versteckt im Ei war kein Dino, sondern ein Schlüssel!');
+                ig.game.getPlayer().speak('Das Dino-Ei hat sich im Wasser aufgelöst.', 'Versteckt im Ei war kein Dino, sondern ein Schlüssel!');
 
             }
             else {

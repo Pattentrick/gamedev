@@ -93,7 +93,7 @@ ig.module(
 
             if( entity.name === 'Schraubenschlüssel' ){
 
-                ig.game.getPlayer().speak('Damit konnte ich die Flasche öffnen! Den Schraubenschlüssel brauche ich wohl nicht mehr.');
+                ig.game.getPlayer().speak('Damit konnte ich die Flasche öffnen!', 'Den Schraubenschlüssel brauche ich wohl nicht mehr.');
 
                 // change bottle state
                 this.state = 'open';
