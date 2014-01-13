@@ -3,7 +3,8 @@ ig.module(
 )
 .requires(
     'plusplus.core.entity',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'game.entities.inventory-item-gumex'
 )
 .defines(function () {
 
@@ -29,14 +30,30 @@ ig.module(
             y: 8
         },
 
+        persistent: true,
+
+        state: 'full',
+
+        matchingInventoryItem: ig.EntityInventoryItemGumex,
+
         // At which distance interaction should be triggered
-        interactionDistance: 8,
+        interactionDistance: 12,
 
         interact: function( command ){
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Ein Bett ... nicht schlecht!');
+                if( this.state === 'full' ){
+
+                    ig.game.getPlayer().speak('Unter dem Bett liegt etwas, aber ich komme nicht an.');
+
+                }
+                else {
+
+                    ig.game.getPlayer().speak('Ein Bett. Unglaublich!');
+
+                }
+
 
             }
             else if( command === 'Benutze' ){
@@ -47,6 +64,11 @@ ig.module(
             else if( command === 'Rede' ){
 
                 ig.game.getPlayer().speak('Brehm.');
+
+            }
+            else if( command === 'Ziehe' || command === 'Drücke' ){
+
+                ig.game.getPlayer().speak('Hmpf ... zu schwer.');
 
             }
             else {
@@ -65,7 +87,24 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('Auf keinen Fall.');
+            if( entity.name === 'Stock' ){
+
+                ig.game.getPlayer().speak('Mit dem Stock konnte ich ein komisches Fläschen unter dem Bett rausholen.','Leider ist der Stock dabei zerbrochen.');
+
+                this.state = 'empty';
+
+                // remove lemon from iventory
+                ig.game.inventory.removeInventoryItem( entity );
+
+                // Add gumex to inventory
+                ig.game.inventory.addItem( this.matchingInventoryItem );
+
+            }
+            else {
+
+                ig.game.getPlayer().speak('Auf keinen Fall.');
+
+            }
 
         }
 		

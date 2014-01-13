@@ -33,6 +33,11 @@ ig.module(
             // show transition between levels
             TRANSITION_LEVELS: false,
 
+            // font and text settings
+            FONT: {
+                CHAT_NAME: "monologue_font_10px.png"
+            },
+
             // camera settings
             CAMERA: {
                 AUTO_FOLLOW_PLAYER : false

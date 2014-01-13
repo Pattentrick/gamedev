@@ -99,9 +99,6 @@ ig.module(
                     x: 5,
                     y: 4
                 },
-                textSettings: {
-                    font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
-                },
                 triangleLength: 5
             });
 
@@ -116,9 +113,6 @@ ig.module(
                     padding: {
                         x: 5,
                         y: 4
-                    },
-                    textSettings: {
-                        font: new ig.Font( _c.PATH_TO_MEDIA + 'monologue_font_10px.png' )
                     },
                     triangleLength: 5
                 });

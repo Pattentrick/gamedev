@@ -123,6 +123,11 @@ ig.module(
                 ig.game.inventory.removeInventoryItem( entity );
 
             }
+            else if( entity.name === 'Schraubenschlüssel' ){
+
+                ig.game.getPlayer().speak('Das würde zwar das Schloß kaputt machen,', 'aber ich möchte die Kommode nicht aus Versehen beschädigen.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('... Berschauer.');

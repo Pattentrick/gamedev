@@ -54,7 +54,7 @@ ig.module(
                 // Update room state
                 ig.game.roomState.wrench.isPickedUp = true;
 
-                ig.game.getPlayer().speak('Sowas wollte ich schon immer haben.');
+                ig.game.getPlayer().speak('Das brauche ich, oder?');
 
             }
             else if( command === 'Schau' ){

@@ -24,6 +24,10 @@ ig.module(
 
         collides: ig.Entity.COLLIDES.NEVER,
 
+        persistent: true,
+
+        state: 'gummy',
+
 		size: {
             x: 8,
             y: 8
@@ -41,12 +45,12 @@ ig.module(
             }
             else if( command === 'Öffne' ){
 
-                ig.game.getPlayer().speak('Verschloßen! Ich muss den Schlüssel finden, sonst komme ich zu spät zum Sport.');
+                ig.game.getPlayer().speak('Verschloßen! Ich brauche den Schlüssel, sonst komme ich zu spät zum Sport.');
 
             }
             else if( command === 'Benutze' ){
 
-                ig.game.getPlayer().speak('Verschloßen! Ich muss den Schlüssel finden, sonst komme ich zu spät zum Sport.');
+                ig.game.getPlayer().speak('Verschloßen! Ich brauche den Schlüssel, sonst komme ich zu spät zum Sport.');
 
             }
             else if( command === 'Rede' ){
@@ -75,9 +79,23 @@ ig.module(
          */
         combine: function( entity ){
 
-            if( entity.name === 'Schlüssel'){
+            if( entity.name === 'Schlüssel' && this.state === 'ungummy' ){
 
                 ig.game.showEnding();
+
+            }
+            else if( entity.name === 'Schlüssel' && this.state === 'gummy' ){
+
+                ig.game.getPlayer().speak('Geht nicht!','Eine zähe klebrige Flüssigkeit verstopft das Schlüsselloch');
+
+            }
+            else if( entity.name === 'Kaugummi-Ex' ){
+
+                ig.game.getPlayer().speak('Der Kaugummi-Ex konnte das Schloss frei machen.');
+
+                ig.game.inventory.removeInventoryItem( entity );
+
+                this.state = 'ungummy';
 
             }
             else {
