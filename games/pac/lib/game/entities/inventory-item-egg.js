@@ -92,7 +92,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('... Berschauer.');
+                ig.game.getPlayer().speak('Die Kombination - er macht keinen Sinn.');
 
             }
 

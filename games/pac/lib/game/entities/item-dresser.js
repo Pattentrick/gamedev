@@ -72,7 +72,7 @@ ig.module(
                     // Add to inventory
                     ig.game.inventory.addItem( this.matchingInventoryItem );
 
-                    this.looted = 'true';
+                    this.looted = true;
 
                 }
                 else if( this.state === 'open' && this.looted  ){

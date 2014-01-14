@@ -54,7 +54,7 @@ ig.module(
 			this.parent();
 
 		    // Load starting level
-            this.loadLevelDeferred( 'bedroom', 'spawner-a' );
+            this.loadLevelDeferred( 'kitchen', 'spawner-a' );
 
             // Create new pac user interface instance
             this.gui = new ig.Pacui();

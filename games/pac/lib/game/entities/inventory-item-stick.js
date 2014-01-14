@@ -66,7 +66,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination - er macht keinen Sinn.');
 
         }
 		

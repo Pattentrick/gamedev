@@ -32,6 +32,8 @@ ig.module(
             y: 8
         },
 
+        sealed: true,
+
         state: 'untouched',
 
         matchingInventoryItem: ig.EntityInventoryItemStick,
@@ -53,7 +55,7 @@ ig.module(
             }
             else if( command === 'Öffne' ){
 
-                if( this.state === 'untouched' ){
+                if( this.state === 'untouched' && !this.sealed ){
 
                     ig.game.getPlayer().speak('WTF? Die Kisten sind voller Stöcker ... ich nehme mal einen mit.');
 
@@ -63,11 +65,21 @@ ig.module(
                     this.state = 'touched';
 
                 }
-                else {
+                else if( this.state === 'touched' && !this.sealed ) {
 
                     ig.game.getPlayer().speak('Der Stock, ich will nicht noch einen.');
 
                 }
+                else if( this.state === 'untouched' && this.sealed ) {
+
+                    ig.game.getPlayer().speak('Die Kisten sind zugeklebt.');
+
+                }
+
+            }
+            else if( command === 'Benutze' ){
+
+                ig.game.getPlayer().speak('Und wie?');
 
             }
             else {
@@ -86,7 +98,21 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            if( entity.name === 'Bastelschere' ){
+
+                ig.game.getPlayer().speak('Die Schere ist kaputt gegangen! Immerhin konnte ich das Klebeband durschneiden.', 'Ich kann die Kisten jetzt öffnen.');
+
+                this.sealed = false;
+
+                // remove lemon from iventory
+                ig.game.inventory.removeInventoryItem( entity );
+
+            }
+            else {
+
+                ig.game.getPlayer().speak('Der Kombination, er geht nicht.');
+
+            }
 
         }
 		

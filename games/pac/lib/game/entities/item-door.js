@@ -91,7 +91,7 @@ ig.module(
             }
             else if( entity.name === 'Kaugummi-Ex' ){
 
-                ig.game.getPlayer().speak('Der Kaugummi-Ex hat das Schlüsselloch von der konmische Flüssigkeit befreit.','Danke Kaugummi-Ex!');
+                ig.game.getPlayer().speak('Der Kaugummi-Ex hat das Schlüsselloch von der komische Flüssigkeit befreit.','Danke Kaugummi-Ex!');
 
                 ig.game.inventory.removeInventoryItem( entity );
 

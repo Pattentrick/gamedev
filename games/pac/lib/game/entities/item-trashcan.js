@@ -3,7 +3,8 @@ ig.module(
 )
 .requires(
     'plusplus.core.entity',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'game.entities.inventory-item-scissor'
 )
 .defines(function () {
 
@@ -23,6 +24,12 @@ ig.module(
         _wmScalable: true,
 
         collides: ig.Entity.COLLIDES.NEVER,
+
+        matchingInventoryItem: ig.EntityInventoryItemScissor,
+
+        persistent: true,
+
+        looted: false,
 
 		size: {
             x: 8,
@@ -44,9 +51,19 @@ ig.module(
                 ig.game.getPlayer().speak('Nein, ich habe gerade kein Müll.');
 
             }
-            else if( command === 'Öffne' ){
+            else if( command === 'Öffne' && !this.looted ){
 
-                ig.game.getPlayer().speak('Nein. Denn der Mülleimer, er ist ekelig.');
+                ig.game.getPlayer().speak('Im Mülleimer liegt eine Bastelschere, die könnte nützlich sein.');
+
+                // Add to inventory
+                ig.game.inventory.addItem( this.matchingInventoryItem );
+
+                this.looted = true;
+
+            }
+            else if( command === 'Öffne' && this.looted ){
+
+                ig.game.getPlayer().speak('Nix drin außer Müll.');
 
             }
             else if( command === 'Nimm' ){

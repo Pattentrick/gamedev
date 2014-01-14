@@ -44,6 +44,11 @@ ig.module(
                 ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
 
             }
+            else if( command === 'Benutze' ){
+
+                ig.game.getPlayer().speak('Und wie?');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Brehm.');
@@ -60,7 +65,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination - er macht keinen Sinn.');
 
         }
 		

@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.inventory-item-gumex'
+    'game.entities.inventory-item-scissor'
 )
 .requires(
     'plusplus.core.entity',
@@ -10,22 +10,22 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Inventory item stick.
+     * Inventory item scissor.
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityInventoryItemGumex = ig.global.EntityInventoryItemGumex = ig.EntityExtended.extend({
+    ig.EntityInventoryItemScissor = ig.global.EntityInventoryItemScissor = ig.EntityExtended.extend({
 
-        name: 'Kaugummi-Ex',
+        name: 'Bastelschere',
 
 		size: {
             x: 30,
             y: 16
         },
 		
-		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'inventory-item-gumex.gif', 30, 16 ),
+		animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'inventory-item-scissor.gif', 30, 16 ),
 
         animInit: 'idle',
 
@@ -42,12 +42,7 @@ ig.module(
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Damit kann man Kaugummis entfernen. Wie nützlich!');
-
-            }
-            else if( command === 'Rede' ){
-
-                ig.game.getPlayer().speak('Was ist grau und gestreift? Ein Klebra!');
+                ig.game.getPlayer().speak('Eine Bastelschere für Kinder.');
 
             }
             else {

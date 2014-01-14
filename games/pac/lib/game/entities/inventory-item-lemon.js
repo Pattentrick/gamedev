@@ -60,7 +60,7 @@ ig.module(
 
         combine: function(){
 
-            ig.game.getPlayer().speak('Berm.');
+            ig.game.getPlayer().speak('Die Kombination - er macht keinen Sinn.');
 
         }
 		

@@ -37,6 +37,11 @@ ig.module(
                 ig.game.getPlayer().speak('Boah, die zweite Flasche Vodka hätte ich stecken lassen sollen.');
 
             }
+            else if( command === 'Benutze' ){
+
+                ig.game.getPlayer().speak('Boah, die zweite Flasche Vodka hätte ich stecken lassen sollen.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Berm.');
