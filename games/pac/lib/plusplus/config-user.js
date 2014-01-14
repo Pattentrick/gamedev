@@ -38,6 +38,16 @@ ig.module(
                 CHAT_NAME: "monologue_font_10px.png"
             },
 
+            TEXT_BUBBLE: {
+                PIXEL_PERFECT: true,
+                TRIANGLE_LENGTH: 5,
+                PADDING_X: 5,
+                PADDING_Y: 4,
+                R: 1,
+                G: 1,
+                B: 1
+            },
+
             // camera settings
             CAMERA: {
                 AUTO_FOLLOW_PLAYER : false

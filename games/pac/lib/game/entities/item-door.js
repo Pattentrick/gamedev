@@ -86,12 +86,12 @@ ig.module(
             }
             else if( entity.name === 'Schlüssel' && this.state === 'gummy' ){
 
-                ig.game.getPlayer().speak('Geht nicht!','Eine zähe klebrige Flüssigkeit verstopft das Schlüsselloch');
+                ig.game.getPlayer().speak('Geht nicht!','Eine zähe klebrige Flüssigkeit verstopft das Schlüsselloch.');
 
             }
             else if( entity.name === 'Kaugummi-Ex' ){
 
-                ig.game.getPlayer().speak('Der Kaugummi-Ex konnte das Schloss frei machen.');
+                ig.game.getPlayer().speak('Der Kaugummi-Ex hat das Schlüsselloch von der konmische Flüssigkeit befreit.','Danke Kaugummi-Ex!');
 
                 ig.game.inventory.removeInventoryItem( entity );
 

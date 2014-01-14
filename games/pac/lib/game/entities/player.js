@@ -70,7 +70,7 @@ ig.module(
          * Displays text in a small bubble
          *
          * @param   {string} text Text that will be displayed
-         * * @param {string} secondText Text that will be displayed after the first one (if set)
+         * @param {string} secondText Text that will be displayed after the first one (if set)
          */
         speak: function( text, secondText ){
 
@@ -89,33 +89,11 @@ ig.module(
                 }
             };
 
-            textbubble.addStep( text, 'player', 1, {
-                r: 1,
-                g: 1,
-                b: 1,
-                cornerRadius: 5,
-                pixelPerfect: true,
-                padding: {
-                    x: 5,
-                    y: 4
-                },
-                triangleLength: 5
-            });
+            textbubble.addStep( text, 'player', 1);
 
             if( secondText ){
 
-                textbubble.addStep( secondText, 'player', 2, {
-                    r: 1,
-                    g: 1,
-                    b: 1,
-                    cornerRadius: 5,
-                    pixelPerfect: true,
-                    padding: {
-                        x: 5,
-                        y: 4
-                    },
-                    triangleLength: 5
-                });
+                textbubble.addStep( secondText, 'player', 2);
 
             }
 

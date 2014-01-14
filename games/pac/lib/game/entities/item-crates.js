@@ -43,7 +43,7 @@ ig.module(
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Da stehen zwei Kisten voller Unrat.');
+                ig.game.getPlayer().speak('Da stehen zwei komische Kisten in der Ecke.');
 
             }
             else if( command === 'Rede' ){

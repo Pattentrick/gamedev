@@ -15,8 +15,8 @@ ig.module(
     var _c = ig.CONFIG;
 
     /**
-     * Keeps track of the current state of room and
-     * recreates this state on revisiting the room.
+     * Keeps track of the current state of the room
+     * and recreates this state on revisiting.
      *
      * @class
      * @extends ig.Class
@@ -57,6 +57,7 @@ ig.module(
 
                 if( !this.bottle.isPickedUp ){
 
+                    // spawn bottle
                     ig.game.spawnEntity( this.bottle.class, 180, 103 );
 
                 }
@@ -68,6 +69,7 @@ ig.module(
 
                 if( !this.lemon.isPickedUp ){
 
+                    // spawn lemon
                     ig.game.spawnEntity( this.lemon.class, 182, 78 );
 
                 }
@@ -79,6 +81,7 @@ ig.module(
 
                 if( !this.wrench.isPickedUp ){
 
+                    // spawn wrench
                     ig.game.spawnEntity( this.wrench.class, 149, 69 );
 
                 }

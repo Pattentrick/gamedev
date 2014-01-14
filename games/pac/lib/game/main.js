@@ -42,7 +42,6 @@ ig.module(
 	var Pac = ig.GameExtended.extend({
 
         // Background color of canvas
-        //clearColor: "#330033",
         clearColor: "#000000",
 
         // Contains the name of the current level
@@ -126,18 +125,6 @@ ig.module(
         tellBackgroundStory: function(){
 
             var textbubble = ig.game.spawnEntity(ig.EntityConversation, 0, 0);
-            var settings   = {
-                r: 1,
-                g: 1,
-                b: 1,
-                cornerRadius: 5,
-                pixelPerfect: true,
-                padding: {
-                    x: 5,
-                    y: 4
-                },
-                triangleLength: 5
-            };
 
             textbubble.messageMoveToSettings = {
                 matchPerformance: true,
@@ -151,11 +138,11 @@ ig.module(
                 }
             };
 
-            textbubble.addStep( 'Gestern dick gesoffen ...', 'player', 1, settings );
-            textbubble.addStep( 'Ich erinnere mich an gar nichts mehr.', 'player', 2, settings );
-            textbubble.addStep( 'Wo bin ich hier?!', 'player', 3, settings );
-            textbubble.addStep( 'Niekerken wollte mich doch heute zum Sport abholen!', 'player', 4, settings );
-            textbubble.addStep( 'Ich muss hier schnell raus!', 'player', 5, settings );
+            textbubble.addStep( 'Gestern dick gesoffen ...', 'player', 1);
+            textbubble.addStep( 'Ich erinnere mich an gar nichts mehr.', 'player', 2 );
+            textbubble.addStep( 'Wo bin ich hier?!', 'player', 3 );
+            textbubble.addStep( 'Niekerken wollte mich doch heute zum Sport abholen!', 'player', 4 );
+            textbubble.addStep( 'Ich muss hier schnell raus!', 'player', 5 );
 
             textbubble.trigger();
 
@@ -207,9 +194,9 @@ ig.module(
 
             if( this.hasUntoldBackgroundStory ){
 
-                this.hasUntoldBackgroundStory = false;
-
                 this.tellBackgroundStory();
+
+                this.hasUntoldBackgroundStory = false;
 
             }
 

@@ -128,6 +128,11 @@ ig.module(
                 ig.game.getPlayer().speak('Das würde zwar das Schloß kaputt machen,', 'aber ich möchte die Kommode nicht aus Versehen beschädigen.');
 
             }
+            else if( entity.name === 'Stock' ){
+
+                ig.game.getPlayer().speak('Das würde zwar das Schloß kaputt machen,', 'aber ich möchte die Kommode nicht aus Versehen beschädigen.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('... Berschauer.');
