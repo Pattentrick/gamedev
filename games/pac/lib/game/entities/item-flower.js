@@ -36,12 +36,12 @@ ig.module(
 
             if( command === 'Schau' ){
 
-                ig.game.getPlayer().speak('Sehr gut Blume.');
+                ig.game.getPlayer().speak('Ein wunderschönes Veilchen.');
 
             }
             else if( command === 'Nimm' ){
 
-                ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
+                ig.game.getPlayer().speak('Nein, ich glaube auf die reagiere ich allergisch.');
 
             }
             else if( command === 'Rede' ){
@@ -51,7 +51,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Berm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -65,7 +65,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
         }
 		

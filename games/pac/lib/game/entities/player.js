@@ -3,9 +3,7 @@ ig.module(
 )
 .requires(
     'plusplus.abstractities.player',
-    'game.entities.text-output',
     'plusplus.core.config',
-    'plusplus.core.timer',
     'plusplus.entities.conversation'
 )
 .defines(function () {

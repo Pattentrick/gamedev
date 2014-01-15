@@ -84,7 +84,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Brehm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -110,7 +110,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Der Kombination, er geht nicht.');
+                ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
             }
 

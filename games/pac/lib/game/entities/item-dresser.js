@@ -87,6 +87,11 @@ ig.module(
                 ig.game.getPlayer().speak('Soll ich drauf tanzen, oder wie?');
 
             }
+            else if( command === 'Ziehe' || command === 'Drücke' ){
+
+                ig.game.getPlayer().speak('Bewegt sich kein Stück.');
+
+            }
             else if( command === 'Nimm' ){
 
                 ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
@@ -99,7 +104,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Berm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -135,7 +140,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('... Berschauer.');
+                ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
             }
 

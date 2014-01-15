@@ -44,6 +44,11 @@ ig.module(
                 ig.game.getPlayer().speak('Und wie?');
 
             }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Nein, die finde ich gruselig.');
+
+            }
             else if( command === 'Rede' ){
 
                 ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
@@ -51,7 +56,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Brehm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -65,7 +70,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
         }
 		

@@ -45,6 +45,16 @@ ig.module(
                 ig.game.getPlayer().speak('Eine Bastelschere für Kinder.');
 
             }
+            else if( command === 'Rede' ){
+
+                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
+
+            }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Das besitze ich doch schon.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');

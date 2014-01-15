@@ -56,6 +56,11 @@ ig.module(
 
 
             }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Nein, ich habe selber eins zu Hause.');
+
+            }
             else if( command === 'Benutze' ){
 
                 ig.game.getPlayer().speak('Ich bin nicht müde.');
@@ -63,7 +68,7 @@ ig.module(
             }
             else if( command === 'Rede' ){
 
-                ig.game.getPlayer().speak('Brehm.');
+                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
 
             }
             else if( command === 'Ziehe' || command === 'Drücke' ){
@@ -73,7 +78,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Nö.');
+                ig.game.getPlayer().speak('Der Befehl, ermacht keinen Sinn.');
 
             }
 
@@ -102,7 +107,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Auf keinen Fall.');
+                ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
             }
 

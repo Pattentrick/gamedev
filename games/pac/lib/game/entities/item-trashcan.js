@@ -78,7 +78,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Berm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -92,7 +92,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
         }
 		

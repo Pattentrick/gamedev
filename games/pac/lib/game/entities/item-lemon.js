@@ -83,7 +83,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('Berm.');
+            ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
         }
 		

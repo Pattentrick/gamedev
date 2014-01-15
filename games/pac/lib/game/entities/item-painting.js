@@ -34,26 +34,7 @@ ig.module(
 
         interact: function( command ){
 
-            if( command === 'Schau' ){
-
-                ig.game.getPlayer().speak('Schäbiger Baum!');
-
-            }
-            else if( command === 'Nimm' ){
-
-                ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
-
-            }
-            else if( command === 'Rede' ){
-
-                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
-
-            }
-            else {
-
-                ig.game.getPlayer().speak('Berm.');
-
-            }
+            ig.game.getPlayer().speak('Berm.');
 
         },
 

@@ -54,6 +54,11 @@ ig.module(
                 ig.game.getPlayer().speak('Nein, der passt auch nicht in meine Tasche.');
 
             }
+            else if( command === 'Drücke' || command === 'Ziehe' ){
+
+                ig.game.getPlayer().speak('Bewegt sich kein Stück');
+
+            }
             else if( command === 'Rede' ){
 
                 ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
@@ -61,7 +66,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Berm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -75,7 +80,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
         }
 		

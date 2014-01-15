@@ -75,6 +75,16 @@ ig.module(
                 }
 
             }
+            else if( command === 'Ziehe' || command === 'Drücke' ){
+
+                ig.game.getPlayer().speak('Nein, ich will die Flasche nicht kaputt machen.');
+
+            }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Das besitze ich doch schon.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
@@ -118,7 +128,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('... Berschauer.');
+                ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
             }
 

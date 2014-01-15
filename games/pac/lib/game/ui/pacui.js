@@ -2,7 +2,6 @@ ig.module(
     'game.ui.pacui'
 )
 .requires(
-    'game.ui.cursor',
     // commands
     'game.ui.command-give',
     'game.ui.command-open',
@@ -25,8 +24,7 @@ ig.module(
     var _c = ig.CONFIG;
 
     /**
-     * Spawns all parts of the UI like the
-     * commands and the mouse cursor.
+     * Spawns all parts of the UI.
      *
      * Pacui stands for *P*oint *A*nd *C*lick *U*ser *I*nterface
      *
@@ -37,17 +35,13 @@ ig.module(
     ig.Pacui = ig.Class.extend({
 
         /**
-         * Spawns the commands, the command preview,
-         * the mouse cursor and initializes the inventory
+         * Spawns the commands and the command preview,
          */
         init: function(){
 
             // Commands
             this.spawnCommands();
             this.spawnCommandPreview();
-
-            // Mousecursor
-            this.spawnMouseCursor();
 
         },
 
@@ -85,18 +79,6 @@ ig.module(
         spawnCommandPreview: function(){
 
             ig.game.spawnEntity(ig.CommandPreview, 0, 135);
-
-        },
-
-        /**
-         * Spawns an entity based mouse cursor.
-         *
-         * @require game.ui.cursor
-         *
-         */
-        spawnMouseCursor: function(){
-
-            ig.game.spawnEntity(ig.EntityCursor, 100, 100);
 
         }
 

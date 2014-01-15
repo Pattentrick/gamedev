@@ -41,12 +41,17 @@ ig.module(
             }
             else if( command === 'Benutze' ){
 
-                ig.game.getPlayer().speak('Warum sollte ich das benutzen?');
+                ig.game.getPlayer().speak('Ich habe jetzt keine Lust zu lesen.');
+
+            }
+            else if( command === 'Drücke' || command === 'Ziehe' ){
+
+                ig.game.getPlayer().speak('Bewegt sich kein Stück');
 
             }
             else {
 
-                ig.game.getPlayer().speak('... Berschauer.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 

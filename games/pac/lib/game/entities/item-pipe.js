@@ -49,9 +49,14 @@ ig.module(
                 ig.game.getPlayer().speak('Und wie?');
 
             }
+            else if( command === 'Drücke' || command === 'Drücke' ){
+
+                ig.game.getPlayer().speak('Bloß nicht, das geht sonst noch kaputt.');
+
+            }
             else {
 
-                ig.game.getPlayer().speak('Brehm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -65,7 +70,16 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('Die Kombination - er macht keinen Sinn.');
+            if( entity.name === 'Stock' ){
+
+                ig.game.getPlayer().speak('Rohr + Stock? Dann hätte ich ja einen Rohrstock. Ha!','Bringt mich aber auch nicht weiter.');
+
+            }
+            else {
+
+                ig.game.getPlayer().speak('Die Kombination - er macht keinen Sinn.');
+
+            }
 
         }
 		

@@ -50,6 +50,16 @@ ig.module(
                 ig.game.getPlayer().speak('Was ist grau und gestreift? Ein Klebra!');
 
             }
+            else if( command === 'Öffne' ){
+
+                ig.game.getPlayer().speak('Boah, das Zeug stinkt! Das mache ich schnell wieder zu.');
+
+            }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Das besitze ich doch schon.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');

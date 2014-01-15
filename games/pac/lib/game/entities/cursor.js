@@ -1,47 +1,43 @@
 ig.module(
-    'game.ui.cursor'
+    'game.entities.cursor'
 )
 .requires(
-    'plusplus.core.config',
-    'plusplus.ui.ui-element'
+    'plusplus.core.entity',
+    'plusplus.core.config'
 )
 .defines(function () {
 
 	var _c  = ig.CONFIG;
 
     /**
-     * UI Entity that functions as an animated cursor,
+     * Entity that functions as an animated cursor,
      * which replaces the default browser cursor.
      *
-     * To hide the default cursor,
-     * add "cursor: none;" to the
-     * canvas css.
+     * To hide the default cursor add 'cursor:none;'
+     * to the index.html css block. However this is
+     * still buggy on safari and opera.
      *
      * @class
-     * @extends ig.UIElement
+     * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityCursor = ig.global.EntityCursor = ig.UIElement.extend({
+    ig.EntityCursor = ig.global.EntityCursor = ig.EntityExtended.extend({
 
         name: 'cursor',
+
+        performance: 'moveable',
 
         size: {
             x: 14,
             y: 14
         },
 
+        layerName: 'cursor',
+
         cursorOffset: {
             x: -6,
             y: -6
         },
-
-        frozen: false,
-
-        fixed: false,
-
-        performance: 'moveable',
-
-        zIndex: 10,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'ui/cursor.png', 14, 14 ),
 

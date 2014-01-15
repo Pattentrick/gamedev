@@ -10,13 +10,11 @@ ig.module(
     'game.levels.titlescreen',
     // ending
     'game.levels.ending',
-    // game levels
+    // rooms
     'game.levels.bedroom',
     'game.levels.floor',
     'game.levels.junkroom',
     'game.levels.kitchen',
-    // cursor
-    'game.ui.cursor',
     // enable debug
     'plusplus.debug.debug',
     // command execution
@@ -54,7 +52,7 @@ ig.module(
 			this.parent();
 
 		    // Load starting level
-            this.loadLevelDeferred( 'kitchen', 'spawner-a' );
+            this.loadLevelDeferred( 'bedroom', 'spawner-a' );
 
             // Create new pac user interface instance
             this.gui = new ig.Pacui();
@@ -64,6 +62,9 @@ ig.module(
 
             // Instance the inventory
             this.inventory = new ig.Inventory();
+
+            // Cursor Layer
+            this.setCursorLayer();
 
 		},
 
@@ -158,6 +159,18 @@ ig.module(
         },
 
         /**
+         * Add a new Layer for the cursor to
+         * the game which is above all other layer
+         */
+        setCursorLayer: function(){
+
+            this.addLayer( new ig.Layer('cursor', {
+                zIndex: _c.Z_INDEX_ABOVE_ALL
+            }));
+
+        },
+
+        /**
          * Centers camera on gamescreen when
          * the game runs in fullscreen mode
          */
@@ -217,10 +230,11 @@ ig.module(
 
             this.parent();
 
+            // Cursor Layer
+            this.setCursorLayer();
+
             // Load Titlescreen
             this.loadLevelDeferred( 'titlescreen' );
-
-            ig.game.spawnEntity(ig.EntityCursor, 0, 0);
 
             // Play title theme
             var theme = new ig.Sound( _c.PATH_TO_MEDIA + 'music/title-theme.*' );
@@ -236,6 +250,18 @@ ig.module(
 
             // Leftclick
             ig.input.bind(ig.KEY.MOUSE1, 'click');
+
+        },
+
+        /**
+         * Add a new Layer for the cursor to
+         * the game which is above all other layer
+         */
+        setCursorLayer: function(){
+
+            this.addLayer( new ig.Layer('cursor', {
+                zIndex: _c.Z_INDEX_ABOVE_ALL
+            }));
 
         },
 
@@ -340,8 +366,8 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-		Pac,
-        //Titlescreen,
+		//Pac,
+        Titlescreen,
         60,
 		_c.GAME_WIDTH,
 		_c.GAME_HEIGHT,

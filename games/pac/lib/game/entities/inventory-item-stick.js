@@ -50,6 +50,11 @@ ig.module(
                 ig.game.getPlayer().speak('Stock auch noch mal!');
 
             }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Das besitze ich doch schon.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');

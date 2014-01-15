@@ -39,6 +39,21 @@ ig.module(
                 ig.game.getPlayer().speak('Hier liegt ein hässlicher Teppich.');
 
             }
+            if( command === 'Benutze' ){
+
+                ig.game.getPlayer().speak('Ich wüsste nicht wie.');
+
+            }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Ich hab habe gerade keinen Teppichbedarf.');
+
+            }
+            else if( command === 'Ziehe' || command === 'Drücke' ){
+
+                ig.game.getPlayer().speak('Geht nicht. Ist am Boden festgeklebt.');
+
+            }
             else if( command === 'Rede' ){
 
                 ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
@@ -46,7 +61,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Brehm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -60,7 +75,7 @@ ig.module(
          */
         combine: function( entity ){
 
-            ig.game.getPlayer().speak('... Berschauer.');
+            ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
         }
 		

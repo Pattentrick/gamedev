@@ -58,14 +58,19 @@ ig.module(
                 ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
 
             }
+            else if( command === 'Ziehe' || command === 'Drücke' ){
+
+                ig.game.getPlayer().speak('Verschloßen! Ich brauche den Schlüssel, sonst komme ich zu spät zum Sport.');
+
+            }
             else if( command === 'Nimm' ){
 
-                ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
+                ig.game.getPlayer().speak('Die ist deutlich zu groß für meine Hosentasche.');
 
             }
             else {
 
-                ig.game.getPlayer().speak('Berm.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 
@@ -100,7 +105,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('... Berschauer.');
+                ig.game.getPlayer().speak('Die Kombination, er macht keinen Sinn.');
 
             }
 
