@@ -49,6 +49,11 @@ ig.module(
                 ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
 
             }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Die lasse ich besser wo sie ist.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');

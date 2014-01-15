@@ -42,6 +42,11 @@ ig.module(
                 ig.game.getPlayer().speak('Boah, die zweite Flasche Vodka hätte ich stecken lassen sollen.');
 
             }
+            else if( command === 'Rede' ){
+
+                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');

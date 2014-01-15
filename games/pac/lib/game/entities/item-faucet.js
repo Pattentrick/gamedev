@@ -51,7 +51,7 @@ ig.module(
             }
             else if( command === 'Nimm' ){
 
-                ig.game.getPlayer().speak('Auf keinen Fall.');
+                ig.game.getPlayer().speak('Das wäre Sachbeschädigung.');
 
             }
             else if( command === 'Rede' ){

@@ -78,7 +78,7 @@ ig.module(
             }
             else {
 
-                ig.game.getPlayer().speak('Der Befehl, ermacht keinen Sinn.');
+                ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
 
             }
 

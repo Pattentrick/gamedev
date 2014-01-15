@@ -44,9 +44,19 @@ ig.module(
                 ig.game.getPlayer().speak('Ich habe jetzt keine Lust zu lesen.');
 
             }
+            else if( command === 'Rede' ){
+
+                ig.game.getPlayer().speak('Hallo, ich verkaufe diese feinen Lederjacken.');
+
+            }
             else if( command === 'Drücke' || command === 'Ziehe' ){
 
-                ig.game.getPlayer().speak('Bewegt sich kein Stück');
+                ig.game.getPlayer().speak('Bewegt sich kein Stück.');
+
+            }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Festgeschraubt.');
 
             }
             else {

@@ -16,7 +16,7 @@ ig.module(
     'game.levels.junkroom',
     'game.levels.kitchen',
     // enable debug
-    'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module

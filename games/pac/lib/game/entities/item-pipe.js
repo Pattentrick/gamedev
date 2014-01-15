@@ -54,6 +54,11 @@ ig.module(
                 ig.game.getPlayer().speak('Bloß nicht, das geht sonst noch kaputt.');
 
             }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Das lasse ich lieber bleiben.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');

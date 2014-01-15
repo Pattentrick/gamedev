@@ -82,6 +82,11 @@ ig.module(
                 ig.game.getPlayer().speak('Und wie?');
 
             }
+            else if( command === 'Nimm' ){
+
+                ig.game.getPlayer().speak('Keine Lust die durch die Gegend zu schleppen.');
+
+            }
             else {
 
                 ig.game.getPlayer().speak('Der Befehl, er macht keinen Sinn.');
@@ -100,7 +105,7 @@ ig.module(
 
             if( entity.name === 'Bastelschere' ){
 
-                ig.game.getPlayer().speak('Die Schere ist kaputt gegangen! Immerhin konnte ich das Klebeband durschneiden.', 'Ich kann die Kisten jetzt öffnen.');
+                ig.game.getPlayer().speak('Damit konnte ich die Kisten aufschneiden, leider ist die Schere dabei kaputt gegangen.','Kein Wunder das die im Müll lag.');
 
                 this.sealed = false;
 

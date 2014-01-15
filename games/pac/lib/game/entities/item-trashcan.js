@@ -68,7 +68,7 @@ ig.module(
             }
             else if( command === 'Nimm' ){
 
-                ig.game.getPlayer().speak('Ähhh .. lieber nicht.');
+                ig.game.getPlayer().speak('Ungern.');
 
             }
             else if( command === 'Rede' ){
