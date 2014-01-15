@@ -39,7 +39,7 @@ ig.module(
                 ig.game.getPlayer().speak('Hier liegt ein hässlicher Teppich.');
 
             }
-            if( command === 'Benutze' ){
+            else if( command === 'Benutze' ){
 
                 ig.game.getPlayer().speak('Ich wüsste nicht wie.');
 
