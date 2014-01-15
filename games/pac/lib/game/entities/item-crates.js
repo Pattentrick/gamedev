@@ -105,7 +105,7 @@ ig.module(
 
             if( entity.name === 'Bastelschere' ){
 
-                ig.game.getPlayer().speak('Damit konnte ich die Kisten aufschneiden, leider ist die Schere dabei kaputt gegangen.','Kein Wunder das die im Müll lag.');
+                ig.game.getPlayer().speak('Damit konnte ich die Kisten aufschneiden, dabei ist die Schere leider kaputt gegangen.','Kein Wunder das die im Müll lag.');
 
                 this.sealed = false;
 
