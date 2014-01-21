@@ -21,7 +21,7 @@ ig.module(
 
         name: 'Monsterzitrone',
 
-        collides: ig.Entity.COLLIDES.FIXED,
+        collides: ig.Entity.COLLIDES.NEVER,
 
 		size: {
             x: 6,

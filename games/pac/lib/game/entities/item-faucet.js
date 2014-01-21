@@ -10,7 +10,7 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Dresser.
+     * Faucet.
      *
      * @class
      * @extends ig.EntityExtended

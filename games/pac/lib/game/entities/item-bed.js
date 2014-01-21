@@ -23,7 +23,7 @@ ig.module(
 
         _wmScalable: true,
 
-        collides: ig.Entity.COLLIDES.FIXED,
+        collides: ig.Entity.COLLIDES.NEVER,
 
 		size: {
             x: 8,
@@ -45,7 +45,7 @@ ig.module(
 
                 if( this.state === 'full' ){
 
-                    ig.game.getPlayer().speak('Unter dem Bett liegt etwas, aber ich komme nicht an.');
+                    ig.game.getPlayer().speak('Unter dem Bett liegt etwas, aber ich komme nicht ran.');
 
                 }
                 else {

@@ -4,6 +4,8 @@ ig.module(
 .requires(
 	// include impact++
     'plusplus.core.plusplus',
+    // custom loader
+    'game.components.pacloader',
     // player class
     'game.entities.player',
     // titlescreen
@@ -16,7 +18,7 @@ ig.module(
     'game.levels.junkroom',
     'game.levels.kitchen',
     // enable debug
-    //'plusplus.debug.debug',
+    'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module
@@ -366,13 +368,13 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-		//Pac,
-        Titlescreen,
+		Pac,
+        //Titlescreen,
         60,
 		_c.GAME_WIDTH,
 		_c.GAME_HEIGHT,
 		_c.SCALE,
-		ig.LoaderExtended
+        ig.pacLoader
 	);
 	
 });

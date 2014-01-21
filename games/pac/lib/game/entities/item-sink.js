@@ -11,7 +11,7 @@ ig.module(
 	var _c  = ig.CONFIG;
 
     /**
-     * Dresser.
+     * Sink.
      *
      * @class
      * @extends ig.EntityExtended

@@ -121,7 +121,9 @@ ig.module(
 
             }
             else if( !this.hasActiveCompoundableCommand ){
+
                 this.compoundableEntityName = '';
+
             }
 
         },

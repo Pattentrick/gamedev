@@ -443,6 +443,7 @@ ig.module(
                         if ( conversation && conversation !== this && !interrupted[ conversation.id ] && conversation instanceof ig.EntityConversation && conversation.activated ) {
 
                             interrupted[ conversation.id ] = true;
+
                             conversation.deactivate();
 
                         }

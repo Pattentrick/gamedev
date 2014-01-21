@@ -30,9 +30,6 @@ ig.module(
             GAME_WIDTH_VIEW: 320,
             GAME_HEIGHT_VIEW: 200,
 
-            SCALE_MIN: 1,
-            SCALE_MAX: 4,
-
             // show transition between levels
             TRANSITION_LEVELS: false,
 

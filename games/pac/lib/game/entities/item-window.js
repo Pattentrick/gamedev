@@ -46,7 +46,7 @@ ig.module(
             }
             else if( command === 'Öffne' ){
 
-                ig.game.getPlayer().speak('Ich komme nicht an.');
+                ig.game.getPlayer().speak('Ich komme nicht ran.');
 
             }
             else if( command === 'Nimm' ){

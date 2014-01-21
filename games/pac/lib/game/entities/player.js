@@ -67,10 +67,21 @@ ig.module(
         /**
          * Displays text in a small bubble
          *
-         * @param   {string} text Text that will be displayed
+         * @param {string} text Text that will be displayed
          * @param {string} secondText Text that will be displayed after the first one (if set)
          */
         speak: function( text, secondText ){
+
+            /**
+             * Kill existing conversation entities before
+             * spawning new ones to avoid ghost conversation
+             * entities!
+             */
+            if( ig.game.getEntitiesByClass(ig.EntityConversation)[0] ){
+
+                ig.game.getEntitiesByClass(ig.EntityConversation)[0].kill();
+
+            }
 
             var textbubble = ig.game.spawnEntity(ig.EntityConversation, 0, 0);
 
@@ -91,7 +102,7 @@ ig.module(
 
             if( secondText ){
 
-                textbubble.addStep( secondText, 'player', 2);
+               textbubble.addStep( secondText, 'player', 2);
 
             }
 
