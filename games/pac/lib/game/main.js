@@ -18,7 +18,7 @@ ig.module(
     'game.levels.junkroom',
     'game.levels.kitchen',
     // enable debug
-    'plusplus.debug.debug',
+    // 'plusplus.debug.debug',
     // command execution
     'game.components.command-execution',
     // user interface module
@@ -368,8 +368,7 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-		Pac,
-        //Titlescreen,
+        Titlescreen,
         60,
 		_c.GAME_WIDTH,
 		_c.GAME_HEIGHT,

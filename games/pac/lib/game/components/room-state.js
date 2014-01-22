@@ -4,7 +4,6 @@ ig.module(
 .requires(
     'plusplus.core.config',
     'game.entities.item-lemon',
-    'game.entities.item-block',
     'game.entities.item-bottle',
     'game.entities.item-wrench'
 )
@@ -26,11 +25,6 @@ ig.module(
 
         lemon: {
             class: ig.EntityItemLemon,
-            isPickedUp: false
-        },
-
-        block: {
-            class: ig.EntityItemBlock,
             isPickedUp: false
         },
 

@@ -154,9 +154,9 @@ ig.module(
          */
         renderDefaultCommand: function(){
 
-            // Assigning a value to this.text will draw the value
             this.currentCommand = this.defaultCommand;
 
+            // Assigning a value to this.text will draw the value
             this.text = this.currentCommand + ' ' + this.entityName;
 
         },
@@ -166,7 +166,7 @@ ig.module(
          */
         renderSelectedCommand: function(){
 
-            // Modify text preview on certain commands for proper grammar
+            // Modify command preview on certain commands for proper grammar
             if( this.currentCommand === 'Schau' && this.entityName !== '' ){
 
                 this.text = this.currentCommand + ' ' + this.entityName + ' an';
