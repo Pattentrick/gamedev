@@ -8,7 +8,7 @@ ig.module(
 )
 .defines(function () {
 
-	var _c  = ig.CONFIG;
+	var _c = ig.CONFIG;
 
     /**
      * Lemon item

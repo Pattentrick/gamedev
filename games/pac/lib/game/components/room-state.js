@@ -24,17 +24,17 @@ ig.module(
     ig.RoomState = ig.Class.extend({
 
         lemon: {
-            class: ig.EntityItemLemon,
+            className: ig.EntityItemLemon,
             isPickedUp: false
         },
 
         bottle: {
-            class: ig.EntityItemBottle,
+            className: ig.EntityItemBottle,
             isPickedUp: false
         },
 
         wrench: {
-            class: ig.EntityItemWrench,
+            className: ig.EntityItemWrench,
             isPickedUp: false
         },
 
@@ -52,7 +52,7 @@ ig.module(
                 if( !this.bottle.isPickedUp ){
 
                     // spawn bottle
-                    ig.game.spawnEntity( this.bottle.class, 180, 103 );
+                    ig.game.spawnEntity( this.bottle.className, 180, 103 );
 
                 }
 
@@ -64,7 +64,7 @@ ig.module(
                 if( !this.lemon.isPickedUp ){
 
                     // spawn lemon
-                    ig.game.spawnEntity( this.lemon.class, 182, 78 );
+                    ig.game.spawnEntity( this.lemon.className, 182, 78 );
 
                 }
 
@@ -76,7 +76,7 @@ ig.module(
                 if( !this.wrench.isPickedUp ){
 
                     // spawn wrench
-                    ig.game.spawnEntity( this.wrench.class, 149, 69 );
+                    ig.game.spawnEntity( this.wrench.className, 149, 69 );
 
                 }
 
