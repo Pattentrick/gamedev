@@ -30,19 +30,20 @@ ig.module(
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'bee.gif', 10, 6 ),
 
-        animInit: 'idle',
-
+        /**
+         * In which direction should the bee fly?
+         */
         movementDirection: 'right',
 
         animSettings: {
             idle: {
-                frameTime: 1,
-                sequence: [0]
+                frameTime: 0.1,
+                sequence: [0,1]
             }
         },
 
         maxVelGrounded: {
-            x: 10,
+            x: 5,
             y: 10
         },
 

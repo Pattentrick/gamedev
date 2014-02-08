@@ -5,7 +5,7 @@ ig.module(
 	// include impact++
     'plusplus.core.plusplus',
     // enable debug
-    // 'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // levels
     'game.levels.intro-scene-1',
     // loader

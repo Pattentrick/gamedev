@@ -27,11 +27,20 @@ ig.module(
             y: 18
         },
 
+        performance: 'dynamic',
+
         zIndex: 20,
+
+        isBeeingAbducted: false,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'snail-sitting.gif', 26, 18 ),
 
         animInit: 'happy',
+
+        maxVelGrounded: {
+            x: 10,
+            y: 20
+        },
 
         animSettings: {
             happy: {
@@ -42,6 +51,28 @@ ig.module(
                 frameTime: 1,
                 sequence: [1]
             }
+        },
+
+        /**
+         * Changes the snail animation based
+         * on the isBeeingAbducted flag
+         */
+        setSadFaceAnimation: function(){
+
+            this.isBeeingAbducted = true;
+
+        },
+
+        update: function(){
+
+            this.parent();
+
+            if( this.isBeeingAbducted ){
+
+                this.animOverride('sad');
+
+            }
+
         }
 
     });

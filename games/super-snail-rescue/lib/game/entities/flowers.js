@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.hearts'
+    'game.entities.flowers'
 )
 .requires(
     'plusplus.core.entity',
@@ -10,29 +10,31 @@ ig.module(
     var _c  = ig.CONFIG;
 
     /**
-     * The floating heart above the panda and the snail.
+     * Some flowers on the meadow.
      *
      * @class
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityHearts = ig.global.EntityHearts = ig.EntityExtended.extend({
+    ig.EntityFlowers = ig.global.EntityFlowers = ig.EntityExtended.extend({
 
         collides: ig.Entity.COLLIDES.NEVER,
 
         size: {
-            x: 13,
-            y: 18
+            x: 44,
+            y: 8
         },
 
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'hearts.gif', 13, 18 ),
+        zIndex: 20,
 
-        animInit: 'romantic',
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'flowers.gif', 44, 8 ),
+
+        animInit: 'idle',
 
         animSettings: {
-            romantic: {
+            idle: {
                 frameTime: 1,
-                sequence: [3,0,1,2]
+                sequence: [0]
             }
         }
 

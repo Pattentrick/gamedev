@@ -25,30 +25,45 @@ ig.module(
 
         timer: new ig.Timer(),
 
-        zIndex: 10,
+        zIndex: 15,
 
         /**
          * Seconds after which the abduction starts.
          *
-         * @default
          * @readonly
          */
-        abductionTime: 1,
+        abductionTime: 10,
+
+        /**
+         * How long in seconds should the UFO lurk
+         *
+         * @readonly
+         */
+        lurkingTime: 2,
+
+        /**
+         * How long in seconds should
+         * the UFO wait for takeoff
+         *
+         * @readonly
+         */
+        takeOffTime: 1,
 
         /**
          * If the UFO already starts
          * to approach the snail
-         *
-         * @default
          */
         isApproaching: false,
 
         /**
-         * If the UFO abducts the snail right now
-         *
-         * @default
+         * If the UFO abducts the
+         * snail right now
          */
         hasAbductioninProgress: false,
+
+        isLurking: false,
+
+        readyForTakeOff: false,
 
         size: {
             x: 92,
@@ -72,7 +87,7 @@ ig.module(
 
         maxVelGrounded: {
             x: 10,
-            y: 15
+            y: 20
         },
 
         /**
@@ -87,6 +102,9 @@ ig.module(
 
         },
 
+        /**
+         * Moves the UFO towards the snail.
+         */
         approachTheSnail: function(){
 
             this.moveToDown();
@@ -95,18 +113,76 @@ ig.module(
 
         },
 
+        /**
+         * Returns true if the UFo is near enough to abduct the snail.
+         *
+         * @returns boolean
+         */
         hasReachedAbductionDistance: function(){
 
             return ( this.pos.y >= 36 )
 
         },
 
+        /**
+         * Sets the hasAbductioninProgress flag to
+         * true, so the UFO graphic changes, and
+         * starts the abduction sequence.
+         *
+         */
         abductTheSnail: function(){
 
-            this.hasAbductioninProgress = true;
+            var snail = ig.game.getEntitiesByClass(ig.EntitySnailSitting)[0];
+            var panda = ig.game.getEntitiesByClass(ig.EntityPandaSitting)[0];
 
-            // no more love for you panda!
-            ig.game.getEntitiesByClass(ig.EntityHearts)[0].kill();
+            if( !this.readyForTakeOff ){
+
+                // set sad animations
+                snail.setSadFaceAnimation();
+                panda.setSadFaceAnimation();
+
+                // kill hearts
+                ig.game.getEntitiesByClass(ig.EntityHearts)[0].kill();
+
+                this.readyForTakeOff = true;
+
+                this.takeOffTimer = new ig.Timer();
+
+            }
+            else if( this.readyForTakeOff && this.takeOffTimer.delta() >= this.takeOffTime ){
+
+                this.hasAbductioninProgress = true;
+
+                // lift up the snail and the UFO!
+                this.moveToUp();
+                snail.moveToUp();
+
+            }
+
+        },
+
+        /**
+         * Once the UFo is near enough to abduct the snail,
+         * wait a few seconds before abducting the snail.
+         */
+        lurkTheSnail: function(){
+
+            if( !this.isLurking ){
+
+                this.lurkTimer = new ig.Timer();
+
+                this.isLurking = true;
+
+            }
+            else {
+
+                if( this.lurkTimer.delta() >= this.lurkingTime && !this.hasAbductioninProgress ){
+
+                    this.abductTheSnail();
+
+                }
+
+            }
 
         },
 
@@ -114,21 +190,24 @@ ig.module(
 
             this.parent();
 
+            // Is it time for abduction? If yes, approach the snail!
             if( this.isAbductionTime() && !this.isApproaching ){
 
                 this.approachTheSnail();
 
             }
 
+            // UFO is near enough? Lurk the snail!
             if( this.isApproaching && this.hasReachedAbductionDistance() && !this.hasAbductioninProgress ){
 
                 this.moveToStop();
 
-                this.abductTheSnail();
+                this.lurkTheSnail();
 
             }
 
-            if( this.hasAbductioninProgress ){
+            // show UFO beam
+            if( this.readyForTakeOff ){
 
                 this.animOverride('abducting');
 

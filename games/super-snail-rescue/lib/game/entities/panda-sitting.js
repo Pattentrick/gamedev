@@ -1,6 +1,6 @@
 ig.module(
-    'game.entities.panda-sitting'
-)
+        'game.entities.panda-sitting'
+    )
 .requires(
     'plusplus.core.entity',
     'plusplus.core.config'
@@ -26,6 +26,20 @@ ig.module(
             y: 28
         },
 
+        zIndex: 20,
+
+        timer: new ig.Timer(),
+
+        /**
+         * Set to ture to display a sad panda
+         */
+        isLonelyPanda: false,
+
+        /**
+         * Time in seconds on how long this scene is
+         */
+        sceneDuration: 25,
+
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'panda-sitting.gif', 21, 28 ),
 
         animInit: 'idle',
@@ -34,7 +48,36 @@ ig.module(
             idle: {
                 frameTime: 1,
                 sequence: [0]
+            },
+            sad: {
+                frameTime: 1,
+                sequence: [2]
             }
+        },
+
+        setSadFaceAnimation: function(){
+
+            this.isLonelyPanda = true;
+
+        },
+
+        update: function(){
+
+            this.parent();
+
+            if( this.isLonelyPanda ){
+
+                this.animOverride('sad');
+
+            }
+
+            if( this.timer.delta() >= this.sceneDuration ){
+
+                // TODO: load the next level
+                console.log('end of scene');
+
+            }
+
         }
 
     });
