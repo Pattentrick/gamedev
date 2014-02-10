@@ -93,7 +93,8 @@ ig.module(
                     x: 0,
                     y: -30
                 },
-                align: { x: 0.5,
+                align: {
+                    x: 0.5,
                     y: 1
                 }
             };

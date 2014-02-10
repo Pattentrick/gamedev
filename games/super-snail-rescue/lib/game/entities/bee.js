@@ -28,6 +28,8 @@ ig.module(
             y: 6
         },
 
+        hasMovementDirection: false,
+
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'bee.gif', 10, 6 ),
 
         /**
@@ -51,14 +53,22 @@ ig.module(
 
             this.parent();
 
-            if( this.movementDirection === 'right' ){
+            // just call moveTo once
 
-                this.moveToRight();
+            if( !this.hasMovementDirection ){
 
-            }
-            else {
+                if( this.movementDirection === 'right' ){
 
-                this.moveToLeft();
+                    this.moveToRight();
+
+                }
+                else {
+
+                    this.moveToLeft();
+
+                }
+
+                this.hasMovementDirection = true;
 
             }
 

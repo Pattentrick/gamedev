@@ -76,12 +76,12 @@ ig.module(
 
         animSettings: {
             idle: {
-                frameTime: 1,
-                sequence: [0]
+                frameTime: 0.1,
+                sequence: [0,1,2]
             },
             abducting: {
-                frameTime: 1,
-                sequence: [1]
+                frameTime: 0.1,
+                sequence: [3,4,5]
             }
         },
 
