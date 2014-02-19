@@ -1,9 +1,10 @@
 ig.module(
-        'game.entities.panda-sitting'
-    )
+    'game.entities.panda-sitting'
+)
 .requires(
     'plusplus.core.entity',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'game.entities.thought-bubble'
 )
 .defines(function () {
 
@@ -19,8 +20,6 @@ ig.module(
      */
     ig.EntityPandaSitting = ig.global.EntityPandaSitting = ig.EntityExtended.extend({
 
-        collides: ig.Entity.COLLIDES.NEVER,
-
         size: {
             x: 21,
             y: 28
@@ -31,18 +30,37 @@ ig.module(
         timer: new ig.Timer(),
 
         /**
-         * Set to ture to display a sad panda
+         * The thought bubble entity.
+         *
+         * @type object|null
+         */
+        thoughtBubble: null,
+
+        /**
+         * True when the panda thinks.
+         *
+         * @type boolean
+         */
+        isThinking: false,
+
+        /**
+         * Seconds after which the new level is loaded.
+         *
+         * @type boolean
+         */
+        timeToLoadLevel: 4,
+
+        /**
+         * Set to ture to display a sad panda.
          */
         isLonelyPanda: false,
 
         /**
-         * Time in seconds on how long this scene is
+         * After how many the thought bubble should appear.
          */
-        sceneDuration: 25,
+        durationUntilThinking: 22,
 
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'panda-sitting.gif', 21, 28 ),
-
-        animInit: 'idle',
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'panda-sitting.png', 21, 28 ),
 
         animSettings: {
             idle: {
@@ -52,12 +70,37 @@ ig.module(
             sad: {
                 frameTime: 1,
                 sequence: [2]
+            },
+            thinking: {
+                frameTime: 1,
+                sequence: [3]
             }
         },
 
+        /**
+         * Ovverides the entity animation with a sad face.
+         */
         setSadFaceAnimation: function(){
 
-            this.isLonelyPanda = true;
+            this.animOverride('sad', {
+                lock: true
+            });
+
+        },
+
+        /**
+         * Resets the timer, spawns the thought bubble
+         * entity and overrides the face animation
+         */
+        enableThinking: function(){
+
+            this.timer.reset();
+            this.isThinking = true;
+            this.thoughtBubble = ig.game.spawnEntity(ig.EntityThoughtBubble, 120, 47);
+
+            this.animOverride('thinking', {
+                lock: true
+            });
 
         },
 
@@ -65,16 +108,15 @@ ig.module(
 
             this.parent();
 
-            if( this.isLonelyPanda ){
+            if( this.timer.delta() >= this.durationUntilThinking && !this.isThinking ){
 
-                this.animOverride('sad');
+                this.enableThinking();
 
             }
 
-            if( this.timer.delta() >= this.sceneDuration ){
+            if( this.isThinking && this.timer.delta() >= this.timeToLoadLevel ){
 
-                // TODO: load the next level
-                console.log('end of scene');
+                console.log('load level');
 
             }
 

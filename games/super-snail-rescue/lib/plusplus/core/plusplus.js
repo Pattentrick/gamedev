@@ -233,10 +233,18 @@ ig.module(
              */
             resize: function(width, height, scale, force) {
 
-                this.width = width * ig.ua.pixelRatio;
-                this.height = height * ig.ua.pixelRatio;
+                var modifier;
 
-                if (typeof scale !== 'undefined' && scale !== null) {
+                if( ig.ua.pixelRatio > 1 && (!this.context.webkitBackingStorePixelRatio || this.context.webkitBackingStorePixelRatio > 1) ) {
+                    modifier = ig.ua.pixelRatio;
+                } else {
+                    modifier = 1;
+                }
+
+                this.width = width * modifier;
+                this.height = height * modifier;
+
+                if ( typeof scale !== 'undefined' && scale !== null ) {
 
                     this.scale = scale;
 
@@ -249,20 +257,20 @@ ig.module(
 
                 this.canvas.width = this.realWidth;
                 this.canvas.height = this.realHeight;
-                this.canvas.style.width = Math.round(this.realWidth / ig.ua.pixelRatio) + "px";
-                this.canvas.style.height = Math.round(this.realHeight / ig.ua.pixelRatio) + "px";
+                this.canvas.style.width = Math.round(this.realWidth / modifier) + "px";
+                this.canvas.style.height = Math.round(this.realHeight / modifier) + "px";
 
                 this.size = Math.min(this.width, this.height);
 
                 // switch to crisp scaling when using a scale other than 1
 
-                if (this.scale !== 1 && _c.AUTO_CRISP_SCALING) {
+                if ( this.scale !== 1 && _c.AUTO_CRISP_SCALING ) {
 
                     ig.System.scaleMode = ig.System.SCALE.CRISP;
 
                 }
 
-                ig.System.scaleMode(this.canvas, this.context);
+                ig.System.scaleMode( this.canvas, this.context );
 
                 this.onResized.dispatch(force);
 

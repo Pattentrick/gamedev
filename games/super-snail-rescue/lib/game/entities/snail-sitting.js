@@ -20,8 +20,6 @@ ig.module(
      */
     ig.EntitySnailSitting = ig.global.EntitySnailSitting = ig.Character.extend({
 
-        collides: ig.Entity.COLLIDES.NEVER,
-
         size: {
             x: 26,
             y: 18
@@ -38,7 +36,7 @@ ig.module(
         animInit: 'happy',
 
         maxVelGrounded: {
-            x: 10,
+            x: 15,
             y: 20
         },
 
@@ -52,6 +50,8 @@ ig.module(
                 sequence: [1]
             }
         },
+
+        animAutomatic: false,
 
         /**
          * Changes the snail animation based

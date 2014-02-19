@@ -18,12 +18,12 @@ ig.module(
      */
     ig.EntityCrop = ig.global.EntityCrop = ig.EntityExtended.extend({
 
-        collides: ig.Entity.COLLIDES.NEVER,
-
         size: {
             x: 320,
             y: 200
         },
+
+        highPerformance: true,
 
         zIndex: 100,
 

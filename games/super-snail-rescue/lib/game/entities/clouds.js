@@ -19,8 +19,6 @@ ig.module(
      */
     ig.EntityClouds = ig.global.EntityClouds = ig.Character.extend({
 
-        collides: ig.Entity.COLLIDES.NEVER,
-
         performance: 'dynamic',
 
         size: {

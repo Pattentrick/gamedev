@@ -19,8 +19,6 @@ ig.module(
      */
     ig.EntityUfo = ig.global.EntityUfo = ig.Character.extend({
 
-        collides: ig.Entity.COLLIDES.NEVER,
-
         performance: 'dynamic',
 
         timer: new ig.Timer(),
@@ -31,13 +29,15 @@ ig.module(
          * Seconds after which the abduction starts.
          *
          * @readonly
+         *
          */
-        abductionTime: 10,
+        abductionTime: 7,
 
         /**
          * How long in seconds should the UFO lurk
          *
          * @readonly
+         *
          */
         lurkingTime: 2,
 
@@ -46,23 +46,44 @@ ig.module(
          * the UFO wait for takeoff
          *
          * @readonly
+         *
          */
         takeOffTime: 1,
 
         /**
          * If the UFO already starts
          * to approach the snail
+         *
+         * @type Boolean
+         *
          */
         isApproaching: false,
 
         /**
          * If the UFO abducts the
          * snail right now
+         *
+         * @type Boolean
+         *
          */
         hasAbductioninProgress: false,
 
+        /**
+         * If the UFO lurks the
+         * snail right now
+         *
+         * @type Boolean
+         *
+         */
         isLurking: false,
 
+        /**
+         * If the UFO is ready
+         * for take off
+         *
+         * @type Boolean
+         *
+         */
         readyForTakeOff: false,
 
         size: {
@@ -71,8 +92,6 @@ ig.module(
         },
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'ufo.png', 92, 77 ),
-
-        animInit: 'idle',
 
         animSettings: {
             idle: {
@@ -86,7 +105,7 @@ ig.module(
         },
 
         maxVelGrounded: {
-            x: 10,
+            x: 15,
             y: 20
         },
 
@@ -155,7 +174,10 @@ ig.module(
 
                 // lift up the snail and the UFO!
                 this.moveToUp();
+                this.moveToRight();
+
                 snail.moveToUp();
+                snail.moveToRight();
 
             }
 
@@ -185,6 +207,8 @@ ig.module(
             }
 
         },
+
+        animAutomatic: false,
 
         update: function(){
 
