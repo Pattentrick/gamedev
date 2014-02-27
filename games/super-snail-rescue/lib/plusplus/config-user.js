@@ -30,8 +30,7 @@ ig.module(
             GAME_WIDTH_VIEW: 320,
             GAME_HEIGHT_VIEW: 200,
 
-            // show transition between levels
-            TRANSITION_LEVELS: true,
+            TRANSITIONER_COLOR: "#000000",
 
             // camera settings
             CAMERA: {

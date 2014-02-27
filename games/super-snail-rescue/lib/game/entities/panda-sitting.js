@@ -4,7 +4,8 @@ ig.module(
 .requires(
     'plusplus.core.entity',
     'plusplus.core.config',
-    'game.entities.thought-bubble'
+    'game.entities.thought-bubble',
+    'game.levels.intro-scene-2'
 )
 .defines(function () {
 
@@ -32,21 +33,21 @@ ig.module(
         /**
          * The thought bubble entity.
          *
-         * @type object|null
+         * @type Object|Null
          */
         thoughtBubble: null,
 
         /**
          * True when the panda thinks.
          *
-         * @type boolean
+         * @type Boolean
          */
         isThinking: false,
 
         /**
          * Seconds after which the new level is loaded.
          *
-         * @type boolean
+         * @type Boolean
          */
         timeToLoadLevel: 4,
 
@@ -59,6 +60,13 @@ ig.module(
          * After how many the thought bubble should appear.
          */
         durationUntilThinking: 22,
+
+        /**
+         * If the game is loading a new level.
+         *
+         * @type Boolean
+         */
+        hasNewLevelToLoad: false,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'panda-sitting.png', 21, 28 ),
 
@@ -114,9 +122,10 @@ ig.module(
 
             }
 
-            if( this.isThinking && this.timer.delta() >= this.timeToLoadLevel ){
+            if( this.isThinking && this.timer.delta() >= this.timeToLoadLevel && !this.hasNewLevelToLoad ){
 
-                console.log('load level');
+                this.hasNewLevelToLoad = true;
+                ig.game.loadLevelDeferred( 'intro-scene-2' );
 
             }
 
