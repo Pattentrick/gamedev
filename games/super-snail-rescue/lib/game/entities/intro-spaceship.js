@@ -4,7 +4,10 @@ ig.module(
 .requires(
     'plusplus.core.entity',
     'plusplus.abstractities.character',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'plusplus.entities.explosion',
+    'game.entities.particle-color-liftoff',
+    'game.levels.title'
 )
 .defines(function () {
 
@@ -67,7 +70,9 @@ ig.module(
             }
 
             if( this.timer.delta() >= 8 ){
-                console.log('load title');
+
+                ig.game.loadLevelDeferred( 'title' );
+
             }
 
         },
@@ -76,7 +81,21 @@ ig.module(
 
             this.hasLiftoff = true;
 
+            // bring da roof down!
             ig.game.camera.shake(4,3);
+
+            // spawn lift off explosion
+            var explosion = ig.game.spawnEntity(ig.EntityExplosion, this.pos.x, this.pos.y + 10, {
+                spawnCountMax: 20,
+                spawnSettings: {
+                    vel: {
+                        x: -200,
+                        y: -200
+                    },
+                    animTileOffset: 16
+                },
+                spawningEntity: ig.EntityParticleColorLiftoff
+            });
 
             this.animSettings.idle.frameTime = 0.3;
 

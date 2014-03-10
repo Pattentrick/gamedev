@@ -49,7 +49,7 @@ ig.module(
          *
          * @type Boolean
          */
-        timeToLoadLevel: 4,
+        timeToLoadLevel: 5,
 
         /**
          * Set to ture to display a sad panda.

@@ -65,7 +65,7 @@ ig.module(
              * @override
              * @see ig.CONFIG.Z_INDEX_ABOVE_ALL
              */
-            zIndex: _c.Z_INDEX_ABOVE_ALL,
+            zIndex: 5,
 
             /**
              * Particle performance should allow for full collision map interaction.

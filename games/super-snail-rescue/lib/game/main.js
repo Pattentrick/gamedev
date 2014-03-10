@@ -8,6 +8,8 @@ ig.module(
     'plusplus.debug.debug',
     // levels
     'game.levels.intro-scene-1',
+    'game.levels.intro-scene-2',
+    'game.levels.title',
     // loader
     'game.components.ssrloader'
 )
