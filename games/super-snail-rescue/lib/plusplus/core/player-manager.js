@@ -463,6 +463,18 @@ ig.module(
 
                     this.entity.handleInput();
 
+                    /**
+                     * ATTENTION: This return will result
+                     * in no additional input handling by
+                     * the player manager.
+                     *
+                     * This seems the best way to implement
+                     * own moveTo-mechanics regarding to
+                     * the movement borders.
+                     *
+                     */
+                    return;
+
                 }
 
                 // horizontal movement
@@ -471,7 +483,7 @@ ig.module(
 
                     this.entity.moveToRight();
 
-                } else if (ig.input.state('left')) {
+                } else if (ig.input.state('left') && x === false ) {
 
                     this.entity.moveToLeft();
 

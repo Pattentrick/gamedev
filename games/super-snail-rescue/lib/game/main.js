@@ -10,8 +10,15 @@ ig.module(
     'game.levels.intro-scene-1',
     'game.levels.intro-scene-2',
     'game.levels.title',
+    'game.levels.starfield',
     // loader
-    'game.components.ssrloader'
+    'game.components.ssrloader',
+    // level scroller
+    'game.entities.level-scroller',
+    // player
+    'game.entities.player',
+    // movement border
+    'game.entities.movement-border'
 )
 // define the main module
 .defines(function () {
@@ -21,8 +28,8 @@ ig.module(
     // config variable
     var _c = ig.CONFIG;
 
-    // Game instance
-	var introScene1 = ig.GameExtended.extend({
+    // opening and title instance
+	var openingAndTitle = ig.GameExtended.extend({
 
         // Background color of canvas
         clearColor: "#000000",
@@ -69,10 +76,111 @@ ig.module(
 
 	});
 
+    var superSnailRescue = ig.GameExtended.extend({
+
+        // Background color of canvas
+        clearColor: "#000000",
+
+        init: function () {
+
+            this.parent();
+
+            // Load starting level
+            this.loadLevelDeferred( 'starfield' );
+
+        },
+
+        inputStart: function(){
+
+            ig.input.bind(ig.KEY.LEFT_ARROW, 'left');
+            ig.input.bind(ig.KEY.RIGHT_ARROW, 'right');
+            ig.input.bind(ig.KEY.UP_ARROW, 'up');
+            ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
+
+            ig.input.bind(ig.KEY.C, 'fire');
+
+        },
+
+        inputEnd: function(){
+
+            ig.input.bind(ig.KEY.LEFT_ARROW, 'left');
+            ig.input.bind(ig.KEY.RIGHT_ARROW, 'right');
+            ig.input.bind(ig.KEY.UP_ARROW, 'up');
+            ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
+
+            ig.input.bind(ig.KEY.C, 'fire');
+
+        },
+
+        buildLevel: function() {
+
+            this.parent();
+
+            // Spawn the level scroller
+            ig.game.spawnEntity(ig.EntityLevelScroller, 156, 96);
+
+            // Spawn the movement borders
+            this.spawnMovementBorders();
+
+            // Spawn the ship of the player
+            this.player = ig.game.spawnEntity(ig.EntityPlayer, 50, 96);
+
+            // Follow the level scroller with the camera
+            this.camera.follow( this.getEntityByName('levelScroller'), true, true );
+
+        },
+
+        /**
+         * Spawns border entities which prevent the
+         * player ship from leaving the screen.
+         *
+         */
+        spawnMovementBorders: function(){
+
+            // Top border
+            ig.game.spawnEntity(ig.EntityMovementBorder, 0, 0, {
+                name: 'movementBorderTop',
+                size: {
+                    x: 320,
+                    y: 1
+                }
+            });
+
+            // Bottom border
+            ig.game.spawnEntity(ig.EntityMovementBorder, 0, 200, {
+                name: 'movementBorderBottom',
+                size: {
+                    x: 320,
+                    y: 1
+                }
+            });
+
+            // Left border
+            ig.game.spawnEntity(ig.EntityMovementBorder, 0, 0, {
+                name: 'movementBorderLeft',
+                size: {
+                    x: 1,
+                    y: 200
+                }
+            });
+
+            // Right border
+            ig.game.spawnEntity(ig.EntityMovementBorder, 320, 0, {
+                name: 'movementBorderRight',
+                size: {
+                    x: 1,
+                    y: 200
+                }
+            });
+
+        }
+
+    });
+
     // Start up game
 	ig.main(
 		'#canvas',
-        introScene1,
+        superSnailRescue,
         60,
 		_c.GAME_WIDTH_VIEW,
 		_c.GAME_HEIGHT_VIEW,

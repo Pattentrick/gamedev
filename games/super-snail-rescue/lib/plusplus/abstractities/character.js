@@ -2637,8 +2637,12 @@ ig.module(
                 if (this.currentAnim !== anim) {
 
                     this.currentAnim = anim;
-                    this.currentAnim.playFromStart();
 
+                    if( this.currentAnim ) {
+
+                        this.currentAnim.playFromStart();
+
+                    }
                 }
 
             }

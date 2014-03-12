@@ -24,7 +24,7 @@ ig.module(
 
         spawningEntity: ig.EntityParticleColorRandom,
 
-        // spawn no more than 50 at a time
+        // spawn no more than 30 at a time
 
         spawnCountMax: 30,
 
