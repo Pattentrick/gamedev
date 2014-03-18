@@ -176,7 +176,7 @@ ig.module(
              * Cast activate by animation 'shoot' while moving.
              * @override
              */
-            activateCastSettings: {
+            activatecastSettings: {
                 animName: 'shoot'
             },
 
@@ -368,8 +368,11 @@ ig.module(
                     }
 
                     // flip entity to projectile
+                    if( this.entity.canFlipX && this.entity.canFlipX ){
 
-                    this.entity.lookAt(projectile);
+                        this.entity.lookAt(projectile);
+
+                    }
 
                 }
 

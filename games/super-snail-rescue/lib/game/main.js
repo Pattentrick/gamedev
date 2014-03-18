@@ -97,7 +97,7 @@ ig.module(
             ig.input.bind(ig.KEY.UP_ARROW, 'up');
             ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
 
-            ig.input.bind(ig.KEY.C, 'fire');
+            ig.input.bind(ig.KEY.C, 'shoot');
 
         },
 
@@ -108,7 +108,7 @@ ig.module(
             ig.input.bind(ig.KEY.UP_ARROW, 'up');
             ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
 
-            ig.input.bind(ig.KEY.C, 'fire');
+            ig.input.bind(ig.KEY.C, 'shoot');
 
         },
 

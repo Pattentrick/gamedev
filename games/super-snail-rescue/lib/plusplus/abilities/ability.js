@@ -379,7 +379,7 @@ ig.module(
              * @type Boolean
              * @default
              */
-            faceTarget: true,
+            faceTarget: false,
 
             //
             /**
@@ -629,7 +629,7 @@ ig.module(
 
                     if (this.faceTarget) {
 
-                        this.entity.lookAt(this.entityTarget);
+                       this.entity.lookAt(this.entityTarget);
 
                     }
 
@@ -1039,6 +1039,7 @@ ig.module(
                     if (animName && !settings.animOmniDirectional) {
 
                         animName = this.entity.getDirectionalAnimName(animName);
+
 
                     }
 

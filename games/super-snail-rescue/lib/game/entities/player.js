@@ -6,7 +6,9 @@ ig.module(
     'plusplus.core.config',
     'plusplus.entities.conversation',
     'game.entities.particle-storm-horizontal',
-    'game.entities.particle-color-liftoff'
+    'game.entities.particle-color-liftoff',
+    'game.entities.particle-jetengine',
+    'game.abilities.plasma-gun'
 )
 .defines(function () {
 
@@ -25,6 +27,8 @@ ig.module(
             x: 32,
             y: 16
         },
+
+        zIndex: 100,
 
         canFlipX: false,
 
@@ -71,51 +75,72 @@ ig.module(
 
         animSettings: {
             idle: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [0,1]
             },
             idleDown: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [0,1]
             },
             idleLeft: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [0,1]
             },
             idleRight: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [0,1]
             },
             idleUp: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [0,1]
             },
             moveDown: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [2,3]
             },
             moveUp: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [4,5]
             },
             moveLeft: {
-                frameTime: 0.4,
+                frameTime: 0.1,
                 sequence: [0,1]
             },
             moveRight: {
-                frameTime: 0.4,
+                frameTime: 0.1,
+                sequence: [0,1]
+            },
+            shootDown: {
+                frameTime: 0.1,
+                sequence: [2,3]
+            },
+            shootUp: {
+                frameTime: 0.1,
+                sequence: [4,5]
+            },
+            shootLeft: {
+                frameTime: 0.1,
+                sequence: [0,1]
+            },
+            shootRight: {
+                frameTime: 0.1,
                 sequence: [0,1]
             }
         },
 
-        animsExpected: [ 'idle', 'move' ],
-
         jetEngine: null,
 
-        init: function(x, y, settings) {
+        initProperties: function() {
 
-            this.parent(x, y, settings);
+            this.parent();
 
+            // Init the plasma gun
+            this.shoot = new ig.PlasmaGun(this);
+
+            // Init the shoot ability
+            this.abilities.addDescendants([this.shoot]);
+
+            // Spawn the jet engine
             this.jetEngine = ig.game.spawnEntity(ig.EntityParticleStormHorizontal, this.pos.x, this.pos.y, {
                 size: {
                     x: 1,
@@ -124,20 +149,27 @@ ig.module(
                 spawnCountMax: 5,
                 spawnSettings: {
                     vel: {
-                        x: -50,
+                        x: -150,
                         y: 0
                     },
-                    animTileOffset: 8,
-                    lifeDuration: 0.8
+                    lifeDuration: 0.3,
+                    // fade in after spawning
+                    fadeAfterSpawnDuration: 0.1,
+                    // fade out before dieing
+                    fadeBeforeDeathDuration: 0.1
                 },
-                spawningEntity: ig.EntityParticleColorLiftoff
+                spawningEntity: ig.EntityParticleJetEngine
             });
 
         },
 
         handleInput: function(){
 
-            //console.log(this.isTouchingBorderLeft);
+            // reset facing
+            this.facing = {
+                x: 0,
+                y: 0
+            };
 
             if ( ig.input.state('right') && !this.isTouchingBorderRight ) {
 
@@ -149,7 +181,7 @@ ig.module(
             }
             else if ( ig.input.state('left') && !this.isTouchingBorderLeft ) {
 
-                this.maxVelGrounded.x = 25;
+                this.maxVelGrounded.x = 0;
 
                 this.moveToLeft();
 
@@ -175,30 +207,30 @@ ig.module(
 
             }
 
-            if (ig.input.state('fire')) {
+            if ( ig.input.pressed('shoot') ) {
 
-                // TODO: add fire mechanics
+                this.shoot.activate({
+                      x: this.flip.x ? this.pos.x : this.pos.x + this.size.x,
+                      y: this.facing.y === -1 ? this.pos.y + 2 : this.pos.y + 13
+                });
 
             }
 
         },
 
-        updateVelocity: function(){
+        update: function(){
 
             this.parent();
 
+            // Update jet engine position
             if( this.jetEngine ){
 
                 this.jetEngine.pos = {
-                    x: this.pos.x + 10,
+                    x: this.pos.x + 6,
                     y: this.pos.y + 5
-                }
+                };
 
             }
-
-        },
-
-        updateChanges: function(){
 
             // Reset border flags
             this.isTouchingBorderTop = false;
