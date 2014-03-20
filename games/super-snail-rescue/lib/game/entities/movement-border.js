@@ -8,6 +8,8 @@ ig.module(
 )
 .defines(function () {
 
+    'use strict';
+
     var _c  = ig.CONFIG;
     var _ut = ig.utils;
 
@@ -67,7 +69,7 @@ ig.module(
 
             this.parent();
 
-            this.moveToRight();
+            //this.moveToRight();
 
         }
 

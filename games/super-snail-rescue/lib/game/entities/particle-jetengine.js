@@ -14,7 +14,7 @@ ig.module(
     /**
      * Fast particle that spawns from the engine of the ship.
      */
-    ig.EntityParticleJetEngine = ig.global.EntityParticleJetEngine = ig.ParticleFast.extend( {
+    ig.EntityParticleJetengine = ig.global.EntityParticleJetengine = ig.ParticleFast.extend( {
 
         size: {
             x: 3,

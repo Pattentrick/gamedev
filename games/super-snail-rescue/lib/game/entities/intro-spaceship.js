@@ -14,7 +14,7 @@ ig.module(
     var _c  = ig.CONFIG;
 
     /**
-     * A spaceships that lift off in scene 2 of the intro.
+     * A spaceships that lifts off in scene 2 of the intro.
      *
      * @class
      * @extends ig.EntityExtended
@@ -36,6 +36,15 @@ ig.module(
          *
          */
         hasLiftoff: false,
+
+        /**
+         * After how many seconds the
+         * title should be loaded.
+         *
+         * @type Number
+         *
+         */
+        loadTitleTime: 8,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'player.png', 32, 16 ),
 
@@ -69,7 +78,7 @@ ig.module(
 
             }
 
-            if( this.timer.delta() >= 8 ){
+            if( this.timer.delta() >= this.loadTitleTime ){
 
                 ig.game.loadLevelDeferred( 'title' );
 
@@ -85,7 +94,7 @@ ig.module(
             ig.game.camera.shake(4,3);
 
             // spawn lift off explosion
-            var explosion = ig.game.spawnEntity(ig.EntityExplosion, this.pos.x, this.pos.y + 10, {
+            ig.game.spawnEntity(ig.EntityExplosion, this.pos.x, this.pos.y + 10, {
                 spawnCountMax: 20,
                 spawnSettings: {
                     vel: {
@@ -97,11 +106,10 @@ ig.module(
                 spawningEntity: ig.EntityParticleColorLiftoff
             });
 
-            this.animSettings.idle.frameTime = 0.3;
-
             this.moveToRight();
             this.moveToUp();
 
+            // increase velocity
             this.maxVelGrounded = {
                 x: 150,
                 y: 50

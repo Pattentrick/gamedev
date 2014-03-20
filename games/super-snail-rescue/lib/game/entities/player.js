@@ -28,6 +28,8 @@ ig.module(
             y: 16
         },
 
+        health: 1,
+
         zIndex: 100,
 
         canFlipX: false,
@@ -62,7 +64,9 @@ ig.module(
          */
         isTouchingBorderLeft: false,
 
-        temporaryInvulnerabilityAlpha: 1,
+        temporaryInvulnerabilityAlpha: 0,
+
+        temporaryInvulnerabilityPulses: 20,
 
         maxVelGrounded: {
             x: 50,
@@ -140,6 +144,16 @@ ig.module(
             // Init the shoot ability
             this.abilities.addDescendants([this.shoot]);
 
+            // Spawn the jetengine
+            this.spawnJetEngine();
+
+        },
+
+        /**
+         * Spawn the jet engine of the player ship.
+         */
+        spawnJetEngine: function(){
+
             // Spawn the jet engine
             this.jetEngine = ig.game.spawnEntity(ig.EntityParticleStormHorizontal, this.pos.x, this.pos.y, {
                 size: {
@@ -158,14 +172,16 @@ ig.module(
                     // fade out before dieing
                     fadeBeforeDeathDuration: 0.1
                 },
-                spawningEntity: ig.EntityParticleJetEngine
+                spawningEntity: ig.EntityParticleJetengine
             });
 
         },
 
         handleInput: function(){
 
-            // reset facing
+            var projectileOffsetY;
+
+            // reset facing before handling input
             this.facing = {
                 x: 0,
                 y: 0
@@ -191,7 +207,7 @@ ig.module(
                 this.maxVelGrounded.x = 50;
 
                 // no input? move right!
-                this.moveToRight();
+                //this.moveToRight();
 
             }
 
@@ -209,10 +225,36 @@ ig.module(
 
             if ( ig.input.pressed('shoot') ) {
 
+                // determine offsetY value for proper projectile spawning point
+                switch( this.facing.y ){
+                    case 0:
+                        projectileOffsetY = 3;
+                    break;
+                    case -1:
+                        projectileOffsetY = -3;
+                    break;
+                    case 1:
+                        projectileOffsetY = 2;
+                    break;
+                }
+
                 this.shoot.activate({
-                      x: this.flip.x ? this.pos.x : this.pos.x + this.size.x,
-                      y: this.facing.y === -1 ? this.pos.y + 2 : this.pos.y + 13
+                    offsetX: 11,
+                    offsetY: projectileOffsetY
                 });
+
+            }
+
+        },
+
+        receiveDamage: function(amount, from, unblockable){
+
+            this.parent(amount, from, unblockable);
+
+            // remove jetengine from game if the player dies
+            if( this._killed ){
+
+                this.jetEngine.kill();
 
             }
 

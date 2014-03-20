@@ -17,19 +17,11 @@ ig.module(
 
             randomDoubleVel: false,
 
-            /**
-             * @override
-             * @default 2x2
-             */
             size: {
                 x: 1,
                 y: 1
             },
 
-            /**
-             * @override
-             * @default particles.png
-             */
             animSheet: new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'particles.png', 1, 1)
 
         });

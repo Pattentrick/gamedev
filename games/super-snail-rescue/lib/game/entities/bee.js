@@ -26,6 +26,11 @@ ig.module(
             y: 6
         },
 
+        /**
+         * True when a movement direction is set.
+         *
+         * @type Boolean
+         */
         hasMovementDirection: false,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'bee.gif', 10, 6 ),
@@ -51,8 +56,6 @@ ig.module(
 
             this.parent();
 
-            // just call moveTo once
-
             if( !this.hasMovementDirection ){
 
                 if( this.movementDirection === 'right' ){
@@ -66,6 +69,7 @@ ig.module(
 
                 }
 
+                // once a direction is set, this flag will prevent further checks
                 this.hasMovementDirection = true;
 
             }
