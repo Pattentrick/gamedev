@@ -4,11 +4,12 @@ ig.module(
 .requires(
     'plusplus.abstractities.player',
     'plusplus.core.config',
-    'plusplus.entities.conversation',
     'game.entities.particle-storm-horizontal',
     'game.entities.particle-color-liftoff',
     'game.entities.particle-jetengine',
-    'game.abilities.plasma-gun'
+    'game.entities.particle-small-explosion',
+    'game.abilities.plasma-gun',
+    'game.entities.small-explosion'
 )
 .defines(function () {
 
@@ -24,8 +25,13 @@ ig.module(
     ig.EntityPlayer = ig.global.EntityPlayer = ig.Player.extend({
 
         size: {
-            x: 32,
-            y: 16
+            x: 25,
+            y: 10
+        },
+
+        offset: {
+            x: 7,
+            y: 3
         },
 
         health: 1,
@@ -63,6 +69,8 @@ ig.module(
          * @type Boolean
          */
         isTouchingBorderLeft: false,
+
+        persistent: false,
 
         temporaryInvulnerabilityAlpha: 0,
 
@@ -132,6 +140,22 @@ ig.module(
             }
         },
 
+        deathSettings: {
+            spawnCountMax: 30,
+            spawningEntity: ig.EntityParticleSmallExplosion,
+            spawnSettings: {
+                vel: {
+                    x: 200,
+                    y: 200
+                },
+                lifeDuration: 0.8,
+                // fade in after spawning
+                fadeAfterSpawnDuration: 0.4,
+                // fade out before dieing
+                fadeBeforeDeathDuration: 0.4
+            }
+        },
+
         jetEngine: null,
 
         initProperties: function() {
@@ -150,12 +174,11 @@ ig.module(
         },
 
         /**
-         * Spawn the jet engine of the player ship.
+         * Spawns the jet engine of the player ship.
          */
         spawnJetEngine: function(){
 
-            // Spawn the jet engine
-            this.jetEngine = ig.game.spawnEntity(ig.EntityParticleStormHorizontal, this.pos.x, this.pos.y, {
+            this.jetEngine = ig.game.spawnEntity(ig.EntityParticleStormHorizontal, this.pos.x + 1, this.pos.y + 2, {
                 size: {
                     x: 1,
                     y: 5
@@ -207,7 +230,8 @@ ig.module(
                 this.maxVelGrounded.x = 50;
 
                 // no input? move right!
-                //this.moveToRight();
+
+                this.moveToRight();
 
             }
 
@@ -226,6 +250,7 @@ ig.module(
             if ( ig.input.pressed('shoot') ) {
 
                 // determine offsetY value for proper projectile spawning point
+
                 switch( this.facing.y ){
                     case 0:
                         projectileOffsetY = 3;
@@ -247,16 +272,51 @@ ig.module(
 
         },
 
-        receiveDamage: function(amount, from, unblockable){
+        die: function(){
 
-            this.parent(amount, from, unblockable);
+            this.parent();
 
-            // remove jetengine from game if the player dies
-            if( this._killed ){
+            // bring da roof down
 
-                this.jetEngine.kill();
+            ig.game.camera.shake(3,5);
 
-            }
+            // Center
+
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -8, this.getCenterY() -8, {
+                hasDelay: false
+            });
+
+            // down right
+
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -2, this.getCenterY() );
+
+            // down left
+
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 10, this.getCenterY() + 4 );
+
+            // up left
+
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -12, this.getCenterY() -14 );
+
+            // up right
+
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 2, this.getCenterY() -12 );
+
+            // Extra critical explosions
+
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -16, this.getCenterY() -8);
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX(), this.getCenterY() -8);
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 14, this.getCenterY() + 4 );
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 16, this.getCenterY() + 3 );
+            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 16, this.getCenterY() - 4 );
+
+            // Kill jet engine
+
+            this.jetEngine.kill();
+
+            // Inform player respawner that the player is dead
+
+            ig.game.playerRespawner.hasDeadPlayer = true;
 
         },
 
@@ -265,16 +325,18 @@ ig.module(
             this.parent();
 
             // Update jet engine position
+
             if( this.jetEngine ){
 
                 this.jetEngine.pos = {
-                    x: this.pos.x + 6,
-                    y: this.pos.y + 5
+                    x: this.pos.x + 1,
+                    y: this.pos.y + 2
                 };
 
             }
 
             // Reset border flags
+
             this.isTouchingBorderTop = false;
             this.isTouchingBorderRight = false;
             this.isTouchingBorderBottom = false;

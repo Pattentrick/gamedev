@@ -5,8 +5,8 @@ ig.module(
     'plusplus.core.entity',
     'plusplus.abstractities.character',
     'plusplus.core.config',
-    'game.entities.enemy-explosion',
-    'game.entities.particle-enemy-explosion'
+    'game.entities.small-explosion',
+    'game.entities.particle-small-explosion'
 )
 .defines(function () {
 
@@ -51,7 +51,7 @@ ig.module(
 
         deathSettings: {
             spawnCountMax: 20,
-            spawningEntity: ig.EntityParticleEnemyExplosion,
+            spawningEntity: ig.EntityParticleSmallExplosion,
             spawnSettings: {
                 vel: {
                     x: 200,
@@ -64,14 +64,6 @@ ig.module(
                 fadeBeforeDeathDuration: 0.4
             }
         },
-
-        /**
-         * Number of explosion entitys that will be spawned. Minimum value is 1.
-         *
-         * @type Number
-         *
-         */
-        numberOfExplosions: 3,
 
         initTypes: function() {
 
@@ -113,55 +105,85 @@ ig.module(
 
         },
 
-        die: function(){
-
-            this.parent();
+        /**
+         * Spawns explosion entities. If the camera doesn't shake, this will trigger
+         * a critical explosion with 8 explosion entities + a nice camera shake.
+         *
+         * If the camera already shakes (active crit) it will spawn a random number
+         * of explosions between 1 and 5. All explosions are triggered after a slight
+         * delay that is randomized. This delay can be deactivated via the hasDelay
+         * property of the explosion.
+         *
+         */
+        spawnCustomExplosions: function(){
 
             // Critical hit!
             if( !ig.game.camera.shaking ){
 
                 // bring da roof down
-                ig.game.camera.shake(2,2);
+                ig.game.camera.shake(2,3);
 
-                // spawn 5 explosions
-                ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX() -8, this.getCenterY() -8 );
-                ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX(), this.getCenterY() );
-                ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX() - 16, this.getCenterY() );
-                ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX() -16, this.getCenterY() -16 );
-                ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX(), this.getCenterY() -16 );
+                // Center
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -8, this.getCenterY() -8, {
+                    hasDelay: false
+                });
+
+                // down right
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -2, this.getCenterY() );
+                // down left
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 10, this.getCenterY() + 4 );
+                // up left
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -12, this.getCenterY() -14 );
+                // up right
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 2, this.getCenterY() -12 );
+
+                // Extra critical explosions
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -16, this.getCenterY() -8);
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX(), this.getCenterY() -8);
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 14, this.getCenterY() + 4 );
 
             }
             else {
 
                 // Spawn explosions
-                for( var i = 0, len = this.getRandomNumber(1,3); i < len; i++ ){
+                for( var i = 0, len = this.getRandomNumber(1,5); i < len; i++ ){
 
                     switch( i ){
                         // center
                         case 0:
-                            ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX() -8, this.getCenterY() -8 );
+                            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -8, this.getCenterY() -8, {
+                                hasDelay: false
+                            });
                             break;
                         // down right
                         case 1:
-                            ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX(), this.getCenterY() );
+                            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -2, this.getCenterY() );
                             break;
                         // down left
                         case 2:
-                            ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX() - 16, this.getCenterY() );
+                            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 10, this.getCenterY() + 4 );
                             break;
                         // up left
                         case 3:
-                            ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX() -16, this.getCenterY() -16 );
+                            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -12, this.getCenterY() -14 );
                             break;
                         // up right
                         case 4:
-                            ig.game.spawnEntity( ig.EntityEnemyExplosion, this.getCenterX(), this.getCenterY() -16 );
+                            ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 2, this.getCenterY() -12 );
                             break;
                     }
 
                 }
 
             }
+
+        },
+
+        die: function(){
+
+            this.parent();
+
+            this.spawnCustomExplosions();
 
         }
 

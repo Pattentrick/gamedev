@@ -69,7 +69,7 @@ ig.module(
 
             this.parent();
 
-            //this.moveToRight();
+            this.moveToRight();
 
         }
 

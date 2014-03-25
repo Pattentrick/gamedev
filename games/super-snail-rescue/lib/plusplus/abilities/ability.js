@@ -1,13 +1,13 @@
 ig.module(
     'plusplus.abilities.ability'
 )
-    .requires(
-        'plusplus.core.timer',
-        'plusplus.core.entity',
-        'plusplus.abstractities.particle',
-        'plusplus.helpers.utils',
-        'plusplus.helpers.utilsintersection',
-        'plusplus.helpers.signals'
+.requires(
+    'plusplus.core.timer',
+    'plusplus.core.entity',
+    'plusplus.abstractities.particle',
+    'plusplus.helpers.utils',
+    'plusplus.helpers.utilsintersection',
+    'plusplus.helpers.signals'
 )
     .defines(function() {
         "use strict";

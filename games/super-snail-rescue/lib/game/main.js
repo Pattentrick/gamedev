@@ -18,7 +18,9 @@ ig.module(
     // player
     'game.entities.player',
     // movement border
-    'game.entities.movement-border'
+    'game.entities.movement-border',
+    // player respawner
+    'game.components.player-respawner'
 )
 // define the main module
 .defines(function () {
@@ -87,6 +89,9 @@ ig.module(
 
             // Load starting level
             this.loadLevelDeferred( 'starfield' );
+
+            // Init player respawner
+            this.playerRespawner = new ig.PlayerRespawner();
 
         },
 
@@ -172,6 +177,14 @@ ig.module(
                     y: 200
                 }
             });
+
+        },
+
+        update: function(){
+
+            this.parent();
+
+            this.playerRespawner.checkForRespawn();
 
         }
 

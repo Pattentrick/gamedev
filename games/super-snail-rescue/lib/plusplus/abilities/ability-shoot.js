@@ -368,7 +368,8 @@ ig.module(
                     }
 
                     // flip entity to projectile
-                    if( this.entity.canFlipX && this.entity.canFlipX ){
+
+                    if (this.faceTarget) {
 
                         this.entity.lookAt(projectile);
 

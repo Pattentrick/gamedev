@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.particle-enemy-explosion'
+    'game.entities.particle-small-explosion'
 )
 .requires(
     'plusplus.core.config',
@@ -15,7 +15,7 @@ ig.module(
          * Particle that will spawn on enemy death.
          *
          */
-        ig.EntityParticleEnemyExplosion = ig.global.EntityParticleEnemyExplosion = ig.ParticleFast.extend( /**@lends ig.EntityParticleColor.prototype */ {
+        ig.EntityParticleSmallExplosion = ig.global.EntityParticleSmallExplosion = ig.ParticleFast.extend( /**@lends ig.EntityParticleColor.prototype */ {
 
             size: {
                 x: 1,
