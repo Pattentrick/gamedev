@@ -9,7 +9,11 @@ ig.module(
     "use strict";
 
     var _c = ig.CONFIG;
+    var _ut = ig.utils;
 
+    /**
+     * Plasma projectile that is used by the shoot ability of the player.
+     */
     ig.EntityProjectilePlasma = ig.global.EntityProjectilePlasma = ig.Projectile.extend({
 
         collides: ig.EntityExtended.COLLIDES.LITE,
@@ -54,6 +58,14 @@ ig.module(
                 sequence: [0],
                 frameTime: 1
             }
+        },
+
+        initProperties: function() {
+
+            this.parent();
+
+            _ut.addType(ig.EntityExtended, this, 'checkAgainst', "FOE");
+
         }
 
     });

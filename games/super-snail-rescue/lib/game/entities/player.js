@@ -163,12 +163,15 @@ ig.module(
             this.parent();
 
             // Init the plasma gun
+
             this.shoot = new ig.PlasmaGun(this);
 
             // Init the shoot ability
+
             this.abilities.addDescendants([this.shoot]);
 
             // Spawn the jetengine
+
             this.spawnJetEngine();
 
         },
@@ -205,6 +208,7 @@ ig.module(
             var projectileOffsetY;
 
             // reset facing before handling input
+
             this.facing = {
                 x: 0,
                 y: 0
@@ -329,7 +333,7 @@ ig.module(
             if( this.jetEngine ){
 
                 this.jetEngine.pos = {
-                    x: this.pos.x + 1,
+                    x: this.pos.x - 1,
                     y: this.pos.y + 2
                 };
 

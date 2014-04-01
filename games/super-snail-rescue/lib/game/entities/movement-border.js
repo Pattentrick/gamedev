@@ -67,9 +67,9 @@ ig.module(
 
         updateChanges: function(){
 
-            this.parent();
-
             this.moveToRight();
+
+            this.parent();
 
         }
 

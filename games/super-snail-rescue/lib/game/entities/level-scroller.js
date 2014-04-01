@@ -13,7 +13,7 @@ ig.module(
     /**
      * An entity which functions as a core game mechanic. The level scoller
      * entity moves slowly through a level. The camera follows the level
-     * scroller so the level has an autoscrolling behaviour.
+     * scroller, so the level has an autoscrolling behaviour.
      *
      * @class
      * @extends ig.EntityExtended

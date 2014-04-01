@@ -70,7 +70,7 @@ ig.module(
             this.parent();
 
             _ut.addType(ig.EntityExtended, this, 'checkAgainst', "PLAYER");
-            _ut.addType(ig.EntityExtended, this, 'type', "DAMAGEABLE");
+            _ut.addType(ig.EntityExtended, this, 'type', "FOE");
 
         },
 

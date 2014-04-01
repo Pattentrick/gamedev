@@ -22,18 +22,18 @@ ig.module(
     // player respawner
     'game.components.player-respawner'
 )
-// define the main module
 .defines(function () {
 
     "use strict";
 
-    // config variable
     var _c = ig.CONFIG;
 
     // opening and title instance
+
 	var openingAndTitle = ig.GameExtended.extend({
 
         // Background color of canvas
+
         clearColor: "#000000",
 
 		init: function () {
@@ -41,6 +41,7 @@ ig.module(
 			this.parent();
 
 		    // Load starting level
+
             this.loadLevelDeferred( 'intro-scene-1' );
 
 		},
@@ -53,10 +54,12 @@ ig.module(
 
             // Reset screen position for
             // proper positioning on resize
+
             ig.game.screen.x = 0;
             ig.game.screen.y = 0;
 
             // Calculate new screen position
+
             ig.game.screen.x -= ( ig.system.realWidth / 2 ) / ig.system.scale - ( _c.GAME_WIDTH_VIEW / 2 );
             ig.game.screen.y -= ( ig.system.realHeight / 2 ) / ig.system.scale - ( _c.GAME_HEIGHT_VIEW / 2 );
 
@@ -67,9 +70,11 @@ ig.module(
             this.parent();
 
             // Check for game instance
+
             if( ig.game !== null ){
 
                 // Center camera on gamescreen
+
                 this.centerStaticCamera();
 
             }
@@ -78,9 +83,12 @@ ig.module(
 
 	});
 
+    // Main game instance
+
     var superSnailRescue = ig.GameExtended.extend({
 
         // Background color of canvas
+
         clearColor: "#000000",
 
         init: function () {
@@ -88,19 +96,25 @@ ig.module(
             this.parent();
 
             // Load starting level
+
             this.loadLevelDeferred( 'starfield' );
 
             // Init player respawner
+
             this.playerRespawner = new ig.PlayerRespawner();
 
         },
 
         inputStart: function(){
 
+            // Movement
+
             ig.input.bind(ig.KEY.LEFT_ARROW, 'left');
             ig.input.bind(ig.KEY.RIGHT_ARROW, 'right');
             ig.input.bind(ig.KEY.UP_ARROW, 'up');
             ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
+
+            // Shooting
 
             ig.input.bind(ig.KEY.C, 'shoot');
 
@@ -108,12 +122,16 @@ ig.module(
 
         inputEnd: function(){
 
-            ig.input.bind(ig.KEY.LEFT_ARROW, 'left');
-            ig.input.bind(ig.KEY.RIGHT_ARROW, 'right');
-            ig.input.bind(ig.KEY.UP_ARROW, 'up');
-            ig.input.bind(ig.KEY.DOWN_ARROW, 'down');
+            // Movement
 
-            ig.input.bind(ig.KEY.C, 'shoot');
+            ig.input.unbind(ig.KEY.LEFT_ARROW, 'left');
+            ig.input.unbind(ig.KEY.RIGHT_ARROW, 'right');
+            ig.input.unbind(ig.KEY.UP_ARROW, 'up');
+            ig.input.unbind(ig.KEY.DOWN_ARROW, 'down');
+
+            // Shooting
+
+            ig.input.unbind(ig.KEY.C, 'shoot');
 
         },
 
@@ -122,15 +140,19 @@ ig.module(
             this.parent();
 
             // Spawn the level scroller
+
             ig.game.spawnEntity(ig.EntityLevelScroller, 156, 96);
 
             // Spawn the movement borders
+
             this.spawnMovementBorders();
 
             // Spawn the ship of the player
+
             this.player = ig.game.spawnEntity(ig.EntityPlayer, 50, 96);
 
             // Follow the level scroller with the camera
+
             this.camera.follow( this.getEntityByName('levelScroller'), true, true );
 
         },
@@ -143,6 +165,7 @@ ig.module(
         spawnMovementBorders: function(){
 
             // Top border
+
             ig.game.spawnEntity(ig.EntityMovementBorder, 0, 0, {
                 name: 'movementBorderTop',
                 size: {
@@ -152,6 +175,7 @@ ig.module(
             });
 
             // Bottom border
+
             ig.game.spawnEntity(ig.EntityMovementBorder, 0, 200, {
                 name: 'movementBorderBottom',
                 size: {
@@ -161,6 +185,7 @@ ig.module(
             });
 
             // Left border
+
             ig.game.spawnEntity(ig.EntityMovementBorder, 0, 0, {
                 name: 'movementBorderLeft',
                 size: {
@@ -170,6 +195,7 @@ ig.module(
             });
 
             // Right border
+
             ig.game.spawnEntity(ig.EntityMovementBorder, 320, 0, {
                 name: 'movementBorderRight',
                 size: {
