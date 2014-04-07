@@ -55,7 +55,7 @@ ig.module(
          * @type String
          *
          */
-        movement: 'wave',
+        movement: 'straight',
 
         /**
          * Is this enemy moving up at the moment?
@@ -105,19 +105,6 @@ ig.module(
             this.parent();
 
             this.movementTimer = new ig.Timer();
-
-        },
-
-        /**
-         * Gets the difference between two numbers.
-         *
-         * @param a {Number} The first number
-         * @param b {Number} The second number
-         *
-         */
-        getDifference: function( a, b ){
-
-            return Math.abs( a - b );
 
         },
 

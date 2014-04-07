@@ -38,7 +38,7 @@ ig.module(
             });
 
             // resort for proper zIndex
-            ig.game.sortEntities('entities');
+            ig.game.sortEntitiesDeferred('entities');
 
         }
 

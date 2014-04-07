@@ -75,6 +75,19 @@ ig.module(
         },
 
         /**
+         * Gets the difference between two numbers.
+         *
+         * @param a {Number} The first number
+         * @param b {Number} The second number
+         *
+         */
+        getDifference: function( a, b ){
+
+            return Math.abs( a - b );
+
+        },
+
+        /**
          * Returns a random number between min and max.
          *
          * @param {number} min The min number
@@ -118,26 +131,37 @@ ig.module(
         spawnCustomExplosions: function(){
 
             // Critical hit!
+
             if( !ig.game.camera.shaking ){
 
                 // bring da roof down
+
                 ig.game.camera.shake(2,3);
 
                 // Center
+
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -8, this.getCenterY() -8, {
                     hasDelay: false
                 });
 
                 // down right
+
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -2, this.getCenterY() );
+
                 // down left
+
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 10, this.getCenterY() + 4 );
+
                 // up left
+
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -12, this.getCenterY() -14 );
+
                 // up right
+
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 2, this.getCenterY() -12 );
 
                 // Extra critical explosions
+
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -16, this.getCenterY() -8);
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX(), this.getCenterY() -8);
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 14, this.getCenterY() + 4 );
@@ -146,6 +170,7 @@ ig.module(
             else {
 
                 // Spawn explosions
+
                 for( var i = 0, len = this.getRandomNumber(1,5); i < len; i++ ){
 
                     switch( i ){

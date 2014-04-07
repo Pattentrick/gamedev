@@ -1,33 +1,33 @@
 ig.module(
-    'plusplus.core.game'
-).requires(
-    'impact.game',
-    'plusplus.core.config',
-    'plusplus.core.timer',
-    'plusplus.core.font',
-    'plusplus.core.image',
-    'plusplus.core.background-map',
-    'plusplus.core.collision-map',
-    'plusplus.core.pathfinding-map',
-    'plusplus.core.animation',
-    'plusplus.core.layer',
-    'plusplus.core.input',
-    'plusplus.core.entity',
-    'plusplus.core.camera',
-    'plusplus.core.player-manager',
-    'plusplus.abstractities.spawner',
-    'plusplus.entities.light',
-    'plusplus.entities.shape-solid',
-    'plusplus.entities.shape-climbable',
-    'plusplus.entities.shape-climbable-one-way',
-    'plusplus.ui.ui-overlay-pause',
-    'plusplus.helpers.signals',
-    'plusplus.helpers.tweens',
-    'plusplus.helpers.pathfinding',
-    'plusplus.helpers.utils',
-    'plusplus.helpers.utilstile',
-    'plusplus.helpers.utilsintersection'
-)
+        'plusplus.core.game'
+    ).requires(
+        'impact.game',
+        'plusplus.core.config',
+        'plusplus.core.timer',
+        'plusplus.core.font',
+        'plusplus.core.image',
+        'plusplus.core.background-map',
+        'plusplus.core.collision-map',
+        'plusplus.core.pathfinding-map',
+        'plusplus.core.animation',
+        'plusplus.core.layer',
+        'plusplus.core.input',
+        'plusplus.core.entity',
+        'plusplus.core.camera',
+        'plusplus.core.player-manager',
+        'plusplus.abstractities.spawner',
+        'plusplus.entities.light',
+        'plusplus.entities.shape-solid',
+        'plusplus.entities.shape-climbable',
+        'plusplus.entities.shape-climbable-one-way',
+        'plusplus.ui.ui-overlay-pause',
+        'plusplus.helpers.signals',
+        'plusplus.helpers.tweens',
+        'plusplus.helpers.pathfinding',
+        'plusplus.helpers.utils',
+        'plusplus.helpers.utilstile',
+        'plusplus.helpers.utilsintersection'
+    )
     .defines(function() {
         'use strict';
 
@@ -689,7 +689,14 @@ ig.module(
 
                     }
 
-                    this.sortEntities();
+                    // immediately sort all layers
+
+                    for (i = 0, il = this.layers.length; i < il; i++) {
+
+                        var layer = this.layers[i];
+                        layer.items.sort(layer.sortBy);
+
+                    }
 
                     // level done building
 
@@ -1559,42 +1566,6 @@ ig.module(
             },
 
             /**
-             * Sort of entities, sorting all layers if no layer name passed.
-             * @param {String} [layerName] layer name.
-             **/
-            sortEntities: function(layerName) {
-
-                if (typeof layerName === 'string') {
-
-                    this.sortEntitiesOnLayer(this.layersMap[layerName]);
-
-                } else {
-
-                    for (var i = 0, il = this.layers.length; i < il; i++) {
-
-                        this.sortEntitiesOnLayer(this.layers[i]);
-
-                    }
-
-                }
-
-            },
-
-            /**
-             * Sort of entities on a specific layer.
-             * @param {ig.Layer} layer layer on which to sort items.
-             **/
-            sortEntitiesOnLayer: function(layer) {
-
-                if (layer) {
-
-                    layer.items.sort(layer.sortBy);
-
-                }
-
-            },
-
-            /**
              * Deferred sort of entities, sorting all layers if no layer name passed.
              * @param {String} [layerName] layer name.
              **/
@@ -1627,6 +1598,26 @@ ig.module(
                     layer.sort();
 
                 }
+
+            },
+
+            /**
+             * Alias for deferred sort! See issue #149.
+             * @param {String} [layerName] layer name.
+             **/
+            sortEntities: function(layerName) {
+
+                this.sortEntitiesDeferred(layerName);
+
+            },
+
+            /**
+             * Alias for deferred sort! See issue #149.
+             * @param {ig.Layer} layer layer on which to sort items.
+             **/
+            sortEntitiesOnLayer: function(layer) {
+
+                this.sortEntitiesOnLayerDeferred(layer);
 
             },
 
@@ -2514,5 +2505,22 @@ ig.module(
             }
 
         });
+
+        /**
+         * Updated sorting methods to handle different types of items in layers.
+         */
+        ig.Game.SORT.Z_INDEX = function(a, b) {
+            return (a.zIndex || 0) - (b.zIndex || 0);
+        };
+
+        ig.Game.SORT.POS_X = function(a, b) {
+            return ((a.pos && a.size && (a.pos.x + a.size.x)) || 0) - ((b.pos && b.size && (b.pos.x + b.size.x)) || 0);
+        };
+
+        ig.Game.SORT.POS_Y = function(a, b) {
+            return ((a.pos && a.size && (a.pos.y + a.size.y)) || 0) - ((b.pos && b.size && (b.pos.y + b.size.y)) || 0);
+        };
+
+        ig.GameExtended.SORT = ig.Game.SORT;
 
     });

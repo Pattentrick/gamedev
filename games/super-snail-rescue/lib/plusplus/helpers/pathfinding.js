@@ -2434,6 +2434,17 @@ ig.module(
 
             return positions;
 
+/*            return {
+                from: {
+                    x: pCenterX,
+                    y: pCenterY
+                },
+                target: {
+                    x: tCenterX,
+                    y: tCenterY
+                }
+            }*/
+
         };
 
         /**
