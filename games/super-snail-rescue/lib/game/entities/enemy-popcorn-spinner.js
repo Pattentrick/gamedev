@@ -4,7 +4,7 @@ ig.module(
 .requires(
     'plusplus.core.config',
     'game.entities.enemy',
-    'game.entities.projectile-enemy-bullet'
+    'game.entities.projectile-spinner-bullet'
 )
 .defines(function () {
 
@@ -137,7 +137,7 @@ ig.module(
 
             }
 
-            ig.game.spawnEntity(ig.EntityProjectileEnemyBullet, this.getCenterX(), this.getCenterY(), {
+            ig.game.spawnEntity(ig.EntityProjectileSpinnerBullet, this.getCenterX(), this.getCenterY(), {
                 movementDirection: this.shootingDirection
             });
 
