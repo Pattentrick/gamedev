@@ -35,7 +35,7 @@ ig.module(
              * @override
              * @default debris.png
              */
-            animSheet: new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'debris.png', 4, 4),
+            animSheet: new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'enemy-debris.gif', 4, 4),
 
             /**
              * @override
@@ -49,7 +49,7 @@ ig.module(
             animSettings: {
                 moveX: {
                     sequence: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
-                    frameTime: 3
+                    frameTime: 1
                 }
             },
 

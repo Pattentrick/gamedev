@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.press-space-to-start'
+    'game.entities.press-c-to-start'
 )
 .requires(
     'plusplus.core.entity',
@@ -16,14 +16,14 @@ ig.module(
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityPressSpaceToStart = ig.global.EntityPressSpaceToStart = ig.EntityExtended.extend({
+    ig.EntityPressCToStart = ig.global.EntityPressCToStart = ig.EntityExtended.extend({
 
         size: {
-            x: 131,
-            y: 11
+            x: 109,
+            y: 9
         },
 
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'press-space-to-start.gif', 131, 11 ),
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'press-c-to-start.gif', 109, 9 ),
 
         animSettings: {
             idle: {

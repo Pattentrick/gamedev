@@ -46,6 +46,20 @@ ig.module(
 
 		},
 
+        inputStart: function() {
+
+            ig.input.bind(ig.KEY.ESC, 'skipIntro');
+            ig.input.bind(ig.KEY.C, 'start');
+
+        },
+
+        inputEnd: function() {
+
+            ig.input.unbind(ig.KEY.ESC, 'skipIntro');
+            ig.input.unbind(ig.KEY.C, 'start');
+
+        },
+
         /**
          * Centers camera on gamescreen when
          * the game runs in fullscreen mode
@@ -79,6 +93,28 @@ ig.module(
 
             }
 
+        },
+
+        update: function(){
+
+            this.parent();
+
+            // Skipt to title
+
+            if( ig.input.pressed('skipIntro') ){
+
+                ig.game.loadLevelDeferred( 'title' );
+
+            }
+
+            // Start the game!
+
+            if( ig.game.getEntitiesByClass(ig.EntityPressCToStart)[0] && ig.input.pressed('start') ){
+
+                ig.system.setGame( superSnailRescue );
+
+            }
+
         }
 
 	});
@@ -91,6 +127,10 @@ ig.module(
 
         clearColor: "#000000",
 
+        extraLives: 2,
+
+        hasScrollingEnabled: false,
+
         init: function () {
 
             this.parent();
@@ -102,6 +142,7 @@ ig.module(
             // Init player respawner
 
             this.playerRespawner = new ig.PlayerRespawner();
+
 
         },
 

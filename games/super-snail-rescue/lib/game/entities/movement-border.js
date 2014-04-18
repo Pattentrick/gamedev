@@ -67,7 +67,11 @@ ig.module(
 
         updateChanges: function(){
 
-            //this.moveToRight();
+            if( ig.game.hasScrollingEnabled ){
+
+                this.moveToRight();
+
+            }
 
             this.parent();
 

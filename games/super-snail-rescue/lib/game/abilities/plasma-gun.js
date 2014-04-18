@@ -24,7 +24,18 @@ ig.module(
 
         offsetVelX: 1000,
 
-        cooldownDelay: 0.3
+        cooldownDelay: 0.3,
+
+        plasma: new ig.Sound( 'media/sounds/plasma.*' ),
+
+        activateComplete: function( settings ){
+
+            this.parent( settings );
+
+            this.plasma.volume = 0.4;
+            this.plasma.play();
+
+        }
 
     });
 

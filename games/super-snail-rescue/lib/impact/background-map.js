@@ -132,6 +132,7 @@ ig.BackgroundMap = ig.Map.extend({
 		
 	
 	drawPreRendered: function() {
+
 		if( !this.preRenderedChunks ) {
 			this.preRenderMapToChunks();
 		}
@@ -171,7 +172,9 @@ ig.BackgroundMap = ig.Map.extend({
 				
 				var x = -dx + cx * this.chunkSize - nudgeX;
 				var y = -dy + cy * this.chunkSize - nudgeY;
-				ig.system.context.drawImage( chunk, x, y);
+
+                ig.system.context.drawImage( chunk, x, y);
+
 				ig.Image.drawCount++;
 				
 				if( this.debugChunks ) {

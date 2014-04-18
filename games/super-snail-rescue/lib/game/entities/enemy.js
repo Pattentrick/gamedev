@@ -6,7 +6,8 @@ ig.module(
     'plusplus.abstractities.character',
     'plusplus.core.config',
     'game.entities.small-explosion',
-    'game.entities.particle-small-explosion'
+    'game.entities.particle-small-explosion',
+    'plusplus.entities.destructable'
 )
 .defines(function () {
 
@@ -34,8 +35,6 @@ ig.module(
         health: 1,
 
         damage: 1,
-
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy.gif', 16, 16 ),
 
         animSettings: {
             idle: {
@@ -71,6 +70,17 @@ ig.module(
 
             _ut.addType(ig.EntityExtended, this, 'checkAgainst', "PLAYER");
             _ut.addType(ig.EntityExtended, this, 'type', "FOE");
+
+        },
+
+        initProperties: function(){
+
+            this.parent();
+
+            // Soundeffects
+
+            this.explosion = new ig.Sound( 'media/sounds/explosion.*' );
+            this.explosion.volume = 0.9;
 
         },
 
@@ -110,6 +120,7 @@ ig.module(
         check: function( entity ) {
 
             // Kill player on collison if he is not invulnerable
+
             if( !entity.invulnerable ){
 
                 entity.receiveDamage(this.damage, this, this.damageUnblockable);
@@ -129,6 +140,10 @@ ig.module(
          *
          */
         spawnCustomExplosions: function(){
+
+            // Boom!
+
+            this.explosion.play();
 
             // Critical hit!
 
@@ -165,6 +180,12 @@ ig.module(
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -16, this.getCenterY() -8);
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX(), this.getCenterY() -8);
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 14, this.getCenterY() + 4 );
+
+                // More!
+
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -16, this.getCenterY() -11);
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 3, this.getCenterY() -8);
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 14, this.getCenterY() + 5 );
 
             }
             else {
@@ -204,10 +225,39 @@ ig.module(
 
         },
 
+        /**
+         * Spawns the "destructable entity" and kills it immediately after that.
+         */
+        spawnDebris: function(){
+
+            var destructable = ig.game.spawnEntity(ig.EntityDestructable, this.getCenterX(), this.getCenterY(), {
+                spawnCountMax: 6,
+                spawnSettings: {
+                    vel: {
+                        x: 60,
+                        y: 60
+                    },
+                    lifeDuration: 10,
+                    // fade in after spawning
+                    fadeAfterSpawnDuration: 0,
+                    // fade out before dieing
+                    fadeBeforeDeathDuration: 0.5,
+                    friction: {
+                        x: 0,
+                        y: 0
+                    }
+                }
+            });
+
+            destructable.activate();
+
+        },
+
         die: function(){
 
             this.parent();
 
+            this.spawnDebris();
             this.spawnCustomExplosions();
 
         }

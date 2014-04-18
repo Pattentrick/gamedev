@@ -174,6 +174,10 @@ ig.module(
 
             this.spawnJetEngine();
 
+            // Soundeffect
+
+            this.explosion = new ig.Sound( 'media/sounds/explosion.*' );
+
         },
 
         /**
@@ -235,7 +239,12 @@ ig.module(
 
                 // no input? move right!
 
-                //this.moveToRight();
+                if( ig.game.hasScrollingEnabled ){
+
+                    this.moveToRight();
+
+                }
+
 
             }
 
@@ -280,6 +289,10 @@ ig.module(
 
             this.parent();
 
+            // Boom!
+
+            this.explosion.play();
+
             // bring da roof down
 
             ig.game.camera.shake(3,5);
@@ -318,9 +331,24 @@ ig.module(
 
             this.jetEngine.kill();
 
-            // Inform player respawner that the player is dead
+            // Update extra lives
 
-            ig.game.playerRespawner.hasDeadPlayer = true;
+            ig.game.extraLives -= 1;
+
+            if( ig.game.extraLives < 0 ){
+
+                // TODO: load game over screen
+
+                ig.game.loadLevelDeferred( 'starfield' );
+
+            }
+            else {
+
+                // Inform player respawner that the player is dead
+
+                ig.game.playerRespawner.hasDeadPlayer = true;
+
+            }
 
         },
 

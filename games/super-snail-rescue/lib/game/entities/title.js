@@ -4,7 +4,7 @@ ig.module(
 .requires(
     'plusplus.core.entity',
     'plusplus.core.config',
-    'game.entities.press-space-to-start'
+    'game.entities.press-c-to-start'
 )
 .defines(function () {
 
@@ -49,7 +49,7 @@ ig.module(
 
                 this.hasInvisiblePressSpaceCommand = false;
 
-                ig.game.spawnEntity( ig.EntityPressSpaceToStart, 92, 137 );
+                ig.game.spawnEntity( ig.EntityPressCToStart, 99, 137 );
 
             }
 

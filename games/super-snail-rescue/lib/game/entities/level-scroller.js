@@ -39,7 +39,11 @@ ig.module(
 
             this.parent();
 
-            //this.moveToRight();
+            if( ig.game.hasScrollingEnabled ){
+
+                this.moveToRight();
+
+            }
 
         }
 
