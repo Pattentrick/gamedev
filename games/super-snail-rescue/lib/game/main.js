@@ -11,6 +11,7 @@ ig.module(
     'game.levels.intro-scene-2',
     'game.levels.title',
     'game.levels.starfield',
+    'game.levels.gameover',
     // loader
     'game.components.ssrloader',
     // level scroller
@@ -123,17 +124,49 @@ ig.module(
 
     var superSnailRescue = ig.GameExtended.extend({
 
-        // Background color of canvas
-
+        /**
+         * Background color of the canvas.
+         *
+         * @type {String} The Color value as hex.
+         *
+         */
         clearColor: "#000000",
 
-        extraLives: 2,
-
+        /**
+         * Number of extra lives.
+         *
+         * @type {Boolean} If true the level will autoscroll.
+         *
+         */
         hasScrollingEnabled: false,
+
+        /**
+         * Whether the player has lost the game or not.
+         *
+         * @type {Boolean} True when the player lost all of his lives.
+         *
+         */
+        hasLostTheGame: false,
+
+        /**
+         * Delay before loading the game over screen.
+         *
+         * @type {Number} Delay in seconds how fast the game over screen will load.
+         *
+         */
+        gameOverDelay: 3,
 
         init: function () {
 
             this.parent();
+
+            // Amount of extra lives that the player starts with
+
+            this.amountOfStartLives = 2;
+
+            // Number of current extra lives
+
+            this.extraLives = this.amountOfStartLives;
 
             // Load starting level
 
@@ -142,7 +175,6 @@ ig.module(
             // Init player respawner
 
             this.playerRespawner = new ig.PlayerRespawner();
-
 
         },
 
@@ -176,25 +208,56 @@ ig.module(
 
         },
 
+        /**
+         * Here I override the loadLevelDeferred method, so
+         * I can set the currentLevel property.
+         *
+         * @param level
+         * @param playerSpawnerName
+         * @override
+         */
+        loadLevelDeferred: function( level, playerSpawnerName ){
+
+            this.currentLevel = level;
+
+            this.parent( level, playerSpawnerName );
+
+        },
+
         buildLevel: function() {
 
             this.parent();
 
-            // Spawn the level scroller
+            if( this.currentLevel === 'starfield' ){
 
-            ig.game.spawnEntity(ig.EntityLevelScroller, 156, 96);
+                // Refill extra lives
 
-            // Spawn the movement borders
+                this.extraLives = this.amountOfStartLives;
 
-            this.spawnMovementBorders();
+                // Spawn the level scroller
 
-            // Spawn the ship of the player
+                ig.game.spawnEntity(ig.EntityLevelScroller, 156, 96);
 
-            this.player = ig.game.spawnEntity(ig.EntityPlayer, 50, 96);
+                // Spawn the movement borders
 
-            // Follow the level scroller with the camera
+                this.spawnMovementBorders();
 
-            this.camera.follow( this.getEntityByName('levelScroller'), true, true );
+                // Spawn the ship of the player
+
+                this.player = ig.game.spawnEntity(ig.EntityPlayer, 50, 96);
+
+                // Follow the level scroller with the camera
+
+                this.camera.follow( this.getEntityByName('levelScroller'), true, true );
+
+            }
+            else {
+
+                // Center on game over screen
+
+                this.camera.follow( this.getEntityByName('pressCToContinue'), true, true );
+
+            }
 
         },
 
@@ -252,6 +315,25 @@ ig.module(
             this.parent();
 
             this.playerRespawner.checkForRespawn();
+
+            // If the player has lost the game, switch to the game over screen, after a given time.
+
+            if( this.hasLostTheGame ){
+
+                if( this.gameOverTimer.delta() > this.gameOverDelay ){
+
+                    // Load game over screen
+
+                    ig.game.loadLevelDeferred( 'gameover' );
+
+                    // Reset flag
+
+                    this.hasLostTheGame = false;
+
+
+                }
+
+            }
 
         }
 

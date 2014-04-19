@@ -331,15 +331,23 @@ ig.module(
 
             this.jetEngine.kill();
 
+            this.updateExtraLives();
+
+        },
+
+        /**
+         * Removes one live from the players extra lives. If none is left, loads the game over screen.
+         */
+        updateExtraLives: function(){
+
             // Update extra lives
 
             ig.game.extraLives -= 1;
 
             if( ig.game.extraLives < 0 ){
 
-                // TODO: load game over screen
-
-                ig.game.loadLevelDeferred( 'starfield' );
+                ig.game.hasLostTheGame = true;
+                ig.game.gameOverTimer = new ig.Timer();
 
             }
             else {
