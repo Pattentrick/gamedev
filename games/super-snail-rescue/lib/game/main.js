@@ -21,7 +21,9 @@ ig.module(
     // movement border
     'game.entities.movement-border',
     // player respawner
-    'game.components.player-respawner'
+    'game.components.player-respawner',
+    // extra live UI
+    'game.entities.extra-live-icon'
 )
 .defines(function () {
 
@@ -138,7 +140,7 @@ ig.module(
          * @type {Boolean} If true the level will autoscroll.
          *
          */
-        hasScrollingEnabled: false,
+        hasScrollingEnabled: true,
 
         /**
          * Whether the player has lost the game or not.
@@ -242,6 +244,10 @@ ig.module(
 
                 this.spawnMovementBorders();
 
+                // Display extra live icons
+
+                this.displayExtraLives();
+
                 // Spawn the ship of the player
 
                 this.player = ig.game.spawnEntity(ig.EntityPlayer, 50, 96);
@@ -258,6 +264,42 @@ ig.module(
                 this.camera.follow( this.getEntityByName('pressCToContinue'), true, true );
 
             }
+
+        },
+
+        /**
+         * Spawns UI elements which represent the ammount of extra lives the player has.
+         */
+        displayExtraLives: function(){
+
+            var posOnX = ig.game.getEntityByName('movementBorderTop').pos.x;
+
+            for( var i = 0; i < this.extraLives; i++ ){
+
+                ig.game.spawnEntity(ig.EntityExtraLiveIcon, posOnX, 0);
+
+                posOnX += 20;
+
+            }
+
+        },
+
+        /**
+         * Updates the ingame display of extra lives.
+         */
+        updateExtraLivesDisplay: function(){
+
+            var extraLiveIcons = ig.game.getEntitiesByClass(ig.EntityExtraLiveIcon);
+
+            // Remove old icons
+
+            for( var i = 0, len = extraLiveIcons.length; i < len; i++ ){
+
+                extraLiveIcons[i].kill();
+
+            }
+
+            this.displayExtraLives();
 
         },
 

@@ -344,6 +344,8 @@ ig.module(
 
             ig.game.extraLives -= 1;
 
+            // Check if there are any extra lives left
+
             if( ig.game.extraLives < 0 ){
 
                 ig.game.hasLostTheGame = true;
@@ -355,6 +357,10 @@ ig.module(
                 // Inform player respawner that the player is dead
 
                 ig.game.playerRespawner.hasDeadPlayer = true;
+
+                // Update extra live icons
+
+                ig.game.updateExtraLivesDisplay();
 
             }
 
