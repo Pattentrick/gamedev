@@ -135,7 +135,7 @@ ig.module(
         clearColor: "#000000",
 
         /**
-         * Number of extra lives.
+         * If forced scrolling is enabled.
          *
          * @type {Boolean} If true the level will autoscroll.
          *

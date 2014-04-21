@@ -129,7 +129,11 @@ ig.module(
 
            this.parent();
 
-           this.handleMovementPattern();
+           if( !this.isWaiting ){
+
+               this.handleMovementPattern();
+
+           }
 
         }
 

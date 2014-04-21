@@ -50,6 +50,26 @@ ig.module(
             }
         },
 
+        check: function(entity) {
+
+            // deal damage to colliding entity
+
+            var damage;
+
+            if (this.damageAsPct) {
+
+                damage = entity.health * this.damage;
+
+            } else {
+
+                damage = this.damage;
+
+            }
+
+            entity.receiveDamage(damage, this, this.damageUnblockable);
+
+        },
+
         initTypes: function() {
 
             _ut.addType(ig.EntityExtended, this, 'checkAgainst', "PLAYER");

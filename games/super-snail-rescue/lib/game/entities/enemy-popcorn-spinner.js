@@ -176,39 +176,43 @@ ig.module(
 
             // Movement
 
-            this.moveToLeft();
+            if( !this.isWaiting ){
 
-            if( this.movement === 'wave' ){
+                this.moveToLeft();
 
-                // Start wave movement after given time, or if this would be the start of the wave movement
+                if( this.movement === 'wave' ){
 
-                if( this.movementTimer.delta() > this.waveStrength || this.isWaveStart ){
+                    // Start wave movement after given time, or if this would be the start of the wave movement
 
-                    if( !this.isMovingUp ){
+                    if( this.movementTimer.delta() > this.waveStrength || this.isWaveStart ){
 
-                        this.moveToUp();
+                        if( !this.isMovingUp ){
 
-                        this.isMovingUp = true;
+                            this.moveToUp();
+
+                            this.isMovingUp = true;
+
+                        }
+                        else {
+
+                            this.moveToDown();
+
+                            this.isMovingUp = false;
+
+                        }
+
+                        this.movementTimer.reset();
+                        this.isWaveStart = false;
 
                     }
-                    else {
-
-                        this.moveToDown();
-
-                        this.isMovingUp = false;
-
-                    }
-
-                    this.movementTimer.reset();
-                    this.isWaveStart = false;
 
                 }
 
+                // Shooting
+
+                this.handleShooting();
+
             }
-
-            // Shooting
-
-            this.handleShooting();
 
         }
 

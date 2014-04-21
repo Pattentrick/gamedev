@@ -44,7 +44,7 @@ ig.module(
          * @type Number
          *
          */
-        loadTitleTime: 8,
+        loadTitleTime: 6,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'player.png', 32, 16 ),
 

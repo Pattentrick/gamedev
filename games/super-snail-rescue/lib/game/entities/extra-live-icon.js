@@ -21,6 +21,8 @@ ig.module(
 
         performance: 'dynamic',
 
+        highPerformance: true,
+
         size: {
             x: 16,
             y: 8

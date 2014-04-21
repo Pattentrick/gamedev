@@ -27,6 +27,14 @@ ig.module(
 
         performance: 'dynamic',
 
+        /**
+         * If this enemy is still waiting for the player.
+         *
+         * @type {Boolean} True as long is the player is far away.
+         *
+         */
+        isWaiting: true,
+
         size: {
             x: 16,
             y: 16
@@ -84,6 +92,22 @@ ig.module(
 
         },
 
+        handleWaiting: function(){
+
+            var border = ig.game.getEntityByName('movementBorderRight');
+
+            if( this.isWaiting ){
+
+                if( this.distanceEdgeTo( border ) < 150 ){
+
+                    this.isWaiting = false;
+
+                }
+
+            }
+
+        },
+
         /**
          * Gets the difference between two numbers.
          *
@@ -114,6 +138,14 @@ ig.module(
             r = r + min;
 
             return r;
+
+        },
+
+        updateChanges: function(){
+
+            this.parent();
+
+            this.handleWaiting();
 
         },
 

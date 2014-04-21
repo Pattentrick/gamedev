@@ -27,7 +27,7 @@ ig.module(
             y: 13
         },
 
-        health: 3,
+        health: 2,
 
         explodingDamage: false,
 
@@ -115,9 +115,13 @@ ig.module(
 
             this.parent();
 
-            if( player ){
+            if( !this.isWaiting ){
 
-                this.handleShootMechanic( player );
+                if( player ){
+
+                    this.handleShootMechanic( player );
+
+                }
 
             }
 
