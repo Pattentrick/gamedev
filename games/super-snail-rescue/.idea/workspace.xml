@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/game/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="142" column="33" selection-start="2985" selection-end="2985" vertical-scroll-proportion="0.9701897" vertical-offset="2408" max-vertical-offset="8822">
+            <state line="94" column="16" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.0" vertical-offset="4850" max-vertical-offset="8822">
               <folding />
             </state>
           </provider>
@@ -35,16 +35,36 @@
       <file leaf-file-name="background-map.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/plusplus/core/background-map.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="285" column="0" selection-start="8854" selection-end="8854" vertical-scroll-proportion="0.0" vertical-offset="5752" max-vertical-offset="6490">
+            <state line="309" column="0" selection-start="9646" selection-end="9646" vertical-scroll-proportion="0.0" vertical-offset="6280" max-vertical-offset="7018">
+              <folding>
+                <marker date="1398058796000" expanded="true" signature="991:1806" placeholder="/** List of maps merged into this map. ...*/" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tutorial.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="18" selection-start="412" selection-end="412" vertical-scroll-proportion="0.26364848" vertical-offset="264" max-vertical-offset="1364">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tutorial.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
+      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="60" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1276">
+            <state line="243" column="51" selection-start="7181" selection-end="7185" vertical-scroll-proportion="0.0" vertical-offset="5324" max-vertical-offset="62766">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config-user.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="36" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1232">
               <folding />
             </state>
           </provider>
@@ -86,28 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="projectile.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/projectile.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="33" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="142" max-vertical-offset="2926">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="intro-spaceship.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/game/entities/intro-spaceship.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="46" column="24" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2794">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="particle.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/particle.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="19" selection-start="6964" selection-end="6964" vertical-scroll-proportion="0.0" vertical-offset="4509" max-vertical-offset="12606">
               <folding />
             </state>
           </provider>
@@ -159,9 +161,10 @@
         <option value="$PROJECT_DIR$/lib/plusplus/abstractities/particle.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/projectile-enemy-laser.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/intro-spaceship.js" />
-        <option value="$PROJECT_DIR$/lib/game/main.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/player.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/extra-live-icon.js" />
+        <option value="$PROJECT_DIR$/lib/game/main.js" />
+        <option value="$PROJECT_DIR$/lib/plusplus/config-user.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/tutorial.js" />
       </list>
     </option>
@@ -533,7 +536,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1452" height="912" extended-state="1" />
+    <frame x="-8" y="-8" width="1452" height="912" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -740,11 +743,6 @@
         <state line="1268" column="35" selection-start="22160" selection-end="22160" vertical-scroll-proportion="0.0" vertical-offset="27649" max-vertical-offset="47960" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="12" selection-start="833" selection-end="847" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1056" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/core/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2111" column="0" selection-start="64889" selection-end="65007" vertical-scroll-proportion="-5.8965516" vertical-offset="46271" max-vertical-offset="55682">
@@ -775,13 +773,6 @@
     <entry file="file://$PROJECT_DIR$/lib/game/entities/press-c-to-continue.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="53" selection-start="698" selection-end="698" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="1078">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="243" column="51" selection-start="7181" selection-end="7185" vertical-scroll-proportion="0.0" vertical-offset="5065" max-vertical-offset="62414">
           <folding />
         </state>
       </provider>
@@ -866,8 +857,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/core/background-map.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="0" selection-start="8854" selection-end="8854" vertical-scroll-proportion="0.0" vertical-offset="5752" max-vertical-offset="6490">
-          <folding />
+        <state line="309" column="0" selection-start="9646" selection-end="9646" vertical-scroll-proportion="0.0" vertical-offset="6280" max-vertical-offset="7018">
+          <folding>
+            <marker date="1398058796000" expanded="true" signature="991:1806" placeholder="/** List of maps merged into this map. ...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -892,16 +885,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
+    <entry file="file://$PROJECT_DIR$/lib/game/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="60" selection-start="877" selection-end="877" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1276">
+        <state line="94" column="16" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.0" vertical-offset="4850" max-vertical-offset="8822">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/main.js">
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="33" selection-start="2985" selection-end="2985" vertical-scroll-proportion="0.9701897" vertical-offset="2408" max-vertical-offset="8822">
+        <state line="243" column="51" selection-start="7181" selection-end="7185" vertical-scroll-proportion="0.0" vertical-offset="5065" max-vertical-offset="62414">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="36" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1232">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="18" selection-start="412" selection-end="412" vertical-scroll-proportion="0.26364848" vertical-offset="264" max-vertical-offset="1364">
           <folding />
         </state>
       </provider>

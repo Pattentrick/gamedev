@@ -20,19 +20,27 @@ ig.module(
         ig.CONFIG_USER = {
 
             // set to true for a top down game
+
             TOP_DOWN: true,
 
             // enable fullscreen
+
             GAME_WIDTH_PCT: 1,
             GAME_HEIGHT_PCT: 1,
 
             // resolution that will be scaled
+
             GAME_WIDTH_VIEW: 320,
             GAME_HEIGHT_VIEW: 200,
+
+            // Disable parallax on y
+
+            BACKGROUNDS_PARALLAX_Y: false,
 
             TRANSITIONER_COLOR: "#000000",
 
             // camera settings
+
             CAMERA: {
                 AUTO_FOLLOW_PLAYER : false
             }

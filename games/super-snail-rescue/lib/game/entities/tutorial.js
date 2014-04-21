@@ -19,13 +19,13 @@ ig.module(
     ig.EntityTutorial = ig.global.EntityTutorial = ig.EntityExtended.extend({
 
         size: {
-            x: 98,
+            x: 104,
             y: 40
         },
 
         //highPerformance: true,
 
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'tutorial.gif', 98, 40 ),
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'tutorial.gif', 104, 40 ),
 
         animSettings: {
             idle: {
@@ -40,9 +40,13 @@ ig.module(
 
             // Remove this entity once the player has passed it
 
-            if( ig.game.getPlayer().pos.x - this.pos.x > 275 ){
+            if( ig.game.getPlayer() ){
 
-                this.kill()
+                if( ig.game.getPlayer().pos.x - this.pos.x > 275 ){
+
+                    this.kill()
+
+                }
 
             }
 
