@@ -35,6 +35,17 @@ ig.module(
             y: 0
         },
 
+        /**
+         *  This completely ignores the trace result (res)
+         *  and always moves the entity according to its velocity
+         */
+        handleMovementTrace: function( res ) {
+
+            this.pos.x += this.vel.x * ig.system.tick;
+            this.pos.y += this.vel.y * ig.system.tick;
+
+        },
+
         updateChanges: function(){
 
             this.parent();

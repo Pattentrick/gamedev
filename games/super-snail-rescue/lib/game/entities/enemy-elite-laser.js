@@ -27,7 +27,7 @@ ig.module(
             y: 13
         },
 
-        health: 2,
+        health: 1,
 
         explodingDamage: false,
 
@@ -53,7 +53,7 @@ ig.module(
         canFlipX: false,
 
         maxVelGrounded: {
-            x: 1,
+            x: 5,
             y: 20
         },
 

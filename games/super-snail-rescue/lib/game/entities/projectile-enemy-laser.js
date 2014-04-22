@@ -70,6 +70,17 @@ ig.module(
 
         },
 
+        /**
+         *  This completely ignores the trace result (res)
+         *  and always moves the entity according to its velocity
+         */
+        handleMovementTrace: function( res ) {
+
+            this.pos.x += this.vel.x * ig.system.tick;
+            this.pos.y += this.vel.y * ig.system.tick;
+
+        },
+
         initTypes: function() {
 
             _ut.addType(ig.EntityExtended, this, 'checkAgainst', "PLAYER");

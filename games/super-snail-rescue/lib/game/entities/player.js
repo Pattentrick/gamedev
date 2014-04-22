@@ -285,6 +285,24 @@ ig.module(
 
         },
 
+        /**
+         * Kill the player if he collides with the collision map. He is to damn fast!
+         */
+        handleMovementTrace: function( res ){
+
+            if( res.collision.x || res.collision.y || res.collision.slope ){
+
+                this.kill();
+
+            }
+            else {
+
+                this.parent( res );
+
+            }
+
+        },
+
         die: function(){
 
             this.parent();

@@ -96,7 +96,7 @@ ig.module(
             // Soundeffects
 
             this.explosion = new ig.Sound( 'media/sounds/explosion.*' );
-            this.explosion.volume = 0.9;
+            this.explosion.volume = 0.7;
 
         },
 
@@ -158,6 +158,17 @@ ig.module(
             this.parent();
 
             this.handleWaiting();
+
+        },
+
+        /**
+         *  This completely ignores the trace result (res)
+         *  and always moves the entity according to its velocity
+         */
+        handleMovementTrace: function( res ) {
+
+            this.pos.x += this.vel.x * ig.system.tick;
+            this.pos.y += this.vel.y * ig.system.tick;
 
         },
 

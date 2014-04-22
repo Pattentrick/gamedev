@@ -53,7 +53,7 @@ ig.module(
          *
          * @type Number
          */
-        shootDelay: 1.5,
+        shootDelay: 1,
 
         /**
          * How far the player can move towards the turret before it shoots.
