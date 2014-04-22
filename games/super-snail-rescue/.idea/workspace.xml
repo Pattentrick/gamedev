@@ -23,39 +23,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/game/main.js">
+      <file leaf-file-name="enemy-popcorn-spinner.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-popcorn-spinner.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="16" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.0" vertical-offset="4850" max-vertical-offset="8822">
+            <state line="96" column="24" selection-start="2022" selection-end="2022" vertical-scroll-proportion="0.0" vertical-offset="1682" max-vertical-offset="5082">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="background-map.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/background-map.js">
+      <file leaf-file-name="player.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="309" column="0" selection-start="9646" selection-end="9646" vertical-scroll-proportion="0.0" vertical-offset="6280" max-vertical-offset="7018">
-              <folding>
-                <marker date="1398058796000" expanded="true" signature="991:1806" placeholder="/** List of maps merged into this map. ...*/" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tutorial.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="18" selection-start="412" selection-end="412" vertical-scroll-proportion="0.26364848" vertical-offset="264" max-vertical-offset="1364">
+            <state line="285" column="10" selection-start="6625" selection-end="6625" vertical-scroll-proportion="0.7983075" vertical-offset="5704" max-vertical-offset="8800">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/config.js">
+      <file leaf-file-name="enemy.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="243" column="51" selection-start="7181" selection-end="7185" vertical-scroll-proportion="0.0" vertical-offset="5324" max-vertical-offset="62766">
+            <state line="159" column="33" selection-start="3457" selection-end="3457" vertical-scroll-proportion="0.0" vertical-offset="3046" max-vertical-offset="6952">
               <folding />
             </state>
           </provider>
@@ -64,34 +53,7 @@
       <file leaf-file-name="config-user.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="36" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1232">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="entity.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="202" column="12" selection-start="7040" selection-end="7040" vertical-scroll-proportion="0.0" vertical-offset="4179" max-vertical-offset="122936">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="174" column="12" selection-start="3940" selection-end="3940" vertical-scroll-proportion="0.0" vertical-offset="3542" max-vertical-offset="8800">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="extra-live-icon.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/game/entities/extra-live-icon.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="0" selection-start="920" selection-end="1046" vertical-scroll-proportion="0.0" vertical-offset="591" max-vertical-offset="1408">
+            <state line="37" column="41" selection-start="1140" selection-end="1145" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1232">
               <folding />
             </state>
           </provider>
@@ -100,16 +62,52 @@
       <file leaf-file-name="projectile-enemy-laser.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/game/entities/projectile-enemy-laser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="33" selection-start="960" selection-end="960" vertical-scroll-proportion="0.0" vertical-offset="877" max-vertical-offset="1892">
+            <state line="76" column="9" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.0" vertical-offset="1141" max-vertical-offset="1892">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="intro-spaceship.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/game/entities/intro-spaceship.js">
+      <file leaf-file-name="ability-shoot.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/abilities/ability-shoot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="24" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2794">
+            <state line="288" column="20" selection-start="10273" selection-end="10300" vertical-scroll-proportion="0.0" vertical-offset="6062" max-vertical-offset="9042">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enemy-turret.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-turret.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="4" selection-start="116" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="4466" max-vertical-offset="5324">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entity.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="229" column="27" selection-start="8358" selection-end="8373" vertical-scroll-proportion="-12.206897" vertical-offset="4684" max-vertical-offset="122936">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="enemy-elite-laser.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-elite-laser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="24" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.0" vertical-offset="2452" max-vertical-offset="3190">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="projectile-enemy-bullet.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/game/entities/projectile-enemy-bullet.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="24" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="591" max-vertical-offset="1408">
               <folding />
             </state>
           </provider>
@@ -137,7 +135,6 @@
         <option value="$PROJECT_DIR$/lib/game/levels/starfield.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/helpers/pathfinding.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/projectile-spinner-bullet.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/projectile-enemy-bullet.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/enemy-turret.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/particle-damage-explosion.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/abilities/ability.js" />
@@ -153,19 +150,20 @@
         <option value="$PROJECT_DIR$/lib/plusplus/core/config.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/ui/ui-element.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/level-scroller.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/enemy.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/enemy-elite-disturber.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/enemy-popcorn-spinner.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/enemy-popcorn-crasher.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/enemy-elite-laser.js" />
         <option value="$PROJECT_DIR$/lib/plusplus/abstractities/particle.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/projectile-enemy-laser.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/intro-spaceship.js" />
-        <option value="$PROJECT_DIR$/lib/game/entities/player.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/extra-live-icon.js" />
-        <option value="$PROJECT_DIR$/lib/game/main.js" />
-        <option value="$PROJECT_DIR$/lib/plusplus/config-user.js" />
         <option value="$PROJECT_DIR$/lib/game/entities/tutorial.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/enemy-elite-laser.js" />
+        <option value="$PROJECT_DIR$/lib/game/main.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/enemy-popcorn-spinner.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/player.js" />
+        <option value="$PROJECT_DIR$/lib/plusplus/config-user.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/enemy.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/projectile-enemy-bullet.js" />
+        <option value="$PROJECT_DIR$/lib/game/entities/projectile-enemy-laser.js" />
       </list>
     </option>
   </component>
@@ -376,29 +374,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="super-snail-rescue" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="super-snail-rescue" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plusplus" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="abilities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -438,7 +414,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="entities" />
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -542,6 +518,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3880597" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2103064" sideWeight="0.601023" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39851484" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -551,7 +528,6 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3880597" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -701,18 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-turret.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="4" selection-start="116" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5324">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/projectile-enemy-bullet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="4" selection-start="279" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="1408" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/entities/destructable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="44" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="2772" />
@@ -721,11 +685,6 @@
     <entry file="file://$PROJECT_DIR$/lib/plusplus/abilities/ability.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1022" column="70" selection-start="34967" selection-end="34967" vertical-scroll-proportion="0.0" vertical-offset="22061" max-vertical-offset="46684" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/abilities/ability-shoot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="47" selection-start="7157" selection-end="7165" vertical-scroll-proportion="0.0" vertical-offset="3870" max-vertical-offset="9042" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/abilities/plasma-gun.js">
@@ -743,13 +702,6 @@
         <state line="1268" column="35" selection-start="22160" selection-end="22160" vertical-scroll-proportion="0.0" vertical-offset="27649" max-vertical-offset="47960" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2111" column="0" selection-start="64889" selection-end="65007" vertical-scroll-proportion="-5.8965516" vertical-offset="46271" max-vertical-offset="55682">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/entities/movement-border.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="73" column="13" selection-start="1788" selection-end="1788" vertical-scroll-proportion="0.72129035" vertical-offset="1047" max-vertical-offset="1914" />
@@ -757,12 +709,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/entities/title.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="63" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.60258067" vertical-offset="655" max-vertical-offset="1430" />
+        <state line="51" column="63" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.60258067" vertical-offset="655" max-vertical-offset="1430">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/entities/press-c-to-start.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="26" selection-start="326" selection-end="345" vertical-scroll-proportion="0.31870967" vertical-offset="149" max-vertical-offset="924" />
+        <state line="18" column="26" selection-start="326" selection-end="345" vertical-scroll-proportion="0.31870967" vertical-offset="149" max-vertical-offset="924">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/plusplus/entities/void.js">
@@ -794,86 +750,14 @@
         <state line="49" column="7" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1254" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="17" selection-start="2310" selection-end="2310" vertical-scroll-proportion="0.0" vertical-offset="1773" max-vertical-offset="6688">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-elite-disturber.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="185" column="17" selection-start="4421" selection-end="4421" vertical-scroll-proportion="0.0" vertical-offset="1240" max-vertical-offset="4378" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-popcorn-spinner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="212" column="38" selection-start="4580" selection-end="4580" vertical-scroll-proportion="0.0" vertical-offset="3640" max-vertical-offset="4972">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-popcorn-crasher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="44" selection-start="2968" selection-end="2968" vertical-scroll-proportion="0.0" vertical-offset="2351" max-vertical-offset="3234">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-elite-laser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="10" selection-start="2550" selection-end="2550" vertical-scroll-proportion="0.0" vertical-offset="1770" max-vertical-offset="3014">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/projectile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="33" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0" vertical-offset="142" max-vertical-offset="2926">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/particle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="19" selection-start="6964" selection-end="6964" vertical-scroll-proportion="0.0" vertical-offset="4509" max-vertical-offset="12606">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/projectile-enemy-laser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="33" selection-start="960" selection-end="960" vertical-scroll-proportion="0.0" vertical-offset="877" max-vertical-offset="1892">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/game/entities/intro-spaceship.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="24" selection-start="955" selection-end="955" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="2794">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/background-map.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="309" column="0" selection-start="9646" selection-end="9646" vertical-scroll-proportion="0.0" vertical-offset="6280" max-vertical-offset="7018">
-          <folding>
-            <marker date="1398058796000" expanded="true" signature="991:1806" placeholder="/** List of maps merged into this map. ...*/" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="202" column="12" selection-start="7040" selection-end="7040" vertical-scroll-proportion="0.0" vertical-offset="4179" max-vertical-offset="122936">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="174" column="12" selection-start="3940" selection-end="3940" vertical-scroll-proportion="0.0" vertical-offset="3542" max-vertical-offset="8800">
           <folding />
         </state>
       </provider>
@@ -885,9 +769,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/main.js">
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="16" selection-start="2064" selection-end="2064" vertical-scroll-proportion="0.0" vertical-offset="4850" max-vertical-offset="8822">
+        <state line="21" column="18" selection-start="412" selection-end="412" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1364">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/background-map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="309" column="0" selection-start="9646" selection-end="9646" vertical-scroll-proportion="4.99458" vertical-offset="3112" max-vertical-offset="7018">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1630" column="12" selection-start="49343" selection-end="49343" vertical-scroll-proportion="0.0" vertical-offset="35614" max-vertical-offset="55682">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/particle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="469" column="21" selection-start="14235" selection-end="14241" vertical-scroll-proportion="0.33286318" vertical-offset="10082" max-vertical-offset="12606">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/abstractities/projectile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="32" selection-start="607" selection-end="607" vertical-scroll-proportion="0.33333334" vertical-offset="208" max-vertical-offset="2926">
           <folding />
         </state>
       </provider>
@@ -899,16 +811,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-popcorn-crasher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="36" selection-start="1102" selection-end="1102" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1232">
+        <state line="41" column="0" selection-start="851" selection-end="924" vertical-scroll-proportion="0.0" vertical-offset="462" max-vertical-offset="3234">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/game/entities/tutorial.js">
+    <entry file="file://$PROJECT_DIR$/lib/game/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="18" selection-start="412" selection-end="412" vertical-scroll-proportion="0.26364848" vertical-offset="264" max-vertical-offset="1364">
+        <state line="142" column="33" selection-start="2985" selection-end="2985" vertical-scroll-proportion="0.0" vertical-offset="2936" max-vertical-offset="8822">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/core/entity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="229" column="27" selection-start="8358" selection-end="8373" vertical-scroll-proportion="-12.206897" vertical-offset="4684" max-vertical-offset="122936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-turret.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="4" selection-start="116" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5324">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-popcorn-spinner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="24" selection-start="2022" selection-end="2022" vertical-scroll-proportion="0.0" vertical-offset="1682" max-vertical-offset="5082">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/config-user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="41" selection-start="1140" selection-end="1145" vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1232">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="33" selection-start="3457" selection-end="3457" vertical-scroll-proportion="0.0" vertical-offset="3046" max-vertical-offset="6952">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/enemy-elite-laser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="24" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.0" vertical-offset="516" max-vertical-offset="3190">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/projectile-enemy-bullet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="24" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="1408">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/projectile-enemy-laser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="9" selection-start="1406" selection-end="1406" vertical-scroll-proportion="0.0" vertical-offset="1141" max-vertical-offset="1892">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/plusplus/abilities/ability-shoot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="288" column="20" selection-start="10273" selection-end="10300" vertical-scroll-proportion="0.0" vertical-offset="6062" max-vertical-offset="9042">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/game/entities/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="285" column="10" selection-start="6625" selection-end="6625" vertical-scroll-proportion="0.7983075" vertical-offset="5704" max-vertical-offset="8800">
           <folding />
         </state>
       </provider>

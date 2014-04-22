@@ -50,6 +50,13 @@ ig.module(
          */
         attackRange: 200,
 
+        canFlipX: false,
+
+        maxVelGrounded: {
+            x: 1,
+            y: 20
+        },
+
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-elite-laser.png', 33, 13 ),
 
         animSettings: {
@@ -120,6 +127,7 @@ ig.module(
                 if( player ){
 
                     this.handleShootMechanic( player );
+                    this.moveToLeft();
 
                 }
 

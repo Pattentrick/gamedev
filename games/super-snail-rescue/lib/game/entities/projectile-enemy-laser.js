@@ -27,7 +27,7 @@ ig.module(
 
         damage: 1,
 
-        lifeDuration: 100,
+        lifeDuration: 10,
 
         friction: {
             x:0,

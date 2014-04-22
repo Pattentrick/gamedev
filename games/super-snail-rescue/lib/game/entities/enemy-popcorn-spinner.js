@@ -91,6 +91,11 @@ ig.module(
             y: 100
         },
 
+        /**
+         * On which distance to the player should this enemy start attacking.
+         */
+        attackRange: 120,
+
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-popcorn-spinner.gif', 17, 16 ),
 
         animSettings: {
@@ -150,7 +155,7 @@ ig.module(
 
             if( ig.game.getPlayer() ){
 
-                if( this.pos.x - ig.game.getPlayer().pos.x < 140 ){
+                if( this.pos.x - ig.game.getPlayer().pos.x < this.attackRange ){
 
                     // Enough ammunition?
 

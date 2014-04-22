@@ -35,6 +35,14 @@ ig.module(
          */
         isWaiting: true,
 
+        /**
+         * True as long as this enemy waits.
+         *
+         * @type {Boolean} True on high performance.
+         *
+         */
+        highPerformance: true,
+
         size: {
             x: 16,
             y: 16
@@ -101,6 +109,10 @@ ig.module(
                 if( this.distanceEdgeTo( border ) < 150 ){
 
                     this.isWaiting = false;
+
+                    // Disable high performance
+
+                    this.highPerformance = false;
 
                 }
 
