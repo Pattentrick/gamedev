@@ -37,9 +37,24 @@ ig.module(
             }
         },
 
+        /**
+         * True if the wave movement just started.
+         *
+         * @type Boolean
+         */
+        isWaveStart: true,
+
+        initProperties: function(){
+
+            this.parent();
+
+            this.movementTimer = new ig.Timer();
+
+        },
+
         maxVelGrounded: {
             x: 20,
-            y: 20
+            y: 10
         },
 
         updateChanges: function(){
@@ -48,9 +63,31 @@ ig.module(
 
            if( !this.isWaiting ){
 
-/*               this.moveToLeft();
-               this.moveToDown();*/
+               this.moveToLeft();
 
+               // Start wave movement after given time, or if this would be the start of the wave movement
+
+               if( this.movementTimer.delta() > 0.7 || this.isWaveStart ){
+
+                   if( !this.isMovingUp ){
+
+                       this.moveToUp();
+
+                       this.isMovingUp = true;
+
+                   }
+                   else {
+
+                       this.moveToDown();
+
+                       this.isMovingUp = false;
+
+                   }
+
+                   this.movementTimer.reset();
+                   this.isWaveStart = false;
+
+               }
 
            }
 

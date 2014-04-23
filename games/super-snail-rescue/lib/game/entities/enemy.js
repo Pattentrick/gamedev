@@ -182,6 +182,8 @@ ig.module(
 
             }
 
+            console.log(entity);
+
         },
 
         /**

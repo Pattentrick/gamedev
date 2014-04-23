@@ -58,7 +58,7 @@ ig.module(
         /**
          * How far the player can move towards the turret before it shoots.
          */
-        attackRange: 160,
+        attackRange: 180,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-turret.gif', 12, 14 ),
 

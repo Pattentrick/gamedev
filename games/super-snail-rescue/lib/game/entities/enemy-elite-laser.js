@@ -27,15 +27,11 @@ ig.module(
             y: 13
         },
 
-        health: 1,
+        health: 2,
 
         explodingDamage: false,
 
-        /**
-         * Whether this is the first time that the turret fires or not.
-         *
-         * @type Boolean
-         */
+
         isFirstShot: true,
 
         /**
@@ -43,18 +39,32 @@ ig.module(
          *
          * @type Number
          */
-        shootDelay: 3,
+        shootDelay: 2,
 
         /**
-         * How far the player can move towards the turret before it shoots.
+         * How far the player can move towards the enemy before it shoots.
          */
-        attackRange: 200,
+        attackRange: 320,
+
+        /**
+         * Contains the distance to the scroller on the x axis
+         *
+         * @type Number
+         */
+        distanceToScroller: null,
+
+        /**
+         * Whether this is moving down or not. Needed for up/down movement pattern.
+         *
+         * @type Boolean
+         */
+        isMovingDown: false,
 
         canFlipX: false,
 
         maxVelGrounded: {
             x: 5,
-            y: 20
+            y: 55
         },
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-elite-laser.png', 33, 13 ),
@@ -75,6 +85,24 @@ ig.module(
             this.parent();
 
             this.shootingTimer = new ig.Timer;
+
+        },
+
+        /**
+         * Kill the enemy if he collides with the collision map. He is to damn fast!
+         */
+        handleMovementTrace: function( res ){
+
+            if( res.collision.x || res.collision.y || res.collision.slope ){
+
+                this.kill();
+
+            }
+            else {
+
+                this.parent( res );
+
+            }
 
         },
 
@@ -108,6 +136,9 @@ ig.module(
 
         },
 
+        /**
+         * Override this for special damaged animation (flickering).
+         */
         receiveDamage: function( amount, from, unblockable ){
 
             this.parent( amount, from, unblockable );
@@ -116,22 +147,89 @@ ig.module(
 
         },
 
-        updateChanges: function(){
+        /**
+         * Will shift the enemy on x because it's moving up and down
+         * and another call of the moveToX methods would cause a spastic
+         * circular movement.
+         *
+         * @param {Number} difference The Difference between the enemy and the scroller
+         *
+         */
+        updatePosOnX: function( difference ){
 
-            var player = ig.game.getPlayer();
+            var levelScroller = ig.game.getEntityByName('levelScroller');
 
-            this.parent();
+            if( !this.distanceToScroller ){
 
-            if( !this.isWaiting ){
+                this.distanceToScroller = difference;
 
-                if( player ){
+            }
 
-                    this.handleShootMechanic( player );
-                    this.moveToLeft();
+            this.pos.x = this.distanceToScroller + levelScroller.pos.x;
+
+        },
+
+        /**
+         * Will move the enmy up and down.
+         *
+         * @param {Number} start The start position of the movement
+         * @param {Number} end The end position of the movement
+         *
+         */
+        moveUpAndDown: function( start, end ){
+
+            var y = this.pos.y;
+
+            if( y > start && !this.isMovingDown ){
+
+                this.moveToUp();
+
+            }
+            else {
+
+                if( y > end ){
+
+                    this.isMovingDown = false;
+
+                }
+                else {
+
+                    this.moveToDown();
+
+                    this.isMovingDown = true;
 
                 }
 
             }
+
+        },
+
+        updateChanges: function(){
+
+            var player = ig.game.getPlayer();
+            var difference = this.getDifference( this.pos.x, ig.game.getEntityByName('levelScroller').pos.x );
+
+            // If the player is near enough ...
+
+            if( difference < 140 ){
+
+                if( player ){
+
+                    this.handleShootMechanic( player );
+
+                }
+
+                this.updatePosOnX( difference );
+                this.moveUpAndDown( 30, 140 );
+
+            }
+            else if( !this.isWaiting ){
+
+                this.moveToLeft();
+
+            }
+
+            this.parent();
 
         }
 
