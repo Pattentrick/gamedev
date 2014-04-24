@@ -29,9 +29,11 @@ ig.module(
 
         health: 2,
 
-        explodingDamage: false,
-
-
+        /**
+         * If the upcoming shot is the first one.
+         *
+         * @type Boolean
+         */
         isFirstShot: true,
 
         /**
@@ -86,6 +88,11 @@ ig.module(
 
             this.shootingTimer = new ig.Timer;
 
+            // Soundeffects
+
+            this.laser = new ig.Sound( 'media/sounds/enemy-laser.*' );
+            this.laser.volume = 0.7;
+
         },
 
         /**
@@ -126,6 +133,8 @@ ig.module(
                             y: 0
                         }
                     });
+
+                    this.laser.play();
 
                     this.isFirstShot = false;
                     this.shootingTimer.reset();

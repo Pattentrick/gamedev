@@ -52,6 +52,8 @@ ig.module(
 
         damage: 1,
 
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-popcorn-ball.png', 16, 16 ),
+
         animSettings: {
             idle: {
                 frameTime: 1,
@@ -182,8 +184,6 @@ ig.module(
 
             }
 
-            console.log(entity);
-
         },
 
         /**
@@ -294,7 +294,7 @@ ig.module(
                         x: 60,
                         y: 60
                     },
-                    lifeDuration: 10,
+                    lifeDuration: 3,
                     // fade in after spawning
                     fadeAfterSpawnDuration: 0,
                     // fade out before dieing

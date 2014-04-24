@@ -37,6 +37,10 @@ ig.module(
 
             BACKGROUNDS_PARALLAX_Y: false,
 
+            // Min Scale
+
+            SCALE_MIN: 2,
+
             TRANSITIONER_COLOR: "#000000",
 
             // camera settings

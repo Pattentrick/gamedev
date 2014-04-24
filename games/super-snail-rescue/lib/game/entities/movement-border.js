@@ -51,16 +51,16 @@ ig.module(
             switch( this.name ){
                 case 'movementBorderTop':
                     entity.isTouchingBorderTop = true;
-                break;
+                    break;
                 case 'movementBorderRight':
                     entity.isTouchingBorderRight = true;
-                break;
+                    break;
                 case 'movementBorderBottom':
                     entity.isTouchingBorderBottom = true;
-                break;
+                    break;
                 case 'movementBorderLeft':
                     entity.isTouchingBorderLeft = true;
-                break;
+                    break;
             }
 
         },

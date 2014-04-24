@@ -228,7 +228,7 @@ ig.module(
             }
             else if ( ig.input.state('left') && !this.isTouchingBorderLeft ) {
 
-                this.maxVelGrounded.x = 0;
+                this.maxVelGrounded.x = 50;
 
                 this.moveToLeft();
 
