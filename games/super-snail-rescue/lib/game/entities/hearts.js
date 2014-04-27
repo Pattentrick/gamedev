@@ -18,8 +18,6 @@ ig.module(
      */
     ig.EntityHearts = ig.global.EntityHearts = ig.EntityExtended.extend({
 
-        collides: ig.Entity.COLLIDES.NEVER,
-
         size: {
             x: 13,
             y: 18
@@ -34,6 +32,31 @@ ig.module(
                 frameTime: 1,
                 sequence: [3,0,1,2]
             }
+        },
+
+        initProperties: function(){
+
+            this.parent();
+
+            this.heartBleep = new ig.Sound( 'media/sounds/hearts.*' );
+            this.heartBleep.volume = 0.2;
+
+            this.bleepTimer = new ig.Timer();
+
+        },
+
+        update: function(){
+
+            this.parent();
+
+            if( this.bleepTimer.delta() > 1 ){
+
+                this.heartBleep.play();
+
+                this.bleepTimer.reset();
+
+            }
+
         }
 
     });

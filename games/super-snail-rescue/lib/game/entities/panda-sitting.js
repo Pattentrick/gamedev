@@ -49,7 +49,7 @@ ig.module(
          *
          * @type Boolean
          */
-        timeToLoadLevel: 5,
+        timeToLoadLevel: 4,
 
         /**
          * Set to ture to display a sad panda.
@@ -59,7 +59,7 @@ ig.module(
         /**
          * After how many the thought bubble should appear.
          */
-        durationUntilThinking: 22,
+        durationUntilThinking: 20,
 
         /**
          * If the game is loading a new level.

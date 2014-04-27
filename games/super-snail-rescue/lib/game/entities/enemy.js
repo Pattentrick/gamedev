@@ -98,7 +98,7 @@ ig.module(
             // Soundeffects
 
             this.explosion = new ig.Sound( 'media/sounds/explosion.*' );
-            this.explosion.volume = 0.7;
+            this.explosion.volume = 0.2;
 
         },
 
@@ -287,9 +287,12 @@ ig.module(
          */
         spawnDebris: function(){
 
+            var isBarrier = this.name === 'barrier';
+
             var destructable = ig.game.spawnEntity(ig.EntityDestructable, this.getCenterX(), this.getCenterY(), {
-                spawnCountMax: 6,
+                spawnCountMax: isBarrier ? 12 : 6,
                 spawnSettings: {
+                    animSheet: isBarrier ? new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'stone-debris.gif', 4, 4) : new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'enemy-debris.gif', 4, 4),
                     vel: {
                         x: 60,
                         y: 60

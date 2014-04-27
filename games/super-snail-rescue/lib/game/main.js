@@ -22,7 +22,7 @@ ig.module(
     'game.entities.movement-border',
     // player respawner
     'game.components.player-respawner',
-    // extra live UI
+    // extra live icon
     'game.entities.extra-live-icon'
 )
 .defines(function () {
@@ -35,13 +35,26 @@ ig.module(
 
 	var openingAndTitle = ig.GameExtended.extend({
 
-        // Background color of canvas
-
+        /**
+         * Background color of the canvas.
+         *
+         * @type {String} The Color value as hex.
+         *
+         */
         clearColor: "#000000",
 
 		init: function () {
 
 			this.parent();
+
+            // Soundeffects
+
+            this.menu = new ig.Sound( 'media/sounds/menu.*' );
+            this.menu.volume = 0.3;
+
+            // Background music
+            ig.music.add( 'media/music/jredd_1-bit-of-advice-before-you-take-off.*', ['1BitOfAdviceBeforeYouTakeOff'] );
+            ig.music.volume = 0.1;
 
 		    // Load starting level
 
@@ -60,6 +73,23 @@ ig.module(
 
             ig.input.unbind(ig.KEY.ESC, 'skipIntro');
             ig.input.unbind(ig.KEY.C, 'start');
+
+        },
+
+
+        /**
+         * Here I override the loadLevelDeferred method, so
+         * I can set the currentLevel property.
+         *
+         * @param level
+         * @param playerSpawnerName
+         * @override
+         */
+        loadLevelDeferred: function( level, playerSpawnerName ){
+
+            this.currentLevel = level;
+
+            this.parent( level, playerSpawnerName );
 
         },
 
@@ -104,7 +134,7 @@ ig.module(
 
             // Skipt to title
 
-            if( ig.input.pressed('skipIntro') ){
+            if( ig.input.pressed('skipIntro') && this.currentLevel !== 'title' ){
 
                 ig.game.loadLevelDeferred( 'title' );
 
@@ -113,6 +143,10 @@ ig.module(
             // Start the game!
 
             if( ig.game.getEntitiesByClass(ig.EntityPressCToStart)[0] && ig.input.pressed('start') ){
+
+                ig.music.stop();
+
+                this.menu.play();
 
                 ig.system.setGame( superSnailRescue );
 
@@ -158,6 +192,15 @@ ig.module(
          */
         gameOverDelay: 3,
 
+        /**
+         * Will fade out the background music on game over while it's true.
+         *
+         * @type {Boolean}
+         *
+         */
+        enableGameOverMusicFadeOut: true,
+
+
         init: function () {
 
             this.parent();
@@ -169,6 +212,11 @@ ig.module(
             // Number of current extra lives
 
             this.extraLives = this.amountOfStartLives;
+
+            // Background music
+
+            ig.music.add( 'media/music/brink_broken-dreams.*', ['brokenDreams'] );
+            ig.music.volume = 0.25;
 
             // Load starting level
 
@@ -232,6 +280,10 @@ ig.module(
 
             if( this.currentLevel === 'starfield' ){
 
+                // Background music
+
+                ig.music.play( ['brokenDreams'] );
+
                 // Refill extra lives
 
                 this.extraLives = this.amountOfStartLives;
@@ -262,6 +314,7 @@ ig.module(
                 // Center on game over screen
 
                 this.camera.follow( this.getEntityByName('pressCToContinue'), true, true );
+
 
             }
 
@@ -362,16 +415,24 @@ ig.module(
 
             if( this.hasLostTheGame ){
 
+                if( this.enableGameOverMusicFadeOut ){
+
+                    ig.music.fadeOut( 1 );
+
+                    this.enableGameOverMusicFadeOut = false;
+
+                }
+
                 if( this.gameOverTimer.delta() > this.gameOverDelay ){
 
                     // Load game over screen
 
                     ig.game.loadLevelDeferred( 'gameover' );
 
-                    // Reset flag
+                    // Reset flags
 
                     this.hasLostTheGame = false;
-
+                    this.enableGameOverMusicFadeOut = true;
 
                 }
 
@@ -384,7 +445,7 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-        superSnailRescue,
+        openingAndTitle,
         60,
 		_c.GAME_WIDTH_VIEW,
 		_c.GAME_HEIGHT_VIEW,

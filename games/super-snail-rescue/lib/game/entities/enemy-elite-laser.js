@@ -91,7 +91,7 @@ ig.module(
             // Soundeffects
 
             this.laser = new ig.Sound( 'media/sounds/enemy-laser.*' );
-            this.laser.volume = 0.7;
+            this.laser.volume = 0.1;
 
         },
 

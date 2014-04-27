@@ -66,6 +66,9 @@ ig.module(
 
             this.timer = new ig.Timer();
 
+            this.liftOff = new ig.Sound( 'media/sounds/liftoff.*' );
+            this.liftOff.volume = 0.3;
+
         },
 
         updateChanges: function(){
@@ -90,10 +93,16 @@ ig.module(
 
             this.hasLiftoff = true;
 
+            // Liftoff sound
+
+            this.liftOff.play();
+
             // bring da roof down!
+
             ig.game.camera.shake(4,3);
 
             // spawn lift off explosion
+
             ig.game.spawnEntity(ig.EntityExplosion, this.pos.x, this.pos.y + 10, {
                 spawnCountMax: 20,
                 spawnSettings: {
@@ -110,6 +119,7 @@ ig.module(
             this.moveToUp();
 
             // increase velocity
+
             this.maxVelGrounded = {
                 x: 150,
                 y: 50

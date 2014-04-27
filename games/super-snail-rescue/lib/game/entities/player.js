@@ -177,6 +177,7 @@ ig.module(
             // Soundeffect
 
             this.explosion = new ig.Sound( 'media/sounds/explosion.*' );
+            this.explosion.volume = 0.2;
 
         },
 
@@ -228,7 +229,7 @@ ig.module(
             }
             else if ( ig.input.state('left') && !this.isTouchingBorderLeft ) {
 
-                this.maxVelGrounded.x = 50;
+                this.maxVelGrounded.x = 15;
 
                 this.moveToLeft();
 
@@ -292,7 +293,19 @@ ig.module(
 
             if( res.collision.x || res.collision.y || res.collision.slope ){
 
-                this.kill();
+                // Just kill if he is not invulnerable
+
+                if( !this.invulnerable ){
+
+                    this.kill();
+
+                }
+                else {
+
+                    this.pos.x += this.vel.x * ig.system.tick;
+                    this.pos.y += this.vel.y * ig.system.tick;
+
+                }
 
             }
             else {

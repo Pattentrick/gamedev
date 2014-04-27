@@ -146,7 +146,8 @@ ig.module(
         /**
          * Sets the hasAbductioninProgress flag to
          * true, so the UFO graphic changes, and
-         * starts the abduction sequence.
+         * starts the abduction sequence. Also the
+         * awesome chiptune music will be played!
          *
          */
         abductTheSnail: function(){
@@ -156,11 +157,17 @@ ig.module(
 
             if( !this.readyForTakeOff ){
 
+                // Play some music
+
+                ig.music.play( ['1BitOfAdviceBeforeYouTakeOff'] );
+
                 // set sad animations
+
                 snail.setSadFaceAnimation();
                 panda.setSadFaceAnimation();
 
                 // kill hearts
+
                 ig.game.getEntitiesByClass(ig.EntityHearts)[0].kill();
 
                 this.readyForTakeOff = true;
@@ -173,6 +180,7 @@ ig.module(
                 this.hasAbductioninProgress = true;
 
                 // lift up the snail and the UFO!
+
                 this.moveToUp();
                 this.moveToRight();
 

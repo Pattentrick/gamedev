@@ -25,6 +25,17 @@ ig.module(
 
         name: 'pressCToContinue',
 
+        initProperties: function(){
+
+            this.parent();
+
+            // Soundeffects
+
+            this.menu = new ig.Sound( 'media/sounds/menu.*' );
+            this.menu.volume = 0.3;
+
+        },
+
         update: function(){
 
             this.parent();
@@ -32,6 +43,8 @@ ig.module(
             // Continue
 
             if ( ig.input.pressed('shoot') ) {
+
+                this.menu.play();
 
                 ig.game.loadLevelDeferred( 'starfield' );
 

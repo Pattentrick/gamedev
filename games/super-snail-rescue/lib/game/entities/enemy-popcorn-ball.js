@@ -57,6 +57,29 @@ ig.module(
         destination: 100,
 
         /**
+         * If set this enemy will stop moving up/down, and will left
+         * once he has travelled the amount of pixels defined at this property.
+         *
+         * @type Number
+         */
+        stopAfter: null,
+
+        /**
+         * Starting position on the y-axis of this enemy. Will be set on init.
+         *
+         * @type Number
+         */
+        startPosY: null,
+
+        init: function( x, y, settings ){
+
+            this.parent( x, y, settings );
+
+            this.startPosY = Math.ceil( this.getCenterY() );
+
+        },
+
+        /**
          * Will move this enemy up, or down, until it reaches its destination
          * on the y axis. If that happens this enemy will move left.
          *
@@ -65,7 +88,7 @@ ig.module(
 
             var y = Math.ceil( this.getCenterY() );
 
-            if( y === this.destination ){
+            if( y === this.destination || this.hasReachedDestination ){
 
                 this.moveToStop();
                 this.moveToLeft();
@@ -74,8 +97,9 @@ ig.module(
 
             }
 
-
             if( !this.hasReachedDestination ){
+
+                // Move up or down
 
                 if( y < this.destination ){
 
@@ -85,6 +109,22 @@ ig.module(
                 else {
 
                     this.moveToUp();
+
+                }
+
+                // Stop traveling to destination if a stop point is defined and reached
+
+                if( this.stopAfter ){
+
+                    // Weltmeister saves values as string. So we have to convert them ...
+
+                    this.stopAfter = parseInt( this.stopAfter );
+
+                    if( this.getDifference( y, this.startPosY ) >= this.stopAfter ){
+
+                        this.hasReachedDestination = true;
+
+                    }
 
                 }
 

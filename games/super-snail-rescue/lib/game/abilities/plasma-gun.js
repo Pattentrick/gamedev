@@ -32,7 +32,7 @@ ig.module(
 
             this.parent( settings );
 
-            this.plasma.volume = 0.4;
+            this.plasma.volume = 0.1;
             this.plasma.play();
 
         }
