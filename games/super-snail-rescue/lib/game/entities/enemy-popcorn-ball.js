@@ -133,6 +133,14 @@ ig.module(
 
         },
 
+        die: function(){
+
+            this.parent();
+
+            //this.hasReachedDestination = false;
+
+        },
+
         updateChanges: function(){
 
            this.parent();

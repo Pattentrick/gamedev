@@ -702,7 +702,7 @@ ig.module(
 
                 // check all expected animations so we don't have to check while in game
 
-                if (this.animAutomatic && this.animsExpected.length > 0 && !this._animsPlaceheld) {
+                if (this.animAutomatic && this.animsExpected.length > 0) {// && !this._animsPlaceheld) {
 
                     this._animsPlaceheld = true;
 
@@ -723,7 +723,7 @@ ig.module(
 
                 if (this.animInit instanceof ig.Animation) {
 
-                    animInitPlaceholder = animInit;
+                    animInitPlaceholder = this.animInit;
 
                 } else if (this.animInit && anims[this.animInit]) {
 
@@ -2635,14 +2635,15 @@ ig.module(
                 anim = anims[this.getDirectionalAnimName("idle")];
 
                 if (this.currentAnim !== anim) {
-
+								
                     this.currentAnim = anim;
-
-                    if( this.currentAnim ) {
-
+										
+                    if(this.currentAnim) {
+										
                         this.currentAnim.playFromStart();
-
+												
                     }
+										
                 }
 
             }
