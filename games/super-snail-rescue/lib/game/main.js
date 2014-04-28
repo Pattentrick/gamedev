@@ -174,7 +174,7 @@ ig.module(
          * @type {Boolean} If true the level will autoscroll.
          *
          */
-        hasScrollingEnabled: false,
+        hasScrollingEnabled: true,
 
         /**
          * Whether the player has lost the game or not.

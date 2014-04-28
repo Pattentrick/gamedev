@@ -26,6 +26,8 @@ ig.module(
             y: 16
         },
 
+        highPerformance: false,
+
         canFlipX: false,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-popcorn-ball.png', 16, 16 ),
@@ -38,7 +40,7 @@ ig.module(
         },
 
         maxVelGrounded: {
-            x: 20,
+            x: 40,
             y: 40
         },
 
@@ -62,7 +64,7 @@ ig.module(
          *
          * @type Number
          */
-        stopAfter: null,
+        stopAfter: 50,
 
         /**
          * Starting position on the y-axis of this enemy. Will be set on init.
@@ -70,14 +72,6 @@ ig.module(
          * @type Number
          */
         startPosY: null,
-
-        init: function( x, y, settings ){
-
-            this.parent( x, y, settings );
-
-            this.startPosY = Math.ceil( this.getCenterY() );
-
-        },
 
         /**
          * Will move this enemy up, or down, until it reaches its destination
@@ -116,10 +110,6 @@ ig.module(
 
                 if( this.stopAfter ){
 
-                    // Weltmeister saves values as string. So we have to convert them ...
-
-                    this.stopAfter = parseInt( this.stopAfter );
-
                     if( this.getDifference( y, this.startPosY ) >= this.stopAfter ){
 
                         this.hasReachedDestination = true;
@@ -137,7 +127,7 @@ ig.module(
 
             this.parent();
 
-            //this.hasReachedDestination = false;
+            this.hasReachedDestination = false;
 
         },
 
@@ -145,11 +135,13 @@ ig.module(
 
            this.parent();
 
-           if( !this.isWaiting ){
+           if( !this.startPosY ){
 
-               this.handleMovement();
+               this.startPosY = Math.ceil( this.getCenterY() );
 
            }
+
+           this.handleMovement();
 
         }
 

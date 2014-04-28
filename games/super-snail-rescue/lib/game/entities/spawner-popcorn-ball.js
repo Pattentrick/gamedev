@@ -19,13 +19,11 @@ ig.module(
      */
     ig.EntitySpawnerPopcornBall = ig.global.EntitySpawnerPopcornBall = ig.SpawnerCharacter.extend({
 
-        delay: 1,
-
         spawningEntity: ig.EntityEnemyPopcornBall,
 
-        spawnCountMax: 5,
+        spawnCountMax: 3,
 
-        duration: 6,
+        duration: 5,
 
         spawnAtSide: {
             x: 0,
