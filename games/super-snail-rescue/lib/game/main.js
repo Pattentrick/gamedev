@@ -282,7 +282,8 @@ ig.module(
 
                 // Background music
 
-                ig.music.play( ['brokenDreams'] );
+/*                ig.music.play( ['brokenDreams'] );
+                ig.music.loop = true;*/
 
                 // Refill extra lives
 
@@ -445,7 +446,7 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-        openingAndTitle,
+        superSnailRescue,
         60,
 		_c.GAME_WIDTH_VIEW,
 		_c.GAME_HEIGHT_VIEW,
