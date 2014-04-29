@@ -29,6 +29,8 @@ ig.module(
 
         health: 2,
 
+        explodingDamage: false,
+
         /**
          * If the upcoming shot is the first one.
          *

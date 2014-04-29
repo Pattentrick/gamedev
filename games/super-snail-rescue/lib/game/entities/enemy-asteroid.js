@@ -127,15 +127,15 @@ ig.module(
                     switch( this.movementPattern ){
                         case 0:
                             this.moveToLeft();
-                            break;
+                        break;
                         case 1:
                             this.moveToLeft();
                             this.moveToUp();
-                            break;
+                        break;
                         case 2:
                             this.moveToLeft();
                             this.moveToDown();
-                            break;
+                        break;
                     }
 
                 }

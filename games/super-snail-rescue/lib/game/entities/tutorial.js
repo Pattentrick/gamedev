@@ -23,7 +23,7 @@ ig.module(
             y: 40
         },
 
-        //highPerformance: true,
+        highPerformance: true,
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'tutorial.gif', 104, 40 ),
 

@@ -7,6 +7,7 @@ ig.module(
     'plusplus.core.config',
     'game.entities.small-explosion',
     'game.entities.particle-small-explosion',
+    'plusplus.entities.explosion',
     'plusplus.entities.destructable'
 )
 .defines(function () {
@@ -67,12 +68,12 @@ ig.module(
         },
 
         deathSettings: {
-            spawnCountMax: 20,
+            spawnCountMax: 45,
             spawningEntity: ig.EntityParticleSmallExplosion,
             spawnSettings: {
                 vel: {
-                    x: 200,
-                    y: 200
+                    x: 95,
+                    y: 95
                 },
                 lifeDuration: 0.8,
                 // fade in after spawning
@@ -201,6 +202,51 @@ ig.module(
             // Boom!
 
             this.explosion.play();
+
+            // Particles FTW !!!
+
+            ig.game.spawnEntity(ig.EntityExplosion, this.getCenterX(), this.getCenterY(), {
+                spawnCountMax: 12,
+                spawnSettings: {
+                    vel: {
+                        x: 20,
+                        y: -20
+                    },
+                    lifeDuration: 0.8,
+                    // fade in after spawning
+                    fadeAfterSpawnDuration: 0,
+                    // fade out before dieing
+                    fadeBeforeDeathDuration: 0.5,
+                    friction: {
+                        x: 50,
+                        y: 50
+                    },
+                    animTileOffset: ig.EntityParticleColor.colorOffsets.GRAY
+                },
+                spawningEntity: ig.EntityParticleColor
+            });
+
+            ig.game.spawnEntity(ig.EntityExplosion, this.getCenterX(), this.getCenterY(), {
+                spawnCountMax: 12,
+                spawnSettings: {
+                    randomDoubleVel: true,
+                    vel: {
+                        x: 20,
+                        y: -20
+                    },
+                    lifeDuration: 0.8,
+                    // fade in after spawning
+                    fadeAfterSpawnDuration: 0,
+                    // fade out before dieing
+                    fadeBeforeDeathDuration: 0.5,
+                    friction: {
+                        x: 50,
+                        y: 50
+                    },
+                    animTileOffset: 100
+                },
+                spawningEntity: ig.EntityParticleColorLiftoff
+            });
 
             // Critical hit!
 
