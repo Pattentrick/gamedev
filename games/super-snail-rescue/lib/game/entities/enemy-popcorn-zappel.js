@@ -1,5 +1,5 @@
 ig.module(
-    'game.entities.enemy-popcorn-fodder'
+    'game.entities.enemy-popcorn-zappel'
 )
 .requires(
     'plusplus.core.config',
@@ -20,35 +20,28 @@ ig.module(
      * @extends ig.EntityExtended
      * @memeberof ig
      */
-    ig.EntityEnemyPopcornFodder = ig.global.EntityEnemyPopcornFodder = ig.EntityEnemy.extend({
+    ig.EntityEnemyPopcornZappel = ig.global.EntityEnemyPopcornZappel = ig.EntityEnemy.extend({
 
         size: {
-            x: 20,
-            y: 14
+            x: 17,
+            y: 16
         },
 
         canFlipX: false,
 
-        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-popcorn-fodder.gif', 20, 14 ),
+        animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-popcorn-zappel.gif', 17, 16 ),
 
         animSettings: {
             idle: {
-                frameTime: 0.1,
-                sequence: [0,1,2,3]
+                frameTime: 0.2,
+                sequence: [0,1,2,1]
             }
         },
 
         /**
-         * True if the wave movement just started.
-         *
-         * @type Boolean
-         */
-        isWaveStart: true,
-
-        /**
          * On which distance to the player should this enemy start attacking.
          */
-        attackRange: 120,
+        attackRange: 150,
 
         /**
          * How many shots can this enemy fire?
@@ -67,7 +60,7 @@ ig.module(
         },
 
         maxVelGrounded: {
-            x: 20,
+            x: 30,
             y: 10
         },
 
@@ -127,7 +120,7 @@ ig.module(
 
             }
 
-            ig.game.spawnEntity(ig.EntityProjectileSpinnerBullet, this.getCenterX(), this.getCenterY(), {
+            ig.game.spawnEntity(ig.EntityProjectileSpinnerBullet, this.getCenterX(), this.getCenterY() - 2, {
                 movementDirection: this.shootingDirection
             });
 
@@ -140,30 +133,6 @@ ig.module(
            if( !this.isWaiting ){
 
                this.moveToLeft();
-
-               // Start wave movement after given time, or if this would be the start of the wave movement
-
-               if( this.movementTimer.delta() > 0.7 || this.isWaveStart ){
-
-                   if( !this.isMovingUp ){
-
-                       this.moveToUp();
-
-                       this.isMovingUp = true;
-
-                   }
-                   else {
-
-                       this.moveToDown();
-
-                       this.isMovingUp = false;
-
-                   }
-
-                   this.movementTimer.reset();
-                   this.isWaveStart = false;
-
-               }
 
                // Shooting
 

@@ -23,7 +23,7 @@ ig.module(
 
         spawnCountMax: 3,
 
-        duration: 5,
+        duration: 4,
 
         spawnAtSide: {
             x: 0,

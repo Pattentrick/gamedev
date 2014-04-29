@@ -56,7 +56,7 @@ ig.module(
 
             this.animOverride('damaged');
 
-        },
+        }
 
     });
 

@@ -287,7 +287,7 @@ ig.module(
          */
         spawnDebris: function(){
 
-            var isBarrier = this.name === 'barrier';
+            var isBarrier = this.name === 'barrier' || this.name === 'asteroid';
 
             var destructable = ig.game.spawnEntity(ig.EntityDestructable, this.getCenterX(), this.getCenterY(), {
                 spawnCountMax: isBarrier ? 12 : 6,

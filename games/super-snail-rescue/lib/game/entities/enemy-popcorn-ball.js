@@ -64,7 +64,7 @@ ig.module(
          *
          * @type Number
          */
-        stopAfter: 50,
+        stopAfter: 40,
 
         /**
          * Starting position on the y-axis of this enemy. Will be set on init.
