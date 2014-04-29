@@ -2,7 +2,6 @@ ig.module(
     'game.entities.bee'
 )
 .requires(
-    'plusplus.core.entity',
     'plusplus.abstractities.character',
     'plusplus.core.config'
 )
