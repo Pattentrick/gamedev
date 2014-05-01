@@ -26,7 +26,7 @@ ig.module(
      */
     ig.EntityEnemy = ig.global.EntityEnemy = ig.Character.extend({
 
-        performance: 'dynamic',
+        performance: 'static',
 
         /**
          * If this enemy is still waiting for the player.
@@ -116,6 +116,9 @@ ig.module(
                     // Disable high performance
 
                     this.highPerformance = false;
+                    this.performance = 'dynamic';
+
+                    console.log(this.performance);
 
                 }
 
@@ -156,7 +159,7 @@ ig.module(
 
         },
 
-        updateChanges: function(){
+        update: function(){
 
             this.parent();
 
@@ -234,7 +237,7 @@ ig.module(
                         x: 20,
                         y: -20
                     },
-                    lifeDuration: 0.8,
+                    lifeDuration: 0.9,
                     // fade in after spawning
                     fadeAfterSpawnDuration: 0,
                     // fade out before dieing
@@ -254,7 +257,7 @@ ig.module(
 
                 // bring da roof down
 
-                ig.game.camera.shake(2,3);
+                ig.game.camera.shake(2,5);
 
                 // Center
 

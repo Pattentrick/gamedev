@@ -74,7 +74,9 @@ ig.module(
 
         temporaryInvulnerabilityAlpha: 0,
 
-        temporaryInvulnerabilityPulses: 20,
+        damageDelay: 1.5,
+
+        temporaryInvulnerabilityPulses: 30,
 
         maxVelGrounded: {
             x: 50,

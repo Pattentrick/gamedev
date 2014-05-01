@@ -26,6 +26,8 @@ ig.module(
             y: 16
         },
 
+        performance: 'dynamic',
+
         highPerformance: false,
 
         canFlipX: false,

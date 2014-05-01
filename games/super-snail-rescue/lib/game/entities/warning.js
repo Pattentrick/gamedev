@@ -72,6 +72,8 @@ ig.module(
 
             }
 
+            this.moveToRight();
+
         }
 
     });

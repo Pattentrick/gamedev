@@ -38,7 +38,7 @@ ig.module(
 
             var scroller = ig.game.getEntityByName('levelScroller');
 
-            ig.game.spawnEntity( ig.EntityWarning, scroller.getCenterX() - 39, scroller.getCenterY() - 8 );
+            ig.game.spawnEntity( ig.EntityWarning, scroller.getCenterX() - 37, scroller.getCenterY() - 8 );
 
         },
 
