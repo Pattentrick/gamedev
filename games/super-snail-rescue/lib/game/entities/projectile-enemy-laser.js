@@ -35,7 +35,7 @@ ig.module(
         },
 
         maxVel: {
-            x: 200,
+            x: 300,
             y: 200
         },
 

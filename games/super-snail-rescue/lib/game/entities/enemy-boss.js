@@ -5,6 +5,8 @@ ig.module(
     'plusplus.abstractities.character',
     'plusplus.entities.destructable',
     'game.entities.big-explosion',
+    'game.entities.projectile-enemy-laser',
+    'game.entities.enemy-boss-body',
     'plusplus.core.config'
 )
 .defines(function () {
@@ -23,7 +25,7 @@ ig.module(
 
         performance: 'dynamic',
 
-        health: 1,
+        health: 10,
 
         damage: 1,
 
@@ -35,10 +37,12 @@ ig.module(
 
         temporaryInvulnerabilityPulses: 15,
 
+        hasSpawnedBody: false,
+
         /**
          * Position of the top stop on the y-axis (needed for the movement pattern).
          *
-         * @type Number
+         * @type {Number}
          *
          */
         topStop: 40,
@@ -46,7 +50,7 @@ ig.module(
         /**
          * Position of the middle stop on the y-axis (needed for the movement pattern).
          *
-         * @type Number
+         * @type {Number}
          *
          */
         middleStop: 100,
@@ -54,10 +58,42 @@ ig.module(
         /**
          * Position of the bottom stop on the y-axis (needed for the movement pattern).
          *
-         * @type Number
+         * @type {Number}
          *
          */
         bottomStop: 160,
+
+        /**
+         * How often in seconds should the boss stop his movement to shoot lasers.
+         *
+         * @type {Number}
+         *
+         */
+        stopFrequency: 1.5,
+
+        /**
+         * How long should the boss wait while shooting the lasers in seconds.
+         *
+         * @type {Number}
+         *
+         */
+        waitTime: 0.5,
+
+        /**
+         * If the boss is stopping right know.
+         *
+         * @type {Boolean}
+         *
+         */
+        hasActiveStop: false,
+
+        /**
+         * If the boss has spawned a body
+         *
+         * @type {Boolean}
+         *
+         */
+        hasSpawnedBody: false,
 
         deathSettings: {
             spawnCountMax: 200,
@@ -86,8 +122,8 @@ ig.module(
         },
 
         maxVelGrounded: {
-            x: 20,
-            y: 20
+            x: 0,
+            y: 150
         },
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'enemy-boss.gif', 81, 80 ),
@@ -111,6 +147,17 @@ ig.module(
 
             this.explosion = new ig.Sound( 'media/sounds/explosion.*' );
             this.explosion.volume = 0.2;
+
+            this.laser = new ig.Sound( 'media/sounds/enemy-laser.*' );
+            this.laser.volume = 0.1;
+
+            // Timer
+
+            this.stopTimer = new ig.Timer();
+            this.stopTimer.pause();
+
+            this.waitTimer = new ig.Timer();
+            this.waitTimer.pause();
 
         },
 
@@ -136,11 +183,59 @@ ig.module(
         },
 
         /**
+         * Will move the enmy up and down.
+         *
+         * @param {Number} start The start position of the movement
+         * @param {Number} end The end position of the movement
+         *
+         */
+        moveUpAndDown: function( start, end ){
+
+            var y = this.getCenterY();
+
+            if( y > start && !this.isMovingDown ){
+
+                this.moveToUp();
+                this.shipBody.moveToUp();
+
+            }
+            else {
+
+                if( y > end ){
+
+                    this.isMovingDown = false;
+
+                }
+                else {
+
+                    this.moveToDown();
+                    this.shipBody.moveToDown();
+
+                    this.isMovingDown = true;
+
+                }
+
+            }
+
+        },
+
+        /**
          * Override this for special damaged animation (flickering).
          */
         receiveDamage: function( amount, from, unblockable ){
 
-            this.parent( amount, from, unblockable );
+            // Don't block damage after first invulnerable state
+
+            if( this.invulnerable ){
+
+                this.parent( amount, from, unblockable );
+
+            }
+            else {
+
+                this.parent( amount, from, true );
+
+            }
 
             if( !this.invulnerable ){
 
@@ -241,13 +336,129 @@ ig.module(
 
         handleMovement: function(){
 
+            // Timer should only run once the movement started.
+
+            this.stopTimer.unpause();
+
+            // Stop movement after given seconds (stopFrequency).
+
+            if( this.stopTimer.delta() >= this.stopFrequency ){
+
+                if( !this.hasActiveStop ){
+
+                    this.moveToStop();
+                    this.shipBody.moveToStop();
+
+                    this.hasActiveStop = true;
+
+                }
+                else {
+
+                    // Timer should only run once the movement started.
+
+                    this.waitTimer.unpause();
+
+                    // If the wait time is over reset everything so the movement starts again.
+
+                    if( this.waitTimer.delta() > this.waitTime ){
+
+                        // Timers
+
+                        this.stopTimer.reset();
+                        this.waitTimer.reset();
+
+                        this.waitTimer.pause();
+
+                        // Flags
+
+                        this.hasActiveStop = false;
+                        this.hasFired = false;
+
+                    }
+                    else {
+
+                        if( !this.hasFired ){
+
+                            this.shootLaser();
+
+                            this.hasFired = true;
+
+                        }
+
+
+                    }
+
+                }
+
+            }
+            else {
+
+                this.moveUpAndDown( this.topStop, this.bottomStop);
+
+            }
+
+        },
+
+        shootLaser: function(){
+
+            this.laser.play();
+
+            ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x - 10,  this.getCenterY() -25, {
+                vel: {
+                    x: -175,
+                    y: 0
+                }
+            });
+
+            ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x - 10,  this.getCenterY() +25, {
+                vel: {
+                    x: -175,
+                    y: 0
+                }
+            });
+
+            ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x,  this.getCenterY() - 33, {
+                vel: {
+                    x: -175,
+                    y: 0
+                }
+            });
+
+            ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x,  this.getCenterY() + 33, {
+                vel: {
+                    x: -175,
+                    y: 0
+                }
+            });
+
+        },
+
+        /**
+         * Spawns the body of the ship.
+         */
+        spawnBody: function(){
+
+            this.shipBody = ig.game.spawnEntity( ig.EntityEnemyBossBody, this.pos.x + 23, this.pos.y - 32 );
+
         },
 
         update: function(){
 
             this.parent();
 
-            this.handleMovement();
+            if( !this.hasSpawnedBody ){
+
+                this.spawnBody();
+
+                this.hasSpawnedBody = true;
+
+            }
+
+            if( !this.invulnerable ){
+
+                this.handleMovement();
+
+            }
 
         }
 
