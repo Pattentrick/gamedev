@@ -5,7 +5,7 @@ ig.module(
 	// include impact++
     'plusplus.core.plusplus',
     // enable debug
-    'plusplus.debug.debug',
+    //'plusplus.debug.debug',
     // levels
     'game.levels.intro-scene-1',
     'game.levels.intro-scene-2',
@@ -208,7 +208,7 @@ ig.module(
 
             // Amount of extra lives that the player starts with
 
-            this.amountOfStartLives = 6;
+            this.amountOfStartLives = 2;
 
             // Number of current extra lives
 
@@ -342,7 +342,7 @@ ig.module(
         },
 
         /**
-         * Spawns UI elements which represent the ammount of extra lives the player has.
+         * Spawns icons that represent the ammount of extra lives the player has.
          */
         displayExtraLives: function(){
 
@@ -466,7 +466,7 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-        superSnailRescue,
+        openingAndTitle,
         60,
 		_c.GAME_WIDTH_VIEW,
 		_c.GAME_HEIGHT_VIEW,

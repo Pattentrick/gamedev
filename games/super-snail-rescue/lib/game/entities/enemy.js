@@ -7,6 +7,7 @@ ig.module(
     'plusplus.core.config',
     'game.entities.small-explosion',
     'game.entities.particle-small-explosion',
+    'game.entities.particle-big-explosion',
     'plusplus.entities.explosion',
     'plusplus.entities.destructable'
 )
@@ -76,9 +77,7 @@ ig.module(
                     y: 95
                 },
                 lifeDuration: 0.8,
-                // fade in after spawning
                 fadeAfterSpawnDuration: 0.4,
-                // fade out before dieing
                 fadeBeforeDeathDuration: 0.4
             }
         },
@@ -117,8 +116,6 @@ ig.module(
 
                     this.highPerformance = false;
                     this.performance = 'dynamic';
-
-                    console.log(this.performance);
 
                 }
 
@@ -206,49 +203,63 @@ ig.module(
 
             this.explosion.play();
 
-            // Particles FTW !!!
+            // Smoke #1
 
             ig.game.spawnEntity(ig.EntityExplosion, this.getCenterX(), this.getCenterY(), {
                 spawnCountMax: 12,
+                spawningEntity: ig.EntityParticleColor,
                 spawnSettings: {
                     vel: {
                         x: 20,
                         y: -20
                     },
-                    lifeDuration: 0.8,
-                    // fade in after spawning
+                    lifeDuration: 1,
                     fadeAfterSpawnDuration: 0,
-                    // fade out before dieing
                     fadeBeforeDeathDuration: 0.5,
                     friction: {
                         x: 50,
                         y: 50
                     },
                     animTileOffset: ig.EntityParticleColor.colorOffsets.GRAY
-                },
-                spawningEntity: ig.EntityParticleColor
+                }
             });
+
+            // Smoke #2
 
             ig.game.spawnEntity(ig.EntityExplosion, this.getCenterX(), this.getCenterY(), {
                 spawnCountMax: 12,
+                spawningEntity: ig.EntityParticleColorLiftoff,
                 spawnSettings: {
                     randomDoubleVel: true,
                     vel: {
                         x: 20,
                         y: -20
                     },
-                    lifeDuration: 0.9,
-                    // fade in after spawning
+                    lifeDuration: 1.1,
                     fadeAfterSpawnDuration: 0,
-                    // fade out before dieing
                     fadeBeforeDeathDuration: 0.5,
                     friction: {
                         x: 50,
                         y: 50
                     },
                     animTileOffset: 100
-                },
-                spawningEntity: ig.EntityParticleColorLiftoff
+                }
+            });
+
+            // Big fire explosions
+
+            ig.game.spawnEntity(ig.EntityExplosion, this.getCenterX(), this.getCenterY(), {
+                spawnCountMax: 5,
+                spawningEntity: ig.EntityParticleBigExplosion,
+                spawnSettings: {
+                    vel: {
+                        x: 95,
+                        y: 95
+                    },
+                    lifeDuration: 0.8,
+                    fadeAfterSpawnDuration: 0.4,
+                    fadeBeforeDeathDuration: 0.4
+                }
             });
 
             // Critical hit!
@@ -257,7 +268,7 @@ ig.module(
 
                 // bring da roof down
 
-                ig.game.camera.shake(2,5);
+                ig.game.camera.shake( 1.5, 6 );
 
                 // Center
 
@@ -292,6 +303,8 @@ ig.module(
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() -16, this.getCenterY() -11);
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 3, this.getCenterY() -8);
                 ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() - 14, this.getCenterY() + 5 );
+                ig.game.spawnEntity( ig.EntitySmallExplosion, this.getCenterX() + 8, this.getCenterY() + 3 );
+
 
             }
             else {

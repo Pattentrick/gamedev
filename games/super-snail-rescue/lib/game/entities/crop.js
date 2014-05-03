@@ -10,7 +10,7 @@ ig.module(
     var _c  = ig.CONFIG;
 
     /**
-     * The floating heart above the panda and the snail.
+     * Will crop everything that leaves the level at the intro.
      *
      * @class
      * @extends ig.EntityExtended
@@ -29,10 +29,8 @@ ig.module(
 
         animSheet: new ig.AnimationSheet( _c.PATH_TO_MEDIA + 'crop.gif', 320, 200 ),
 
-        animInit: 'crop',
-
         animSettings: {
-            crop: {
+            idle: {
                 frameTime: 1,
                 sequence: [0]
             }

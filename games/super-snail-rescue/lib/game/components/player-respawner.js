@@ -41,7 +41,7 @@ ig.module(
 
         /**
          * Checks on every game update if the player is recently deceased.
-         * If so, the method will init a new timer changes the{@link ig.PlayerRespawner#hasDeathTimer}
+         * If so, the method will init a new timer changes the {@link ig.PlayerRespawner#hasDeathTimer}
          * flag to true and call the respawn method.
          *
          */

@@ -10,7 +10,7 @@ ig.module(
     var _c  = ig.CONFIG;
 
     /**
-     * A bee which flies over the meadow
+     * A bee that flies over the meadow.
      *
      * @class
      * @extends ig.EntityExtended
@@ -68,7 +68,7 @@ ig.module(
 
                 }
 
-                // once a direction is set, this flag will prevent further checks
+                // once a direction is set, this flag will prevent future checks
                 this.hasMovementDirection = true;
 
             }

@@ -33,7 +33,7 @@ ig.module(
                 sequence: [0]
             },
             explode: {
-                frameTime: 0.15,
+                frameTime: 0.1,
                 sequence: [1,2,3,4]
             }
         },

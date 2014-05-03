@@ -14,7 +14,7 @@ ig.module(
     var _ut = ig.utils;
 
     /**
-     * Will spawn every x second a laser beam.
+     * Will spawn every x second a laser beam. It's a trap!
      *
      * @class
      * @extends ig.EntityEnemy
@@ -96,7 +96,7 @@ ig.module(
 
         updateChanges: function(){
 
-            var player = ig.game.getPlayer();
+           var player = ig.game.getPlayer();
 
            this.parent();
 

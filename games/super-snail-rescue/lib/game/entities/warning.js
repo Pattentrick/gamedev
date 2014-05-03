@@ -62,8 +62,6 @@ ig.module(
 
         update: function(){
 
-            this.parent();
-
             if( this.alertTimer.delta() > this.alertFrequency || this.isFirstPlay ){
 
                 this.alert.play();
@@ -75,6 +73,8 @@ ig.module(
             }
 
             this.moveToRight();
+
+            this.parent();
 
         }
 

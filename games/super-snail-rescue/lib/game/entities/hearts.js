@@ -10,7 +10,7 @@ ig.module(
     var _c  = ig.CONFIG;
 
     /**
-     * The floating heart above the panda and the snail.
+     * The floating hearts above the panda and the snail.
      *
      * @class
      * @extends ig.EntityExtended

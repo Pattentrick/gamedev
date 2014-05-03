@@ -11,7 +11,7 @@ ig.module(
     var _c  = ig.CONFIG;
 
     /**
-     * Clouds that are moving in the background.
+     * Clouds that are moving slowly in the background.
      *
      * @class
      * @extends ig.EntityExtended

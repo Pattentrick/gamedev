@@ -21,7 +21,7 @@ ig.module(
      * his ship outside the view of the camera.
      *
      * @class
-     * @extends ig.EntityExtended
+     * @extends ig.Character
      * @memeberof ig
      */
     ig.EntityMovementBorder = ig.global.EntityMovementBorder = ig.Character.extend({
