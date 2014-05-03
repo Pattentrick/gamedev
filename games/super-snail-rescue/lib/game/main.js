@@ -12,6 +12,7 @@ ig.module(
     'game.levels.title',
     'game.levels.starfield',
     'game.levels.gameover',
+    'game.levels.credits',
     // loader
     'game.components.ssrloader',
     // level scroller
@@ -174,7 +175,7 @@ ig.module(
          * @type {Boolean} If true the level will autoscroll.
          *
          */
-        hasScrollingEnabled: false,
+        hasScrollingEnabled: true,
 
         /**
          * Whether the player has lost the game or not.
@@ -207,7 +208,7 @@ ig.module(
 
             // Amount of extra lives that the player starts with
 
-            this.amountOfStartLives = 2;
+            this.amountOfStartLives = 6;
 
             // Number of current extra lives
 
@@ -216,7 +217,8 @@ ig.module(
             // Background music
 
             ig.music.add( 'media/music/brink_broken-dreams.*', ['brokenDreams'] );
-            ig.music.volume = 0.25;
+            ig.music.add( 'media/music/1d2a_a-fight-for-time.*', ['aFightForTime'] );
+            ig.music.add( 'media/music/3ndymion_lament-of-layla.*', ['lamentOfLayla'] );
 
             // Load starting level
 
@@ -282,8 +284,9 @@ ig.module(
 
                 // Background music
 
-/*                ig.music.play( ['brokenDreams'] );
-                ig.music.loop = true;*/
+                ig.music.volume = 0.25;
+                ig.music.play( ['brokenDreams'] );
+                ig.music.loop = true;
 
                 // Refill extra lives
 
@@ -312,9 +315,26 @@ ig.module(
             }
             else {
 
-                // Center on game over screen
+                if( this.currentLevel === 'credits' ){
 
-                this.camera.follow( this.getEntityByName('pressCToContinue'), true, true );
+                    // Center on scroller
+
+                    this.camera.follow( this.getEntityByName('creditScroller'), true, true );
+
+
+
+                }
+                else {
+
+                    // Center on game over screen
+
+                    this.camera.follow( this.getEntityByName('pressCToContinue'), true, true );
+
+                    // Reset scrolling flag
+
+                    ig.game.hasScrollingEnabled = true;
+
+                }
 
 
             }

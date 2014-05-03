@@ -55,6 +55,11 @@ ig.module(
                 this.moveToRight();
 
             }
+            else {
+
+                this.moveToStop();
+
+            }
 
         }
 

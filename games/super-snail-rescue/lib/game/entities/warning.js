@@ -20,6 +20,8 @@ ig.module(
 
         performance: 'dynamic',
 
+        name: 'warning',
+
         zIndex: 10000,
 
         size: {

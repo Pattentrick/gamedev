@@ -231,7 +231,7 @@ ig.module(
             }
             else if ( ig.input.state('left') && !this.isTouchingBorderLeft ) {
 
-                this.maxVelGrounded.x = 15;
+                this.maxVelGrounded.x = ig.game.hasScrollingEnabled ? 15 : 50;
 
                 this.moveToLeft();
 

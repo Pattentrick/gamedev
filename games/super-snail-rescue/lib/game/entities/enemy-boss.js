@@ -7,7 +7,8 @@ ig.module(
     'game.entities.big-explosion',
     'game.entities.projectile-enemy-laser',
     'game.entities.enemy-boss-body',
-    'plusplus.core.config'
+    'plusplus.core.config',
+    'game.entities.space-snail'
 )
 .defines(function () {
 
@@ -36,8 +37,6 @@ ig.module(
         temporaryInvulnerabilityAlpha: 0,
 
         temporaryInvulnerabilityPulses: 15,
-
-        hasSpawnedBody: false,
 
         /**
          * Position of the top stop on the y-axis (needed for the movement pattern).
@@ -174,7 +173,7 @@ ig.module(
 
             // Kill player on collison if he is not invulnerable
 
-            if( !entity.invulnerable ){
+            if( !entity.invulnerable && !this.invulnerable ){
 
                 entity.receiveDamage(this.damage, this, this.damageUnblockable);
 
@@ -266,8 +265,6 @@ ig.module(
 
             // Explosions
 
-            // Boom!
-
             this.explosion.play();
 
             // bring da roof down
@@ -331,6 +328,24 @@ ig.module(
             });
 
             destructable.activate();
+
+            // Remove body
+
+            ig.game.removeEntity( this.shipBody );
+
+            // Spawn snail
+
+            this.spawnSnail();
+
+            // Stop music
+
+            ig.music.stop();
+
+        },
+
+        spawnSnail: function(){
+
+            ig.game.spawnEntity( ig.EntitySpaceSnail, this.getCenterX(), this.getCenterY() );
 
         },
 
@@ -405,28 +420,28 @@ ig.module(
 
             ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x - 10,  this.getCenterY() -25, {
                 vel: {
-                    x: -175,
+                    x: -300,
                     y: 0
                 }
             });
 
             ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x - 10,  this.getCenterY() +25, {
                 vel: {
-                    x: -175,
+                    x: -300,
                     y: 0
                 }
             });
 
             ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x,  this.getCenterY() - 33, {
                 vel: {
-                    x: -175,
+                    x: -300,
                     y: 0
                 }
             });
 
             ig.game.spawnEntity( ig.EntityProjectileEnemyLaser, this.pos.x,  this.getCenterY() + 33, {
                 vel: {
-                    x: -175,
+                    x: -300,
                     y: 0
                 }
             });

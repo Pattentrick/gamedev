@@ -83,6 +83,11 @@ ig.module(
                 this.moveToRight();
 
             }
+            else {
+
+                this.moveToStop();
+
+            }
 
             this.parent();
 

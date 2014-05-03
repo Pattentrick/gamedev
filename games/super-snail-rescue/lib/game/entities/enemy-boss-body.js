@@ -23,6 +23,12 @@ ig.module(
 
         explodingDamage: false,
 
+        damageDelay: 1.5,
+
+        temporaryInvulnerabilityAlpha: 0,
+
+        temporaryInvulnerabilityPulses: 15,
+
         damage: 1,
 
         size: {
@@ -48,7 +54,7 @@ ig.module(
 
             // Kill player on collison if he is not invulnerable
 
-            if( !entity.invulnerable ){
+            if( !entity.invulnerable && !this.invulnerable ){
 
                 entity.receiveDamage(this.damage, this, this.damageUnblockable);
 

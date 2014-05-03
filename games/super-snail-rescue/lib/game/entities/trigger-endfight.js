@@ -50,6 +50,12 @@ ig.module(
 
             this.spawnWarning();
 
+            // Play endfight music
+
+            ig.music.volume = 0.15;
+            ig.music.play( ['aFightForTime'] );
+            ig.music.loop = true;
+
         }
 
     });

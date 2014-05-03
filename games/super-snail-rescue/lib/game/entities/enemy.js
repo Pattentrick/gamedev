@@ -339,7 +339,7 @@ ig.module(
             var isBarrier = this.name === 'barrier' || this.name === 'asteroid';
 
             var destructable = ig.game.spawnEntity(ig.EntityDestructable, this.getCenterX(), this.getCenterY(), {
-                spawnCountMax: isBarrier ? 12 : 6,
+                spawnCountMax: isBarrier ? 12 : 8,
                 spawnSettings: {
                     animSheet: isBarrier ? new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'stone-debris.gif', 4, 4) : new ig.AnimationSheet(_c.PATH_TO_MEDIA + 'enemy-debris.gif', 4, 4),
                     vel: {
