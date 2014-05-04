@@ -151,6 +151,8 @@ ig.module(
 
                 ig.system.setGame( superSnailRescue );
 
+                document.getElementById('loading').style.display = 'block';
+
             }
 
         }
@@ -294,6 +296,10 @@ ig.module(
             this.parent();
 
             if( this.currentLevel === 'starfield' ){
+
+                // Remove loading headline (DOM)
+
+                document.getElementById('loading').style.display = 'none';
 
                 // Background music
 

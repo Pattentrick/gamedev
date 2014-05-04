@@ -19,6 +19,14 @@ ig.module(
      */
     ig.ssrLoader = ig.LoaderExtended.extend(/**@lends ig.LoaderExtended.prototype */{
 
+        init: function(gameClass, resources) {
+
+            this.parent(gameClass, resources);
+
+            document.getElementById('loading').style.display = 'none';
+
+        },
+
         run: function () {
 
             var t     = Date.now() - this._endTime;
