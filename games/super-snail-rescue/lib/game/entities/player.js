@@ -280,7 +280,7 @@ ig.module(
                 }
 
                 this.shoot.activate({
-                    offsetX: 11,
+                    offsetX: 9,
                     offsetY: projectileOffsetY
                 });
 
