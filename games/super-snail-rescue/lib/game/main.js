@@ -201,6 +201,14 @@ ig.module(
          */
         enableGameOverMusicFadeOut: true,
 
+        /**
+         * Whether game is pausing.
+         *
+         * @type {Boolean}
+         *
+         */
+        hasPause: false,
+
 
         init: function () {
 
@@ -227,6 +235,11 @@ ig.module(
             // Init player respawner
 
             this.playerRespawner = new ig.PlayerRespawner();
+
+            // Timer
+
+            this.pauseTimer = new ig.Timer();
+            this.pauseTimer.pause();
 
         },
 
@@ -426,11 +439,56 @@ ig.module(
 
         },
 
+        /**
+         * Triggers a game pause.
+         */
+        triggerPause: function(){
+
+            ig.game.pause( true );
+
+            this.hasPause = true;
+
+        },
+
+        /**
+         * Okay, that is hard to believe. But to pause the game for a few milliseconds
+         * before something is happening will make that event more impressive, because
+         * the brain will have more time to process the action that is coming.
+         *
+         * Because of that I stop the game here for 20 milliseconds.
+         *
+         */
+        handlePause: function(){
+
+            if( this.hasPause ){
+
+                this.pauseTimer.unpause();
+
+                if( this.pauseTimer.delta() > 0.02 ){
+
+                    ig.game.unpause( true );
+
+                    this.hasPause = false;
+                    this.pauseTimer.reset();
+                    this.pauseTimer.pause();
+
+                }
+
+            }
+
+        },
+
         update: function(){
 
             this.parent();
 
-            this.playerRespawner.checkForRespawn();
+            if( !this.hasPause ){
+
+                this.playerRespawner.checkForRespawn();
+
+            }
+
+            this.handlePause();
 
             // If the player has lost the game, switch to the game over screen, after a given time.
 
