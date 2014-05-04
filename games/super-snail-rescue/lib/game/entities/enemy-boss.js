@@ -26,7 +26,7 @@ ig.module(
 
         performance: 'dynamic',
 
-        health: 10,
+        health: 12,
 
         damage: 1,
 

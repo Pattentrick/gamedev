@@ -24,7 +24,7 @@ ig.module(
 
         offsetVelX: 1000,
 
-        cooldownDelay: 0.3,
+        cooldownDelay: 0.2,
 
         plasma: new ig.Sound( 'media/sounds/plasma.*' ),
 

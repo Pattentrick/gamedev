@@ -31,7 +31,7 @@ ig.module(
 
         lifeDuration: 0.27,
 
-        fadeBeforeDeathDuration: 0.1,
+        //fadeBeforeDeathDuration: 0.1,
 
         // lasers ignore gravity
 
@@ -64,6 +64,10 @@ ig.module(
                 frameTime: 0.01,
                 sequence: [0,1],
                 once: true
+            },
+            deathX:{
+                frameTime: 0.01,
+                sequence: [2,3,4,5]
             }
         },
 
