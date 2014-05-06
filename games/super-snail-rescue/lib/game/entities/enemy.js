@@ -43,7 +43,7 @@ ig.module(
          * @type {Boolean} True on high performance.
          *
          */
-        highPerformance: true,
+        //highPerformance: true,
 
         size: {
             x: 16,
@@ -115,7 +115,8 @@ ig.module(
                     // Disable high performance
 
                     this.highPerformance = false;
-                    this.performance = 'dynamic';
+
+                    this.setPerformance('dynamic');
 
                 }
 
@@ -378,10 +379,6 @@ ig.module(
         die: function(){
 
             this.parent();
-
-            // Pause the game for a few milliseconds to maximize explosion effect
-
-            ig.game.triggerPause();
 
             this.spawnDebris();
             this.spawnCustomExplosions();

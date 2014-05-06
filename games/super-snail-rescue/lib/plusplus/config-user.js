@@ -43,6 +43,10 @@ ig.module(
 
             TRANSITIONER_COLOR: "#000000",
 
+            // Disabeling prerendering speeds up the game
+
+            PRERENDER_BACKGROUND_LAYER : true,
+
             // camera settings
 
             CAMERA: {

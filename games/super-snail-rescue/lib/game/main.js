@@ -5,7 +5,7 @@ ig.module(
 	// include impact++
     'plusplus.core.plusplus',
     // enable debug
-    //'plusplus.debug.debug',
+    'plusplus.debug.debug',
     // levels
     'game.levels.intro-scene-1',
     'game.levels.intro-scene-2',
@@ -218,7 +218,7 @@ ig.module(
 
             // Amount of extra lives that the player starts with
 
-            this.amountOfStartLives = 2;
+            this.amountOfStartLives = 3;
 
             // Number of current extra lives
 
@@ -330,6 +330,14 @@ ig.module(
                 // Follow the level scroller with the camera
 
                 this.camera.follow( this.getEntityByName('levelScroller'), true, true );
+
+/*                var foes = ig.game.getEntitiesByType('FOE');
+
+                for( var i = 0, len = foes.length; i < len; i++ ){
+
+                   ig.game.removeEntity( foes[i] );
+
+                }*/
 
             }
             else {
@@ -530,7 +538,7 @@ ig.module(
     // Start up game
 	ig.main(
 		'#canvas',
-        openingAndTitle,
+        superSnailRescue,
         60,
 		_c.GAME_WIDTH_VIEW,
 		_c.GAME_HEIGHT_VIEW,

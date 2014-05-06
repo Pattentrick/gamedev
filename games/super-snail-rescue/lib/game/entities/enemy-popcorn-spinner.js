@@ -11,7 +11,6 @@ ig.module(
     'use strict';
 
     var _c  = ig.CONFIG;
-    var _ut = ig.utils;
 
     /**
      * Popcorn enemy that is easy to defeat. Will fly through the

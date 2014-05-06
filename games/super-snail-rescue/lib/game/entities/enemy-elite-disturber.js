@@ -14,7 +14,7 @@ ig.module(
     var _ut = ig.utils;
 
     /**
-     * A elite enemy that moves up and down and shoots triple bullets.
+     * An elite enemy that moves up and down and shoots triple bullets.
      *
      * @class
      * @extends ig.EntityExtended
